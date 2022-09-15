@@ -31,8 +31,42 @@ public class VariableApp {
 		System.out.print("변경값 = ");
 		System.out.println(su);
 		System.out.println("==========================================================");
+		int num=100;//변수 선언 및 초기값 저장
+		
+		//"문자열"+값 또는 값+"문자열" >> 문자열과 값의 결합을 의미 - 결과값 : 문자열
+		System.out.println("num = "+num);
+		System.out.println("==========================================================");
+		System.out.println("올해는 "+2+0+2+2+"년입니다.");
+		//숫자값+숫자값 >> 숫자값의 합계를 계산하는 의미 - 결과값 : 숫자값
+		System.out.println(2+0+2+2+"년은 호랑이띠해입니다.");//잘못된 결과 발생 - 실행 오류
+		//"" : 문자가 하나도 없는 문자열 - NullString
+		System.out.println(""+2+0+2+2+"년은 호랑이띠해입니다.");
+		System.out.println("==========================================================");
+		//동일한 자료형의 변수는 , 기호를 사용하여 나열 선언 가능
+		int num1=100,num2=200;
+		System.out.println("연산결과 = "+num1+num2);//잘못된 결과 발생 - 실행 오류
+		//() 연산자를 사용하여 무조건 먼저 실행되도록 설정 가능
+		System.out.println("연산결과 = "+(num1+num2));
+		System.out.println("연산결과 = "+num1*num2);
+		System.out.println("연산결과 = "+(num1*num2));
+		System.out.println("==========================================================");
+		int kor=88,eng=90;
+		//int tot=88+90;
+		int tot=kor+eng;//연산 결과를 변수에 저장
+		System.out.println("점수 합계 = "+tot);
+		System.out.println("==========================================================");
+		//변수에 값이 저장되어 있지 않는 상태에서 변수 사용시 에러 발생 
+		//int count;
+		//System.out.println("count = "+count);
+		
+		//변수에 저장 불가능한 값을 저장할 경우 에러 발생
+		//int count=10.0;
+		//System.out.println("count = "+count);
 	}
 }
+
+
+
 
 
 
