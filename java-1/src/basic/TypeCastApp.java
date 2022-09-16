@@ -8,7 +8,7 @@ public class TypeCastApp {
 		// => 표현의 범위가 작은 자료형의 값이 커다란 자료형의 값으로 형변환되어 연산
 		// => byte - short - char - int - long - float - double
 		// => int 자료형보다 작은 자료형은 무조건 int 자료형으로 형변환되어 연산 처리 
-		System.out.println("결과 = "+(3+1.5));//3+1.5 >> 3.0+1.5 >> 4.5
+		System.out.println("결과 = "+(3+1.5));//3(int)+1.5(double) >> 3.0(double)+1.5(double) >> 4.5(double)
 		
 		double su=10;//10 >> 10.0
 		System.out.println("su = "+su);
@@ -24,5 +24,47 @@ public class TypeCastApp {
 		double ave=tot/2.;//평균 계산 - 연산 결과 : 실수값 >> 변수값 : 92.5
 		System.out.println("총점 = "+tot+", 평균 = "+ave);
 		
+		byte su1=10, su2=20;
+		//byte su3=su1+su2;//10(byte)+20(byte) >> 10(int)+20(int) >> 30(int) : byte 변수에 저장 불가능 
+		int su3=su1+su2; 
+		System.out.println("su3 = "+su3);
+		System.out.println("===============================================================");
+		//강제 형변환 : 프로그래머가 Cast 연산자를 사용하여 값을 일시적으로 원하는 자료형으로 
+		//변환하여 명령을 작성하는 방법 - (자료형)값
+		int num=(int)12.3;//(int)12.3 >> 12 : 정수값
+		System.out.println("num = "+num);
+		
+		int num1=95, num2=10;
+		//double num3=num1/num2;//연산결과 : 9.0
+		double num3=(double)num1/num2;//연산결과 : 9.5
+		System.out.println("num3 = "+num3);
+		
+		//커다란 정수값은 _ 기호를 사용하여 표현 가능
+		int num4=100_000_000, num5=30;
+		//정수값의 연산 결과는 4Byte 범위의 정수값(-2147483648~2147483647)만 표현 가능
+		//문제점)정수값에 대한 연산 결과가 4Byte 범위의 정수값 표현 범위을 벗어난 경우 쓰레기값 발생되어 변수에 저장
+		//int num6=num4*num5;//실행 오류
+		//해결법)정수값에 대한 연산 결과가 4Byte 범위의 정수값 표현 범위을 벗어난 경우 long 자료형으로 연산 처리
+		long num6=(long)num4*num5;
+		System.out.println("num6 = "+num6);
+		
+		double number=1.23456789;
+		System.out.println("number = "+number);
+		
+		//소숫점 2자리 위치까지만 출력되도록 명령 작성
+		System.out.println("number(내림) = "+(int)(number*100)/100.);
+		System.out.println("number(반올림) = "+(int)(number*100+0.5)/100.);
+		System.out.println("number(올림) = "+(int)(number*100+0.9)/100.);
+		System.out.println("===============================================================");
 	}
 }
+
+
+
+
+
+
+
+
+
+
