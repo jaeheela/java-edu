@@ -7,12 +7,12 @@ package basic;
 //2.참조형(ReferenceType) : 특정 대상을 표현하기 위한 자료형 - 식별자(클래스)
 // => String 클래스 : 문자열을 표현하기 위한 자료형(클래스)
 
-//컴퓨터에서 값을 표현하는 단위 : 1Bit(0 또는 1) >> 1Byte(8Bit) - Character
+//컴퓨터에서 값을 저장하기 위한 단위 : 1Bit(0 또는 1) >> 1Byte(8Bit) - Character
 
 public class DataTypeApp {
 	public static void main(String[] args) {
 		//정수형(IntegerType) 리터럴 : 소숫점이 없는 숫자값  
-		// => Java의 정수형 리터럴은 기본적으로 4Byte(Interger)로 표현 >> -2147483648~2147483647
+		// => Java의 정수형 리터럴은 기본적으로 4Byte(Integer)로 표현 >> -2147483648~2147483647
 		System.out.println("<<정수형(IntegerType)>>");
 		System.out.println("정수값(10진수 100) = "+100);//숫자값 >> 10진수 정수값을 표현한 리터럴
 		//println() 메소드는 무조건 10진수의 정수값으로 변환하여 출력 처리
@@ -44,7 +44,7 @@ public class DataTypeApp {
 		System.out.println("==========================================================");
 		//실수형(DoubleType) 리터럴 : 소숫점이 있는 숫자값
 		// => Java의 실수형 리터럴은 기본적으로 8Byte(Double)로 표현
-		System.out.println("<<실수형(IntegerType)>>");
+		System.out.println("<<실수형(DoubleType)>>");
 		System.out.println("실수값(4Byte) = "+12.3F);//실수값F >> 4Byte(Float)의 실수값을 표현한 리터럴 
 		System.out.println("실수값(8Byte) = "+12.3);//실수값 >> 8Byte(Double)의 실수값을 표현한 리터럴
 		//println() 메소드는 아주 작은 실수값 또는 아주 커다란 실수값을 지수형태로 변환하여 출력
@@ -60,10 +60,10 @@ public class DataTypeApp {
 		System.out.println("b2 = "+b2);
 		System.out.println("==========================================================");
 		//문자형(CharacterType) 리터럴 : ' ' 안에 하나의 문자로 표현
-		// => Java의 문자형 리터럴은 기본적으로 2Byte(Double)로 표현
+		// => Java의 문자형 리터럴은 기본적으로 2Byte(Character)로 표현
 		// => 일반 문자와 회피 문자로 구분하여 사용
 		//회피 문자(Escape Character) : 표현 불가능한 문자를 표현하기 위해 방법 - \ 기호 사용
-		// => '\n' : Enter , '\t' : Tab, \' : 문자 ', \" : 문자 ", \\ : 문자 \, '\0' : NULL 문자
+		// => '\n' : Enter , '\t' : Tab, '\'' : 문자 ', '\"' : 문자 ", '\\' : 문자 \, '\0' : NULL 문자
 		//문자형 리터럴은 내부적으로 약속된 정수값(0~65535)으로 표현 : 유니코드(UniCode)
 		// => 'A' : 65, 'a' : 97, '0' : 48, ' ' : 32, '\n' : 13, '가' : 44032 - 완성형
 		System.out.println("<<문자형(CharacterType)>>");
