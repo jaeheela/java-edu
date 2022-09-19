@@ -1,6 +1,6 @@
 package basic;
 
-//형변환(TypeCast) : 값의 자료형을 일시적으로 변환하여 사용하는 방법
+//자료형변환(TypeCast) : 값의 자료형을 일시적으로 변환하여 사용하는 방법
 // => 자동 형변환(JVM), 강제 형변환(프로그래머)
 public class TypeCastApp {
 	public static void main(String[] args) {
