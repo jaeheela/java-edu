@@ -4,10 +4,10 @@ package basic;
 // => 자동 형변환(JVM), 강제 형변환(프로그래머)
 public class TypeCastApp {
 	public static void main(String[] args) {
-		//자동 형변환 : 자료형이 다른 값을 연산하기 위해 JVM에 의해 자료형이 변환
-		// => 표현의 범위가 작은 자료형의 값이 커다란 자료형의 값으로 형변환되어 연산
+		//자동 형변환 : 자료형이 다른 값을 연산하기 위해 JVM이 자료형을 일시적으로 변환
+		// => 표현의 범위가 작은 자료형의 값이 커다란 자료형의 값으로 형변환되어 연산 처리
 		// => byte - short - char - int - long - float - double
-		// => int 자료형보다 작은 자료형은 무조건 int 자료형으로 형변환되어 연산 처리 
+		// => int 자료형보다 작은 자료형의 값은 무조건 int 자료형으로 형변환되어 연산 처리 
 		System.out.println("결과 = "+(3+1.5));//3(int)+1.5(double) >> 3.0(double)+1.5(double) >> 4.5(double)
 		
 		double su=10;//10 >> 10.0
