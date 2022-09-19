@@ -4,10 +4,10 @@ package basic;
 // => 선택문(if, switch), 반복문(for, while), 기타(break, continue, return)
 
 //if : 조건식에 의해 명령을 선택 실행
-//형식) if(조건식) { 명령;  명령; ... }
+//형식1) if(조건식) { 명령;  명령; ... }
 // => 조건식의 결과가 참(true)인 경우 { } 안의 명령들을 실행
 // => { } 안에 작성된 명령이 하나인 경우 { } 기호 생략 가능
-//형식) if(조건식) { 명령;  명령; ... } else { 명령; 명령;... }
+//형식2) if(조건식) { 명령;  명령; ... } else { 명령; 명령;... }
 // => 조건식의 결과가 참(true)인 경우와 거짓인 경우를 구분하여 { } 안의 명령 실행
 public class IfApp {
 	public static void main(String[] args) {
@@ -45,8 +45,37 @@ public class IfApp {
 			System.out.println("[결과]점수가 60점 미만이므로 불합격입니다.");
 		}
 		System.out.println("==============================================================");
+		//int num=9;
+		int num=10;
 		
+		//변수값을 홀수 또는 짝수로 구분하여 출력 => X%Y==0 - X는 Y의 배수
+		/*
+		if(num%2!=0) {
+			System.out.println(num+" >> 홀수");
+		} 
 		
+		if(num%2==0) {
+			System.out.println(num+" >> 짝수");
+		}
+		*/
+		
+		if(num%2!=0) {
+			System.out.println(num+" >> 홀수");
+		} else {
+			System.out.println(num+" >> 짝수");
+		}
+		System.out.println("==============================================================");
+		//char mun='O';
+		char mun='0';
+		
+		//문자변수에 저장된 문자값을 영문자와 비영문자로 구분하여 출력
+		// => X>=값1 && X<=값2 : X는 값1부터 값2 사이의 범위안에 표현되는 값
+		if(mun>='A' && mun<='Z' || mun>='a' && mun<='z') {
+			System.out.println("[결과]"+mun+" >> 영문자");
+		} else {
+			System.out.println("[결과]"+mun+" >> 비영문자");
+		}
+		System.out.println("==============================================================");
 	}
 }
 
