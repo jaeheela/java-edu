@@ -23,11 +23,3 @@ public class OperatorExample {
 		System.out.println("===============================================");
 	}
 }
-
-
-
-
-
-
-
-
