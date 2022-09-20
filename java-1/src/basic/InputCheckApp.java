@@ -32,6 +32,7 @@ public class InputCheckApp {
 		*/
 		
 		/*
+		//do~while 구문을 사용할 경우 변수에 비정상적인 초기값 저장 불필요
 		int score;
 		do {
 			System.out.print("점수 입력[0~100] >> ");
@@ -47,6 +48,7 @@ public class InputCheckApp {
 			System.out.print("점수 입력[0~100] >> ");
 			score=scanner.nextInt();
 			if(score>=0 && score<=100) break;//입력값이 정상적인 경우 반복문 종료
+			//비정상적인 값이 입력된 경우 에러메세지 출력 후 반복문 재실행
 			System.out.println("[에러]점수는 0~100 범위의 정수값만 입력 가능합니다.");
 		}
 		
