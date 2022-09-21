@@ -7,7 +7,7 @@ public class MultiforExample {
 		//★★★      i=3  별=3
 		//★★        i=4  별=2
 		//★          i=5  별=1
-		for(int i=1;i<=5;i++) {
+		for(int i=1;i<=5;i++) { 
 			for(int j=1;j<=6-i;j++) {
 				System.out.print("★");
 			}
