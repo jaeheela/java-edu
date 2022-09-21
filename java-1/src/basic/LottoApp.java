@@ -35,6 +35,19 @@ public class LottoApp {
 			}
 		}
 		
+		//배열의 모든 요소값을 서로 비교하여 오름차순 정렬되도록 배열 요소값을 바꾸어 저장
+		// => 선택 정렬 알고리즘(Selection Sorting Algorithm) 사용
+		for(int i=0;i<lotto.length-1;i++) {//비교 요소의 첨자 표현 : 처음 ~ 끝-1
+			for(int j=i+1;j<lotto.length;j++) {//피비교 요소의 첨자 표현 : 비교+1 ~ 끝
+				if(lotto[i]>lotto[j]) {//lotto[i] : 비교 요소, lotto[j] : 피비교 요소
+					//비교한 요소의 값을 서로 바꾸어 저장
+					int temp=lotto[i];
+					lotto[i]=lotto[j];
+					lotto[j]=temp;
+				}
+			}
+		}
+		
 		//배열의 모든 요소값 출력
 		System.out.print("행운의 숫자 >> ");
 		for(int number:lotto) {
@@ -43,3 +56,11 @@ public class LottoApp {
 		System.out.println();
 	}
 }
+
+
+
+
+
+
+
+
