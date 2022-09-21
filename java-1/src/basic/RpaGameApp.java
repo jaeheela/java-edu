@@ -72,13 +72,3 @@ public class RpaGameApp {
 		scanner.close();
 	}
 }
-
-
-
-
-
-
-
-
-
-
