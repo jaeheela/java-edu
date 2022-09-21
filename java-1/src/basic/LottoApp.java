@@ -56,11 +56,3 @@ public class LottoApp {
 		System.out.println();
 	}
 }
-
-
-
-
-
-
-
-
