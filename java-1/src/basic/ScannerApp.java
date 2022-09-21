@@ -3,14 +3,14 @@ package basic;
 import java.util.Scanner;
 
 //System.out : 출력스트림을 사용하여 값을 화면에 출력하는 기능을 제공하는 객체 
-//System.in : 입력스트림을 사용하여 키보드로부터 전달된 값을 입력하는 기능을 제공하는 객체 
+//System.in : 키보드로부터 전달된 값을 입력스트림을 사용하여 입력하는 기능을 제공하는 객체 
 
 //사용자에게 키보드로 이름과 나이를 입력받아 출력하는 프로그램 작성
 public class ScannerApp {
 	public static void main(String[] args) {
 		//Scanner 클래스 : 입력장치(키보드, 파일 등)로부터 전달된 값을 반환하기 위한 기능을 제공하는 클래스
 		//Scanner 클래스로 객체를 생성하여 변수에 저장
-		// => 변수에 저장된 객체를 사용하여 메소드 호출 - 원하는 기능 구현
+		// => 변수에 저장된 객체를 사용하여 메소드 호출하여 원하는 기능 구현
 		//System.in 객체를 사용하여 키보드로부터 값을 전달받기 위한 Scanner 객체 생성
 		Scanner scanner=new Scanner(System.in);
 		
