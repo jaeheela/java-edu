@@ -18,7 +18,7 @@ public class RpaGameApp {
 			//컴퓨터에게 가위바위보 중 하나를 제공받아 저장
 			// => 1 : 가위, 2 : 바위, 3 : 보
 			// => 1~3 범위의 정수값을 난수로 제공받아 저장
-			int computer=(int)Math.random()*3+1;
+			int computer=(int)(Math.random()*3)+1;
 			 
 			//사용자에게 가위바위보 중 하나를 키보드로 입력받아 저장
 			// => 입력값이 1~3 범위의 정수값이 아닌 경우 에러메세지 출력 후 재입력
@@ -58,10 +58,11 @@ public class RpaGameApp {
 				System.out.println("[결과]사용자가 컴퓨터에게 졌습니다.");
 				break;//반복문 종료 - 대결 종료
 			}
+			System.out.println();
 		}
 		
 		//승리횟수 출력
-		System.out.println();
+		System.out.println("===============================================================");
 		if (count==0) {
 			System.out.println("[메세지]사용자가 컴퓨터에게 한번도 이기지 못했습니다.");
 		} else {
