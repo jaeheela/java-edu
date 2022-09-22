@@ -78,14 +78,67 @@ public class Method {
 		}
 		System.out.println(num1+"~"+num2+" 범위의 정수들의 합계 = "+ tot);
 	}
+	
+	int returnTot(int num1, int num2) {
+		if(num1>num2) {
+			int temp=num1;
+			num1=num2;
+			num2=temp;
+		}
+		
+		int tot=0;
+		for(int i=num1;i<=num2;i++) {
+			tot+=i;
+		}
+		
+		//변수에 저장된 값을 메소드 종료하며 반환
+		// => 반환되는 값의 자료형과 메소드 반환형이 반드시 동일
+		return tot;
+	}
+	
+	//매개변수로 정수값을 전달받아 홀수와 짝수를 구분하여 반환하는 메소드
+	// => false 반환 : 홀수, true 반환 : 짝수
+	boolean isOddEven(int num) {
+		if(num%2!=0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//배열을 반환하는 메소드
+	int[] returnArray() {
+		/*
+		int[] array={10,20,30,40,50};
+		return array;//참조변수에 저장된 배열의 메모리 주소 반환 - 배열 반환
+		*/
+		
+		//return {10,20,30,40,50};//에러 발생
+		return new int[]{10,20,30,40,50};
+	}
+	
+	//3개의 매개변수에 정수값을 전달받아 합계를 계산하여 반환하는 메소드
+	int sumOne(int num1, int num2, int num3) {
+		return num1+num2+num3;
+	}
+	
+	//배열을 전달받아 배열의 모든 요소값들의 합계를 계산하여 반환하는 메소드
+	int sumTwo(int[] array) {
+		int tot=0;
+		for(int num:array) {
+			tot+=num;
+		}
+		return tot;
+	}
+	
+	//매개변수 생략 기호(...)를 사용하여 매개변수를 선언한 경우 값을 0개 이상 전달받아 저장 가능
+	// => 매개변수로 값들을 전달받아 내부적으로 배열을 생성하여 요소값으로 저장  
+	int sumThree(int...array) {
+		int tot=0;
+		for(int num:array) {
+			tot+=num;
+		}
+		return tot;
+	}
 }
  
-
-
-
-
-
-
-
-
-
