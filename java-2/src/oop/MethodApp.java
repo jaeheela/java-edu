@@ -13,7 +13,27 @@ public class MethodApp {
 		//메소드 호출 : 메소드를 호출하면 프로그램 흐름(스레드)이 객체의 메소드로 이동하여
 		//메소드의 명령을 실행하고 메소드가 종료되면 다시 되돌아와 다음 명령 실행
 		method.displayOne();
+		method.displayTwo();
 		method.displayOne();
+		System.out.println("==============================================================");
+		method.printOne();
+		method.printOne();
+		System.out.println("==============================================================");
+		method.printTwo(80);
+		method.printTwo(50);
+		method.printTwo(-30);
+		System.out.println("==============================================================");
+		//메소드 호출시 나열될 값이 매개변수에 차례대로 전달되어 저장
+		method.printThree(25, 75);
+		method.printThree(12, 96);
+		method.printThree(77, 45);
 		System.out.println("==============================================================");
 	}
 }
+
+
+
+
+
+
+
