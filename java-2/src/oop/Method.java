@@ -30,7 +30,9 @@ public class Method {
 		System.out.println("### Method 클래스의 displayOne() 메소드 호출 ###");
 	}
 	
-	
+	void displayTwo() {
+		System.out.println("### Method 클래스의 displayTwo() 메소드 호출 ###");
+	}
 }
  
 
