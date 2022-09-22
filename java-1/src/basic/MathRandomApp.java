@@ -6,18 +6,18 @@ public class MathRandomApp {
 	public static void main(String[] args) {
 		//Math 클래스 : 수학 관련 기능을 제공하는 클래스
 		
-		//Math.random() : 0.0보다 크거나 작고 1.0보다 작은 실수 난구값을 반환하는 메소드(0.0<=난수값<1.0)
+		//Math.random() : 0.0보다 크거나 작고 1.0보다 작은 실수 난수값을 반환하는 메소드(0.0<=난수값<1.0)
 		for(int i=1;i<=5;i++) {
 			System.out.println(i+"번째 실수 난수값 = "+Math.random());
 		}
 		System.out.println("===============================================================");
 		for(int i=1;i<=5;i++) {
-			//(int)(Math.random()*100) >> 0<=난수값<100 = 난수값 : 0~99
+			//(int)(Math.random()*X) >> 0<=난수값<X >> 난수값 : 0 ~ X-1
 			System.out.println(i+"번째 정수 난수값 = "+(int)(Math.random()*100));
 		}
 		System.out.println("===============================================================");
 		for(int i=1;i<=5;i++) {
-			//(int)(Math.random()*45)+1 >> 1<=난수값<46 = 난수값 : 1~45
+			//(int)(Math.random()*X)+Y >> Y<=난수값<X+Y >> 난수값 : Y ~ (X-1)+Y
 			System.out.println(i+"번째 정수 난수값 = "+((int)(Math.random()*45)+1));
 		}
 		System.out.println("===============================================================");
