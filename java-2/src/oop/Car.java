@@ -13,7 +13,7 @@ package oop;
 //          메소드(Method) : 대상의 행위를 명령의 모임으로 표현하기 위해 선언된 함수(멤버함수) 
 //          ...
 //      }
-// => 필드에 필요한 값을 저장하여 메소드로 필드값을 사용해 원하는 기능을 제공
+// => 필드에는 프로그램 실행에 필요한 값을 저장하고 메소드로 필드값을 사용해 원하는 기능을 제공
 
 //객체 생성 방법
 //형식) 클래스명 참조변수=new 클래스명();
@@ -24,15 +24,41 @@ package oop;
 // => 속성 : 모델명, 엔진상태, 현재속도 - 필드
 // => 행위 : 시동 온(On), 시동 오프(Off), 속도 증가, 속도 감소, 이동 중지 - 메소드 
 public class Car {
-	//필드(Field) : 클래스에 선언된 모든 메소드에서 필드에 접근하여 사용 가능
+	//필드(Field) : 클래스에 선언된 모든 메소드는 필드 사용 가능
 	String modelName;//모델명
-	boolean engineStatus;//엔진상태
-	int currentSpeed;
+	boolean engineStatus;//엔진상태 - false : Off, true : On
+	int currentSpeed;//현재속도
 	
-	//생성자 : 생성자 선언을 생략하면 매개변수가 없는 기본 생성자(Default Constructor)가 존재하는 것으로 처리
+	//생성자(Constructor) : 생성자 선언을 생략하면 매개변수가 없는 기본 생성자(Default Constructor)가
+	//존재하는 것으로 처리
+		
+	//메소드 : 필드를 이용하여 명령들로 필요한 기능을 제공
+	void startEngine() {//시동 온(On)
+		engineStatus=true;
+		System.out.println(modelName+"의 시동을 켰습니다.");
+	}
 	
-	//메소드 : 필드를 활용하여 명령으로 필요한 기능을 제공
+	void stopEngine() {//시동 오프(Off)
+		engineStatus=false;
+		System.out.println(modelName+"의 시동을 껐습니다.");
+	}
 	
+	void speedUp(int speed) {//속도 증가
+		currentSpeed+=speed;
+		System.out.println(modelName+"의 속도가 "+speed+"Km/h 증가 되었습니다. 현재 속도는 "
+				+currentSpeed+"Km/h입니다.");
+	}
+	
+	void speedDown(int speed) {//속도 감소
+		currentSpeed-=speed;
+		System.out.println(modelName+"의 속도가 "+speed+"Km/h 감소 되었습니다. 현재 속도는 "
+				+currentSpeed+"Km/h입니다.");
+	}
+	
+	void speedZero() {
+		currentSpeed=0;
+		System.out.println(modelName+"의 자동차가 멈췄습니다.");
+	}
 }
 
 
