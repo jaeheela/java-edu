@@ -44,12 +44,30 @@ public class Car {
 	}
 	
 	void speedUp(int speed) {//속도 증가
+		if(!engineStatus) {//시동이 꺼져 있는 경우
+			System.out.println(modelName+"의 시동이 꺼져 있습니다.");
+			return;//메소드 종료
+		}
+		
+		if(currentSpeed+speed>150) {//현재속도와 증가된 속도의 합이 최고 속도보다 큰 경우
+			speed=150-currentSpeed;//증가된 속도 변경
+		}
+		
 		currentSpeed+=speed;
 		System.out.println(modelName+"의 속도가 "+speed+"Km/h 증가 되었습니다. 현재 속도는 "
 				+currentSpeed+"Km/h입니다.");
 	}
 	
 	void speedDown(int speed) {//속도 감소
+		if(!engineStatus) {//시동이 꺼져 있는 경우
+			System.out.println(modelName+"의 시동이 꺼져 있습니다.");
+			return;//메소드 종료
+		}
+		
+		if(currentSpeed<speed) {//현재속도보다 감소된 속도가 큰 경우
+			speed=currentSpeed;//감소된 속도 변경
+		}
+		
 		currentSpeed-=speed;
 		System.out.println(modelName+"의 속도가 "+speed+"Km/h 감소 되었습니다. 현재 속도는 "
 				+currentSpeed+"Km/h입니다.");
