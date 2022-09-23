@@ -19,21 +19,29 @@ public class CarApp {
 		//carOne.modelName="티코";//필드값 변경
 		//필드값을 직접 변경하지 못하므로 필드값을 변경하는 Setter 메소드 호출하여 필드값 변경
 		carOne.setModelName("티코");
-		carOne.engineStatus=true;
-		carOne.currentSpeed=100;
+		//carOne.engineStatus=true;
+		carOne.setEngineStatus(true);
+		//carOne.currentSpeed=100;
+		carOne.setCurrentSpeed(100);
 		
 		//System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
 		//필드값을 직접 사용하지 못하므로 필드값을 반환하는 Getter 메소드 호출하여 필드값 반환받아 출력
 		System.out.println("첫번째 자동차의 모델명 = "+carOne.getModelName());//필드값 출력
-		System.out.println("첫번째 자동차의 엔진상태 = "+carOne.engineStatus);
+		//System.out.println("첫번째 자동차의 엔진상태 = "+carOne.engineStatus);
+		System.out.println("첫번째 자동차의 엔진상태 = "+carOne.isEngineStatus());
 		//System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
-		System.out.println("첫번째 자동차의 현재속도 = "+carOne.currentSpeed);
+		//System.out.println("첫번째 자동차의 현재속도 = "+carOne.currentSpeed);
+		System.out.println("첫번째 자동차의 현재속도 = "+carOne.getCurrentSpeed());
 		System.out.println("==============================================================");
-		carTwo.modelName="싼타페";
+		//carTwo.modelName="싼타페";
+		carTwo.setModelName("싼타페");
 		
-		System.out.println("두번째 자동차의 모델명 = "+carTwo.modelName);
-		System.out.println("두번째 자동차의 엔진상태 = "+carTwo.engineStatus);
-		System.out.println("두번째 자동차의 현재속도 = "+carTwo.currentSpeed);
+		//System.out.println("두번째 자동차의 모델명 = "+carTwo.modelName);
+		System.out.println("두번째 자동차의 모델명 = "+carTwo.getModelName());
+		//System.out.println("두번째 자동차의 엔진상태 = "+carTwo.engineStatus);
+		System.out.println("두번째 자동차의 엔진상태 = "+carTwo.isEngineStatus());
+		//System.out.println("두번째 자동차의 현재속도 = "+carTwo.currentSpeed);
+		System.out.println("두번째 자동차의 현재속도 = "+carTwo.getCurrentSpeed());
 		System.out.println("==============================================================");
 		carTwo.startEngine();
 		carTwo.speedUp(50);

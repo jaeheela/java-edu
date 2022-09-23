@@ -44,7 +44,7 @@ public class Car {
 	//메소드 : 필드를 이용하여 명령들로 필요한 기능을 제공
 	public void startEngine() {//시동 온(On)
 		engineStatus=true;
-		System.out.println(modelName+"의 시동을 켰습니다.");
+	System.out.println(modelName+"의 시동을 켰습니다.");
 	}
 	
 	public void stopEngine() {//시동 오프(Off)
@@ -100,6 +100,7 @@ public class Car {
 	//캡슐화(Encapsulation) : 표현대상을 속성(필드)와 행위(메소드)를 묶어 클래스로 선언
 	// => 필드를 은닉화 처리하여 보호되여 사용되도록 설정하는 작업
 	//Getter 메소드 : 클래스 외부에서 필드값을 사용할 수 있도록 반환하는 메소드
+	// => 은닉화 선언된 필드의 자료형이 boolean인 경우 get 대신 is를 사용하여 메소드 작성
 	//형식) public 반환형 get필드명() { return 필드명; }
 	public String getModelName() {
 		return modelName;
@@ -115,6 +116,7 @@ public class Car {
 	}
 
 	//이클립스는 은닉화 선언된 필드에 Getter와 Setter 메소드를 생성하는 기능 제공
+	//[Alt]+[Shift]+[S] >> 팝업메뉴 >> [R] >> 필드 선택 >> Generate
 	public boolean isEngineStatus() {
 		return engineStatus;
 	}
@@ -131,16 +133,3 @@ public class Car {
 		this.currentSpeed = currentSpeed;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
