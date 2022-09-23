@@ -1,5 +1,5 @@
 package oop;
-
+ 
 public class Overload {
 	public void displayInt(int param) {
 		System.out.println("정수값 = "+param);
