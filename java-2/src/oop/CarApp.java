@@ -15,12 +15,18 @@ public class CarApp {
 		System.out.println("carThree = "+carThree);
 		System.out.println("==============================================================");
 		//참조변수.필드 >> 참조변수에 저장된 객체의 필드 표현
-		carOne.modelName="티코";//필드값 변경
+		//은닉화 선언된 필드에 접근할 경우 에러 발생
+		//carOne.modelName="티코";//필드값 변경
+		//필드값을 직접 변경하지 못하므로 필드값을 변경하는 Setter 메소드 호출하여 필드값 변경
+		carOne.setModelName("티코");
 		carOne.engineStatus=true;
 		carOne.currentSpeed=100;
 		
-		System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
+		//System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
+		//필드값을 직접 사용하지 못하므로 필드값을 반환하는 Getter 메소드 호출하여 필드값 반환받아 출력
+		System.out.println("첫번째 자동차의 모델명 = "+carOne.getModelName());//필드값 출력
 		System.out.println("첫번째 자동차의 엔진상태 = "+carOne.engineStatus);
+		//System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
 		System.out.println("첫번째 자동차의 현재속도 = "+carOne.currentSpeed);
 		System.out.println("==============================================================");
 		carTwo.modelName="싼타페";
