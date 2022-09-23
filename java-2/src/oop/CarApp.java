@@ -14,8 +14,9 @@ public class CarApp {
 		System.out.println("carTwo = "+carTwo);
 		System.out.println("carThree = "+carThree);
 		System.out.println("==============================================================");
-		//참조변수.필드 >> 참조변수에 저장된 객체의 필드 표현
-		//은닉화 선언된 필드에 접근할 경우 에러 발생
+		//참조변수.필드 : 참조변수에 저장된 객체로 필드에 접근하여 사용
+		//문제점)객체를 사용하여 필드에 직접 접근하여 필드값을 변경할 경우 비정상적인 값 저장 가능
+		//해결법)클래스 선언시 필드를 은닉화 처리하여 선언 - 은닉화 선언된 필드에 접근할 경우 에러 발생
 		//carOne.modelName="티코";//필드값 변경
 		//필드값을 직접 변경하지 못하므로 필드값을 변경하는 Setter 메소드 호출하여 필드값 변경
 		carOne.setModelName("티코");
@@ -43,6 +44,7 @@ public class CarApp {
 		//System.out.println("두번째 자동차의 현재속도 = "+carTwo.currentSpeed);
 		System.out.println("두번째 자동차의 현재속도 = "+carTwo.getCurrentSpeed());
 		System.out.println("==============================================================");
+		//참조변수.메소드명(값,...) : 참조변수에 저장된 객체를 사용하여 메소드 호출
 		carTwo.startEngine();
 		carTwo.speedUp(50);
 		carTwo.speedUp(30);
