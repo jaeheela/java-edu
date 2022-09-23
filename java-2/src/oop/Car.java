@@ -39,6 +39,15 @@ public class Car {
 	}
 	
 	void stopEngine() {//시동 오프(Off)
+		if(currentSpeed!=0) {//자동차가 멈췄있지 않은 경우
+			//currentSpeed=0;
+			//System.out.println(modelName+"의 자동차가 멈췄습니다.");
+			
+			//클래스에 선언된 메소드를 서로 호출 가능
+			// => 코드의 중복성 최소화 : 프로그램의 생산성 및 유지보수의 효율성 증가 
+			speedZero();
+		}
+		
 		engineStatus=false;
 		System.out.println(modelName+"의 시동을 껐습니다.");
 	}
