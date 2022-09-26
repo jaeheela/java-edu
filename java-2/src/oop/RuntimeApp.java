@@ -25,8 +25,8 @@ public class RuntimeApp {
 				+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())+"Byte");
 		
 		//Runtime.gc() : 메모리를 청소하는 가비지 콜렉터(Garbage Collector)를 실행하는 메소드
+		// => System.gc() 메소드로 동일한 기능 제공 가능 - 정적 메소드 
 		//Runtime.getRuntime().gc();
-		System.gc();//가비지 콜렉터(Garbage Collector)를 실행하는 정적 메소드 
 		
 		System.out.println("청소 후 JVM 사용 메모리 크기 = "
 				+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())+"Byte");
