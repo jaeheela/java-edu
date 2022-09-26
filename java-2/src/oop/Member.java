@@ -44,7 +44,7 @@ public class Member {
 		//this(값,값,...) : this 키워드로 다른 생성자를 호출하는 명령
 		// => 생성자에서만 사용 가능한 명령
 		// => 다른 명령보다 먼저 실행되도록 작성 - 다른 명령이 먼저 작성된 경우 에러 발생
-		//this("NoId","NoName","NoEmail");
+		this("NoId","NoName","NoEmail");
 	}
 	
 	//매개변수가 있는 생성자

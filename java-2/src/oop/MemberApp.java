@@ -4,7 +4,7 @@ public class MemberApp {
 	public static void main(String[] args) {
 		//new 연산자로 클래스의 매개변수가 없는 기본 생성자를 사용하여 객체 생성
 		// => 생성된 객체의 필드는 기본값으로 자동 초기화
-		// => new 연산자로 호출한 생성자가 없는 경우 에러 발생 - 객체 생성 불가능
+		// => new 연산자로 호출한 생성자가 없는 경우 객체 생성이 불가능하여 에러 발생 
 		Member member1=new Member();
 	
 		//Getter 메소드를 호출하여 필드값을 반환받아 출력
