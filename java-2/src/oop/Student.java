@@ -66,7 +66,7 @@ public class Student {
 	}
 	
 	public void display() {//필드값을 출력하는 메소드
-		System.out.println(name+"["+num+"]님의 성적 >> ");
+		System.out.print(name+"["+num+"]님의 성적 >> ");
 		System.out.println("국어 = "+kor+", 영어 = "+eng+", 총점 = "+tot);
 	}
 }
