@@ -60,9 +60,19 @@ public class StudentApp {
 			student.display();
 						
 			//total+=student.getTot();//학생 총점을 반환받아 총합계 변수에 누적
+			
+			//정적 필드는 클래스를 이용하여 접근 
+			//형식)클래스명.필드명 
+			// => 정적 필드의 접근 지정자가 private인 경우 접근 불가능
+			//Student.total+=student.getTot();
+			
+			//정적 메소드는 클래스를 이용하여 호출
+			//형식)클래스명.메소드명(값,값,...);
+			Student.setTotal(Student.getTotal()+student.getTot());
 		}
 		System.out.println("==============================================================");
 		//System.out.println("총합계 = "+total);//모든 학생들의 점수 총합계를 출력
+		System.out.println("총합계 = "+Student.getTotal());
 		System.out.println("==============================================================");
 	}
 }
