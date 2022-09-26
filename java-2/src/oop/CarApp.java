@@ -8,7 +8,7 @@ public class CarApp {
 		// => 객체를 생성하면 객체의 필드에는 기본값(숫자형:0,논리형:false,참조형:null)이 자동 저장
 		Car carOne=new Car();
 		Car carTwo=new Car();
-		Car carThree=carTwo;//참조변수에 다른 참조변수에 저장된 객체의 주소를 전달받아 저장
+		Car carThree=carTwo;//참조변수에 저장된 객체를 다른 참조변수에 저장 가능
 		
 		System.out.println("carOne = "+carOne);
 		System.out.println("carTwo = "+carTwo);
@@ -26,7 +26,7 @@ public class CarApp {
 		carOne.setCurrentSpeed(100);
 		
 		//System.out.println("첫번째 자동차의 모델명 = "+carOne.modelName);//필드값 출력
-		//필드값을 직접 사용하지 못하므로 필드값을 반환하는 Getter 메소드 호출하여 필드값 반환받아 출력
+		//필드값을 직접 사용하지 못하므로 필드값을 반환하는 Getter 메소드 호출하여 필드값을 반환받아 출력
 		System.out.println("첫번째 자동차의 모델명 = "+carOne.getModelName());//필드값 출력
 		//System.out.println("첫번째 자동차의 엔진상태 = "+carOne.engineStatus);
 		System.out.println("첫번째 자동차의 엔진상태 = "+carOne.isEngineStatus());
@@ -49,7 +49,7 @@ public class CarApp {
 		carTwo.speedUp(50);
 		carTwo.speedUp(30);
 		carTwo.speedDown(40);
-		carTwo.speedZero();
+		 carTwo.speedZero();
 		carTwo.stopEngine();
 		System.out.println("==============================================================");
 	}
