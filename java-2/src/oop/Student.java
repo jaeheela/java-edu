@@ -18,6 +18,11 @@ public class Student {
 		this.name = name;
 		this.kor = kor;
 		this.eng = eng;
+		
+		//총점을 계산하여 필드에 저장하는 명령 작성 - 메소드 호출
+		// => 코드의 중복성을 최소화하여 프로그램의 생산성 및 유집보수의 효율성 증가
+		//tot=kor+eng;
+		calcTot();
 	}
 
 	//인스턴스 메소드
@@ -43,6 +48,7 @@ public class Student {
 
 	public void setKor(int kor) {
 		this.kor = kor;
+		calcTot();
 	}
 
 	public int getEng() {
@@ -51,6 +57,7 @@ public class Student {
 
 	public void setEng(int eng) {
 		this.eng = eng;
+		calcTot();
 	}
 
 	public int getTot() {
@@ -61,7 +68,15 @@ public class Student {
 		this.tot = tot;
 	}
 
+	/*
 	public void calcTot() {//총점을 계산하는 메소드
+		tot=kor+eng;
+	}
+	*/
+	
+	//은닉화 선언된 메소드 - 클래스 내부에서만 사용하는 메소드 : 시스템 메소드
+	// => 코드의 중복성을 최소화하기 위한 기능을 제공
+	private void calcTot() {
 		tot=kor+eng;
 	}
 	
