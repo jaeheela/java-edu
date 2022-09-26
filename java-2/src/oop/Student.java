@@ -61,9 +61,17 @@ public class Student {
 		this.tot = tot;
 	}
 
+	public void calcTot() {//총점을 계산하는 메소드
+		tot=kor+eng;
+	}
 	
-	
-	
-	
-	
+	public void display() {//필드값을 출력하는 메소드
+		System.out.println(name+"["+num+"]님의 성적 >> ");
+		System.out.println("국어 = "+kor+", 영어 = "+eng+", 총점 = "+tot);
+	}
 }
+
+
+
+
+
