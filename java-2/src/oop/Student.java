@@ -2,10 +2,17 @@ package oop;
 
 //학생정보(학번,이름,국어,영어,총점)를 저장하기 위한 클래스 - VO 클래스
 public class Student {
-	//인스턴스 필드(Instance Field) : 객체 생성시 메모리(Heap)에 만들어지는 필드 
+	//인스턴스 필드(Instance Field) : 객체 생성시 메모리(Heap 영역)에 만들어지는 필드 
 	private int num;
 	private String name;
 	private int kor, eng, tot;
+	
+	//정적 필드(Static Field) : 클래스 생성시 메모리(Static 영역)에 만들어지는 필드
+	// => 객체가 생성되기 전에 메모리에 하나만 생성되는 필드
+	// => 생성자에서 초기화 처리하지 않고 직접 초기화 설정
+	// => 모든 객체에서 정적 필드 사용 가능 - 공유값 : 메모리 절약 및 필드값 변경 용이
+	// => 클래스 외부에서는 클래스 이름을 사용하여 접근
+	private static int total=0;//기본값 사용시 초기값 설정 생략
 	
 	//생성자(Constructor) - 객체 생성시 인스턴스 필드에 원하는 초기값을 저장하기 위해 작성
 	public Student() {
@@ -83,6 +90,15 @@ public class Student {
 	public void display() {//필드값을 출력하는 메소드
 		System.out.print(name+"["+num+"]님의 성적 >> ");
 		System.out.println("국어 = "+kor+", 영어 = "+eng+", 총점 = "+tot);
+	}
+
+	//정적 메소드
+	public static int getTotal() {
+		return total;
+	}
+
+	public static void setTotal(int total) {
+		Student.total = total;
 	}
 }
 

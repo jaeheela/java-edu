@@ -54,9 +54,15 @@ public class StudentApp {
 			, new Student(2000, "임꺽정", 94, 98), new Student(3000, "전우치", 92, 80)
 			, new Student(4000, "일지매", 76, 82), new Student(5000, "장길산", 84, 86)};
 
+		//int total=0;//모든 학생들의 성적 합계를 저장하기 위한 변수
+		
 		for(Student student:students) {
 			student.display();
+						
+			//total+=student.getTot();//학생 총점을 반환받아 총합계 변수에 누적
 		}
+		System.out.println("==============================================================");
+		//System.out.println("총합계 = "+total);//모든 학생들의 점수 총합계를 출력
 		System.out.println("==============================================================");
 	}
 }
