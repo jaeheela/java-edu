@@ -1,5 +1,9 @@
 package oop;
 
+//static : 객체이 아닌 클래스로 접근하기 위한 기능을 제공하기 위한 제한자
+//제한자(Modifier) : 기능을 제한하기 위한 키워드
+// - Access Modifier(private, package, protected, public), static, final, abstract
+
 //학생정보(학번,이름,국어,영어,총점)를 저장하기 위한 클래스 - VO 클래스
 public class Student {
 	//인스턴스 필드(Instance Field) : 객체 생성시 메모리(Heap 영역)에 만들어지는 필드 
@@ -56,6 +60,7 @@ public class Student {
 
 	public void setKor(int kor) {
 		this.kor = kor;
+		//tot=kor+eng;
 		calcTot();
 	}
 
