@@ -66,7 +66,15 @@ public class Car {
 	public void displayCar() {
 		System.out.println("모델명 = "+modelName);
 		System.out.println("생산년도 = "+productionYear);
-		System.out.println("엔진 = "+carEngine);
+		//System.out.println("엔진 = "+carEngine);
+		
+		//참조필드에 저장된 객체를 사용하여 메소드 호출
+		// => 참조필드에 객체가 저장되어 있지 않은 경우 메소드를 호출하면 NullPointerException 발생
+		// => 포함관계로 설정된 객체의 메소드 호출 가능
+		//System.out.println("연료타입 = "+carEngine.getFualType());
+		//System.out.println("배기량 = "+carEngine.getDisplacement());
+		
+		carEngine.displayEngine();
 	}
 }
 
