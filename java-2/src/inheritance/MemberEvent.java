@@ -25,7 +25,6 @@ public class MemberEvent extends Member {
 	// => 부모클래스의 생성자를 호출하는 명령 전에 다른 명령을 작성하면 에러 발생
 	//2.자식클래스의 메소드에서 부모클래스의 숨겨진 메소드를 호출하기 위해 super 키워드 사용
 	// => 형식) super.메소드명(값,값,...);
-	
 	public MemberEvent() {
 		//부모클래스의 기본 생성자 호출 - 부모클래스의 객체 생성
 		//super();//기본 생성자를 호출하는 명령은 생략 가능
@@ -108,16 +107,4 @@ public class MemberEvent extends Member {
 		System.out.println("이메일 = "+email);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
