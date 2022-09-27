@@ -23,10 +23,12 @@ public class MemberEvent extends Member {
 	//1.자식클래스의 생성자에서 부모클래스의 생성자를 호출하기 위해 super 키워드 사용
 	// => 형식) super(값,값,...);
 	// => 부모클래스의 생성자를 호출하는 명령 전에 다른 명령을 작성하면 에러 발생
+	//2.자식클래스의 메소드에서 부모클래스의 숨겨진 메소드를 호출하기 위해 super 키워드 사용
+	// => 형식) super.메소드명(값,값,...);
 	
 	public MemberEvent() {
-		//부모클래스의 기본생성자 호출 - 부모클래스의 객체 생성
-		//super();//기본생성자를 호출하는 명령은 생략 가능
+		//부모클래스의 기본 생성자 호출 - 부모클래스의 객체 생성
+		//super();//기본 생성자를 호출하는 명령은 생략 가능
 	}
 
 	/*
@@ -77,6 +79,13 @@ public class MemberEvent extends Member {
 		this.email = email;
 	}
 
+	/*
+	//메소드 오버라이드(Method Override) : 상속 관계에서 부모클래스의 메소드를 자식클래스에서 재선언하는 기능
+	// => 부모클래스의 메소드를 자식클래스의 객체가 사용하기 부적절한 경우 부모클래스의 메소드를
+	//자식클래스에서 재선언하여 사용
+	//메소드 오버라이드 작성 규칙 - 부모클래스의 메소드와 같은 접근제한자, 반환형, 메소드명
+	//, 매개변수, 예외 전달을 사용하여 메소드 작성
+	// => 부모클래스의 메소드는 숨겨지고 자식클래스의 메소드에만 접근 가능
 	public void display() {
 		//System.out.println("아이디 = "+id);
 		System.out.println("아이디 = "+getId());
@@ -84,4 +93,31 @@ public class MemberEvent extends Member {
 		System.out.println("이름 = "+getName());
 		System.out.println("이메일 = "+email);
 	}
+	*/
+	
+	//이클립스에서는 부모클래스의 메소드를 자식클래스에서 오버라이드 선언되도록 자동 완성하는 기능 제공
+	// => 오버라이드 선언하고 싶은 부모클래스의 메소드명 입력 >> [Ctrl]+[Space] >> Override 선택
+	//@Override : 오버라이드 선언된 메소드를 표현하기 위한 어노테이션
+	// => 메소드 오버라이드 작성 규칙을 위반한 경우 에러 발생
+	//어노테이션(Annotation) : API 문서에서 특별한 설명을 제공하기 위한 기능을 구현
+	// => Java Source 작성에 필요한 특별한 기능을 제공 위해 사용
+	@Override
+	public void display() {
+		//super 키워드로 부모클래스의 숨겨진 메소드 호출
+		super.display();//아이디와 이름 출력
+		System.out.println("이메일 = "+email);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
