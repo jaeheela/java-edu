@@ -27,6 +27,9 @@ public class EmployeeRegular extends Employee {
 		return annualSalary/12;
 	}
 	
+	//추상메소드가 선언된 추상클래스를 상속받은 자식클래스에서는 반드시 부모클래스의 모든
+	//추상메소드를 무조건 오버라이드 선언 - 오버라이드 선언하지 않은 경우 에러 발생
+	// => 추상메소드를 오버라이드 선언하지 않은 자식클래스는 추상클래스로 설정 가능 - 비권장
 	@Override
 	public int computePay() {
 		return annualSalary/12;
