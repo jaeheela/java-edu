@@ -17,5 +17,23 @@ public class CarApp {
 		//Object 클래스의 toString() 메소드를 오버라이드 선언한 경우 자식클래스의 메소드 호출 
 		System.out.println("car = "+car);
 		System.out.println("==============================================================");
+		String name="홍길동";
+		
+		//String 클래스에서 toString() 메소드를 오버라이드 선언하여 String 클래스의 메소드 호출
+		//String.toString() : String 객체에 저장된 문자열을 반환하는 메소드
+		//System.out.println("name.toString() = "+name.toString());
+		//참조변수 출력시 toString() 메소드 호출 생략 가능
+		System.out.println("name = "+name);
+		System.out.println("==============================================================");
 	}
 }
+
+
+
+
+
+
+
+
+
+
