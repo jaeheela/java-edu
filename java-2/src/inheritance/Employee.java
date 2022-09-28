@@ -35,4 +35,19 @@ public abstract class Employee {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
+	
+	//자식클래스에서 부모클래스의 메소드를 오버라이드 선언하지 않아도 에러 미발생
+	// => 자식클래스에서 오버라이드 선언하지 않은 경우 부모클래스의 메소드가 호출되어 사용
+	public int computePay() {
+		return 0;
+	}
 }
+
+
+
+
+
+
+
+
+

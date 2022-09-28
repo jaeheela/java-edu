@@ -26,6 +26,11 @@ public class EmployeeContract extends Employee {
 	public int computeContract() {
 		return contractPay;
 	}
+	
+	@Override
+	public int computePay() {
+		return contractPay;
+	}
 }
 
 

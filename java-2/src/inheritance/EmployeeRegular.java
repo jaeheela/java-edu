@@ -26,6 +26,11 @@ public class EmployeeRegular extends Employee {
 	public int computeRegular() {
 		return annualSalary/12;
 	}
+	
+	@Override
+	public int computePay() {
+		return annualSalary/12;
+	}
 }
 
 

@@ -24,6 +24,7 @@ public class EmployeeApp {
 			System.out.println("사원번호 = "+employee.getEmpNo());			
 			System.out.println("사원이름 = "+employee.getEmpName());
 			
+			/*
 			//사원의 급여를 반환받아 출력
 			// => 참조변수는 부모클래스의 객체만 참조 가능하므로 자식클래스의 메소드 호출 불가능
 			// => 명시적 객체 형변환을 사용하여 참조변수로 자식클래스의 객체를 참조하여 메소드 호출 가능
@@ -31,10 +32,15 @@ public class EmployeeApp {
 			if(employee instanceof EmployeeRegular) {
 				System.out.println("급여 = "+((EmployeeRegular)employee).computeRegular());
 			} else if(employee instanceof EmployeeTime) {
-				System.out.println("급여 = "+(( EmployeeTime)employee).computeTime());
+				System.out.println("급여 = "+((EmployeeTime)employee).computeTime());
 			} else if(employee instanceof EmployeeContract) {
-				System.out.println("급여 = "+(( EmployeeContract)employee).computeContract());
+				System.out.println("급여 = "+((EmployeeContract)employee).computeContract());
 			}
+			*/
+			
+			//자식클래스에서 부모클래스의 메소드를 오버라이드 선언하면 묵시적 객체 형변환에
+			//의해 자동으로 참조변수가 자식클래스로 형변환되어 자식클래스의 메소드 호출 가능
+			System.out.println("급여 = "+employee.computePay());
 			System.out.println("==========================================================");			
 		}
 	}
