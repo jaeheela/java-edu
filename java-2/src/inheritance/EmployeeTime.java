@@ -32,5 +32,14 @@ public class EmployeeTime extends Employee {
 		this.workedHour = workedHour;
 	}
 	
-	
+	//급여를 계산하여 반환하는 메소드
+	public int computeTime() {
+		return moneyPerHour*workedHour;
+	}
 }
+
+
+
+
+
+

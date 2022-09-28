@@ -22,5 +22,15 @@ public class EmployeeRegular extends Employee {
 		this.annualSalary = annualSalary;
 	}
 	
-	
+	//급여를 계산하여 반환하는 메소드
+	public int computeRegular() {
+		return annualSalary/12;
+	}
 }
+
+
+
+
+
+
+

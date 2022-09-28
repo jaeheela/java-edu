@@ -22,5 +22,16 @@ public class EmployeeContract extends Employee {
 		this.contractPay = contractPay;
 	}
 	
-	
+	//급여를 계산하여 반환하는 메소드
+	public int computeContract() {
+		return contractPay;
+	}
 }
+
+
+
+
+
+
+
+
