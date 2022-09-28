@@ -82,9 +82,9 @@ public class MemberEvent extends Member {
 	//메소드 오버라이드(Method Override) : 상속 관계에서 부모클래스의 메소드를 자식클래스에서 재선언하는 기능
 	// => 부모클래스의 메소드를 자식클래스의 객체가 사용하기 부적절한 경우 부모클래스의 메소드를
 	//자식클래스에서 재선언하여 사용
+	// => 부모클래스의 메소드는 숨겨지고 자식클래스의 메소드에만 접근 가능
 	//메소드 오버라이드 작성 규칙 - 부모클래스의 메소드와 같은 접근제한자, 반환형, 메소드명
 	//, 매개변수, 예외 전달을 사용하여 메소드 작성
-	// => 부모클래스의 메소드는 숨겨지고 자식클래스의 메소드에만 접근 가능
 	public void display() {
 		//System.out.println("아이디 = "+id);
 		System.out.println("아이디 = "+getId());
@@ -99,7 +99,7 @@ public class MemberEvent extends Member {
 	//@Override : 오버라이드 선언된 메소드를 표현하기 위한 어노테이션
 	// => 메소드 오버라이드 작성 규칙을 위반한 경우 에러 발생
 	//어노테이션(Annotation) : API 문서에서 특별한 설명을 제공하기 위한 기능을 구현
-	// => Java Source 작성에 필요한 특별한 기능을 제공 위해 사용
+	// => Java Source 작성에 필요한 특별한 기능을 제공 위해 제공되는 어노테이션 : @SuppressWarnings, @Deprecated, @Override
 	@Override
 	public void display() {
 		//super 키워드로 부모클래스의 숨겨진 메소드 호출

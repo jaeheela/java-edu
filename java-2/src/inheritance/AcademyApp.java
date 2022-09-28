@@ -5,15 +5,15 @@ public class AcademyApp {
 	public static void main(String[] args) {
 		/*
 		//학생정보를 저장하기 위한 요소들이 존재하는 배열 생성
-		// => 배열 참조요소에 학생정보만 저장 가능
+		// => 배열 참조요소에 학생정보(AcademyStudent 객체)만 저장 가능
 		AcademyStudent[] students=new AcademyStudent[300];
 		
 		//강사정보를 저장하기 위한 요소들이 존재하는 배열 생성
-		// => 배열 참조요소에 강사정보만 저장 가능
+		// => 배열 참조요소에 강사정보(AcademyInstructor 객체)만 저장 가능
 		AcademyInstructor[] instructors=new AcademyInstructor[50];
 		 
 		//직원정보를 저장하기 위한 요소들이 존재하는 배열 생성
-		// => 배열 참조요소에 직원정보만 저장 가능
+		// => 배열 참조요소에 직원정보(AcademyStaff 객체)만 저장 가능
 		AcademyStaff[] staffs=new AcademyStaff[100];
 		*/
 		
@@ -51,7 +51,7 @@ public class AcademyApp {
 			//호출하지 않고 자식클래스의 메소드 호출
 			// => 묵시적 객체 형변환으로 인해 참조변수에는 일시적으로 자식클래스의 객체가
 			//자동 저장되어 자식클래스의 메소드 호출
-			//참조변수에 저장된 자식클래스의 객체에 의해 다른 클래스의 메소드 호출
+			//참조변수에 저장된 자식클래스의 객체에 의해 자식클래스의 메소드가 선택되어 호출
 			// => 오버라이드에 의한 다형성 : 객체 형변환에 의해 참조변수에 저장된 객체에 따라
 			//다른 클래스의 메소드를 선택 호출
 			person.display();
