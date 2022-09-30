@@ -1,6 +1,6 @@
 package inheritance;
 
-//사원 급여 관련 프로그램
+//사원 급여 관리 프로그램
 public class EmployeeApp {
 	public static void main(String[] args) {
 		//추상클래스로 객체를 생성할 경우 에러 발생

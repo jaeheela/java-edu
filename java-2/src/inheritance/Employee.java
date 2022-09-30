@@ -1,22 +1,26 @@
 package inheritance;
 
 //static 제한자 - 필드, 메소드, 클래스(내부클래스)에 설정 가능한 제한자
+// => 객체에 상관 없이 클래스로 접근하기 위해 사용하는 제한자
 
 //final 제한자 - 필드, 메소드, 클래스에 설정 가능한 제한자
 //1.final 필드 - final 제한자를 사용하여 선언한 필드
 //형식) 접근제한자 final 자료형 필드명=값;
+// ex) Math 클래스 >> public static final double PI : 원주율을 제공하기 위한 상수 
 // => 필드에 저장된 값 변경 불가능 - 필드값을 변경할 경우 에러 발생
 // => 필드 선언시 반드시 초기값이 저장되도록 설정
 //2.final 메소드 - final 제한자를 사용하여 선언한 메소드
 //형식) 접근제한자 final 반환형 메소드명(자료형 매개변수명,...) { 명령; ... }
+// => Object 클래스 >> public final void notify() 
 // => 자식클래스에서 절대로 오버라이드 선언하지 못하도록 설정하는 메소드
 //3.final 클래스 - final 제한자를 사용하여 선언한 클래스
 //형식) public final class 클래스명 { }
+// => ex) public final class System extends Object 클래스
 // => 다른 클래스에서 상속 받을 수 없는 클래스
 
 //사원정보(사원번호,사원이름)를 저장하기 위한 클래스
 // => 모든 사원 관련 클래스가 상속받아야 되는 부모클래스
-// => 객체 생성이 목적이 아닌 상속이 목적인 클래스로 작성 - 추상클래스 작성하는 것을 권장
+// => 객체 생성이 목적이 아닌 상속이 목적인 클래스로 작성 - 추상클래스로 선언하는 것을 권장
 //추상클래스(Abstract Class) : abstract 제한자를 사용하여 선언된 클래스 
 // => 객체 생성 불가능 - 상속 전용 클래스
 // => 형식) public abstract class 클래스명 {}
@@ -27,7 +31,7 @@ public abstract class Employee {
 	
 	//상수필드(Constant Field) : 프로그램에서 값(리터럴) 대신 사용하기 위해 의미있는 단어로 제공되는 필드값
 	//형식) public static final 자료형 상수명=값;
-	// => 상수명은 대문자로 작성하며 스네이크 표기법을 사용하여 작성하는 것을 권장
+	// => 상수명은 대문자로 작성하며 스네이크 표기법을 이용하여 작성하는 것을 권장
 	public static final double INCENTIVE_RATE=1.5;
 	
 	public Employee() {
