@@ -38,6 +38,29 @@ public class WolfHumanApp {
 		wolfHuman.change();
 		wolfHuman.cryLoudly();
 		wolfHuman.fastWalk();
+		System.out.println("===============================================================");
+		//부모클래스로 참조변수를 생성하여 자식클래스의 객체 저장
+		// => 참조변수는 기본적으로 부모클래스의 메소드만 호출 가능
+		// => 객체 형변환을 이용하여 참조변수로 자식클래스의 메소드 호출 가능
+		Human human=new WolfHuman();
+		
+		human.speak();
+		human.walk();
+		human.smile();
+		System.out.println("===============================================================");
+		//명시적 객체 형변환을 이용하여 자식클래스의 메소드 호출
+		((WolfHuman)human).change();
+		System.out.println("===============================================================");
+		//인터페이스로 참조변수를 저장하여 자식클래스의 객체 저장 가능
+		//Wolf wolf=new WolfHuman();
+		
+		//자식클래스가 같은 클래스와 인터페이스는 명시적 객체 형변환을 이용하여 자식클래스의 
+		//객체를 공유하여 사용 가능
+		Wolf wolf=(Wolf)human;
+		
+		wolf.cryLoudly();
+		wolf.fastWalk();
+		System.out.println("===============================================================");
 	}
 }
 
