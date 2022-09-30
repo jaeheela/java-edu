@@ -28,7 +28,8 @@ public class OuterOne {
 		//외부클래스에서 내부클래스의 필드 또는 메소드에 대한 직접적인 참조 불가능
 		//System.out.println("innerNum = "+innerNum);
 		
-		//외부클래스에서는 내부클래스를 사용하여 객체 생성하여 접근제한자에 상관없이 참조 가능
+		//외부클래스에서는 내부클래스로 객체를 생성하여 접근제한자에 상관없이 내부클래스의  
+		//필드 또는 메소드 참조 가능
 		//InnerOne innerOne=new InnerOne(200);
 		//System.out.println("innerNum = "+innerOne.innerNum);
 	}
