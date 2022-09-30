@@ -9,6 +9,7 @@ package realization;
 //            반환형 메소드명(자료형 매개변수명,...);//추상메소드 - public abstract 제한자 생략 가능
 //            ...
 //      }
+// => 인터페이스의 이름은 파스칼 표기법을 이용하여 작성하는 것을 권장
 
 //인터페이스는 클래스에게 상수필드 또는 추상메소드를 상속 - 다중 상속 가능
 //형식) public class 클래스명 implements 인터페이스명,인터페이스명,... { }
@@ -58,6 +59,7 @@ public class WolfHumanApp {
 		//객체를 공유하여 사용 가능
 		Wolf wolf=(Wolf)human;
 		
+		//묵시적 객체 형변환에 의해 자동으로 자식클래스의 메소드 호출
 		wolf.cryLoudly();
 		wolf.fastWalk();
 		System.out.println("===============================================================");
