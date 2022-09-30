@@ -22,8 +22,8 @@ public class CalcAgeApp {
 
 		//java.util.Date 클래스로 객체를 생성하여 참조변수에 저장
 		// => java.util.Date 클래스 : 날짜와 시간정보를 저장하기 위한 클래스
-		//Date 클래스의 기본 생성자를 이용하여 객체를 생성할 경우 Date 객체에는 시스템
-		//(운영체제 - OS)의 현재 날짜와 시간이 저장
+		//Date 클래스의 기본 생성자를 이용하여 객체를 생성할 경우 시스템(운영체제 - OS)의 
+		//현재 날짜와 시간이 저장된 Date 객체 생성
 		Date now=new Date();
 		
 		//Date.toString() : Date 객체에 저장된 날짜와 시간을 문자열로 변환하여 반환하는 메소드
