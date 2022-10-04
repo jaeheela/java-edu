@@ -1,7 +1,7 @@
 package nested;
 
 //중첩클래스(Nested Class) : 클래스(OuterClass) 내부에 다른 클래스(InnerClass)를 선언
-// => 두개의 클래스 밀접한 관계에 있을 때 선언하며 캡슐화를 강화하는데 사용
+// => 두개의 클래스가 밀접한 관계에 있을 때 선언하며 캡슐화를 강화하는데 사용
 
 public class OuterOne {
 	private int outerNum;
