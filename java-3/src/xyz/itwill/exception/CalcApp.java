@@ -6,6 +6,7 @@ import java.util.Scanner;
 //키보드로 정수값 2개를 입력받아 첫번째 정수값으로 두번째 정수값을 나눈 몫을 계산하여 출력하는 프로그램 작성
 public class CalcApp {
 	public CalcApp() throws InputMismatchException, ArithmeticException {
+	//public CalcApp() throws Exception {//메소드에서 발생된 모든 예외를 Exception 클래스 하나로 전달 가능
 		Scanner scanner=new Scanner(System.in);
 		
 		System.out.print("첫번째 정수값 입력 >> ");
