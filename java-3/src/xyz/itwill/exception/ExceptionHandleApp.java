@@ -35,7 +35,7 @@ package xyz.itwill.exception;
 // => catch 블럭의 참조변수에 저장된 예외 관련 객체를 이용하여  예외처리 명령 작성 
 // => try 블럭에서 예외가 발생되면 프로그램을 종료하지 않고 프로그램의 흐름(스레드)이 catch 블럭으로 이동
 // => catch 블럭은 여러개 작성 가능 - 다양한 예외를 구분하여 예외처리 가능
-// => finally 블럭에는 예외와 상관없이 무조건 실행될 명령 작성 - 생략 가능
+// => finally 블럭에는 예외와 상관없이 무조건 실행될 명령 작성 - 사용 자원에 대한 제거 명령 실행 : 생략 가능
 
 public class ExceptionHandleApp {
 	public static void main(String[] args) {
@@ -54,18 +54,20 @@ public class ExceptionHandleApp {
 			//예외가 발생된 경우 예외 발생 명령 하단에 존재하는 명령 미실행
 			// => 예외가 발생된 경우 프로그램은 강제 종료되거나 프로그램의 흐름이 catch 블럭으로 이동 
 			System.out.println("[메세지]프로그램이 정상적으로 실행 되었습니다.");
-		} catch (ArrayIndexOutOfBoundsException e) {
-			//ArrayIndexOutOfBoundsException 객체를 전달받아 참조변수에 저장하여 예외처리
+		} catch (ArrayIndexOutOfBoundsException e) {//예외 객체를 전달받아 참조변수에 저장
+			//프로그램 사용자에게는 예외 관련 메세지 출력 - 생략 가능
+			//System.out.println("[에러]프로그램 실행에 예기치 못한 오류가 발생되었습니다.");
+			
+			//프로그램 개발자에게는 예외 관련 메세지를 기록하여 전달 - 에러 로그(필수)
+			// => ArrayIndexOutOfBoundsException 객체를 전달받아 참조변수에 저장하여 예외처리시 사용
+			//Throwable.getMessage() : 예외 객체에 저장된 예외 메세지를 문자열로 반환하는 메소드
+			//System.out.println("[예외]"+e.getMessage());
+		
+			//Throwable.printStackTrace() : 예외가 발생된 경로를 역추적하여 발생된 상세정보를
+			//제공받아 출력하는 메소드
+			e.printStackTrace();
+		} finally {//생략 가능
+			System.out.println("[메세지]예외와 상관없이 무조건 실행되는 명령");
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
