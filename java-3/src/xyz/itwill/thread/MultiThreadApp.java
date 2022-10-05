@@ -50,7 +50,7 @@ public class MultiThreadApp {
 		new MultiThreadOne().start();	
 
 		//Thread(Runnable target) : Runnable 인터페이스를 상속받은 자식클래스의 객체를 전달
-		//받아 Thread 객체 생성
+		//받아 Thread 객체 생성하는 생성자
 		new Thread(new MultiThreadTwo()).start();
 		
 		for(char i='0';i<='9';i++) {
