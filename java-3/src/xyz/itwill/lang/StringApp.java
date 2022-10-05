@@ -20,7 +20,7 @@ public class StringApp {
 		//존재하면 기존 String 객체를 제공받아 사용 - String 객체 재사용
 		String str2="ABC";
 		
-		//참조변수를 비교연산자로 비교한 경우 참조변수에 저장된 객체의 메모리 주소를 비교
+		//참조변수를 비교연산자로 비교할 경우 참조변수에 저장된 객체의 메모리 주소를 비교
 		// => String 객체의 문자열을 비교하는 것이 아니라 String 객체의 메모리 주소 비교
 		if(str1==str2) {
 			System.out.println("str1 변수와 str2 변수에 저장된 String 객체의 메모리 주소가 같습니다.");
@@ -39,7 +39,7 @@ public class StringApp {
 		System.out.println("===============================================================");
 		//String.equals(String str) : String 객체에 저장된 문자열과 매개변수로 전달받은 
 		//문자열을 비교하여 다른 경우 false를 반환하고 같은 경우 true를 반환하는 메소드
-		// => 영문자는 대소문자를 구분하여 비교
+		// => 비교 문자열에 있는 영문자는 대소문자를 구분하여 비교
 		if(str1.equals(str3)) {
 			System.out.println("str1 변수와 str3 변수에 저장된 String 객체의 문자열이 같습니다.");
 		} else {
@@ -84,6 +84,7 @@ public class StringApp {
 		}
 		System.out.println();
 		System.out.println("===============================================================");
+		
  	}
 }
 
