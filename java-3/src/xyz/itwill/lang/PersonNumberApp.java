@@ -16,7 +16,10 @@ public class PersonNumberApp {
 		while(true) {//입력값 검증을 위한 반복문
 			System.out.print("주민번호 입력[ex.901225-1234567] >> ");
 			//입력된 문자열의 앞뒤 공백을 제거한 후 변수에 저장
-			number=scanner.nextLine().trim();
+			//number=scanner.nextLine().trim();
+			//입력된 문자열의 모든 공백을 제거한 후 변수에 저장
+			number=scanner.nextLine().replace(" ","");
+
 			//정상적인 주민번호가 입력된 경우 반복문 종료
 			//if(number.length()==14 && number.charAt(6)=='-') break;			
 			if(number.length()==14 && number.indexOf("-")==6) break;
