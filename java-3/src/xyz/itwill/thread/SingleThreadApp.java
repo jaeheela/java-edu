@@ -7,6 +7,7 @@ package xyz.itwill.thread;
 // => main() 메소드가 종료되면 main 스레드는 자동 소멸 - 프로그램 종료
 public class SingleThreadApp {
 	public static void main(String[] args) {
+		/*
 		System.out.println("SingleThreadApp 클래스의 main() 메소드 시작");
 
 		//Thread 클래스 : 스레드 관련 정보를 저장하고 스레드 관련 기능을 메소드로 제공하는 클래스
@@ -20,5 +21,12 @@ public class SingleThreadApp {
 		new SingleThread().display();//객체를 생성한 후 메소드 호출
 		
 		System.out.println("SingleThreadApp 클래스의 main() 메소드 종료");
+		*/
+		
+		new SingleThread().display();
+		
+		for(char i='0';i<='9';i++) {
+			System.out.print(i);
+		}
 	}
 }
