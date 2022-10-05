@@ -34,7 +34,7 @@ public class CalcApp {
 			System.out.println("[에러]정수값만 입력 가능합니다.");
 		} catch (ArithmeticException e) {
 			System.out.println("[에러]0으로 나눌수 없습니다.");
-		} catch (Exception e) {
+		} catch (Exception e) {//예측하지 못한 예외에 대한 처리
 			//Exception : 모든 예외클래스의 부모클래스
 			// => 모든 예외 객체를 전달받아 참조변수에 저장하여 예외처리 가능
 			System.out.println("[에러]프로그램에 예기치 못한 오류가 발생되었습니다.");
