@@ -2,7 +2,7 @@ package xyz.itwill.lang;
 
 //StringBuffer 클래스 : 문자열을 저장하기 위한 클래스
 // => String 객체는 저장된 문자열을 메소드로 직접 처리하지 않고 문자열 자체를 처리하는 메소드 제공 
-// => StringBuffer 객체에 저장된 문자열을 직접 처리하는 메소드 제공
+// => StringBuffer 객체는 저장된 문자열을 직접 처리하는 메소드 제공
 // => String 클래스보다 StringBuffer 클래스의 메소드가 문자열의 처리 속도가 우수
 public class StringBufferApp {
 	public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class StringBufferApp {
 		System.out.println("sb = "+sb);//ABC
 		
 		//StringBuffer 객체에 저장된 문자열을 반환받아 String 객체로 생성하여 참조변수에 저장
-		String str=sb.toString();
+		String str=sb.toString();//StringBuffer >> String
 		System.out.println("str = "+str);
 		System.out.println("===============================================================");
 		//StringBuffer.append(Object o) : StringBuffer 객체에 저장된 문자열에 매개변수에

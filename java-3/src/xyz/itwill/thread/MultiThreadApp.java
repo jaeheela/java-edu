@@ -20,7 +20,7 @@ package xyz.itwill.thread;
 //=> run() 메소드에는 프로그램 개발자에 의해 생성된 스레드가 실행할 명령 작성
 //3.Thread 객체 생성 - 생성자 매개변수에 Runnable 인터페이스를 상속받은 자식클래스의 객체를 전달받아 생성
 //4.Thread 객체로 start() 메소드 호출
-//=> Thread 객체로 새로운 스레드를 만들어  Runnable 인터페이스를 상속받은 자식클래스의 
+//=> Thread 객체로 새로운 스레드를 만들어 Runnable 인터페이스를 상속받은 자식클래스의 
 //오버라이드 선언된 run() 메소드에 명령 실행
 
 public class MultiThreadApp {
@@ -30,7 +30,7 @@ public class MultiThreadApp {
 		
 		/*
 		//Thread 객체를 생성하여 start() 메소드 호출
-		// => 새로운 스레드가 만들어지면 Thread 클래스의 run() 메소드를 호출하여 명령 실행
+		// => 새로운 스레드가 만들어지고 Thread 클래스의 run() 메소드를 호출하여 명령 실행
 		// => Thread 클래스의 run() 메소드에는 명령 미존재
 		Thread thread=new Thread();
 		thread.start();
@@ -38,7 +38,11 @@ public class MultiThreadApp {
 		
 		/*
 		MultiThreadOne one=new MultiThreadOne();
+		//Thread.start() : Thread 객체로 새로운 스레드를 생성하여 run() 메소드를 호출하여 실행하는 메소드
 		one.start();
+		//Thread 객체는 start() 메소드로 하나의 스레드만 생성하여 명령 실행 가능
+		// => Thread 객체로 start() 메소드를 여러번 호출할 경우 IllegalThreadStateException 발생
+		// => 다중 스레드 프로그램에서 예외가 발생된 경우 예외가 발생된 스레드만 자동 소멸
 		//one.start();
 		*/
 		
@@ -46,11 +50,11 @@ public class MultiThreadApp {
 		//않고 객체를 생성하여 직접 start() 메소드 호출
 		// => 새로운 스레드가 생성되어 MultiThreadOne 클래스의 run() 메소드의 명령 실행
 		new MultiThreadOne().start();	
-		//하나의 Thread 객체는 start() 메소드로 하나의 스레드만 생성하여 명령 실행 가능
 		new MultiThreadOne().start();	
 
 		//Thread(Runnable target) : Runnable 인터페이스를 상속받은 자식클래스의 객체를 전달
-		//받아 Thread 객체 생성하는 생성자
+		//받아 Thread 객체를 생성하는 생성자
+		// => Thread 객체의 run() 메소드를 오버라이드 선언하는 것과 같은 효과 
 		new Thread(new MultiThreadTwo()).start();
 		
 		for(char i='0';i<='9';i++) {

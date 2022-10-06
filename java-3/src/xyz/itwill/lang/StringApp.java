@@ -1,7 +1,6 @@
 package xyz.itwill.lang;
 
-//String 클래스 : 문자열을 표현하기 위한 클래스 
-// => 문자열을 저장하기 위한 객체 생성
+//String 클래스 : 문자열을 저장하기 위한 클래스 
 // => String 객체에 저장된 문자열에 대한 다양한 기능을 메소드로 제공
 // => String 객체는 문자열을 내부적으로 byte 배열로 처리하여 배열 요소에 문자를 하나씩 저장
 public class StringApp {
@@ -93,10 +92,10 @@ public class StringApp {
 		System.out.println("두번째 위치의 문자 = "+str5.charAt(1));
 		System.out.println("===============================================================");
 		//String.indexOf(String str) : String 객체에 저장된 문자열에서 매개변수에 저장된   
-		//문자열(문자)을 검색하여 시작위치를 첨자로 반환하는 메소드
-		// => 매개변수의 문자열을 찾을 수 없을 경우 -1 반환
+		//문자열(문자)을 검색하여 시작위치값(첨자)을 반환하는 메소드
+		// => 매개변수의 문자열(문자)을 찾을 수 없을 경우 -1 반환
 		System.out.println("A 문자열의 저장 위치 = "+str5.indexOf("A"));
-		System.out.println("X 문자열의 저장 위치 = "+str5.indexOf("EFG"));
+		System.out.println("EFG 문자열의 저장 위치 = "+str5.indexOf("EFG"));
 		System.out.println("X 문자열의 저장 위치 = "+str5.indexOf("X"));
 		System.out.println("===============================================================");
 		String str6="Java Programming";
