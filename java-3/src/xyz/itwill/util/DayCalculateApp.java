@@ -34,13 +34,3 @@ public class DayCalculateApp {
 		System.out.println("[결과]태어난지 "+day+"일이 지났습니다.");
 	}
 }
-
-
-
-
-
-
-
-
-
-
