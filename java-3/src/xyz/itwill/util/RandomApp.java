@@ -10,8 +10,9 @@ import java.util.Random;
 //Date 클래스 : 날짜와 시간을 저장하고 날짜와 시간 관련 기능을 메소드로 제공하는 클래스
 //Calendar 클래스 : 날짜와 시간을 저장하고 날짜와 시간 관련 기능을 메소드로 제공하는 클래스
 //자료구조 클래스(Collection Class) : 다수의 객체를 효율적으로 저장하고 관리하기 위한 기능을 
-//메소드로 제공하는 클래스 - ArrayList, HashSet, HashMap 등
-// => Collection 인터페이스(Set와 List) 또는 Map 인터페이스를 상속받은 자식클래스
+//메소드로 제공하는 클래스 - HashSet, ArrayList, HashMap 등
+// => Collection 인터페이스(Set 인터페이스와 List 인터페이스의 부모 인터페이스) 또는  
+//Map 인터페이스를 상속받은 자식클래스
 
 public class RandomApp {
 	public static void main(String[] args) {
