@@ -6,6 +6,7 @@ import java.awt.Frame;
 
 //BorderLayout : 컴퍼넌트를 컨테이너의 중앙,동,서,남,북으로 구분하여 부착하는 배치관리자
 // => 컴퍼넌트를 컨테이너에 부착할 때 부착 위치를 반드시 설정
+// => Frame 클래스, Window 클래스, Dialog 클래스의 기본 배치관리자
 public class BorderLayoutApp extends Frame {
 	private static final long serialVersionUID = 1L;
 
