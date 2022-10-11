@@ -62,6 +62,7 @@ public class RegualarExpressionApp {
 		System.out.println("[메세지]정상적인 아이디를 입력 하였습니다.");
 		*/
 		
+		/*
 		//비밀번호 입력규칙 : 영문자,숫자,특수문자가 반드시 1개 이상 포함되며 8~30 범위의 문자수로 입력
 		System.out.print("비밀번호를 입력해 주세요. >> ");
 		String password=scanner.nextLine();
@@ -78,16 +79,26 @@ public class RegualarExpressionApp {
 		}
 		
 		System.out.println("[메세지]정상적인 비밀번호를 입력 하였습니다.");
+		*/
+		
+		System.out.print("이메일을 입력해 주세요. >> ");
+		String email=scanner.nextLine();
+		
+		if(email==null || email.equals("")) {
+			System.out.println("[에러]이메일을 반드시 입력해 주세요.");
+			System.exit(0);
+		}
+		
+		//이메일 입력규칙 : [아이디@도메인] 형식으로 입력
+		String emailReg="^([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+)*$";
+		if(!Pattern.matches(emailReg, email)) {
+			System.out.println("[에러]이메일을 형식에 맞게 입력해 주세요.");
+			System.exit(0);
+		}
+		
+		System.out.println("[메세지]정상적인 이메일을 입력 하였습니다.");
+		
 		
 		scanner.close();
 	}
 }
-
-
-
-
-
-
-
-
-
