@@ -34,7 +34,7 @@ public class NonLayoutManagerApp extends Frame {
 	}
 	
 	public static void main(String[] args) {
-		new NonLayoutManagerApp("NonLayoutManager");
+		new NonLayoutManagerApp("NonLayout");
 	}
 }
 
