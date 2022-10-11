@@ -9,7 +9,7 @@ import java.util.Set;
 // => Set 인터페이스, List 인터페이스, Map 인터페이스를 중 하나를 상속받아 작성된 자식클래스
 
 //Set 인터페이스를 상속받은 자료구조 클래스 - HashSet, TreeSet 등
-// => 객체의 저장 순서가 없으며 동일한 객체 중복 저장 불가능
+// => 객체의 저장 순서가 없으며 메모리 주소와 객체에 저장된 값이 같은 중복된 객체 저장 불가능
 public class SetApp {
 	public static void main(String[] args) {
 		//제네릭을 사용하지 않고 HashSet 객체 생성 - 비권장 
@@ -50,7 +50,7 @@ public class SetApp {
 		System.out.println("set = "+set);
 		System.out.println("==============================================================");
 		//Set.iterator() : Set 객체에 저장된 요소를 반복 처리할 수 있는 Iterator 객체를 반환하는 메소드
-		//Iterator 객체 : 자료구조 클래스의 객체 요소를 반복 처리하기 위한 기능을 제공하는 객체 - 
+		//Iterator 객체 : 자료구조 클래스의 객체 요소를 반복 처리하기 위한 기능을 제공하는 객체
 		// => 반복지시자 : 커서를 사용하여 자료구조 클래스의 객체 요소를 반복 처리
 		Iterator<String> iterator=set.iterator();
 		
@@ -74,17 +74,3 @@ public class SetApp {
 		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

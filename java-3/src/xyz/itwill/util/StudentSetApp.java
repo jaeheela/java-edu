@@ -18,6 +18,7 @@ public class StudentSetApp {
 		// => 매개변수로 전달받은 객체를 hashCode() 메소드로 기존 요소의 HashCode와 비교하여 
 		//같은 경우 equals() 메소드로 필드값을 비교해 같으면 Set 객체에 추가되지 않도록 동작
 		// => HashCode가 다르거나 비교 필드값이 다르면 Set 객체에 요소가 추가되어 저장
+		//studentSet.add(new Student(1000, "홍길동"));//학번이 같은 학생정보 저장 불가능
 		studentSet.add(new Student(4000, "홍길동"));
 		
 		Iterator<Student> iterator=studentSet.iterator();
