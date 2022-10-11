@@ -14,14 +14,16 @@ import java.awt.Frame;
 public class FrameOneApp {
 	public static void main(String[] args) {
 		//Frame : 메뉴가 존재하는 컨테이너
-		Frame frame=new Frame();//메모리에 생성되며 Frame 객체가 생성되며 미출력
+		//Frame frame=new Frame();//메모리에 생성되며 Frame 객체가 생성되며 미출력
+		//Frame(String title) : 제목을 전달받아 제목이 설정된 프레임을 생성하는 생성자 
+		Frame frame=new Frame("프레임 연습");
 		
 		//Component.setSize(int width, int height) : 컴퍼넌트의 크기(폭과 높이)를 변경하는 메소드
 		// => 크기 또는 위치는 픽셀(Pixel : 색을 표현하는 점)을 기본단위로 사용
 		frame.setSize(400, 300);
 
 		//Component.setLocation(int x, int y) : 컴퍼넌트의 출력위치(x 좌표와 y 좌표)를 변경하는 메소드
-		frame.setLocation(500, 100);
+		frame.setLocation(600, 100);
 		
 		//Component.setVisible(boolean b) : 컴퍼넌트의 출력 유무를 설정하는 메소드
 		// => false : 미출력, true : 출력
