@@ -23,6 +23,9 @@ public class CalculatorApp extends JFrame implements ActionListener {
 	private JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9;
 	private JButton bMulti, bDiv, bPlus, bMinus, bClear, bEquals;
 
+	//연산식을 저장하기 위한 필드
+	private String operation="";
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -139,14 +142,6 @@ public class CalculatorApp extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
 	}
 }
-
-
-
-
-
-
-
-
