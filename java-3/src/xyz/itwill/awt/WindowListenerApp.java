@@ -33,6 +33,7 @@ public class WindowListenerApp extends Frame {
 		@Override
 		public void windowClosing(WindowEvent e) {
 			System.out.println("windowClosing 메소드 호출");
+			System.exit(0);
 		}
 
 		@Override
