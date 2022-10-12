@@ -6,6 +6,11 @@ import java.awt.Frame;
 //GUI(Graphic User Interface) 프로그램 : 그래픽 중심의 실행 환경을 제공하는 프로그램
 // => 컴퍼넌트를 이용하여 작성된 프로그램
 
+//java.awt 패키지 : GUI 프로그램을 작성하기 위한 클래스가 선언된 패키지
+// => 운영체제(OS)에 종속된 컴퍼넌트 제공
+//javax.swing 패키지 : GUI 프로그램을 작성하기 위한 클래스가 선언된 패키지
+// => 운영체제와 별개의 Java 컴퍼넌트 제공
+
 //컴퍼넌트(Component) : GUI 프로그램에서 디자인 요소를 구현하기 위한 클래스
 // => Button, List, Label, Canvas , Checkbox, Choice, Scrollbar, TextField, TextArea 등
 //컨테이너(Container) : 컴퍼넌트를 부착하기 위한 컴퍼넌트
@@ -26,7 +31,7 @@ public class FrameOneApp {
 		frame.setLocation(600, 100);
 		
 		//Component.setVisible(boolean b) : 컴퍼넌트의 출력 유무를 설정하는 메소드
-		// => false : 미출력, true : 출력
+		// => false : 미출력(기본), true : 출력
 		frame.setVisible(true);
 	}
 }
