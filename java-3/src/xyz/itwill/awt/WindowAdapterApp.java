@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 
 //이벤트 처리를 위해 리스너 인터페이스 대신 어댑터 클래스를 상속받아 사용 가능
 // => 리스너 인터페이스에 추상메소드가 2개이상 선언된 경우 리스너 인터페이스 대신 사용할 어댑터 클래스 제공
-// => 필요한 이벤트 처리 메소드만 오버라이드 선언 
+// => 어댑터 클래스를 이용하면 필요한 이벤트 처리 메소드만 오버라이드 선언하여 사용 가능 
 public class WindowAdapterApp extends Frame {
 	private static final long serialVersionUID = 1L;
 

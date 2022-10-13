@@ -49,11 +49,11 @@ public class SwingApp extends JFrame {
 		textArea.setFont(new Font("굴림체", Font.BOLD, 20));
 		
 		textArea.setFocusable(false);
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		textField.addActionListener(new TextEventHandle());
 		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		setBounds(800, 200, 400, 500);
 		setVisible(true);
 	}
