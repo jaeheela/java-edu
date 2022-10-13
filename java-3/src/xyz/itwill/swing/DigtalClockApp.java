@@ -50,7 +50,7 @@ public class DigtalClockApp extends JFrame {
 		getContentPane().add(jPanel,BorderLayout.SOUTH);
 		
 		//새로운 스레드가 생성되어 run() 메소드 명령 실행
-		// => 1초마다 시스템의 현재 날짜와 시간을 제공받아 컴퍼넌트 변경
+		// => 1초마다 시스템의 현재 날짜와 시간을 제공받아 컴퍼넌트 변경 - 무한반복
 		new ClockThread().start();
 		
 		startBtn.addActionListener(new ClockEventHandle());
