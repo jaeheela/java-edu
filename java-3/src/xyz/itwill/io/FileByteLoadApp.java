@@ -10,7 +10,7 @@ public class FileByteLoadApp {
 		//FileInputStream : 파일에 저장된 값을 원시데이타로 읽기 위한 입력스트림을 생성하기 위한 클래스
 		FileInputStream in=null;
 		try {
-			//FileInputStream(String name) : 파일경로를 전달받아 파일 입력스트림을 생성하는 생성자
+			//FileInputStream(String filename) : 파일경로를 전달받아 파일 입력스트림을 생성하는 생성자
 			// => 전달받은 파일경로에 파일이 없는 경우 FileNotFoundException 발생 - 예외처리
 			// => 파일이 없는 경우 파일 입력스트림을 생성하지 못하므로 반드시 예외처리
 			in=new FileInputStream("c:/data/byte.txt");
