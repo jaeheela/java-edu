@@ -36,7 +36,7 @@ public class CharacterStreamApp {
 			if(readByte==-1) break;
 			
 			//Writer.write() : 출력스트림에게 값(2Byte)을 전달하는 메소드
-			// => 문자데이타는 출력버퍼에 일정 크기만큼 저장하고 한번에 출력스트림으로 전송하여 처리 
+			// => 문자데이타는 출력버퍼에 일일정 크기만큼 저장하고 한번에 출력스트림으로 전송하여 처리 
 			out.write(readByte);
 			
 			//Writer.flush() : 출력버퍼에 저장된 문자데이타를 출력스트림으로 모두 전달하는 메소드

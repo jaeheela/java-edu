@@ -171,7 +171,7 @@ public class CalculatorApp extends JFrame implements ActionListener {
 				int num2=Integer.parseInt(operation.substring(index+1));
 				String operator=operation.substring(index, index+1);
 				
-				//연산식를 비교하여 피연산자의 연산 결과를 저장
+				//연산자를 비교하여 피연산자의 연산 결과를 저장
 				int result=0;
 				switch (operator) {
 				case "*": result=num1*num2; break;
