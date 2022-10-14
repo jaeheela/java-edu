@@ -12,7 +12,7 @@ public class FileByteSaveApp {
 		//FileOutputStream : 파일에 원시데이타를 전달하기 위한 출력스트림을 생성하기 위한 클래스
 		//FileOutputStream(String name) : 파일경로를 전달받아 파일 출력스트림을 생성하는 생성자
 		// => 전달받은 파일경로에 파일이 없는 경우 FileNotFoundException 발생 - 예외처리
-		// => 예외처리 하지 않고 예외를 전달한 경우 파일을 자동으로 생성하여 출력스트림 반환
+		// => 예외처리 하지 않고 예외를 전달할 경우 파일을 자동으로 생성하여 출력스트림 반환
 		// => 전달받은 파일경로에 파일이 있는 경우 기존 파일값 대신 새로운 값이 파일에 저장 - 덮어씌우기
 		//FileOutputStream out=new FileOutputStream("c:/data/byte.txt");
 
