@@ -107,11 +107,16 @@ public class NotepadApp extends JFrame implements ActionListener {
 		Object eventSource=e.getSource();
 		
 		if(eventSource==init) {
-			status=false;//상태 초기화
+			//선택 다이얼로그에서 저장 유무 선택
+			// => 선택 다이얼로그를 닫거나 [취소]를 선택한 경우 이벤트 처리 메소드 종료 
+			if(!saveConfirm()) return;
+			
 			filepath=null;//문서파일의 경로 초기화
 			area.setText("");//JTextArea 컴퍼넌트 초기화
 			setTitle("제목 없음 - Java 메모장");//프레임 제목 변경
 		} else if(eventSource==open) {
+			if(!saveConfirm()) return;
+			
 			//열기 관련 파일 다이얼로그를 화면에 출력
 			// => 파일을 선택하거나 선택을 취소한 경우 파일 다이얼로그는 자동으로 숨김 처리
 			openDialog.setVisible(true);
@@ -179,6 +184,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
 			}
 		} else if(eventSource==exit) {
+			if(!saveConfirm()) return;
 			System.exit(0);
 		}
 	}
