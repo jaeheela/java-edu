@@ -182,7 +182,58 @@ public class NotepadApp extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
+	
+	//JTextArea 컴퍼넌트의 내용 변경에 따른 저장 유무를 선택하여 처리하기 위한 메소드
+	// => 선택 다이얼로그를 이용하여 저장 유무를 선택하여 처리
+	// => 반환값 - false : 선택 다이얼로그의 창닫기 또는 취소, true : 선택 다이얼로그의 저장 또는 미저장
+	// => [새로 만들기],[열기],[끝내기]의 JMenuItem 컴퍼넌트를 선택한 경우 호출
+	public boolean saveConfirm() {
+		if(status) {//JTextArea 컴퍼넌트의 내용 변경이 발생한 경우
+			//JOptionPane.showConfirmDialog(Component parent, String message, String title, int optionType)
+			// => 선택 다이얼로그를 출력하는 메소드 - 선택값 반환
+			int choice=JOptionPane.showConfirmDialog(this
+				, "변경된 내용을 저장 하시겠습니까?", "확인", JOptionPane.YES_NO_CANCEL_OPTION);
+			
+			//선택 다이얼로그의 선택에 의해 명령을 구분하여 실행
+			if(choice==JOptionPane.YES_OPTION) {//"YES" 옵션을 선택한 경우 - [저장] 
+				if(filepath==null) {
+					saveDialog.setVisible(true);
+					if(saveDialog.getFile()==null) return false;
+					filepath=saveDialog.getDirectory()+saveDialog.getFile();
+					setTitle(saveDialog.getFile()+" - Java 메모장");
+				}
+				
+				try {
+					BufferedWriter out=new BufferedWriter(new FileWriter(filepath));
+					String text=area.getText();
+					out.write(text);
+					out.close();
+				} catch (IOException exception) {
+					JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
+				}
+			} else if(choice==JOptionPane.CLOSED_OPTION || choice==JOptionPane.CANCEL_OPTION) {
+				//"창닫기" 또는 "CANCEL" 옵션을 선택한 경우 - [취소]
+				return false;
+			}
+		}
+		
+		//선택 다이얼로그에서 "YES" 또는 "NO" 옵션을 선택한 경우- [저장] 또는 [미저장]
+		status=false;//변경 상태 초기화
+		return true;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
