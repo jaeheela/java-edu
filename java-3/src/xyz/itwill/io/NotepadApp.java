@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,6 +35,13 @@ public class NotepadApp extends JFrame implements ActionListener {
 	//FileDialog : 파일을 선택하기 위한 다이얼로그를 생성하기 위한 컴퍼넌트
 	private FileDialog openDialog, saveDialog;
 		
+	//현재 작업중인 문서파일의 경로를 저장하기 위한 필드
+	private String filepath;
+	
+	//JTextArea 컴퍼넌트의 문자열 변경 상태를 저장하기 위한 필드 - 문서파일 변경 유무 확인
+	// => false : 미변경, true : 변경
+	private boolean status;
+	
 	public NotepadApp(String title) {
 		super(title);
 		
@@ -65,6 +73,21 @@ public class NotepadApp extends JFrame implements ActionListener {
 		save.addActionListener(this);
 		exit.addActionListener(this);
 		
+		//JTextArea 컴퍼넌트에서 키보드 관련 이벤트가 발생된 경우 실행될 이벤트 처리 객체 등록
+		// => KeyAdapter 클래스를 상속받은 익명의 자식클래스의 객체를 이용하여 이벤트 처리
+		area.addKeyListener(new KeyAdapter() {
+			//키보드를 눌렀다 띄었을 때 자동 호출되는 이벤트 처리 메소드
+			@Override
+			public void keyTyped(KeyEvent e) {
+				//KeyEvent.getKeyChar() : 이벤트가 발생된 키보드의 문자값을 반환하는 메소드
+				// => 이벤트가 발생된 키보드의 문자값이 NULL 문자가 아닌 경우 
+				if(!status && e.getKeyChar()!='\0') {
+					status=true;//상태 변경
+					setTitle("*"+getTitle());//프레임의 제목 변경
+				}
+			}			
+		});
+		
 		//읽기 파일 선택하기 위한 파일 다이얼로그 생성
 		openDialog=new FileDialog(this, "열기", FileDialog.LOAD);
 		//쓰기 파일 선택하기 위한 파일 다이얼로그 생성
@@ -84,6 +107,8 @@ public class NotepadApp extends JFrame implements ActionListener {
 		Object eventSource=e.getSource();
 		
 		if(eventSource==init) {
+			status=false;//상태 초기화
+			filepath=null;//문서파일의 경로 초기화
 			area.setText("");//JTextArea 컴퍼넌트 초기화
 			setTitle("제목 없음 - Java 메모장");//프레임 제목 변경
 		} else if(eventSource==open) {
@@ -97,7 +122,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 			
 			//파일 다이얼로그에서 선택된 파일에 대한 시스템 경로를 반환받아 저장
 			//FileDialog.getDirectory() : 선택된 파일이 저장된 디렉토리 경로를 반환하는 메소드
-			String filepath=openDialog.getDirectory()+openDialog.getFile();
+			filepath=openDialog.getDirectory()+openDialog.getFile();
 			
 			try {
 				//파일 입력스트림을 생성하여 저장
@@ -124,17 +149,20 @@ public class NotepadApp extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
 			}
 		} else if(eventSource==save) {
-			//저장 관련 파일 다이얼로그를 화면에 출력
-			saveDialog.setVisible(true);
-			
-			//파일 다이얼로그에서 파일 선택을 취소한 경우 이벤트 처리 메소드 종료
-			if(saveDialog.getFile()==null) return;
-			
-			//파일 다이얼로그에서 선택된 파일에 대한 시스템 경로를 반환받아 저장
-			String filepath=saveDialog.getDirectory()+saveDialog.getFile();
-
-			//프레임의 제목 변경
-			setTitle(saveDialog.getFile()+" - Java 메모장");
+			//현재 작업중인 문서 파일이 없는 경우
+			if(filepath==null) {
+				//저장 관련 파일 다이얼로그를 화면에 출력
+				saveDialog.setVisible(true);
+				
+				//파일 다이얼로그에서 파일 선택을 취소한 경우 이벤트 처리 메소드 종료
+				if(saveDialog.getFile()==null) return;
+				
+				//파일 다이얼로그에서 선택된 파일에 대한 시스템 경로를 반환받아 저장
+				filepath=saveDialog.getDirectory()+saveDialog.getFile();
+	
+				//프레임의 제목 변경
+				setTitle(saveDialog.getFile()+" - Java 메모장");
+			}
 			
 			try {
 				//파일 출력스트림을 생성하여 저장
