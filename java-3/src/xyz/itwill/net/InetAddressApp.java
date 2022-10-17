@@ -13,6 +13,7 @@ import java.net.UnknownHostException;
 
 //네트워크 계층 - 네트워크 관련 장치 : 이더넷(Ethernet), 라우터(Router), 스위치허브(Switch Hub) 등
 // => 라우터 : 네트워크 그룹을 연결하기 위한 통신 장비
+// => 스위치허브 :  호스트와 호스트 및 호스트와 네트워크 그룹을 연결하기 위한 통신 장비
 
 //IP(Internet Protocol) : 인터넷을 사용하기 위한 네트워크 주소(IP 주소)에 대한 통신규약 - IPV4, IPV6
 
