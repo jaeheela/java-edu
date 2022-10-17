@@ -115,7 +115,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 					//JTextArea 컴퍼넌트에 문자열을 추가하여 출력
 					area.append(text+"\n");
 				}
-				
+	
 				in.close();
 			} catch (FileNotFoundException exception) {
 				JOptionPane.showMessageDialog(this, "선택한 파일을 찾을 수 없습니다.");
