@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -93,7 +95,18 @@ public class NotepadApp extends JFrame implements ActionListener {
 		//쓰기 파일 선택하기 위한 파일 다이얼로그 생성
 		saveDialog=new FileDialog(this, "저장", FileDialog.SAVE);
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
+		//프레임에서 닫기 버튼을 누른 경우 실행될 이벤트 처리 객체 등록
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if(!saveConfirm()) return;
+				System.exit(0);
+			}
+		});
+		
 		setBounds(450, 150, 1000, 600);
 		setVisible(true);
 	}
@@ -180,6 +193,9 @@ public class NotepadApp extends JFrame implements ActionListener {
 				out.write(text);
 				
 				out.close();
+				
+				status=false;//저장 상태 변경
+				setTitle(getTitle().substring(1));//프레임 제목 변경
 			} catch (IOException exception) {
 				JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
 			}
