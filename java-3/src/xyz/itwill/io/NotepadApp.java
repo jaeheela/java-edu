@@ -84,7 +84,8 @@ public class NotepadApp extends JFrame implements ActionListener {
 		Object eventSource=e.getSource();
 		
 		if(eventSource==init) {
-			
+			area.setText("");//JTextArea 컴퍼넌트 초기화
+			setTitle("제목 없음 - Java 메모장");//프레임 제목 변경
 		} else if(eventSource==open) {
 			//열기 관련 파일 다이얼로그를 화면에 출력
 			// => 파일을 선택하거나 선택을 취소한 경우 파일 다이얼로그는 자동으로 숨김 처리
