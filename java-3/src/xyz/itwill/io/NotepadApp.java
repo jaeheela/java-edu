@@ -8,8 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -92,6 +94,7 @@ public class NotepadApp extends JFrame implements ActionListener {
 			//파일 다이얼로그에서 파일 선택을 취소한 경우 이벤트 처리 메소드 종료
 			if(openDialog.getFile()==null) return;
 			
+			//파일 다이얼로그에서 선택된 파일에 대한 시스템 경로를 반환받아 저장
 			//FileDialog.getDirectory() : 선택된 파일이 저장된 디렉토리 경로를 반환하는 메소드
 			String filepath=openDialog.getDirectory()+openDialog.getFile();
 			
@@ -120,12 +123,38 @@ public class NotepadApp extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
 			}
 		} else if(eventSource==save) {
+			//저장 관련 파일 다이얼로그를 화면에 출력
+			saveDialog.setVisible(true);
 			
+			//파일 다이얼로그에서 파일 선택을 취소한 경우 이벤트 처리 메소드 종료
+			if(saveDialog.getFile()==null) return;
+			
+			//파일 다이얼로그에서 선택된 파일에 대한 시스템 경로를 반환받아 저장
+			String filepath=saveDialog.getDirectory()+saveDialog.getFile();
+
+			//프레임의 제목 변경
+			setTitle(saveDialog.getFile()+" - Java 메모장");
+			
+			try {
+				//파일 출력스트림을 생성하여 저장
+				BufferedWriter out=new BufferedWriter(new FileWriter(filepath));
+				
+				//JTextArea 컴퍼넌트의 모든 문자열을 반환받아 저장
+				String text=area.getText();
+				
+				//BufferedWriter.write(String s) : 출력스트림에 문자열을 전달하는 메소드
+				out.write(text);
+				
+				out.close();
+			} catch (IOException exception) {
+				JOptionPane.showMessageDialog(this, "프로그램에 문제가 발생 하였습니다.");
+			}
 		} else if(eventSource==exit) {
 			System.exit(0);
 		}
 	}
 }
+
 
 
 

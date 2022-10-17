@@ -32,7 +32,7 @@ public class FileByteSaveApp {
 		
 		//FileOutputStream.close() : 파일 출력스트림을 제거하는 메소드
 		// => 파일에는 입력스트림 또는 출력스트림을 1개씩만 생성 가능
-		// => 파일 처리을 위한 입력스트림 또는 출력스트림은 사용 후 반드시 제거
+		// => 파일 처리를 위한 입력스트림 또는 출력스트림은 사용 후 반드시 제거
 		out.close();
 		System.out.println("c:\\data\\byte.txt 파일에 키보드 입력값이 저장 되었습니다.");
 	}
