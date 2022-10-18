@@ -112,7 +112,6 @@ public class ChatServerApp {
 				while(true) {
 					sendMessage("["+aliasName+"]"+in.readLine());
 				}
-				
 			} catch (IOException e) {
 				//클라이언트가 접속을 종료한 경우 실행될 명령 작성
 				// => 콜렉션 필드에 저장된 List 객체에서 접속 종료된 클라이언트의 소켓정보(SocketThread 객체)를 삭제
@@ -126,13 +125,3 @@ public class ChatServerApp {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
