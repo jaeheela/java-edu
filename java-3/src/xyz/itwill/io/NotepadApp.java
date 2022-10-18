@@ -161,6 +161,10 @@ public class NotepadApp extends JFrame implements ActionListener {
 				}
 	
 				in.close();
+				
+				//JTextArea.setCaretPosition(int position) : JTextArea 컴퍼넌트의 입력촛점
+				//(커서)의 위치를 변경하는 메소드
+				area.setCaretPosition(0);//입력촛점을 처음위치로 이동
 			} catch (FileNotFoundException exception) {
 				JOptionPane.showMessageDialog(this, "선택한 파일을 찾을 수 없습니다.");
 			} catch (IOException exception) {
