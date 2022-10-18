@@ -3,7 +3,7 @@ package xyz.itwill.net;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-//TCP 프로그램 작성 : ServerSocket 클래스와 Socket 클래스를 이용하여 작성
+//TCP 프로그램 : ServerSocket 클래스와 Socket 클래스를 이용하여 작성
 // => 서버와 클라이언트가 소켓을 사용하여 1:1로 연결되어 데이타를 송수신하는 네트워크 프로그램 
 
 //서버(Server) : 외부의 컴퓨터(클라이언트)가 접속할 수 있는 환경과 서비스를 제공하기 위한 컴퓨터
