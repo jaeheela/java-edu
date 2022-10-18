@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -84,10 +85,12 @@ public class ChatClientApp extends JFrame implements ActionListener {
 			// => 입력 다이얼로그를 보여주는 메소드 - 입력값을 문자열로 반환
 			aliasName=JOptionPane.showInputDialog(this,"대화명을 입력해 주세요.","대화명 입력", JOptionPane.QUESTION_MESSAGE);
 			
-			//정상적인 대화명을 입력한 경우 반복문 종료
-			if(aliasName!=null && !aliasName.equals("")) break;
+			String regEx="^[가-힣]{2,6}$";
 			
-			JOptionPane.showMessageDialog(this, "대화명을 반드시 입력해 주세요.", "입력오류", JOptionPane.ERROR_MESSAGE);
+			//정상적인 대화명을 입력한 경우 반복문 종료
+			if(Pattern.matches(regEx, aliasName)) break;
+			
+			JOptionPane.showMessageDialog(this, "정상적인 대화명을 입력해 주세요.", "입력오류", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//서버에 대화명 전달
