@@ -31,7 +31,7 @@ SELECT * FROM EMP;
 SELECT EMPNO,ENAME,SAL FROM EMP;
 
 --COLUMN ALIAS : 검색대상에 별칭(임시 컬럼명)을 부여하는 기능
---검색대상을 명확하게 구분하기 위해서 사용 컬럼 별칭 사용
+--검색대상을 명확하게 구분하기 위해서 사용 컬럼 별칭 사용 
 --형식)SELECT 검색대상 [AS] 별칭,검색대상 [AS] 별칭,... FROM 테이블명 
 SELECT EMPNO,ENAME,DEPTNO FROM EMP;
 SELECT EMPNO AS NO,ENAME AS NAME,DEPTNO AS DNO FROM EMP;
