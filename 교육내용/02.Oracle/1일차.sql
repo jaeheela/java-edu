@@ -228,18 +228,78 @@ SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE SAL>=3000 ORDER BY DEPTNO;
 
 --검색대상 : EMP 테이블의 모든 컬럼값 검색
 --문제1.사원이름이 SCOTT인 사원 검색
+SELECT * FROM EMP WHERE ENAME='SCOTT';
+SELECT * FROM EMP WHERE ENAME LIKE 'SCOTT';
+--USER : 현재 접속 사용자의 이름을 표현하는 키워드
+SELECT * FROM EMP WHERE ENAME=USER;
 
 --문제2.급여가 1500 이하인 사원 검색
+SELECT * FROM EMP WHERE SAL<=1500;
 
 --문제3.1981년에 입사한 사원 검색
+SELECT * FROM EMP WHERE HIREDATE>='81/01/01' AND HIREDATE<='81/12/31';
+SELECT * FROM EMP WHERE HIREDATE BETWEEN '81/01/01' AND '81/12/31';
+SELECT * FROM EMP WHERE HIREDATE LIKE '81%';
+SELECT * FROM EMP WHERE HIREDATE LIKE '81/__/__';
 
---믄제4.업무가 SALESMAN이서나 MANAGER인 사원 중 급여가 1500 이상인 사원 검색
+--문제4.업무가 SALESMAN이서나 MANAGER인 사원 중 급여가 1500 이상인 사원 검색
+SELECT * FROM EMP WHERE (JOB='SALESMAN' OR JOB='MANAGER') AND SAL>=1500;
+SELECT * FROM EMP WHERE JOB IN('SALESMAN','MANAGER') AND SAL>=1500;
 
 --문제5.부서번호가 10인 사원 중 급여가 1000~3000 범위에 포함된 사원 검색
+SELECT * FROM EMP WHERE DEPTNO=10 AND SAL>=1000 AND SAL<=3000;
+SELECT * FROM EMP WHERE DEPTNO=10 AND SAL BETWEEN 1000 AND 3000;
 
 --문제6.부서번호가 30인 사원 중 성과급이 존재하는 사원 검색
+SELECT * FROM EMP WHERE DEPTNO=30 AND COMM IS NOT NULL;
 
 --문제7.모든 사원을 업무로 오름차순 정렬하고 같은 업무의 사원은 급여로 내림차순 정렬하여 검색
+SELECT * FROM EMP ORDER BY JOB ASC, SAL DESC;
+SELECT * FROM EMP ORDER BY JOB, SAL DESC;
 
 --문제8.업무가 SALESMAN인 사원을 급여로 내림차순 정렬하여 검색
+SELECT * FROM EMP WHERE JOB='SALESMAN' ORDER BY SAL DESC;
 
+--함수(FUNCTION) : 매개변수로 값을 전달받아 가공처리하여 결과값을 반환하는 기능을 제공
+--단일함수 : 하나의 값을 전달받아 가공처리하여 결과값을 반환하는 함수 - 문자함수,숫자함수,날짜함수,변환함수,일반함수
+--그룹함수 : 다수의 값을 전달받아 가공처리하여 결과값을 반환하는 함수
+
+--문자함수 : 매개변수로 문자값을 전달받아 가공처리하여 결과값을 반환하는 함수
+
+--UPPER(문자값) : 문자값을 전달받아 대문자로 변환하여 반환하는 함수
+--LOWER(문자값) : 문자값을 전달받아 소문자로 변환하여 반환하는 함수
+SELECT ENAME,UPPER(ENAME),LOWER(ENAME) FROM EMP;
+
+--EMP 테이블에서 사원이름이 SMITH인 사원의 사원번호,사원이름,급여 검색
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE ENAME='SMITH';
+--SQL 명려은 대소문자를 구분하지 않지만 문자값은 대소문자를 구분하여 비교
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE ENAME='smith';--검색실패
+--UPPER 함수 또는 LOWER 함수를 사용하여 대소문자를 구분하지 않고 비교할 때 사용
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE UPPER(ENAME)=UPPER('SMITH');
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE UPPER(ENAME)=UPPER('smith');
+
+--INITCAP(문자값) : 문자값을 전달받아 첫문자만 대문자로 변환하고 나머지는 소문자로 변환하여 반환하는 함수
+SELECT ENAME,INITCAP(ENAME) FROM EMP;
+
+--CONCAT(문자값,문자값) : 두 개의 문자값을 전달받아 결합하여 반환하는 함수 - || 기호를 사용하는 것과 유사한 기능 제공
+SELECT ENAME,JOB,CONCAT(ENAME,JOB),ENAME||JOB FROM EMP;
+
+--SUBSTR(문자값,시작위치,갯수) : 문자값을 전달받아 시작위치(INDEX)부터 갯수만큼의 문자들을 분리하여 반환하는 함수
+SELECT EMPNO,ENAME,JOB,SUBSTR(JOB,6,3) FROM EMP WHERE EMPNO=7499;
+
+--LENGTH(문자값) : 문자값을 전달받아 문자 갯수를 반환하는 함수
+SELECT EMPNO,ENAME,JOB,LENGTH(JOB) FROM EMP WHERE EMPNO=7499;
+
+--INSTR(문자값,검색문자값,시작첨자,검색위치) : 문자값을 전달받아 검색문자값을 시작첨자부터 검색하여 원하는 위치의 문자값의 시작첨자를 반환하는 함수
+SELECT EMPNO,ENAME,JOB,INSTR(JOB,'A',1,2) FROM EMP WHERE EMPNO=7499;
+SELECT EMPNO,ENAME,JOB,INSTR(JOB,'X',1,2) FROM EMP WHERE EMPNO=7499;--검색문자값이 없는 경우 0 반환
+
+--LPAD(문자값,자릿수,채울문자) : 문자값을 전달받아 자릿수의 길이만큼 오른쪽부터 채우고 왼쪽 남은 자리에는 채울문자로 검색하는 함수
+--RPAD(문자값,자릿수,채울문자) : 문자값을 전달받아 자릿수의 길이만큼 왼쪽부터 채우고 오른쪽 남은 자리에는 채울문자로 검색하는 함수
+SELECT EMPNO,ENAME,SAL,LPAD(SAL,8,'*'),RPAD(SAL,8,'*') FROM EMP;
+
+--TRIM({LEADING|TRAILING} 제거문자 FROM 문자값) : 문자값을 전달받아 앞(LEADING) 또는 뒤(TRAILING)에 존재하는 제거문자을 삭제하여 반환하는 함수
+SELECT EMPNO,ENAME,JOB,TRIM(LEADING 'S' FROM JOB),TRIM(TRAILING 'N' FROM JOB) FROM EMP WHERE EMPNO=7499;
+
+--REPLACE(문자값,검색문자값,치환문자값) : 문자값을 전달받아 검색문자값을 찾아 치환문자로 변환하여 반환하는 함수
+SELECT EMPNO,ENAME,JOB,REPLACE(JOB,'MAN','PERSON') FROM EMP WHERE EMPNO=7499;
