@@ -155,3 +155,90 @@ SELECT EMPNO,ENAME,JOB,SAL FROM EMP;
 --EMP 테이블에 저장된 모든 사원의 사원번호,사원이름,업무별 급여 검색 - 해당 업무가 아닌 경우에는 NULL 검색
 SELECT EMPNO,ENAME,DECODE(JOB,'ANALYST',SAL) ANALYST ,DECODE(JOB,'CLERK',SAL) CLERK,DECODE(JOB,'MANAGER',SAL) MANAGER
     ,DECODE(JOB,'PRESIDENT',SAL) PRESIDENT,DECODE(JOB,'SALESMAN',SAL) SALESMAN FROM EMP;
+
+--문제1.사원테이블에서 입사일이 12월인 사원의 사번,사원명,입사일 검색하시오.
+SELECT EMPNO,ENAME,HIREDATE FROM EMP WHERE HIREDATE LIKE '%/12/%';
+SELECT EMPNO,ENAME,HIREDATE FROM EMP WHERE HIREDATE LIKE '__/12/__';
+SELECT EMPNO,ENAME,HIREDATE FROM EMP WHERE TO_CHAR(HIREDATE,'MM')='12';
+
+--문제2.다음과 같은 결과를 검색할 수 있는 SQL 문장을 작성하시오.
+SELECT EMPNO,ENAME,LPAD(SAL,10,'*') "급여" FROM EMP;
+
+--문제3.다음과 같은 결과를 검색할 수 있는 SQL 문장을 작성하시오.
+SELECT EMPNO,ENAME,TO_CHAR(HIREDATE,'YYYY-MM-DD') 입사일 FROM EMP;
+
+--그룹함수 : 매개변수로 다수의 값을 전달받아 가공처리하여 결과값을 반환하는 함수
+
+--COUNT(컬럼명) : 다수의 컬럼값 갯수를 반환을 함수 - 검색행의 갯수 반환
+SELECT COUNT(EMPNO) FROM EMP;
+
+--그룹함수는 다른 검색대상과 같이 사용하면 그룹함수와 검색대상의 검색행 갯수가 서로 다른 경우 에러 발생
+SELECT COUNT(EMPNO),ENAME FROM EMP;--에러
+
+--그룹함수는 NULL을 값으로 처리하지 않고 결과값을 반환
+SELECT COUNT(EMPNO),COUNT(COMM) FROM EMP;
+
+--COUNT 함수는 컬러명 대신 [*] 기호를 사용하여 모든 컬럼을 표현하여 테이블에 저장된 행의 갯수 검색
+SELECT COUNT(*) FROM EMP;
+
+--MAX(컬럼명) : 다수의 컬럼값 중 최대값을 반환하는 함수
+SELECT MAX(SAL) FROM EMP;
+SELECT MAX(ENAME) FROM EMP;
+SELECT MAX(HIREDATE) FROM EMP;
+
+--MIN(컬럼명) : 다수의 컬럼값 중 최소값을 반환하는 함수
+SELECT MIN(SAL) FROM EMP;
+SELECT MIN(ENAME) FROM EMP;
+SELECT MIN(HIREDATE) FROM EMP;
+
+--SUM(컬럼명) : 다수의 컬럼값(숫자값)에 대한 합계를 계산하여 반환하는 함수
+SELECT SUM(SAL) FROM EMP;
+
+--AVG(컬럼명) : 다수의 컬럼값(숫자값)에 대한 평균을 계산하여 반환하는 함수
+SELECT AVG(SAL) FROM EMP;
+SELECT ROUND(AVG(SAL),2) FROM EMP;
+
+--EMP 테이블에 저장된 모든 사원의 평균 성과급을 계산하여 검색
+SELECT AVG(COMM) FROM EMP;--검색실패 : 모든 사원이 아닌 성과급이 NULL이 아닌 사원들의 평균 성과급만 계산
+--NVL 함수를 사용하여 성과급이 NULL인 경우 0으로 변환하여 평균 성과급이 계산되도록 검색
+SELECT AVG(NVL(COMM,0)) FROM EMP;
+SELECT CEIL(AVG(NVL(COMM,0))) "평균 성과급" FROM EMP;
+
+--EMP 테이블에 저장된 모든 사원에 대한 인원수 검색
+SELECT COUNT(*) FROM EMP;
+
+--EMP 테아블에 저장된 모든 사원을 부서별로 구분하여 인원수 검색
+SELECT DISTINCT DEPTNO FROM EMP;
+SELECT COUNT(*) FROM EMP WHERE DEPTNO=10;
+SELECT COUNT(*) FROM EMP WHERE DEPTNO=20;
+SELECT COUNT(*) FROM EMP WHERE DEPTNO=30;
+
+--GROUP BY : 그룹함수 사용시 컬럼값으로 그룹을 여러개 구분하여 검색하는 기능 - 컬럼값이 같은 경우 같은 그룹으로 인식되어 처리
+--형식)SELECT 그룹함수(컬럼명)[,검색대상,...] FROM 테이블명 [WHERE 조건식] 
+--     GROUP BY {컬럼명|연산식|함수},{컬럼명|연산식|함수},... [ORDER BY {컬럼명|연산식|별칭|COLUMN_INDEX} {ASC|DESC},...]
+
+--EMP 테아블에 저장된 모든 사원을 부서별로 구분하여 인원수 검색
+SELECT COUNT(*) FROM EMP GROUP BY DEPTNO;
+
+--GROUP BY에서 사용한 그룹표현식(컬럼명|연산식|함수)은 그룹함수와 같이 검색대상으로 사용 가능
+SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO;
+--GROUP BY에서 사용한 그룹표현식에서 컬럼의 별칭을 사용할 경우 에러 발생
+SELECT DEPTNO DNO,COUNT(*) FROM EMP GROUP BY DNO;--에러
+
+--EMP 테이블에 저장된 모든 사원의 업무별 평균 급여 검색
+SELECT JOB,AVG(SAL) FROM EMP GROUP BY JOB;
+SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP GROUP BY JOB;
+
+--EMP 테이블에서 업무가 PRESIDENT인 사원을 제외한 모든 사원의 업무별 평균 급여를 평균 급여로 내림차순 정렬하여 검색
+SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP WHERE JOB<>'PRESIDENT' GROUP BY JOB ORDER BY AVG_SAL DESC;
+
+--HAVING : GROUP BY에 의해 그룹화된 검색결과에서 그룹조건이 참인 그룹만 검색하는 기능
+--형식)SELECT 그룹함수(컬럼명)[,검색대상,...] FROM 테이블명 [WHERE 조건식] GROUP BY {컬럼명|연산식|함수},{컬럼명|연산식|함수},... 
+--     HAVING 그룹조건식 [ORDER BY {컬럼명|연산식|별칭|COLUMN_INDEX} {ASC|DESC},...]
+
+--EMP 테이블에 저장된 모든 사원의 부서별 급여 합계 중 급여 합계가 9000 이상인 부서번호와 급여합계 검색
+SELECT DEPTNO,SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL)>=9000;
+
+--EMP 테이블에서 업무가 PRESIDENT인 사원을 제외한 모든 사원의 업무별 평균 급여 검색
+SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP WHERE JOB<>'PRESIDENT' GROUP BY JOB;
+SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP GROUP BY JOB HAVING JOB<>'PRESIDENT';
