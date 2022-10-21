@@ -242,3 +242,64 @@ SELECT DEPTNO,SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL)>=9000;
 --EMP 테이블에서 업무가 PRESIDENT인 사원을 제외한 모든 사원의 업무별 평균 급여 검색
 SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP WHERE JOB<>'PRESIDENT' GROUP BY JOB;
 SELECT JOB,CEIL(AVG(SAL)) AVG_SAL FROM EMP GROUP BY JOB HAVING JOB<>'PRESIDENT';
+
+--문제1.사원테이블에서 부서별 인원수가 6명 이상인 부서코드 검색
+SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>=6;
+
+--문제2.사원테이블로부터 부서번호,업무별 급여합계를 계산하고자 한다. 다음과 같은 결과를 출력할 수 있는 SQL문장 작성
+SELECT DEPTNO,SUM(DECODE(JOB,'CLERK',SAL)) "CLERK",SUM(DECODE(JOB,'MANAGER',SAL)) "MANAGER"
+    ,SUM(DECODE(JOB,'PRESIDENT',SAL)) "PRESIDENT",SUM(DECODE(JOB,'ANALYST',SAL)) "ANALYST"
+    ,SUM(DECODE(JOB,'SALESMAN',SAL)) "SALESMAN" FROM EMP GROUP BY DEPTNO ORDER BY DEPTNO;
+    
+--문제3.사원테이블로부터 년도별,월별 급여합계를 출력할 수 있는 SQL문장 작성
+SELECT TO_CHAR(HIREDATE,'YYYY') "년",TO_CHAR(HIREDATE,'MM') "월",SUM(SAL) FROM EMP
+    GROUP BY TO_CHAR(HIREDATE,'YYYY'),TO_CHAR(HIREDATE,'MM') ORDER BY 년,월;
+    
+--문제4.사원테이블에서 부서별 comm(커미션)을 포함하지 않은 연봉의 합과 포함한 연봉의 합을 구하는 SQL을 작성하시오.   
+SELECT DEPTNO,SUM(SAL*12) FROM EMP GROUP BY DEPTNO ORDER BY DEPTNO;--성과급 제외
+SELECT DEPTNO,SUM((SAL+NVL(COMM,0))*12) FROM EMP GROUP BY DEPTNO ORDER BY DEPTNO;--성과급 포함    
+
+--문제5.사원테이블에서 SALESMAN을 제외한 JOB별 급여 합계
+SELECT JOB,SUM(SAL) FROM EMP WHERE JOB<>'SALESMAN' GROUP BY JOB;
+SELECT JOB,SUM(SAL) FROM EMP GROUP BY JOB HAVING JOB<>'SALESMAN';
+
+--JOIN : 두개이상의 테이블에서 행을 결합하여 원하는 컬럼값을 검색하기 위한 기능
+
+--EMP 테이블에 저장된 모든 사원의 사원번호,사원이름,급여,부서번호 검색
+SELECT EMPNO,ENAME,SAL,DEPTNO FROM EMP;
+
+--DEPT 테이블에 저장된 모든 부서의 부서번호,부서이름,부서위치 검색
+SELECT DEPTNO,DNAME,LOC FROM DEPT;
+
+--EMP 테이블과 DEPT 테이블에서 모든 사원의 사원번호,사원이름,급여,부서이름,부서위치 검색
+--두개이상의 테이블에서 컬럼값을 검색하기 위해서는 반드시 행을 결합하기 위한 조건을 제공하여 검색
+--카다시안 프로덕트(CATASIAN RPODUCT) : 두개이상의 테이블을 결합조건이 없이 검색한 경우 발생되는 결과 - 교차결합(CROSS JOIN)
+SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP,DEPT;
+
+--동등조인(EQUI JOIN) : 두개이상의 테이블에서 결합조건에 = 연산자를 사용하여 참인 행을 결합하여 검색
+
+--EMP 테이블과 DEPT 테이블에서 모든 사원의 사원번호,사원이름,급여,부서이름,부서위치 검색
+--결합조건 : EMP 테이블의 부서번호(DETPNO)와 DEPT 테이블의 부서번호(DETPNO)가 같은 행을 결합하여 검색
+--결합조건은 WHERE의 조건식을 사용하여 표현 
+--두개이상의 테이블에 같은 이름의 컬럼이 있는 경우 반드시 [테이블명.컬럼명] 형식으로 구분하여 표현
+SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+--EMP 테이블과 DEPT 테이블에서 모든 사원의 사원번호,사원이름,급여,부서번호,부서이름,부서위치 검색
+--결합조건 : EMP 테이블의 부서번호(DETPNO)와 DEPT 테이블의 부서번호(DETPNO)가 같은 행을 결합하여 검색
+SELECT EMPNO,ENAME,SAL,EMP.DEPTNO,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
+SELECT EMPNO,ENAME,SAL,DEPT.DEPTNO,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+--결합 테이블에서 같은 이름의 컬럼을 동시에 검색할 경우 첫번째로 검색되는 컬럼을 제외한 나머지 컬럼의 이름은 자동으로 변경되어 검색
+SELECT EMPNO,ENAME,SAL,EMP.DEPTNO,DEPT.DEPTNO,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+--결합 테이블에서 같은 이름의 컬럼을 동시에 검색할 경우 컬럼 별칭을 사용하여 검색하는 것을 권장
+SELECT EMPNO,ENAME,SAL,EMP.DEPTNO EMP_DEPTNO,DEPT.DEPTNO DEPT_DEPTNO,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+--TABLE ALIAS : 테이블에 새로운 이름을 일시적으로 부여하는 기능 - 테이블 별칭
+--형식)SELECT 검색대상,... FROM 테이블명 별칭, 테이블명 별칭,...
+--테이블 결합시 테이블의 이름을 간단하게 표현하기 위해 사용하거나 하나의 테이블을 다수의 테이블로 표현하기 위해 사용
+SELECT EMPNO,ENAME,SAL,E.DEPTNO,DNAME,LOC FROM EMP E,DEPT D WHERE E.DEPTNO=D.DEPTNO;
+SELECT EMPNO,ENAME,SAL,D.DEPTNO,DNAME,LOC FROM EMP E,DEPT D WHERE E.DEPTNO=D.DEPTNO;
+
+--테이블 별칭을 설정한 후 기존 테이블명을 사용하면 에러 발생
+SELECT EMPNO,ENAME,SAL,E.DEPTNO,DNAME,LOC FROM EMP E,DEPT D WHERE EMP.DEPTNO=D.DEPTNO;--에러
