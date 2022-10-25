@@ -7,7 +7,7 @@ SELECT EMPNO,ENAME,SAL FROM EMP;
 SELECT GRADE,LOSAL,HISAL FROM SALGRADE;
 
 --EMP 테이블과 SALGRADE 테이블에서 모든 사원의 사원번호,사원이름,급여,급여등급번호 검색
---결합조건 : 사원의 급여(SAL)가 급여등급의 최소급여(LOSAL)부터 최대급여(HISAL) 범위에 포함될 경우 행을 결합하여 검색
+--결합조건 : EMP 테이블의 급여(SAL)가 SALGRADE 테이블의 최소급여(LOSAL)부터 최대급여(HISAL) 범위에 포함될 경우 행을 결합하여 검색
 SELECT EMPNO,ENAME,SAL,GRADE FROM EMP,SALGRADE WHERE SAL BETWEEN LOSAL AND HISAL;
 
 --외부결합(OUTER JOIN) : 결합조건이 참인 행만 결합하는 것이 아니라 결합조건이 맞지 않는 행도 NULL과 결합하여 검색
@@ -24,7 +24,7 @@ SELECT DEPTNO FROM DEPT;--검색결과 : 10,20,30,40
 --40번 부서에 근무하는 사원이 없으므로 40번 부서에 대한 부서이름과 부서위치 미검색
 SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
 
---사원이 없는 부서정보도 검색하기 위해 검색조건식에서 EMP 테이블의 결합조건에 (+)를 붙여 EMP 테이블에 결합되는 행이 없는 경우
+--사원이 없는 부서정보도 검색하기 위해 결합조건식에서 EMP 테이블의 결합조건에 (+)를 붙여 EMP 테이블에 결합되는 행이 없는 경우
 --컬럼값 대신 NULL이 결합되어 검색 - 외부결합
 SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP,DEPT WHERE EMP.DEPTNO(+)=DEPT.DEPTNO;
 
@@ -62,7 +62,7 @@ SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP CROSS JOIN DEPT;
 
 --EMP 테이블과 DEPT 테이블에서 SALES 부서에 근무하는 사원의 사원번호,사원이름,급여,부서이름,부서위치 검색
 --결합조건 : EMP 테이블의 부서번호(DETPNO)와 DEPT 테이블의 부서번호(DETPNO)가 같은 행을 결합하여 검색 
---NATURAL JOIN을 사용할 경우 결합조건을 명시하지 않아도 테이블의 행을 결합하여 검색
+--NATURAL JOIN을 사용할 경우 결합조건을 명시하지 않아도 같은 이름의 컬럼값을 이용하여 테이블의 행을 결합하여 검색
 SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP NATURAL JOIN DEPT;
 
 --EMP 테이블과 DEPT 테이블에서 SALES 부서에 근무하는 사원의 사원번호,사원이름,급여,부서번호,부서이름,부서위치 검색
@@ -79,7 +79,7 @@ SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP JOIN DEPT USING(DEPTNO);
 -- INNER JOIN : 결합조건을 명시하여 결합 테이블에서 결합조건이 맞는 행을 결합하여 검색
 --형식)SELECT 검색대상,... FROM 테이블명1 INNER JOIN 테이블명2 ON 결합조건
 
---EMP 테이블과 DEPT 테이블에서 SALES 부서에 근무하는 사원의 사원번호,사원이름,급여,부서이름,부서위치 검색
+--EMP 테이블과 DEPT 테이블에서 모든 사원의 사원번호,사원이름,급여,부서이름,부서위치 검색
 --결합조건 : EMP 테이블의 부서번호(DETPNO)와 DEPT 테이블의 부서번호(DETPNO)가 같은 행을 결합하여 검색 
 SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP INNER JOIN DEPT ON EMP.DEPTNO=DEPT.DEPTNO;
 SELECT EMPNO,ENAME,SAL,DNAME,LOC FROM EMP JOIN DEPT ON EMP.DEPTNO=DEPT.DEPTNO;--INNER 키워드 생략 가능
