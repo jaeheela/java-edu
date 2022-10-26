@@ -377,7 +377,8 @@ INSERT INTO SALESMAN VALUES(1000,'홍길동','00/04/18');
 SELECT * FROM SALESMAN;
 COMMIT;
 
---SALESMAN 테이블에 행 삽입 - 컬럼을 생략하여 삽입 처리 : 생략된 컬럼에는 기본값(NULL)이 자동 전달
+--SALESMAN 테이블에 행 삽입 - 컬럼을 생략하여 삽입 처리 : 생략된 컬럼에는 기본값이 자동 전달
+--테이블 생성시 컬럼 기본값을 설정하지 않은 경우 자동으로 NULL이 기본값으로 자동 설정
 INSERT INTO SALESMAN(NO,NAME) VALUES(2000,'임꺽정');
 SELECT * FROM SALESMAN;
 COMMIT;
