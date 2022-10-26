@@ -80,7 +80,7 @@ INSERT INTO DEPT VALUES('육십','총무부','인천시');--컬럼의 자료형�
 INSERT INTO DEPT VALUES(60,'총무부','인천시 월미구');--컬럼 자료형의 크기보다 큰 값을 전달하여 에러 발생
 
 --테이블의 컬럼에 부여된 제약조건을 위반하는 값이 전달될 경우 에러 발생
---PK(PRIMARY KEY) 제약조건 : 테이블에 저장된 기존행의 컬럼값과 중복된 값이 저장되도록 설정하는 제약조건
+--PK(PRIMARY KEY) 제약조건 : 테이블에 저장된 기존행의 컬럼값과 중복된 값이 저장되지 않도록 설정하는 제약조건
 --DEPT 테이블의 DEPTNO 컬럼에 PK 제약조건 설정
 SELECT DISTINCT DEPTNO FROM DEPT;--검색결과 : 10,20,30,40,50
 INSERT INTO DEPT VALUES(50,'총무부','인천시');--PK 제약조건을 위반한 값을 전달하여 에러 발생
