@@ -377,6 +377,11 @@ INSERT INTO SALESMAN VALUES(1000,'홍길동','00/04/18');
 SELECT * FROM SALESMAN;
 COMMIT;
 
+--SALESMAN 테이블에 행 삽입 - 컬럼을 생략하여 삽입 처리 : 생략된 컬럼에는 기본값(NULL)이 자동 전달
+INSERT INTO SALESMAN(NO,NAME) VALUES(2000,'임꺽정');
+SELECT * FROM SALESMAN;
+COMMIT;
+
 --테이블 생성시 제약조건을 설정하지 않은 경우 컬럼에 어떤 값을 전달하든 삽입 가능 - 데이타 무결성 위반 가능
 INSERT INTO SALESMAN VALUES(1000,'전우치','10/10/10');
 SELECT * FROM SALESMAN;
