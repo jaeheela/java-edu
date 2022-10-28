@@ -414,3 +414,22 @@ BEGIN
    DBMS_OUTPUT.PUT_LINE('부서번호 = '||EMP_RECORD.VDEPTNO);
 END;
 /
+
+--레코드 타입 없이 테이블의 행을 참조하여 레코드 변수 선언 가능 - 행의 컬럼이 레코드 변수의 필드로 선언
+--형식)레코드변수명 테이블명%ROWTYPE
+
+--EMP 테이블의 EMPNO,ENAME,JOB,SAL,DEPTNO 컬럼을 참조하여 레코드 변수를 선언하고 EMP 테이블에서 사원번호가 7844인 사원의
+--사원번호,사원이름,급여,업무,부서번호를 검색하여 레코드 변수에 저장해서 출력하는 PL/SQL 작성
+DECLARE
+    EMP_RECORD EMP%ROWTYPE;
+BEGIN
+    /* EMP 테이블의 검색행(단일행)의 모든 컬럼값을 레코드 변수의 필드에 저장 */
+    SELECT * INTO EMP_RECORD FROM EMP WHERE EMPNO=7844;
+    
+    DBMS_OUTPUT.PUT_LINE('사원번호 = '||EMP_RECORD.EMPNO);
+    DBMS_OUTPUT.PUT_LINE('사원이름 = '||EMP_RECORD.ENAME);
+    DBMS_OUTPUT.PUT_LINE('업무 = '||EMP_RECORD.JOB);
+    DBMS_OUTPUT.PUT_LINE('급여 = '||EMP_RECORD.SAL);
+    DBMS_OUTPUT.PUT_LINE('부서번호 = '||EMP_RECORD.DEPTNO);
+END;
+/    
