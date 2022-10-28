@@ -383,3 +383,34 @@ BEGIN
     END LOOP;
 END;
 /
+
+--레코드 변수 : 테이블의 저장된 하나의 행의 모든 컬럼값을 저장하기 위해 선언하는 변수
+--형식)레코드변수명 레코드타입명
+--레코드 변수를 생성하기 위해 레코드 변수의 자료형(레코드 타입)을 먼저 선언
+--형식)TYPE 레코드타입명 IS RECORD RECORD(필드명 {자료형|변수명%TYPE|테이블명.컬럼명%TYPE} [NOT NULL] [{:=|DEFAULT} 표현식]
+--     ,필드명 {자료형|변수명%TYPE|테이블명.컬럼명%TYPE} [NOT NULL] [{:=|DEFAULT} 표현식],...)
+
+--레코드 변수를 사용하여 필드에 접근하는 방법
+--형식)레코드변수명.필드명
+
+--EMP 테이블의 EMPNO,ENAME,JOB,SAL,DEPTNO 컬럼을 참조하여 레코드 변수를 선언하고 EMP 테이블에서 사원번호가 7844인 사원의
+--사원번호,사원이름,급여,업무,부서번호를 검색하여 레코드 변수에 저장해서 출력하는 PL/SQL 작성
+DECLARE
+    /* 레코드 타입 선언 */
+    TYPE EMP_RECORD_TYPE IS RECORD(VEMPNO EMP.EMPNO%TYPE,VENAME EMP.ENAME%TYPE,VJOB EMP.JOB%TYPE
+        ,VSAL EMP.SAL%TYPE,VDEPTNO EMP.DEPTNO%TYPE);
+    
+    /* 레코드 변수 선언 */    
+    EMP_RECORD EMP_RECORD_TYPE;
+BEGIN
+    /* 검색행의 모든 컬럼값을 레코드 변수의 필드에 저장 - 검색행이 다중행인 경우 에러 발생 */
+    SELECT EMPNO,ENAME,JOB,SAL,DEPTNO INTO EMP_RECORD.VEMPNO,EMP_RECORD.VENAME,EMP_RECORD.VJOB
+        ,EMP_RECORD.VSAL,EMP_RECORD.VDEPTNO FROM EMP WHERE EMPNO=7844;
+        
+   DBMS_OUTPUT.PUT_LINE('사원번호 = '||EMP_RECORD.VEMPNO);
+   DBMS_OUTPUT.PUT_LINE('사원이름 = '||EMP_RECORD.VENAME);
+   DBMS_OUTPUT.PUT_LINE('업무 = '||EMP_RECORD.VJOB);
+   DBMS_OUTPUT.PUT_LINE('급여 = '||EMP_RECORD.VSAL);
+   DBMS_OUTPUT.PUT_LINE('부서번호 = '||EMP_RECORD.VDEPTNO);
+END;
+/
