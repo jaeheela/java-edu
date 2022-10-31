@@ -327,5 +327,37 @@ PRINT VAR_ENAME;
 PRINT VAR_JOB;
 PRINT VAR_SAL;
 
+--저장 함수(STORED FUNCTION) : 저장 프로시저와 유사한 기능을 제공하지만 반드시 하나의 결과값을 반환
+--형식)CREATE [OR REPLACE] FUNCTION 저장함수명[(매개변수 [모드] 자료형,매개변수 [모드] 자료형,...)] 
+--     RETURN 자료형 IS [변수선언부] BEGIN 명령;명령;... RETURN 결과값; END;
 
+--사원번호를 매개변수로 전달받아 EMP 테이블에서 해당 사원번호의 사원정보를 검색하여 급여에 2배에 해당하는 결과값을 반환하는 저장 함수 생성
+CREATE OR REPLACE FUNCTION CAL_SAL(VEMPNO IN EMP.EMPNO%TYPE) RETURN NUMBER IS 
+    VSAL NUMBER(7,2);
+BEGIN
+    SELECT SAL INTO VSAL FROM EMP WHERE EMPNO=VEMPNO;
+    RETURN(VSAL*2.0);
+END;
+/
 
+--저장 함수 확인 - USER_SOURCE 딕셔너리
+SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='CAL_SAL';
+
+--저장 함수의 반환값을 저장하기 위한 바인딩 변수 선언
+VARIABLE VAR_SAL NUMBER;
+
+--저장 함수 호출 - 저장 함수의 반환값을 바인딩 변수에 저장
+EXECUTE :VAR_SAL := CAL_SAL(7788);
+
+--바인딩 변수에 저장된 값 출력
+PRINT VAR_SAL;
+
+--저장 함수는 SQL 명령에 포함하여 사용 가능
+SELECT EMPNO,ENAME,SAL,CAL_SAL(EMPNO) "특별수당" FROM EMP;
+
+--저장 함수 삭제
+--형식)DROP FUNCTION 저장함수명
+
+--CAL_SAL 저장 함수 삭제
+DROP FUNCTION CAL_SAL;
+SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='CAL_SAL';
