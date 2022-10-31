@@ -245,6 +245,29 @@ BEGIN
 END;    
 /    
 
+--WHILE LOOP : 반복의 횟수가 부정확한 경우 사용하는 반복문
+--형식) WHILE 조건식 LOOP 명령;명령;... END LOOP;
+
+--1~10 범위의 정수들의 합계를 계산하여 출력하는 PL/SQL 작성
+DECLARE
+    I NUMBER(2) := 1;
+    TOT NUMBER(2) := 0;
+BEGIN
+    WHILE I <= 10 LOOP
+        TOT := TOT + I;
+        I := I + 1;
+    END LOOP;    
+
+    DBMS_OUTPUT.PUT_LINE('1~10 범위의 정수들의 합계 = '||TOT);
+END;
+/
+
+
+
+
+
+
+
 
 
 
