@@ -82,3 +82,45 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('부서이름 = '||VDNAME);
 END;
 /
+
+--CASE : 변수에 저장된 값을 비교하여 명령을 선택 실행하거나 조건식을 사용하여 명령을 선택 실행하는 구문
+--형식)CASE 변수명 WHEN 비교값1 THEN 명령;명령;... WHEN 비교값2 THEN 명령;명령;... END CASE;
+
+--EMP 테이블에서 사원번호가 7788인 사원정보를 검색하여 사원번호,사원이름,업무,급여,업무별 급여 실지급액을 계산하여 출력하는 PL/SQL 작성
+--업무별 급여 실지급액 - ANALYST:급여*1.1,CLERK:급여*1.2,MANAGER:급여*1.3,PRESIDENT:급여*1.4,SALESMAN:급여*1.5
+DECLARE
+    VEMP EMP%ROWTYPE;
+    VPAY NUMBER(7,2);
+BEGIN
+    SELECT * INTO VEMP FROM EMP WHERE EMPNO=7788;
+ 
+    CASE VEMP.JOB
+        WHEN 'ANALYST' THEN
+           VPAY := VEMP.SAL * 1.1;
+        WHEN 'CLERK' THEN
+           VPAY := VEMP.SAL * 1.2;
+        WHEN 'MANAGER' THEN
+           VPAY := VEMP.SAL * 1.3;
+        WHEN 'PRESIDENT' THEN
+           VPAY := VEMP.SAL * 1.4;
+        WHEN 'SALESMAN' THEN
+           VPAY := VEMP.SAL * 1.5;    
+     END CASE;      
+    
+    DBMS_OUTPUT.PUT_LINE('사원번호 = '||VEMP.EMPNO);
+    DBMS_OUTPUT.PUT_LINE('사원이름 = '||VEMP.ENAME);
+    DBMS_OUTPUT.PUT_LINE('업무 = '||VEMP.JOB);
+    DBMS_OUTPUT.PUT_LINE('급여 = '||VEMP.SAL);
+    DBMS_OUTPUT.PUT_LINE('실지급액 = '||VPAY);    
+END;
+/
+
+
+
+
+
+
+
+
+
+
