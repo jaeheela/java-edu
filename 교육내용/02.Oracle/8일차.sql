@@ -262,12 +262,38 @@ BEGIN
 END;
 /
 
+--저장 프로시저(STORED PROCEDURE) : PL/SQL 프로시저에 이름을 부여하여 저장하고 필요한 경우 호출하여 사용하는 기능
 
+--저장 프로시저 생성
+--형식)CREATE [OR REPLACE] PROCEDURE 프로시저명[(매개변수 [MODE] 자료형,매개변수 [MODE] 자료형,...)]
+--     IS [변수선언부] BEGIN 명령;명령;... END;
 
+--EMP2 테이블에 저장된 모든 사원정보를 삭제하는 저장 프로시저 생성
+CREATE OR REPLACE PROCEDURE DELETE_ALL_EMP2 IS
+BEGIN
+    DELETE FROM EMP2;
+    COMMIT;
+END;
+/    
 
+--저장 프로시저 확인 - USER_SOURCE : 저장 프로시저와 저장 함수 정보를 제공하는 딕셔너리
+SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='DELETE_ALL_EMP2';
 
+--저장 프로시저 호출 - 저장 프로시저에 작성된 PL/SQL 명령 실행
+--형식)EXECUTE 프로시저명[({변수|값},{변수|값},...)]
 
+--DELETE_ALL_EMP2 저장 프로시저 호출
+EXECUTE DELETE_ALL_EMP2;
+SELECT * FROM EMP2;
 
+--저장 프로시저 생성시 컴파일 에러가 발생된 경우 컴파일 로그 확인
+SHOW ERROR;
 
+--저장 프로시저 삭제
+--형식)DROP PROCEDURE 프로시저명
+
+--DELETE_ALL_EMP2 저장 프로시저 삭제
+DROP PROCEDURE DELETE_ALL_EMP2; 
+SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='DELETE_ALL_EMP2';
 
 
