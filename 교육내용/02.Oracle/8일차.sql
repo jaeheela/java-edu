@@ -361,3 +361,81 @@ SELECT EMPNO,ENAME,SAL,CAL_SAL(EMPNO) "특별수당" FROM EMP;
 --CAL_SAL 저장 함수 삭제
 DROP FUNCTION CAL_SAL;
 SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='CAL_SAL';
+
+--트리거(TRIGGER) : 특정 SQL 명령(DML)이 실행될 경우 PL/SQL 프로시저의 명령을 실행하는 기능
+
+--트리거 생성
+--형식)CREATE [OR REPLACE] TRIGGER 트리거명 {BEFORE|AFTER} {INSERT|UPDATE|DELETE} ON 테이블명
+--     [FOR EACH ROW] [WITH 조건식] BEGIN 명령;명령;... END;
+--FOR EACH ROW : 생략된 경우 문장 레벨 트리거를 생성하고 선언한 경우 행 레벨 트리거로 생성
+--문장 레벨 트리거 : 이벤트 DML 명령이 실행되면 트리거에 작성된 PL/SQL 프로시저의 명령을 한번만 실행
+--행 레벨 트리거 : 이벤트 DML 명령이 실행되면 트리거에 작성된 PL/SQL 프로시저의 명령을 행의 갯수만큼 실행
+--트리거에 등록된 PL/SQL 프로시저 명령에는 TCL 명령(COMMIT 또는 ROLLBACK) 사용 불가능
+
+--SAWON 테이블에서 사원정보가 삽입될 경우 메세지를 출력하는 트리거 생성
+CREATE OR REPLACE TRIGGER SAWON_INSERT AFTER INSERT ON SAWON
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('새로운 사원이 입사 하였습니다.');
+END;
+/
+
+--트리거 확인 - USER_TRIGGERS : 트리거 정보를 제공하는 딕셔너리
+SELECT TRIGGER_NAME,TRIGGER_TYPE,TRIGGERING_EVENT,TABLE_NAME FROM USER_TRIGGERS;
+
+--SAWON 테이블에 행 삽입 - INSERT 명령 실행 후 SAWON_INSERT 트리거에 등록된 PL/SQL 프로시저의 명령 실행
+SELECT * FROM SAWON;
+INSERT INTO SAWON VALUES(3000,'전우치',10);
+SELECT * FROM SAWON;
+COMMIT;
+
+--EMP 테이블에 저장된 모든 사원의 사원번호,사원이름,급여,부서번호를 검색하여 EMP_TRI 테이블를 생성하여 검색행을 삽입
+CREATE TABLE EMP_TRI AS SELECT EMPNO,ENAME,SAL,DEPTNO FROM EMP;
+SELECT * FROM EMP_TRI;
+
+--EMP_HIS 테이블 생성 - 사원번호(숫자형),사원이름(문자형),사원상태(문자형)
+CREATE TABLE EMP_HIS(NO NUMBER(4),NAME VARCHAR2(20),STATUS VARCHAR2(50));
+
+--EMP_TRI 테이블에서 행을 삽입하거나 변경 또는 삭제한 경우 명령 실행 후 행 삽입,변경,삭제에 대한 이유를
+--EMP_HIS 테이블에 행으로 삽입하는 트리거 생성
+CREATE OR REPLACE TRIGGER INSERT_EMP_HIS AFTER INSERT OR UPDATE OR DELETE ON EMP_TRI FOR EACH ROW
+BEGIN
+    /* :NEW.컬럼명 - 이벤트가 발생된 테이블의 삽입 또는 변경 명령에서 사용된 새로운 행의 컬럼값 표현 */
+    /* :OLD.컬럼명 - 이벤트가 발생된 테이블의 변경 또는 삭제 명령에서 사용된 기존 행의 컬럼값 표현 */
+    IF INSERTING THEN
+        INSERT INTO EMP_HIS VALUES(:NEW.EMPNO,:NEW.ENAME,'입사');
+    ELSIF UPDATING THEN
+        IF :NEW.DEPTNO <> :OLD.DEPTNO THEN
+            INSERT INTO EMP_HIS VALUES(:OLD.EMPNO,:OLD.ENAME,'부서이동');
+        ELSE 
+            INSERT INTO EMP_HIS VALUES(:OLD.EMPNO,:OLD.ENAME,'개인사유');
+        END IF;
+    ELSIF DELETING THEN
+        INSERT INTO EMP_HIS VALUES(:OLD.EMPNO,:OLD.ENAME,'퇴사');
+    END IF;
+END;
+/
+
+--트리거 확인
+SELECT TRIGGER_NAME,TRIGGER_TYPE,TRIGGERING_EVENT,TABLE_NAME FROM USER_TRIGGERS;
+
+--EMP_TRI 테이블에 행 삽입 - 트리거에 의해 EMP_HIS 테이블에 행 삽입 : 입서
+INSERT INTO EMP_TRI VALUES(5000,'PARK',2000,10);
+SELECT * FROM EMP_TRI WHERE EMPNO=5000; 
+SELECT * FROM EMP_HIS;
+
+--EMP_TRI 테이블에 행의 컬럼값 변경 - 트리거에 의해 EMP_HIS 테이블에 행 삽입 : 부서이동 또는 개인사유
+UPDATE EMP_TRI SET DEPTNO=20 WHERE EMPNO=5000;
+SELECT * FROM EMP_TRI WHERE EMPNO=5000; 
+SELECT * FROM EMP_HIS;
+UPDATE EMP_TRI SET SAL=2500 WHERE EMPNO=5000;
+SELECT * FROM EMP_TRI WHERE EMPNO=5000; 
+SELECT * FROM EMP_HIS;
+
+--EMP_TRI 테이블에 행 삭제 - 트리거에 의해 EMP_HIS 테이블에 행 삽입 : 퇴사
+DELETE FROM EMP_TRI WHERE EMPNO=5000;
+SELECT * FROM EMP_TRI WHERE EMPNO=5000; 
+SELECT * FROM EMP_HIS;
+DELETE FROM EMP_TRI WHERE SAL<2000;
+SELECT * FROM EMP_TRI;
+SELECT * FROM EMP_HIS;
+COMMIT;
