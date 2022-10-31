@@ -57,5 +57,28 @@ BEGIN
 END;
 /
 
+--형식)IF(조건식) THEN 명령;명령;... ELSIF(조건식) 명령;명령;... [ELSE 명령;명령;...] END IF;
 
-   
+--EMP 테이블에서 사원번호 7788인 사원정보를 검색하여 사원번호,사원이름,부서번호에 대한 부서명을 출력하는 PL/SQL 작성
+--부서번호에 대한 부서명 : 10(ACCOUNTING),20(RESEARCH),30(SAELS),40(OPERATION)
+DECLARE
+    VEMP EMP%ROWTYPE;
+    VDNAME VARCHAR2(20) := NULL;
+BEGIN
+    SELECT * INTO VEMP FROM EMP WHERE EMPNO=7788;
+    
+    IF(VEMP.DEPTNO=10) THEN
+        VDNAME := 'ACCOUNTING';
+    ELSIF(VEMP.DEPTNO=20) THEN
+        VDNAME := 'RESEARCH';
+    ELSIF(VEMP.DEPTNO=30) THEN
+        VDNAME := 'SAELS';
+    ELSIF(VEMP.DEPTNO=40) THEN
+        VDNAME := 'OPERATION';
+    END IF;    
+
+    DBMS_OUTPUT.PUT_LINE('사원번호 = '||VEMP.EMPNO);
+    DBMS_OUTPUT.PUT_LINE('사원이름 = '||VEMP.ENAME);
+    DBMS_OUTPUT.PUT_LINE('부서이름 = '||VDNAME);
+END;
+/
