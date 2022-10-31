@@ -296,4 +296,36 @@ SHOW ERROR;
 DROP PROCEDURE DELETE_ALL_EMP2; 
 SELECT NAME,TEXT FROM USER_SOURCE WHERE NAME='DELETE_ALL_EMP2';
 
+--저장 프로시저의 매개변수 모드(MODE)
+--1.IN : 외부의 값을 저장 프로시저로 전달받아 PL/SQL 명령에서 사용할 목적의 매개변수를 선언할 때 사용 - 저장 프로시저 호출시 값 전달
+--2.OUT : PL/SQL 명령의 실행 결과값을 저장 프로시저의 외부로 제공할 목적할 매개변수를 선언할 때 사용 - 저장 프로시저 호출시 바인딩 변수 전달
+--3.INOUT : IN 모드와 OUT 모드를 모두 제공하는 매개변수를 선언할 때 사용 - 저장 프로시저 호출시 바인딩 변수(값) 전달
+
+--사원번호를 매개변수로 전달받아 EMP 테이블에서 해당 사원번호의 사원정보를 검색하여 사원이름,업무,급여를 매개변수로 전달하여 
+--외부로 제공하는 저장 프로시저 생성
+CREATE OR REPLACE PROCEDURE SELECT_EMPNO(VEMPNO IN EMP.EMPNO%TYPE,VENAME OUT EMP.ENAME%TYPE
+    ,VJOB OUT EMP.JOB%TYPE,VSAL OUT EMP.SAL%TYPE) IS
+BEGIN
+    SELECT ENAME,JOB,SAL INTO VENAME,VJOB,VSAL FROM EMP WHERE EMPNO=VEMPNO;
+END;
+/
+
+--OUT 모드의 매개변수에 의해 제공되는 값을 저장하기 위한 바인딩 변수 선언 방법
+--형식)VARIABLE 바인딩변수명 자료형
+--바인딩 변수 : 현재 접속 세션에서만 사용할 수 있는 시스템 변수 - 다수의 저장 프로시저에서 필요한 값을 전달하거나 전달받기 위해 사용
+VARIABLE VAR_ENAME VARCHAR2(15);
+VARIABLE VAR_JOB VARCHAR2(20);
+VARIABLE VAR_SAL NUMBER;
+
+--SELECT_EMPNO 저장 프로시저 호출 - IN 모드의 매개변수를 값을 전달하고 OUT 모드의 매개변수에는 바인딩 변수를 전달하여 호출
+--OUT 모드의 매개변수를 사용하여 바인딩 변수에 값을 저장할 경우 바인딩 변수명 앞에 :를 반드시 붙여서 사용
+EXECUTE SELECT_EMPNO(7788,:VAR_ENAME,:VAR_JOB,:VAR_SAL);
+
+--바인딩 변수에 저장된 값 출력
+--형식)PRINT 바인딩변수명
+PRINT VAR_ENAME;
+PRINT VAR_JOB;
+PRINT VAR_SAL;
+
+
 
