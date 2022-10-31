@@ -115,7 +115,36 @@ BEGIN
 END;
 /
 
+--형식)CASE WHEN 조건식1 THEN 명령;명령;... WHEN 조건식2 THEN 명령;명령;... END CASE;
 
+--EMP 테이블에서 사원번호가 7788인 사원정보를 검색하여 사워번호,사원이름,급여,급여등급을 계산하여 출력하는 PL/SQL 작성
+--급여등급 : E(0~1000),D(1001~2000),C(2001~3000),B(3001~4000),A(4001~5000)
+DECLARE
+    VEMP EMP%ROWTYPE;
+    VGRADE VARCHAR2(1);
+BEGIN
+    SELECT * INTO VEMP FROM EMP WHERE EMPNO=7788;
+ 
+    CASE 
+        WHEN VEMP.SAL BETWEEN 0 AND 1000 THEN
+           VGRADE := 'E';
+        WHEN VEMP.SAL BETWEEN 1001 AND 2000 THEN
+           VGRADE := 'D';
+        WHEN VEMP.SAL BETWEEN 2001 AND 3000 THEN
+           VGRADE := 'C';
+        WHEN VEMP.SAL BETWEEN 3001 AND 4000 THEN
+           VGRADE := 'B';
+        WHEN VEMP.SAL BETWEEN 4001 AND 5000 THEN
+           VGRADE := 'A';
+     END CASE;      
+    
+    DBMS_OUTPUT.PUT_LINE('사원번호 = '||VEMP.EMPNO);
+    DBMS_OUTPUT.PUT_LINE('사원이름 = '||VEMP.ENAME);
+    DBMS_OUTPUT.PUT_LINE('급여 = '||VEMP.SAL);
+    DBMS_OUTPUT.PUT_LINE('급여등급 = '||VGRADE);    
+END;
+/    
+    
 
 
 
