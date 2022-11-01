@@ -1,7 +1,6 @@
 package xyz.itwill.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,13 +51,17 @@ public class SelectStudentApp {
 					String name=rs.getString("name");
 					String phone=rs.getString("phone");
 					String address=rs.getString("address");
-					Date birthday=rs.getDate("birthday");
+					//Date birthday=rs.getDate("birthday");
+					//처리행의 컬럼값은 오라클 자료형에 상관없이 getString() 메소드를 호출하여
+					//문자열(String 객체)로 반환 가능
+					String birthday=rs.getString("birthday");
 					
 					System.out.println("학번 = "+no);
 					System.out.println("이름 = "+name);
 					System.out.println("전화번호 = "+phone);
 					System.out.println("주소 = "+address);
-					System.out.println("생년월일 = "+birthday);
+					//System.out.println("생년월일 = "+birthday);
+					System.out.println("생년월일 = "+birthday.substring(0,10));
 					System.out.println("==================================================");
 				} while(rs.next());//ResultSet 커서 위치에 처리행이 있는 경우 반복문 실행
 			} else {//ResultSet 커서를 다음행으로 이동하여 처리행이 존재하지 않는 경우 - 검색행 미존재
