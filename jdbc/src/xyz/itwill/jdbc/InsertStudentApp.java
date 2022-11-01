@@ -44,8 +44,6 @@ public class InsertStudentApp {
 			//DriverManager 클래스의 registerDriver() 메소드를 호출하여 OracleDriver 객체를
 			//JDBC Driver로 등록 처리 - 프로그램에서 한번만 실행
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			
-			
 		} catch (ClassNotFoundException e) {
 			System.out.println("OracleDriver 클래스를 찾을 수 없습니다.");
 		}
