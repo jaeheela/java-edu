@@ -78,8 +78,7 @@ public class ChatClientApp extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 		
-		//대화명을 입력받아 필드에 저장
-		// => 정상적인 대화명이 입력되도록 무한루프 이용
+		//대화명을 입력받아 필드에 저장 - 정상적인 대화명이 입력되도록 무한루프 이용
 		while(true) {
 			//JOptionPane.showInputDialog(Component parent, String message, String title, int messageType)
 			// => 입력 다이얼로그를 보여주는 메소드 - 입력값을 문자열로 반환
