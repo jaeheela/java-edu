@@ -80,10 +80,13 @@ public class InsertStudentApp {
 			//위한 메소드 - 실행결과로 조작행의 갯수를 정수값(int)으로 반환
 			//Statement.executeQuery(String sql) : SELECT 명령을 전달하여 실행하기 위한 메소드
 			// => 실행결과로 검색행이 저장된 ResultSet 객체 반환
-			String sql="insert into student values(1000,'홍길동','010-1324-7512','서울시 강남구','00/01/01')";
+			//String sql="insert into student values(1000,'홍길동','010-1324-7512','서울시 강남구','00/01/01')";
+			//String sql="insert into student values(2000,'임꺽정','010-4561-7864','수원시 월정구','02/05/08')";
+			String sql="insert into student values(3000,'전우치','017-8741-2130','인천시 상당구','1998-12-11')";
 			int rows=stmt.executeUpdate(sql);
 			
-			//5.반환받은 SQL 명령의 실행결과를 이용하여 출력 - 결과값 반환
+			//5.반환받은 SQL 명령의 실행결과를 이용하여 출력
+			// => JDBC 기능을 메소드로 작성할 경우 실행에 대한 결과값 반환
 			System.out.println("[메세지]"+rows+"명의 학생정보를 삽입 하였습니다.");
 		} catch (ClassNotFoundException e) { 
 			System.out.println("[에러]OracleDriver 클래스를 찾을 수 없습니다.");
