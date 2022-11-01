@@ -26,7 +26,7 @@ import java.sql.Statement;
 //CREATE TABLE STUDENT(NO NUMBER(4) PRIMARY KEY,NAME VARCHAR2(50),PHONE VARCHAR2(20)
 //	,ADDRESS VARCHAR2(100),BIRTHDAY DATE)
 
-//STUDENT 테이블에 학생정보를 삽입하는 JDBC 프로그램
+//STUDENT 테이블에 학생정보를 삽입하는 JDBC 프로그램 작성
 public class InsertStudentApp {
 	public static void main(String[] args) {
 		//JDBC 관련 객체를 저장하기 위한 참조변수는 try 영역 외부에서 선언
