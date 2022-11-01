@@ -1,0 +1,15 @@
+c:\> sqlplus sys as sysdba   -- sys 계정(sysdba)으로 오라클 접속
+비밀번호 : 입력
+
+SQL> alter session set "_ORACLE_SCRIPT"=true;  -- sys 계정에게 완전한 관리자 권한 부여
+Session이(가) 변경되었습니다.
+
+SQL> @C:\Java\교육내용\02.Oracle\scott_create.sql  -- SQL 파일에 저장된 명령 실행
+
+SQL> show user     -- 현재 사용자 확인
+USER "SCOTT"
+
+SQL> select * from emp;   -- EMP 테이블에 저장된 모든행 검색
+...
+
+SQL> exit
