@@ -47,6 +47,7 @@ public class InsertStudentApp {
 		} catch (ClassNotFoundException e) {
 			System.out.println("OracleDriver 클래스를 찾을 수 없습니다.");
 		}		
+		
 	}
 }
 
