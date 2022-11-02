@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//JDBC(Java DataBase Connectivity) : Java를 이용하여 DBMS에 접속해 SQL 명령을 전달하여
-//실행하기 위한 기능의 제공하기 위한 클래스 또는 인터페이스
+//JDBC(Java DataBase Connectivity) : Java를 이용하여 DBMS 서버에 접속해 SQL 명령을 전달하여
+//실행하기 위한 기능을 제공하기 위한 클래스 또는 인터페이스
 
-//java.sql : JDBC 기능을 작성하기 위한 클래스(인터페이스)가 선언된 패키지
+//java.sql : JDBC 기능의 프로그램을 작성하기 위한 클래스(인터페이스)가 선언된 패키지
 // => JDBC 기능은 대부분 인터페이스로 제공 - DBMS의 종류가 다양하므로 클래스로 제공 불가능
 // => DBMS 회사의 웹사이트에서 JDBC 기능의 클래스(JDBC Driver)를 배포하여 제공
 // => JDBC 드라이버가 포함된 라이브러리를 다운로드 받아 프로젝트에 빌드 처리해야만 JDBC 프로그램 작성 가능
