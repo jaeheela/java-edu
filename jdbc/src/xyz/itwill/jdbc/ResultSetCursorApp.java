@@ -44,7 +44,7 @@ public class ResultSetCursorApp {
 		//resultSetConcurrency : ResultSet 커서 위치의 처리행의 조작 관련 속성값(ResultSet 인터페이스의 상수)을 전달하여 설정
 		// => ResultSet.CONCUR_READ_ONLY : ResultSet 커서 위치의 처리행에 대한 조작 불가능 - 기본 
 		// => ResultSet.CONCUR_UPDATABLE : ResultSet 커서 위치의 처리행에 대한 조작 가능
-		stmt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
 		sql="select * from student order by no";
 		//ResultSet 커서는 ResultSet 객체의 BOF(Before Of File)영역에 위치
@@ -90,7 +90,7 @@ public class ResultSetCursorApp {
 		//ResultSet.updateXXX(String columnLabel, XXX columnValue)
 		// => ResultSet 커서가 위치한 처리행의 컬럼값을 변경하는 메소드
 		// => XXX : Java 자료형
-		rs.updateString("name", "임걱정");
+		rs.updateString("name", "임꺽정");
 		
 		//ResultSet.updateRow() : 변경행을 ResultSet 객체에 적용하는 메소드  
 		// => 실제 테이블의 행에 대한 컬럼값 변경 처리
@@ -121,11 +121,12 @@ public class ResultSetCursorApp {
 		// => 실제 테이블의 행에 대한 삭제 처리
 		rs.deleteRow();
 		*/
-		
+
 		rs.beforeFirst();
 		while(rs.next()) {
 			System.out.println(rs.getRow()+"행 : 학번 = "+rs.getInt("no")+", 이름 = "+rs.getString("name"));
 		}
+
 		ConnectionFactory.close(con, stmt, rs);
 		System.out.println("==============================================================");
 	}
