@@ -60,13 +60,3 @@ public class ResultSetMetaDataApp {
 		ConnectionFactory.close(con, stmt, rs);
 	}
 }
-
-
-
-
-
-
-
-
-
-
