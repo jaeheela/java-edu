@@ -44,7 +44,7 @@ public class ResultSetCursorApp {
 		//resultSetConcurrency : ResultSet 커서 위치의 처리행의 조작 관련 속성값(ResultSet 인터페이스의 상수)을 전달하여 설정
 		// => ResultSet.CONCUR_READ_ONLY : ResultSet 커서 위치의 처리행에 대한 조작 불가능 - 기본 
 		// => ResultSet.CONCUR_UPDATABLE : ResultSet 커서 위치의 처리행에 대한 조작 가능
-		stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
 		sql="select * from student order by no";
 		//ResultSet 커서는 ResultSet 객체의 BOF(Before Of File)영역에 위치
@@ -85,7 +85,6 @@ public class ResultSetCursorApp {
 		sql="select no,name,phone,address,birthday from student order by no";
 		rs=stmt.executeQuery(sql);
 
-		/*
 		rs.absolute(2);
 		
 		//ResultSet.updateXXX(String columnLabel, XXX columnValue)
@@ -96,7 +95,6 @@ public class ResultSetCursorApp {
 		//ResultSet.updateRow() : 변경행을 ResultSet 객체에 적용하는 메소드  
 		// => 실제 테이블의 행에 대한 컬럼값 변경 처리
 		rs.updateRow();
-		*/
 		
 		/*
 		rs.absolute(3);
@@ -115,12 +113,14 @@ public class ResultSetCursorApp {
 		//ResultSet.insertRow() : 삽입행을 ResultSet 객체에 적용하는 메소드  
 		// => 실제 테이블의 행에 대한 삽입 처리
 		rs.insertRow();
-		*/
-		
+		 */
+
+		/*
 		rs.absolute(4);
 		//ResultSet.insertRow() : ResultSet 커서가 위치한 처리행을 삭제하여 ResultSet 객체에 적용하는 메소드  
 		// => 실제 테이블의 행에 대한 삭제 처리
 		rs.deleteRow();
+		*/
 		
 		rs.beforeFirst();
 		while(rs.next()) {
