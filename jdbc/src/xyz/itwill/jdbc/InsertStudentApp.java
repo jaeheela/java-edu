@@ -40,7 +40,7 @@ public class InsertStudentApp {
 			//DriverManager 클래스 : Driver 객체를 관리하기 위한 기능을 제공하는 클래스
 			//DriverManager.registerDriver(Driver driver) : Driver 객체를 전달받아 DriverManager
 			//클래스가 관리할 수 있는 JDBC Driver로 등록하는 메소드
-			// => 동일한 Driver 객체가 DriverManager 클래스에 등록 가능 - 불필요한 객체 등록 가능
+			// => 동일한 Driver 객체가 DriverManager 클래스에 여러개 등록 가능 - 불필요한 드라이버 존재
 			//DriverManager.registerDriver(new OracleDriver());
 			
 			//Class.forName(String className) 메소드를 호출하여 ClassLoader 프로그램을 수동으로
@@ -72,7 +72,7 @@ public class InsertStudentApp {
 			//3.Connection 객체로부터 SQL 명령을 전달할 수 있는 Statement 객체를 반환받아 저장
 			//Connection.createStatement() : SQL 명령을 전달할 수 있는 Statement 객체를 
 			//생성하여 반환하는 메소드
-			//Statement 객체 : SQL 명령을 접속 DBMS 서버에 전달하여 실행하기 위한 객체
+			//Statement 객체 : SQL 명령을 현재 접속중인 DBMS 서버에 전달하여 실행하기 위한 객체
 			stmt=con.createStatement();
 			
 			//4.Statement 객체를 이용하여 SQL 명령을 전달하여 실행하고 실행결과를 반환받아 저장
@@ -96,8 +96,8 @@ public class InsertStudentApp {
 			//6.JDBC 관련 객체의 close() 메소드를 호출하여 객체 제거
 			// => JDBC 관련 객체 생성의 반대 순서로 제거 
 			try {
-				//if 구문을 이용하여 참조변수에 객체가 저장되어 있는 경우에만 close() 
-				//메소드 호출 - NullPointerExcetion 발생 방지
+				//if 구문을 이용하여 참조변수에 객체가 저장되어 있는 경우에만 close() 메소드 호출 
+				// => NullPointerExcetion 발생 방지
 				//NullPointerExcetion : 참조변수에 null이 저장된 상태에서 메소드를 호출한 경우 발생되는 예외
 				if(stmt!=null) stmt.close();//Statement.close() : Statement 객체 제거
 				//Connection.close() : Connection 객체 제거 - DBMS 서버 접속 종료

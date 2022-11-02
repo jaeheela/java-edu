@@ -9,7 +9,7 @@ import java.sql.Statement;
 //실행되면 자동으로 커밋 처리
 // => 프로그램 실행시 예외가 발생한 경우 예외 발생전에 전달되어 실행된 SQL 명령에 대한 롤백 처리 불가능
 //JDBC 프로그램에서 AutoCommit 기능을 비활성화 처리하여 예외 발생 없이 프로그램이 정상적으로
-//실행된 경우 커밋하고 예외가 발생된 경우 롤백 처리하는 것을 권장
+//실행된 경우 커밋 처리하고 예외가 발생된 경우 롤백 처리하는 것을 권장
 
 //STUDENT 테이블에 저장된 학생정보 중 학번이 [2000]인 학생의 이름을 [임꺽정]으로 변경하는 JDBC 프로그램 작성
 public class TransactionControlApp {
@@ -33,7 +33,7 @@ public class TransactionControlApp {
 			String sql="update student set name='임꺽정' where no=2000";
 			int rows=stmt.executeUpdate(sql);
 			
-			//if(con!=null) throw new Exception();//무조건 예외 발생 
+			//if(con!=null) throw new Exception();//인위적인 예외 발생 
 			
 			if(rows>0) {//조작된 행이 있는 경우
 				System.out.println("[메세지]"+rows+"명의 학생정보를 변경 하였습니다.");

@@ -24,19 +24,19 @@ public class SelectStudentApp {
 			
 			String sql="select * from student order by no";
 			//Statement.executeQuery(String sql) : SELECT 명령을 전달하여 실행하기 위한 메소드
-			// => SELECT 명령의 실행결과를 ResultSet 객체로 반환
-			//ResultSet 객체 : 검색결과를 테이블 형식(2차원 배열)의 객체로 저장하여 표현한 객체
+			// => SELECT 명령의 실행결과로 ResultSet 객체를 반환
+			//ResultSet 객체 : 검색결과를 테이블 형식(2차원 배열)으로 저장하여 표현한 객체
 			rs=stmt.executeQuery(sql);
 			
 			//ResultSet 객체에 저장된 검색행을 행단위로 처리하기 위해 내부적인 커서(Cursor) 제공
 			// => ResultSet 커서는 최초 BOF(Before Of File) 영역에 위치
 			//ResultSet.next() : ResultSet 커서를 다음행으로 이동하는 메소드 - boolean 반환
 			// => false 반환 : ResultSet 커서 위치에 처리행이 없는 경우의 반환값 - EOF(End Of File)
-			// => true 반환 :ResultSet 커서 위치에 처리행이 있는 경우의 반환값
+			// => true 반환 : ResultSet 커서 위치에 처리행이 있는 경우의 반환값
 			if(rs.next()) {//ResultSet 커서를 다음행으로 이동하여 처리행이 존재하는 경우 - 검색행 존재
 				//System.out.println("[메세지]검색된 학생정보가 있습니다.");
 				
-				//검색된 다수의 학생정보를 저장한 ResultSet 객체를 처리하기 위한 반복문
+				//검색된 다수의 학생정보가 저장된 ResultSet 객체를 처리하기 위한 반복문
 				// => ResultSet 객체에 저장된 학생정보의 갯수가 불확실하므로 while 반복문 사용
 				// => 첫번째 행 처리 후 ResultSet 커서를 다음행으로 이동하기 위해 do~while 반복문 사용
 				do {

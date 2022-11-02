@@ -13,7 +13,7 @@ public class StaticBlockApp {
 		//3.생성된 객체의 메모리 주소(HashCode)를 전달받아 참조변수(Stack 영역)를 생성하여 저장
 		StaticBlock sb=new StaticBlock();
 		
-		//참조변수에 저장된 객체를 참조하여 메소드 호출 - 기능 구현
+		//참조변수에 저장된 메모리 주소로 객체를 참조하여 메소드 호출 - 기능 구현
 		sb.display();
 		*/
 		
