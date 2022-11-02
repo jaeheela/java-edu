@@ -130,17 +130,3 @@ public class ResultSetCursorApp {
 		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

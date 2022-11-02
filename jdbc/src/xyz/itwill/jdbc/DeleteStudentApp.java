@@ -38,9 +38,3 @@ public class DeleteStudentApp {
 		}
 	}
 }
-
-
-
-
-
-
