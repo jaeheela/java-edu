@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 //단점 : 하나의 PreparedStatement 객체는 저장된 하나의 SQL 명령만 전달하여 실행 가능
 public class PreparedStatementApp {
 	public static void main(String[] args) throws Exception {
+		/*
 		//키보드로 학생정보를 입력받아 STUDENT 테이블에 삽입하고 STUDENT 테이블에 저장된 모든
 		//학생정보를 검색하여 출력하는 JDBC 프로그램 작성
 		
@@ -72,6 +73,39 @@ public class PreparedStatementApp {
 			System.out.println("학번 = "+rs.getInt("no")+", 이름 = "+rs.getString("name"));
 		}
 
+		ConnectionFactory.close(con, pstmt, rs);
+		System.out.println("==============================================================");
+		*/
+		
+		//키보드로 이름을 입력받아 STUDENT 테이블에 저장된 학생정보 중 해당 이름의 학생정보를
+		//검색하여 출력하는 JDBC 프로그램 작성
+		
+		//키보드로 학생정보를 입력받기 위한 입력스트림 생성
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+				
+		//키보드로 이름을 입력받아 저장
+		System.out.println("<<학생정보 검색>>");
+		System.out.print("이름 입력 >> ");
+		String name=in.readLine();
+		System.out.println("==============================================================");
+		//STUDENT 테이블에 저장된 학생정보 중 해당 이름의 학생정보를 검색하여 출력
+		Connection con=ConnectionFactory.getConnection();
+		
+		String sql="select * from student where name=? order by no";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, name);
+		
+		ResultSet rs=pstmt.executeQuery();
+		
+		System.out.println("<<검색결과>>");
+		if(rs.next()) {
+			do {
+				System.out.println("학번 = "+rs.getInt("no")+", 이름 = "+rs.getString("name"));
+			} while(rs.next());
+		} else {
+			System.out.println("검색된 학생정보가 없습니다.");
+		}
+		
 		ConnectionFactory.close(con, pstmt, rs);
 		System.out.println("==============================================================");
 	}
