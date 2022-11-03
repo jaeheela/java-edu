@@ -24,11 +24,15 @@ public class CallableStatementApp {
 			(VNO IN STUDENT.NO%TYPE, VNAME OUT STUDENT.NAME%TYPE) IS
 		BEGIN 
 		    SELECT NAME INTO VNAME FROM STUDENT WHERE NO=VNO;
-		    DELETE FROM STUDENT WHERE NO=VNO;
-		    COMMIT;
+		    IF SQL%FOUND THEN
+		    	DELETE FROM STUDENT WHERE NO=VNO;
+		        COMMIT;
+		    END IF;    
+		EXCEPTION
+		    WHEN OTHERS THEN
+		        VNAME := NULL;
 		END;
-		/    
-		/    
+		/ 
 		*/
 		
 		//Connection.prepareCall(String sql) : 저장 프로시저를 호출하는 명령을 전달하여 실행
@@ -51,7 +55,13 @@ public class CallableStatementApp {
 		
 		//CallableStatement.getXXX(int parameterIndex) 
 		// => 저장 프로시저의 OUT 모드의 매개변수로 제공받은 값을 반환하는 메소드
-		System.out.println("[메세지]"+cstmt.getString(2)+"님을 삭제 하였습니다.");
+		String name=cstmt.getString(2);
+		if(name==null) {
+			System.out.println("[메세지]해당 학번의 학생정보를 찾을 수 없습니다.");
+		} else {
+			System.out.println("[메세지]"+name+"님을 삭제 하였습니다.");
+		}
+		
 		
 		ConnectionFactory.close(con, cstmt);
 	}
