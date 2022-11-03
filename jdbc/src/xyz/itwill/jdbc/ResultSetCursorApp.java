@@ -39,8 +39,8 @@ public class ResultSetCursorApp {
 		// => ResultSet 커서의 이동 또는 ResultSet 커서가 위치한 처리행의 대한 조작 설정 가능
 		//resultSetType : ResultSet 커서의 이동 관련 속성값(ResultSet 인터페이스의 상수)을 전달하여 설정
 		// => ResultSet.TYPE_FORWARD_ONLY : ResultSet 커서를 다음행으로만 이동 가능 - 기본
-		// => ResultSet.TYPE_SCROLL_INSENSITIVE : ResultSet 커서를 원하는 행으로 이동 가능 - 조작행 미반영
-		// => ResultSet.TYPE_SCROLL_SENSITIVE : ResultSet 커서를 원하는 행으로 이동 가능 - 조작행 반영
+		// => ResultSet.TYPE_SCROLL_INSENSITIVE : ResultSet 커서를 원하는 행으로 이동 가능 - 데이타베이스 변경 미반영
+		// => ResultSet.TYPE_SCROLL_SENSITIVE : ResultSet 커서를 원하는 행으로 이동 가능 - 데이타베이스 변경 반영
 		//resultSetConcurrency : ResultSet 커서 위치의 처리행의 조작 관련 속성값(ResultSet 인터페이스의 상수)을 전달하여 설정
 		// => ResultSet.CONCUR_READ_ONLY : ResultSet 커서 위치의 처리행에 대한 조작 불가능 - 기본 
 		// => ResultSet.CONCUR_UPDATABLE : ResultSet 커서 위치의 처리행에 대한 조작 가능

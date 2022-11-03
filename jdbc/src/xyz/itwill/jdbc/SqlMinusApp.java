@@ -27,7 +27,7 @@ public class SqlMinusApp {
 		while(true) {
 			//키보드로 SQL 명령을 입력받아 저장
 			System.out.print("SQL> ");
-			String sql=in.readLine();
+			String sql=in.readLine().trim();//키보드로 입력받은 문자열의 앞과 뒤의 모든 공백 제거
 		
 			//키보드 입력값이 없는 경우 반복문을 처음부터 다시 실행
 			if(sql==null || sql.equals("")) continue;
@@ -73,7 +73,7 @@ public class SqlMinusApp {
 					}
 				} else {//INSERT,UPDATE,DELETE 명령을 전달하여 실행한 경우
 					int rows=stmt.getUpdateCount();
-					System.out.println(rows+"개의 행을 "+sql.trim().substring(0,6).toUpperCase()+" 하였습니다.");
+					System.out.println(rows+"개의 행을 "+sql.substring(0,6).toUpperCase()+" 하였습니다.");
 				}
 				
 				System.out.println();
