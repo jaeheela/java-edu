@@ -62,7 +62,6 @@ public class CallableStatementApp {
 			System.out.println("[메세지]"+name+"님을 삭제 하였습니다.");
 		}
 		
-		
 		ConnectionFactory.close(con, cstmt);
 	}
 }
