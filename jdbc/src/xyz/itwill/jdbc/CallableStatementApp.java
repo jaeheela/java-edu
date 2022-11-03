@@ -47,7 +47,7 @@ public class CallableStatementApp {
 		cstmt.setInt(1, no);
 		//CallableStatement.registerOutParameter(int parameterIndex, int sqlType)
 		// => 저장 프로시저의 OUT 모드의 매개변수에 저장된 값을 제공받기 위한 메소드
-		// => sqlType : SQL 자료형
+		// => sqlType : SQL 자료형 - Types 클래스의 상수(Constant) 사용 
 		cstmt.registerOutParameter(2, Types.NVARCHAR);
 		
 		//CallableStatement.execute() : 저장 프로시저 호출 명령을 전달하여 실행하는 메소드
