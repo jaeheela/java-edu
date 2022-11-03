@@ -110,12 +110,3 @@ public class PreparedStatementApp {
 		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-

@@ -44,15 +44,3 @@ public class PropertiesApp {
 		System.out.println("이름 = "+name);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
