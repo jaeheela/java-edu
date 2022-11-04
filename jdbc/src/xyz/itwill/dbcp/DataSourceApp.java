@@ -38,7 +38,7 @@ public class DataSourceApp {
 		//PoolDataSource.setMaxPoolSize(int size) : 최대로 생성되는 Connection 객체의 갯수 변경하는 메소드
 		pds.setMaxPoolSize(3);
 		
-		//PoolDataSource.getConnection : PoolDataSource 객체에 저장된 Connection 객체 중 하나를 반환하는 메소드
+		//PoolDataSource.getConnection() : PoolDataSource 객체에 저장된 Connection 객체 중 하나를 반환하는 메소드
 		Connection con1=pds.getConnection();
 		System.out.println("con1 = "+con1);
 		//PoolDataSource.getAvailableConnectionsCount : PoolDataSource 객체가 제공 가능한 Connection 객체의 갯수를 반환하는 메소드
