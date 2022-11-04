@@ -10,7 +10,7 @@ import java.util.List;
 //STUDENT 테이블에 행(학생정보)을 삽입,변경,삭제,검색하기 위한 메소드를 제공하는 클래스
 // => 하나의 메소드는 매개변수로 객체(값)을 전달받아 하나의 SQL 명령을 전달하여 실행하고 
 //실행결과를 Java 객체(값) 반환
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	//학생정보를 전달받아 STUDENT 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
 	@Override
 	public int insertStudent(StudentDTO student) {

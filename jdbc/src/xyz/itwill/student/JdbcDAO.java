@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 
-//모든 DAO 클래스에서 공통적으로 사용하는 기능을 메소드로 제공하는 클래스
+//모든 DAO 클래스에서 공통적으로 사용하는 JDBC 기능을 메소드로 제공하는 클래스
 // => 모든 DAO 클래스가 상속받아 사용하는 부모클래스
 // => DBCP 관련 객체를 생성하여 Connection 객체를 반환하거나 JDBC 관련 객체를 전달받아 제거
 // => 객체 생성이 목적이 아닌 상속만을 목적으로 작성된 클래스이므로 추상클래스로 선언하는 것을 권장 
