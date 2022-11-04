@@ -2,11 +2,13 @@ package xyz.itwill.student;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Pattern;
 
 //학생정보를 관리하는 프로그램 작성
 // => 메뉴 선택에 따른 학생정보 삽입,변경,삭제,검색 기능 제공
 // => 입력과 출력은 프로그램에서 구현하고 데이타는 DAO 클래스의 메소드를 호출하여 처리되도록 구현
+// => DAO 디자인 패턴을 이용한 프로그램
 public class StudentManagerApp {
 	//키보드 입력스트림을 저장하기 위한 필드
 	private BufferedReader in;
@@ -89,6 +91,15 @@ public class StudentManagerApp {
 				
 				no=Integer.parseInt(noTemp);//문자열을 정수값으로 변환하여 저장
 				
+				//STUDENT 테이블에 저장된 기존 학생정보의 학번과 중복된 경우 재입력되도록 작성
+				//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여 처리
+				// => StudentDAOImpl 클래스의 selectNoStudent(int no) 메소드 호출
+				StudentDTO student=StudentDAOImpl.getDAO().selectNoStudent(no);
+				if(student!=null) {//검색행이 있는 경우 - 학번이 중복된 경우
+					System.out.println("[입력오류]현재 사용 중인 학번입니다. 다시 입력해 주세요.");
+					continue;
+				}
+				
 				break;//반복문 종료
 			}
 			
@@ -165,12 +176,24 @@ public class StudentManagerApp {
 				break;
 			}
 			
+			//입력받은 학생정보를 이용하여 StudentDTO 객체를 생성하여 필드값 변경
+			// => DAO 클래스의 메소드를 호출하기 위한 필요한 값을 객체로 변환하여 전달
+			StudentDTO student=new StudentDTO();
+			student.setNo(no);
+			student.setName(name);
+			student.setPhone(phone);
+			student.setAddress(address);
+			student.setBirthday(birthday);
 			
+			//입력받은 학생정보를 이용하여 STUDENT 테이블에 삽입 처리
+			// => StudentDAOImpl 클래스의 insertStudent(StudentDTO student) 메소드 호출
+			//싱글톤 클래스는 객체를 반환받아 메소드를 직접 호출하여 사용 - 참조변수 불필요
+			int rows=StudentDAOImpl.getDAO().insertStudent(student);
 			
+			System.out.println("[처리결과]"+rows+"명의 학생정보를 삽입 하였습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	//[2.학생정보 변경] 메뉴를 선택한 경우 호출되는 메소드
@@ -189,10 +212,38 @@ public class StudentManagerApp {
 	}
 	
 	//[5.학생목록 출력] 메뉴를 선택한 경우 호출되는 메소드
+	// => STUDENT 테이블에 저장된 모든 학생정보를 검색하여 결과를 반환받아 출력
 	public void displayAllStudent() {
+		System.out.println("### 학생목록 출력 ###");
 		
+		//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 저장
+		// => StudentDAOImpl 클래스의 selectAllStudentList() 메소드 호출
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectAllStudentList();
+		
+		//List.isEmpty() : List 객체에 요소가 있는 경우 [false]를 반환하고 요소가 없는
+		//경우 [true]를 반환하는 메소드
+		if(studentList.isEmpty()) {
+			System.out.println("[처리결과]저장된 학생정보가 없습니다.");
+			return;
+		}
+		
+		System.out.println("=============================================================");
+		System.out.println("학번\t이름\t전화번호\t주소\t\t생년월일");
+		System.out.println("=============================================================");
+		//List 객체의 요소를 제공받아 처리하는 반복문
+		for(StudentDTO student:studentList) {
+			System.out.println(student.getNo()+"\t"+student.getName()
+				+"\t"+student.getPhone()+"\t"+student.getAddress()+"\t"+student.getBirthday());
+		}
+		System.out.println("=============================================================");
 	}
 }
+
+
+
+
+
+
 
 
 
