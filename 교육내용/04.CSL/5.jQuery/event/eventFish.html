@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<style type="text/css">
+#panel {
+	width: 600px;
+	height: 300px;
+	border: 1px solid #999;
+	position: relative;
+	left: 100px;
+	right: 100px;
+	background: url("bg.png") no-repeat;
+}
+
+#bar {
+	width: 500px;
+	height: 20px;
+	position: absolute;
+	left: 50px;
+	top: 190px;
+	background: #f00;
+}
+
+#fish {
+	position: absolute;
+	left: 50px;
+	top: 120px;
+}
+
+#navi {
+	text-align: center;
+	width: 600px;
+	position: relative;
+	left: 100px;
+	top:250px;
+}
+
+#btn {
+	font-size: 1em;
+	font-weight: bold;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>움직이는 물고기</h1>
+	<hr>
+	<div id="panel">
+		<div id="bar"></div>
+		<div id="fish">
+			<img src="fish1.png" id="fishImg">
+		</div>
+		<div id="navi">
+			<button type="button" id="btn">
+				버튼을 누르면 물고기가 움직입니다.
+			</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<style type="text/css">
+#slider {
+	position: absolute;
+	width: 1000px;
+	height: 350px;
+	top: 100px;
+	left: 150px;
+	background-color: #ececec;
+}
+
+#sliderContainer {
+	position: relative;
+	width: 980px;
+	height: 327px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+#sliderContainer img {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#arrowContainer img {
+	position: absolute;
+	top: 200px;
+	opacity:0.0;
+}
+
+#arrowContainer img:HOVER {
+	opacity:1.0;
+}
+
+#leftImg {
+	z-index:100;
+	left: 170px;
+}
+ 
+#rightImg {
+	z-index:100;
+	left: 1050px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>슬라이더</h1>
+	<hr>
+	<div id="slider">
+		<div id="sliderContainer">
+			<img src="img1.jpg"> 
+			<img src="img2.jpg"> 
+			<img src="img3.jpg">
+			<img src="img4.jpg">
+		</div>
+	</div>
+	<div id="arrowContainer">
+		<img src="left.png" id="leftImg">
+		<img src="right.png" id="rightImg">
+	</div>
+</body>
+</html>
