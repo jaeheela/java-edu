@@ -152,7 +152,10 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 		try {
 			con=getConnection();
 			
-			String sql="select * from student where name=? order by no";
+			//where 조건식에서 매개변수로 전달된 값과 같은 행 검색
+			//String sql="select * from student where name=? order by no";
+			//where 조건식에서 매개변수로 전달된 값이 포함된 행 검색
+			String sql="select * from student where name like '%'||?||'%' order by no";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			

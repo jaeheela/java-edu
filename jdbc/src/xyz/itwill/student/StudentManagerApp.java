@@ -18,7 +18,7 @@ public class StudentManagerApp {
 		in=new BufferedReader(new InputStreamReader(System.in));
 		
 		String[] menu={"1.학생정보 삽입","2.학생정보 변경","3.학생정보 삭제"
-				,"4.학생이름 검색","5.학생목록 출력","6.프로그램 종료"};
+				,"4.학생정보 검색","5.학생목록 출력","6.프로그램 종료"};
 		
 		System.out.println("<<학생 관리 프로그램>>");
 		
@@ -177,7 +177,7 @@ public class StudentManagerApp {
 			}
 			
 			//입력받은 학생정보를 이용하여 StudentDTO 객체를 생성하여 필드값 변경
-			// => DAO 클래스의 메소드를 호출하기 위한 필요한 값을 객체로 변환하여 전달
+			// => DAO 클래스의 메소드를 호출하기 위해 필요한 값을 객체로 변환하여 전달
 			StudentDTO student=new StudentDTO();
 			student.setNo(no);
 			student.setName(name);
@@ -202,13 +202,100 @@ public class StudentManagerApp {
 	}
 
 	//[3.학생정보 삭제] 메뉴를 선택한 경우 호출되는 메소드
+	// => 키보드로 학번을 입력받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 삭제하고
+	//처리결과를 반환받아 출력
 	public void removeStudent() {
+		System.out.println("### 학생정보 삭제 ###");
+		
+		try {
+			//키보드로 학번을 입력받아 저장 - 입력값 검증
+			int no;
+			while(true) {
+				System.out.print("학번 입력 >> ");
+				String noTemp=in.readLine();
+				
+				if(noTemp==null || noTemp.equals("")) {//입력값이 존재하지 않는 경우
+					System.out.println("[입력오류]학번을 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				//학번에 대한 입력패턴을 저장한 정규표현식 작성
+				String noReg="^[1-9][0-9]{3}$";
+				if(!Pattern.matches(noReg, noTemp)) {//정규표현식과 입력값의 패턴이 다른 경우
+					System.out.println("[입력오류]학번을 4자리 숫자로만 입력해 주세요.");
+					continue;
+				}
+				
+				no=Integer.parseInt(noTemp);
+				
+				break;
+			}
 			
+			//입력된 학번을 이용하여 STUDENT 테이블에 저장된 해당 학번의 학생정보를 삭제하고
+			//처리결과를 반환받아 저장
+			// => StudentDAOImpl 클래스의 deleteStudent(int no) 메소드 호출
+			int rows=StudentDAOImpl.getDAO().deleteStudent(no);
+			
+			if(rows>0) {//삭제행이 있는 경우
+				System.out.println("[처리결과]"+rows+"명의 학생정보를 삭제 하였습니다.");
+			} else {//삭제행이 없는 경우 - 입력된 학번의 학생정보가 없는 경우
+				System.out.println("[처리결과]삭제할 학번의 학생정보가 없습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	//[4.학생이름 검색] 메뉴를 선택한 경우 호출되는 메소드
+	//[4.학생정보 검색] 메뉴를 선택한 경우 호출되는 메소드
+	// => 키보드로 이름을 입력받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하고
+	//결과를 반환받아 출력
 	public void searchNameStudent() {
+		System.out.println("### 학생정보 검색 ###");
 		
+		try {
+			//키보드로 이름을 입력받아 저장 - 입력값 검증
+			String name;
+			while(true) {
+				System.out.print("이름 입력 >> ");
+				name=in.readLine();
+				
+				if(name==null || name.equals("")) {//입력값이 존재하지 않는 경우
+					System.out.println("[입력오류]이름을 반드시 입력해 주세요.");
+					continue;//반복문 재실행
+				}
+				
+				//이름에 대한 입력패턴을 저장한 정규표현식 작성
+				String nameReg="^[가-힣]{2,5}$";
+				if(!Pattern.matches(nameReg, name)) {//정규표현식과 입력값의 패턴이 다른 경우
+					System.out.println("[입력오류]이름은 2~5 범위의 한글만 입력해 주세요.");
+					continue;
+				}
+				
+				break;
+			}
+			
+			//입력된 이름을 이용하여 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하고
+			//검색결과를 반환받아 저장
+			// => StudentDAOImpl 클래스의 selectNameStudentList(String name) 메소드 호출
+			List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectNameStudentList(name);
+			
+			//List.size() : List 객체에 저장된 요소(Element)의 갯수를 반환하는 메소드
+			if(studentList.size()==0) {//List 객체에 저장된 요소가 없는 경우
+				System.out.println("[처리결과]검색된 학생정보가 없습니다.");
+				return;
+			}
+			
+			System.out.println("=============================================================");
+			System.out.println("학번\t이름\t전화번호\t주소\t\t생년월일");
+			System.out.println("=============================================================");
+			for(StudentDTO student:studentList) {
+				System.out.println(student.getNo()+"\t"+student.getName()
+					+"\t"+student.getPhone()+"\t"+student.getAddress()+"\t"+student.getBirthday());
+			}
+			System.out.println("=============================================================");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//[5.학생목록 출력] 메뉴를 선택한 경우 호출되는 메소드
