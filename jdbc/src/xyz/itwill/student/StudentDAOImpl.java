@@ -68,7 +68,7 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 		try {
 			con=getConnection();
 			
-			String sql="update student set name=?,phone=?,address=?,birthday where no=?";
+			String sql="update student set name=?,phone=?,address=?,birthday=? where no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, student.getName());
 			pstmt.setString(2, student.getPhone());
