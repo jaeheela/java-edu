@@ -54,8 +54,24 @@
 	<!-- i 태그 : 태그내용을 기울려 출력하기 위한 태그 - 강조 -->
 	<p><b>CSL(Client Script Language - HTML,           CSS,          JavaScript)</b>를 배우고 
 	<i>SSL(Server Script Language - Servlet, JSP)</i>를 공부할 것입니다.</p>
+	
 	<!-- br 태그 : 줄바꿈 처리하기 위한 태그 -->
 	<p>HTML은 웹문서를 구조적으로 표현하며<br>CSS는 웹문서를 디자인하는 언어입니다.</p>
+	
+	<!-- HTML에서 사용 불가능한 문자는 회피문자(Escape Character)로 표현 -->
+	<!-- => &nbsp;(공백), &amp;(&), &lt;(<), &gt;(>), &quot;(") 등 -->
+	<p>&lt;홍길동&gt;님 &amp; &lt;임꺽정&gt;님,&nbsp;&nbsp;&nbsp;반갑습니다.</p>
+	
+	<!-- pre 태그 : 태그내용을 그대로 출력하는 태그 -->
+	<pre>홍길동님,     만나서 반갑습니다.
+	다음에 다시 만나요.</pre>
+	
+	<!-- div 태그 : 범위(영역)을 설정하기 위한 블럭 레벨 태그 -->
+	<!-- style 속성 : 박스모델의 스타일을 설정하기 위한 속성 -->
+	<!-- => 속성값으로 CSS 스타일 관련 속성과 속성값 설정 -->
+	<!-- span 태그 : 범위(영역)을 설정하기 위한 인라인 레벨 태그 -->
+	<div style="font-size: 24px;">오늘은 <span style="color: red;">2022년 11월 8일 화요일</span>입니다. 
+	내일은 <span style="color: green;">2022년 11월 9일 수요일</span>입니다.</div>
 </body>
 </html>
 
