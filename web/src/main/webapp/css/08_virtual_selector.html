@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	font-size: 20px;
+	line-height: 35px;
+}
+
+a {
+	color: orange;
+	text-decoration: none;
+}
+
+/* 가상 선택자 : 선택된 엘리먼트의 상태에 의해 CSS 스타일을 다르게 적용 */
+/* 형식) 선택자:상태  => 선택된 엘리먼트에 따라 사용 가능한 상태가 존재 */
+
+/* :link : a 태그로 설정된 URL 주소의 웹문서를 브라우저로 한번도 요청하지 않은 상태 */
+a:link { color: lime; }
+
+/* :visited : a 태그로 설정된 URL 주소의 웹문서를 브라우저로 한번이상 요청하여 응답받은 상태 */
+a:visited { color: gold; }
+
+/* :active : 선택된 엘리먼트에 마우스 커서를 위치하여 버튼으로 누르고 있는 상태 */
+a:active { color: red; }
+
+/* :hover : 선택된 엘리먼트에 마우스 커서가 위치히고 있는 상태 */
+a:hover { 
+	color: blue;
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<p>가상 선택자 : 태그의 상태에 따라 다른 스타일을 적용하기 위해 사용</p>
+	<hr>
+	<div>
+		<a href="https://www.daum.net?bbb">다음</a>&nbsp;&nbsp;&nbsp;
+		<a href="https://www.naver.com">네이버</a>&nbsp;&nbsp;&nbsp;
+		<a href="https://www.google.com">구글</a>&nbsp;&nbsp;&nbsp;
+	</div>
+	<hr>
+	
+</body>
+</html>
