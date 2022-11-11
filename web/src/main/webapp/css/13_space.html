@@ -10,6 +10,27 @@ div {
 	width: 200px;
 	border: 1px solid red;
 }
+
+/* white-space : 공백 처리에 대한 스타일 속성 */
+/* => 박스모델의 폭보다 큰 태그내용 처리에 대한 스타일 속성 */
+/* 속성값 : normal(기본 : pre-line), pre, nowrap, pre-wrap */
+
+/* pre-line 속성값 : 다수의 공백을 하나의 공백으로 처리하여 출력하고 
+박스모델보다 큰 태그내용은 자동 줄바꿈 처리하여 출력 */
+.space1 { white-space: pre-line; }
+
+/* pre 속성값 : 다수의 공백을 다수의 공백으로 처리하여 출력하고 
+박스모델보다 큰 태그내용은 자동 줄바꿈 없이 그대로 출력  */
+/* => 태그내용이 박스모델의 폭을 벗어난 상태로 출력 처리 */
+.space2 { white-space: pre; }
+
+/* nowrap 속성값 : 다수의 공백을 하나의 공백으로 처리하여 출력하고 
+박스모델보다 큰 태그내용은 자동 줄바꿈 없이 그대로 출력 */
+.space3 { white-space: nowrap; }
+
+/* pre-wrap 속성값 : 다수의 공백을 다수의 공백으로 처리하여 출력하고 
+박스모델보다 큰 태그내용은 자동 줄바꿈 처리하여 출력 */
+.space4 { white-space: pre-wrap; }
 </style>
 </head>
 <body>
