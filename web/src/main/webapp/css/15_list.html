@@ -14,11 +14,16 @@ ul li {
 	
 	/* list-style-image : 블릿 대신 출력될 이미지를 설정하기 위한 스타일 속성 */
 	/* 속성값 : url 함수를 사용하여 이미지 파일의 URL 주소를 설정 */ 
-	list-style-image: url(""); 
+	list-style-image: url("images/bullet.png");
+	
+	/* list-style-position : 목록 출력 위치 관련 스타일 속성 */
+	/* 속성값 : inside(들여쓰기), outside(밀어쓰기) */
+	list-style-position: inside; 
 }
 
 ol li {
-	list-style-type: upper-roman;
+	/* list-style : 목록에 관련된 모든 스타일 속성값 설정 */
+	list-style: upper-roman inside;
 }
 </style>
 </head>
