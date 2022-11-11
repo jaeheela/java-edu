@@ -31,6 +31,43 @@ a:hover {
 	color: blue;
 	text-decoration: underline;
 }
+
+/* :first-child : 선택된 다수의 엘리먼트 중 첫번째 엘리먼트 선택 */
+ul li:first-child { color: red; }
+
+/* :last-child : 선택된 다수의 엘리먼트 중 마지막 엘리먼트 선택 */
+ul li:last-child { color: green; }
+
+/* :nth-child(X) : 선택된 다수의 엘리먼트 중 앞에서 X번째 위치한 엘리먼트 선택 */
+ul li:nth-child(2) { color: blue; }
+
+/* :nth-last-child(X) : 선택된 다수의 엘리먼트 중 뒤에서 X번째 위치한 엘리먼트 선택 */
+ul li:nth-last-child(2) { color: silver; }
+
+/* :nth-child(2n-1) : 선택된 다수의 엘리먼트 중 홀수번째 위치한 엘리먼트 선택 */
+/* ol li:nth-child(2n-1) { color: teal; } */
+ol li:nth-child(odd) { color: teal; }  /* :nth-child(2n-1) 대신 :nth-child(odd) 사용 가능 */ 
+
+/* :nth-child(2n) : 선택된 다수의 엘리먼트 중 짝수번째 위치한 엘리먼트 선택 */
+/* ol li:nth-child(2n) { color: fuchsia; } */
+ol li:nth-child(even) { color: fuchsia; }  /* :nth-child(2n) 대신 :nth-child(even) 사용 가능 */
+
+/* :nth-child(Xn) : 선택된 다수의 엘리먼트 중 X의 배수번째 위치한 엘리먼트 선택 */
+ol li:nth-child(3n) { color: pink; }
+
+input { border: 1px solid black; }
+input[type="text"] { border: 1px solid maroon; }
+
+/* :not(선택자) : 선택자의 엘리먼트를 제외한 나머지 엘리먼트 선택 */
+input:not([type="text"]) { border: 1px solid orange; }
+
+/* :disabled : 선택된 엘리먼트가 비활성화 상태인 경우 */
+/* :checked : 선택된 엘리먼트(input - radio 또는 checkbox)가 선택된 상태인 경우 */
+/* :selected : 선택된 엘리먼트(select - option)가 선택된 상태인 경우 */
+input[type="text"]:disabled { border: 2px dotted red; }
+
+/* :focus : 선택된 엘리먼트(입력태그)에 입력촛점이 위치한 상태인 경우 */
+input:focus { border: 3px double green; }
 </style>
 </head>
 <body>
@@ -44,6 +81,49 @@ a:hover {
 		<a href="https://www.google.com">구글</a>&nbsp;&nbsp;&nbsp;
 	</div>
 	<hr>
-	
+	<ul>
+		<li>홍길동</li>	
+		<li>임꺽정</li>	
+		<li>전우치</li>	
+		<li>일지매</li>	
+		<li>장길산</li>	
+	</ul>
+	<hr>
+	<ol>
+		<li>홍길동</li>	
+		<li>임꺽정</li>	
+		<li>전우치</li>	
+		<li>일지매</li>	
+		<li>장길산</li>	
+	</ol>
+	<hr>
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id" value="abc123"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name" value="홍길동" disabled="disabled"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="email" name="email"></td>
+		</tr>
+	</table>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
