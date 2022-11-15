@@ -13,6 +13,10 @@
 <head>
 <meta charset="UTF-8">
 <title>JavaScript</title>
+<!-- script 태그의 src 속성을 사용하여 JavaScript Source 파일을 불러와 웹문서에 포함 -->
+<!-- => src 속성 : JavaScript Source 파일의 URL 주소를 속성값으로 설정 -->
+<script type="text/javascript" src="01_hello.js"></script>
+
 <!-- script 태그 : 스크립트 언어를 사용하여 프로그램을 작성하는 영역 -->
 <!-- => script 태그가 여러개 선언되어 있는 경우 순차적으로 실행 -->
 <!-- type 속성 : 스크립트 언어에 대한 문서형식(MimeType)을 속성값으로 설정 -->
@@ -44,6 +48,13 @@ alert("head 태그에 작성된 자바스트립트 명령");
 	<hr>
 	<p>자바스크립트(JavaScript) : 페이지에서 발생한 이벤트에 대해 페이지를 동적으로 조작하기
 	위한 기능을 제공하는 스크립트 프로그래밍 언어 - 클라이언트에서 해석되어 실행</p>
+	<hr>
+	<!-- 태그의 onXXX 속성(이벤트 속성)에 대한 속성값으로 이벤트 처리 명령(JavaScript) 작성 -->
+	<!-- 형식)onXXX="javascript:자바스트립트명령; 자바스트립트명령;..." -->
+	<!-- => javascript 접두사(NameSpace) 생략 가능 -->
+	<!-- => 네임스페이스(NameSpace) : 객체를 구분하기 위해 범위(영역)을 표현하기 위한 식별자 -->	
+	<!-- <button type="button" onclick="javascript:alert('이벤트 처리 명령');">메세지 버튼</button> -->
+	<button type="button" onclick="alert('이벤트 처리 명령');">메세지 버튼</button>
 	
 	<!-- 이벤트에 의해 페이지를 조작할 경우 body 태그의 마지막 자식태그로 script 태그를 
 	선언하여 명령을 작성하는 권장 -->
