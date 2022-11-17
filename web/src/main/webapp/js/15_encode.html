@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - 부호화(복호화) 관련 함수</h1>
+	<hr>
+	<!-- URL 주소는 영문자,숫자,일부 특수문자로만 표현 가능 -->
+	<!-- => URI(자원의 식별자) = URL(자원의 위치) + QueryString(전달값) -->
+	<!-- 웹(Web)은 URI 주소의 질의문자열(QueryString)로 요청 웹프로그램에 값 전달 가능 -->
+	<!-- 문제점)질의문자열에는 URI 주소로 표현 불가능한 문자 포함 가능 - 값이 비정상으로 전달 -->
+	<!-- 해결법)질의문자열에 URI 주소로 표현 불가능한 문자가 포함되어 있는 경우 표현 가능한
+	문자(유니코드 - UniCode)로 변환(부호화 처리)하여 전달 -->
+	<!-- => 부호화 처리된 문자를 원래 문자로 변환하여 사용 - 복호화 처리 -->
+	<p>encodeURI(string) 또는 encodeURIComponent(string) : 일반 문자값을 전달받아 부호화 처리하여 반환하는 함수</p>
+	<p>decodeURI(string) 또는 decodeURIComponent(string) : 부호화 처리된 문자값을 전달받아 복호화 처리하여 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	var name="홍길동";
+	//alert("name = "+name);
+	
+	var encodeName=encodeURIComponent(name);
+	//alert("encodeName = "+encodeName);
+	
+	var decodeName=decodeURIComponent(encodeName);
+	alert("decodeName = "+decodeName);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
