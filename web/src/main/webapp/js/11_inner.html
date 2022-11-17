@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내부함수</h1>
+	<hr>
+	<p>내부함수(Inner Function) : 함수 내부에 선언된 함수 - 선언된 함수 내부에서만 호출 가능</p>
+	
+	<script type="text/javascript">
+	/*
+	function display() {
+		alert("display 함수의 명령 실행-1");
+	}
+	
+	display();
+	
+	//동일한 이름의 함수 선언 가능 - 기존 함수 덮어씌우기(OverWrite)
+	function display() {
+		alert("display 함수의 명령 실행-2");
+	}
+	*/
+	
+	function outer() {
+		/*
+		//내부함수 선언
+		function display() {
+			alert("display 함수의 명령 실행-1");
+		}
+
+		display();//내부함수 호출
+		*/
+		
+		//내부함수를 익명함수로 선언하여 호출
+		(function() {
+			alert("display 함수의 명령 실행-1");
+		})();
+	}
+	
+	//outer();//외부함수 호출 - 내부함수가 생성되어 호출 
+	display();
+	
+	function display() {
+		alert("display 함수의 명령 실행-2");
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
