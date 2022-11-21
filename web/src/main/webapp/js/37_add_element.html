@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체 생성 및 추가</h1>
+	<hr>
+	<div id="imageDiv"></div>
+	
+	<script type="text/javascript">
+	//document.createElement(nodeName) : 전달값의 태그명을 가진 Element 객체를 생성하여 반환하는 메소드 - 태그 생성 
+	var h2E=document.createElement("h2");//<h2></h2>
+	//alert(h2E);//[object HTMLHeadingElement]
+	
+	//document.createTextNode(content) : 전달값을 태그내용으로 가진 Text 객체를 생성하여 반환하는 메소드 - 태그내용 생성
+	var h2T=document.createTextNode("h2 태그의 내용");
+	//alert(h2T);//[object Text]
+	
+	//Node.appendChild(newNode) : Node(Element) 객체의 마지막 자식 Node 객체로 추가하는 메소드 
+	h2E.appendChild(h2T);//<h2>h2 태그의 내용</h2>
+	
+	//document.body : body 태그를 Element 객체로 표현하여 사용 가능 - 웹문서에 하나의 body 태그만 존재
+	//alert(document.body);//[object HTMLBodyElement]
+	document.body.appendChild(h2E);//DOM Tree에 Node 객체 배치 >> 출력
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
