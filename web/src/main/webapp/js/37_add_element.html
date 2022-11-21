@@ -27,17 +27,29 @@
 	
 	var imgE=document.createElement("img");//<img>
 	
-	imgE.src="";
+	/*
+	//Element.attributeName : Element 객체의 프로퍼티로 태그의 속성을 표현하여 사용 가능 
+	imgE.src="images/Koala.jpg";//<img src="images/Koala.jpg">
+	//alert(imgE.src);//http://localhost:8000/web/js/images/Koala.jpg - 절대경로
 	
+	imgE.width="300";//<img src="images/Koala.jpg" width="300">
+	*/
+	
+	//Element.setAttribute(name, value) : Element 객체의 태그 속성을 변경하는 메소드
+	imgE.setAttribute("src", "images/Koala.jpg");//<img src="images/Koala.jpg">
+	//Element.getAttribute(name) : Element 객체의 태그 속성값을 반환하는 메소드
+	//alert(imgE.getAttribute("src"));//images/Koala.jpg - 상대경로
+	
+	imgE.setAttribute("width", "300");//<img src="images/Koala.jpg" width="300">
+		
+	//Element 객체를 반환받아 마지막 자식 Element 객체로 태그 배치 - 출력
+	var imageDiv=document.getElementById("imageDiv");
+	imageDiv.appendChild(imgE);
+	
+	var hrE=document.createElement("hr");//<hr>
+	//alert(hrE);//[object HTMLHRElement]
+	//Node.insertBefore(newElement, before) : 기존 Node(Elemet) 객체전에 새로운 Node(Element) 객체를 삽입하는 메소드
+	document.body.insertBefore(hrE, h2E);
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
