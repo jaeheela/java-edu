@@ -29,10 +29,11 @@
 	//alert("text = "+text);//text = {"num":1000,"name":"홍길동"}
 	
 	//JSON.parse(json) : 매개변수로 JSON 형식의 문자값을 전달받아 자바스크립트 객체로 변환하여 
-	//반환하는 메소드 - eval 함수 사용 가능
+	//반환하는 메소드 - eval 함수 사용 가능 
 	// => 웹프로그램을 요청하여 JSON 형식의 문자값으로 응답받은 경우 응답결과를 자바스크립트
 	//객체로 변환하여 사용
 	//var stu=JSON.parse(text);
+	
 	//JSON 형식의 문자값을 자바스트립트 명령으로 변환하여 Object 객체 생성
 	var stu=eval("("+text+")"); 
 	
@@ -43,16 +44,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
