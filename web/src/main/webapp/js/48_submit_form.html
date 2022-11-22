@@ -22,5 +22,45 @@
 		</tr>
 	</table>
 	</form> 
+	
+	<script type="text/javascript">
+	loginForm.id.focus();
+	
+	//form 태그에서 제출 이벤트(Submit Event)가 발생될 경우 호출되는 이벤트 처리 함수 등록
+	loginForm.onsubmit=function() {
+		if(loginForm.id.value=="") {
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			/*
+			event.preventDefault();//태그의 기본 이벤트(Submit Event) 중지 - form 태그 미실행 
+			return;
+			*/
+			
+			//이벤트 처리 함수에서 [false] 반환하면 기본 이벤트 제거 및 이벤트 전달 중지되며
+			//이벤트 처리 함수 종료
+			return false;//event.preventDefault() 메소드 호출과 event.stopPropagation() 메소드 호출 명령 실행
+		}
+		
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(!idReg.test(loginForm.id.value)) {//사용자 입력값이 패턴에 맞지 않는 경우
+			alert("아이디를 형식에 맞게 입력해 주세요.");
+			loginForm.id.focus();
+			return false;
+		}
+		
+		if(loginForm.passwd.value=="") {
+			alert("비밀번호를 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}	
+		
+		var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{8,30}$/g;
+		if(!passwdReg.test(loginForm.passwd.value)) {
+			alert("비밀번호를 형식에 맞게 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>
