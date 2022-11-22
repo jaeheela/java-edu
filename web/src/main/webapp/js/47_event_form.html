@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Form 태그 관련 이벤트 - 입력페이지</h1>
+	<hr>
+	<p>form 태그 : 사용자로 값을 입력받아 제출 이벤트(Submit Event)가 발생되면 웹프로그램을
+	요청하여 입력값을 전달하는 태그</p>
+	<p>제출 이벤트(Submit Event)가 발생되어 form 태그가 실행되기 전에 사용자 입력값에 대한 
+	검증 기능을 자바스크립트로 구현하는 것을 권장</p>
+	<hr>
+	<!-- form 태그의 action 속성값으로 요청 웹프로그램의 URL 주소 설정 -->
+	<!-- => form 태그의 자식 태그로 입력태그와 제출 이벤트가 발생되는 태그가 반드시 존재 -->
+	<form action="46_event_action.html" method="post" name="loginForm">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<!-- button 태그의 type 속성값을 [submit]으로 설정한 경우 버튼을 클릭하면 제출 이벤트 
+			(Submit Event)가 발생되어 form 태그 실행 - 웹프로그램 요청하여 입력값 전달 -->
+			<td colspan="2"><button type="submit">로그인</button></td>
+		</tr>
+	</table>
+	</form> 
+</body>
+</html>
+
+
+
+
+
