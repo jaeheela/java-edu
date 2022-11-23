@@ -16,22 +16,15 @@
 	//alert("결과 = "+$("#imgDiv").attr("data-value"));//결과 = KoalaImage
 	//alert("결과 = "+$("#img").attr("src"));//결과 = images/Koala.jpg
 
+	/*
 	//$(selector).attr(name,value) : 검색된 태그의 태그 속성값을 변경하는 메소드
+	$("#img").attr("src","images/Penguins.jpg");
+	$("#img").attr("width","300");
+	*/
 	
+	//검색된 태그에서 다수의 태그 속성값을 변경할 경우 attr 메소드의 매개변수에 JSON 형식의
+	//Object 객체를 전달해 객체의 요소값으로 태그 속성의 속성값 변경 가능
+	$("#img").attr({"src":"images/Penguins.jpg","width":"300"});
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
