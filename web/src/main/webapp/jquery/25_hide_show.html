@@ -15,5 +15,78 @@
 	<div id="displayDiv">
 		<img alt="코알라" src="images/Koala.jpg" width="400">
 	</div>
+	
+	<script type="text/javascript">
+	/*
+	$("#btn1").click(function() {
+		if($("#displayDiv").css("display")=="none") {//태그가 배치되지 않은 경우
+			$("#displayDiv").css("display","block");//태그를 블럭레벨로 배치되도록 변경
+		} else {//태그가 배치된 경우
+			$("#displayDiv").css("display","none");//태그를 배치되지 않도록 변경
+		}	
+	});
+	*/
+	
+	$("#btn1").click(function() {
+		/*
+		if($("#displayDiv").css("display")=="none") {
+			//$(selector).show([duration]) : 선택자로 검색된 태그를 배치되도록 설정하는 메소드
+			// => 매개변수에 지속시간(ms)을 전달하여 설정된 시간동안 변화되는 효과 제공
+			//$("#displayDiv").show();
+			$("#displayDiv").show(1000);
+		} else {
+			//$(selector).hide([duration]) : 선택자로 검색된 태그를 배치되지 않도록 설정하는 메소드
+			//$("#displayDiv").hide();
+			$("#displayDiv").hide(1000);
+		}
+		*/
+		
+		//$(selector).toggle([duration]) : 선택자로 검색된 태그가 배치되지 않은 경우 배치되도록
+		//설정하고 배치되어 있는 경우 배치되지 않도록 설정하는 메소드
+		$("#displayDiv").toggle(1000);
+	});
+	
+	$("#btn2").click(function() {
+		/*
+		if($("#displayDiv").css("display")=="none") {
+			//$(selector).slideDown([duration]) : 선택자로 검색된 태그를 배치되도록 설정하는 메소드
+			$("#displayDiv").slideDown(1000);
+		} else {
+			//$(selector).slideUp([duration]) : 선택자로 검색된 태그를 배치되지 않도록 설정하는 메소드
+			$("#displayDiv").slideUp(1000);
+		}
+		*/
+		
+		//$(selector).slideToggle([duration]) : 선택자로 검색된 태그가 배치되지 않은 경우 배치되도록
+		//설정하고 배치되어 있는 경우 배치되지 않도록 설정하는 메소드
+		$("#displayDiv").slideToggle(1000);
+	});
+	
+	$("#btn3").click(function() {
+		/*
+		if($("#displayDiv").css("display")=="none") {
+			//$(selector).fadeIn([duration]) : 선택자로 검색된 태그를 배치되도록 설정하는 메소드
+			$("#displayDiv").fadeIn(1000);
+		} else {
+			//$(selector).fadeOut([duration]) : 선택자로 검색된 태그를 배치되지 않도록 설정하는 메소드
+			$("#displayDiv").fadeOut(1000);
+		}
+		*/
+		
+		//$(selector).fadeToggle([duration]) : 선택자로 검색된 태그가 배치되지 않은 경우 배치되도록
+		//설정하고 배치되어 있는 경우 배치되지 않도록 설정하는 메소드
+		$("#displayDiv").fadeToggle(1000);
+	});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
