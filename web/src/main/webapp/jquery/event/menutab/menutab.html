@@ -11,6 +11,7 @@
 #menuTab li {
 	width: 96px;
 	height: 44px;
+	/* background-position-y : 박스모델에 출력될 배경 이미지의 y 좌표값을 속성값으로 설정 */
 	background-position-y:0;
 	overflow: hidden;
 	display: inline-table; 
@@ -38,5 +39,18 @@
 		<li id="menuItem5">&nbsp;</li>	
 		<li id="menuItem6">&nbsp;</li>	
 	</ul>
+	
+	<script type="text/javascript">
+	//검색된 태그에 서로 다른 배경 이미지 설정
+	$("#menuTab li").each(function(i) {
+		$(this).css("background-image","url('menutab"+i+".png')");
+	});
+	
+	//기존 태그에 적용된 CSS 스타일을 제거하고 이벤트가 발생된 태그에만 CSS 스타일 적용
+	$("#menuTab li").click(function() {
+		$("#menuTab li").removeClass("select");
+		$(this).addClass("select");
+	});
+	</script>
 </body>
 </html>
