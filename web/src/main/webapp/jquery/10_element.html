@@ -13,9 +13,9 @@
 	<div id="imageList2"></div>
 	<hr>
 	<div id="imageList3">
-		<img alt="숫자이미지" src="images/1.png" width="200">
-		<img alt="숫자이미지" src="images/2.png" width="200">
-		<img alt="숫자이미지" src="images/3.png" width="200">
+		<img alt="숫자이미지" src="images/1.png" width="200" id="img1">
+		<img alt="숫자이미지" src="images/2.png" width="200" id="img2">
+		<img alt="숫자이미지" src="images/3.png" width="200" id="img3">
 	</div>
 	
 	<script type="text/javascript">
@@ -68,7 +68,8 @@
 	//$("#imageList3").remove();//선택된 태그의 후손태그도 삭제
 	//$("#imageList3").children(":eq(1)").remove();
 	//$("#imageList3").children().eq(1).remove();
-	$("#imageList3").children().remove(":eq(1)");
+	//$("#imageList3").children().remove(":eq(1)");
+	$("#img2").remove();
 	</script>
 </body>
 </html>
