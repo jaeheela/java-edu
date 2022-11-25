@@ -58,5 +58,33 @@
 			</button>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	$("#btn").focus();
+	
+	//물고기 이미지가 출력된 태그의 [left] 스타일 속성값을 반환받아 변수에 저장
+	// => 물고기 이미지의 출력 좌표값을 저장하기 위한 변수
+	// => parseInt 함수는 좌표값에서 크기단위(px)를 제거하고 숫자값만 저장하기 위해 사용
+	var x=parseInt($("#fish").css("left"));
+	//alert(x);
+	
+	var move=50;//물고기 이미지의 출력 좌표값(left)에 대한 증감값을 저장하기 위한 변수
+	
+	$("#btn").click(function() {
+		//물고기 이미지의 출력 좌표값 변경
+		x+=move;
+		
+		//물고기 이미지의 출력 위치 변경 - 이동
+		$("#fish").css("left",x);
+		
+		if(x>=450) {
+			move=-50;
+			$("#fishImg").attr("src","fish2.png");
+		} else if(x<=50) {
+			move=50;
+			$("#fishImg").attr("src","fish1.png");
+		}
+	});
+	</script>
 </body>
 </html>
