@@ -33,8 +33,8 @@ public class FileUploadServlet extends HttpServlet {
 		
 		//비정상적인 요청에 대한 처리
 		if(request.getMethod().equals("GET")) {
-			//response.sendRedirect("file_upload.html");
-			//return;
+			response.sendRedirect("file_upload.html");
+			return;
 		}
 		
 		//전달파일을 저장하기 위한 서버 디렉토리의 파일 시스템 경로를 반환받아 저장
