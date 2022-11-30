@@ -27,7 +27,7 @@ public class LifeCycleServlet extends HttpServlet {
 	//생성자(Constructor) : 클래스 자료형으로 객체를 생성하기 위한 특별한 메소드
 	// => 초기화 작업 관련 명령 작성 - 객체 생성시 필드에 필요한 초기값 저장
 	// => 서블릿을 클라이언트가 요청한 경우 WAS 프로그램이 서블릿 클래스로 서블릿 객체를 
-	//생성하기 위한 한번만 호출
+	//생성하기 위해 한번만 호출
 	public LifeCycleServlet() {
 		System.out.println("### LifeCycleServlet 클래스의 생성자 호출 - 서블릿 객체 생성 ###");
 		

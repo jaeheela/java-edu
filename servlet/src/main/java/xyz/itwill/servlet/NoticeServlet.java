@@ -42,7 +42,7 @@ public class NoticeServlet extends HttpServlet {
 		//공지사항 파일의 시스템 경로를 반환받아 저장
 		String noticeFilePath=request.getServletContext().getRealPath("/WEB-INF/notice/"+noticeFileName);
 		//System.out.println("noticeFilePath = "+noticeFilePath);
-		
+		 
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
