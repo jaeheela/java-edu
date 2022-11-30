@@ -2,7 +2,6 @@ package xyz.itwill.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//입력페이지(join.html)에서 전달된 입력값(회원정보)를 반환받아 클라이언트에게 전달하는 서블릿
+//입력페이지(form.html)에서 전달된 입력값(회원정보)를 반환받아 클라이언트에게 전달하는 서블릿
 @WebServlet("/join.itwill")
 public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +18,7 @@ public class JoinServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		
-		//현재 실행되는 서블릿은 입력페이지(join.html)의 form 태그를 사용하여 [POST] 방식으로 요청
+		//현재 실행되는 서블릿은 입력페이지(form.html)의 form 태그를 사용하여 [POST] 방식으로 요청
 		// => 서블릿을 [GET] 빙식으로 요청한 경우 비정상적인 요청
 		//클라이언트가 웹프로그램을 비정상적으로 요청한 경우 클라이언트에게 에러코드를 전달하거나
 		//에러페이지(입력페이지)로 이동되도록 처리
@@ -53,6 +52,15 @@ public class JoinServlet extends HttpServlet {
 			return;
 		}
 		
+		//서블릿(웹프로그램)을 [POST] 방식으로 요청한 경우 사용자 입력값이 리퀘스트 메세지의
+		//몸체부(Body)에 저장되어 전달
+		// => 리퀘스트 메세지의 몸체부에 저장되어 전달된 값의 문자형태(캐릭터셋)는 기본적으로 
+		//서유럽어(ISO-8859-1)로 설정 - 입력값에 한글이 있는 경우 비정상적인 전달값으로 처리 
+		//리퀘스트 메세지의 몸체부에 저장되어 전달된 값을 원하는 문자형태(캐릭터셋)로 변경
+		//형식)HttpServletRequest.setCharacterEncoding(String encoding) : HttpServletRequest 
+		//객체의 캐릭터셋을 변경하는 메소드
+		request.setCharacterEncoding("utf-8");
+		
 		//웹프로그램 요청시 전달된 값을 반환받아 저장
 		//형식)HttpServletRequest.getParameter(String name) : 전달값을 반환하는 메소드
 		// => 전달값은 무조건 문자열(String 객체)로 반환
@@ -60,6 +68,7 @@ public class JoinServlet extends HttpServlet {
 		// => 이름(식별자)로 전달된 값이 없는 경우 null 반환
 		String id=request.getParameter("id");
 
+		/*
 		//입력값에 대한 검증 - 생략 가능 : 보안성을 견고하게 구현하기 위해 작성하는 것을 권장
 		if(id==null || id.equals("")) {//입력값이 없는 경우 - 비정상적인 요청
 			response.sendRedirect("error.html");
@@ -70,6 +79,19 @@ public class JoinServlet extends HttpServlet {
 			response.sendRedirect("error.html");
 			return;
 		}
+		*/
+		
+		String pass=request.getParameter("pass");
+		String name=request.getParameter("name");
+		String addr=request.getParameter("addr");
+		String gender=request.getParameter("gender");
+		String job=request.getParameter("job");
+		//같은 이름으로 전달되는 값이 있는 경우 첫번째 전달값만 반환받아 저장
+		//String hobby=request.getParameter("hobby");
+		//형식)HttpServletRequest.getParameterValues(String name) : 같은 이름으로 전달된
+		//모든 값을 얻어와 문자열 배열(String[])로 반환하는 메소드
+		String[] hobby=request.getParameterValues("hobby");
+		String profile=request.getParameter("profile");
 		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -81,15 +103,26 @@ public class JoinServlet extends HttpServlet {
 		out.println("<h1>회원정보확인</h1>");
 		out.println("<hr>");
 		out.println("<p>아이디 = "+id+"</p>");
+		out.println("<p>비밀번호 = "+pass+"</p>");
+		out.println("<p>이름 = "+name+"</p>");
+		out.println("<p>주소 = "+addr+"</p>");
+		out.println("<p>성별 = "+gender+"</p>");
+		out.println("<p>직업 = "+job+"</p>");
+		//out.println("<p>취미 = "+hobby+"</p>");
+		if(hobby==null) {//전달값이 없는 경우 - 취미를 선택하지 않은 경우
+			out.println("<p>취미 = 미선택</p>");
+		} else {
+			out.println("<p>취미 = ");
+			for(int i=0;i<hobby.length;i++) {
+				out.println(hobby[i]);
+				if(i<hobby.length-1) {//배열의 마지막 요소가 아닌 경우
+					out.println(",");
+				}
+			}
+		}
+		//엔터(Enter)는 브라우저에서 동작되지 않으므로 br 태그로 변환하여 출력
+		out.println("<p>자기소개<br>"+profile.replace("\n", "<br>")+"</p>");
 		out.println("</body>");
 		out.println("</html>");
 	}
-
 }
-
-
-
-
-
-
-
