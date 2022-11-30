@@ -48,6 +48,7 @@ public class HelloServlet extends HttpServlet {
 		//있는 출력스트림(PrintWriter 객체)를 반환하는 메소드
 		// => PlanText, HTML, XML, JSON 파일등과 같은 문서파일을 생성하여 클라이언트에게 응답하기 위한 출력스트림
 		PrintWriter out=response.getWriter();
+		
 		//5.요청에 대한 처리와 처리에 대한 결과를 출력스트림을 사용하여 응답파일 생성
 		out.println("<!DOCTYPE html>");//출력스트림으로 문자열(HTML 태그)을 전달하여 문서파일 작성
 		out.println("<html>");
