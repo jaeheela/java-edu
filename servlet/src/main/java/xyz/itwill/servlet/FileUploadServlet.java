@@ -51,7 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 		// => maxPostSize(선택) : 처리 가능한 멀티파트 폼데이타의 크기 전달 - 단위 : Byte
 		// => encoding(선택) : 멀티파트 폼데이타로 전달되는 문자값에 대한 캐릭터셋 전달
 		// => policy(선택) : 파일이름을 변경하기 위한 기능을 제공하는 FileRenamePolicy 객체 전달
-		MultipartRequest mr=new MultipartRequest(request, saveDirectory, 20*1024*1024, "uft-8");
+		MultipartRequest mr=new MultipartRequest(request, saveDirectory, 20*1024*1024, "utf-8");
 		
 		//전달값을 반환받아 저장
 		//MultipartRequest.getParameter(String name) : 멀티파트 폼데이타로 전달된 문자값을 
