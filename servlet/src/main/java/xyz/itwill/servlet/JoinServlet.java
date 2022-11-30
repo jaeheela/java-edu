@@ -2,6 +2,7 @@ package xyz.itwill.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,11 +36,22 @@ public class JoinServlet extends HttpServlet {
 			return;//요청 처리 메소드 종료
 			*/
 			
-			response.sendRedirect("/servlet/error.html");
+			/*
+			//HttpServletResponse.sendRedirect(String url) : 클라이언트에게 URL 주소를 전달하는 메소드
+			// => 클라이언트에게 처리결과를 파일로 응답하지 않고 301 상태코드와 URL 주소를 전달하여 응답
+			//301 상태코드와 URL 주소를 전달받은 클라이언트는 브라우저의 URL 주소를 변경하고  
+			//변경된 URL 주소의 웹프로그램을 요청하여 처리결과를 응답받아 출력 - 리다이렉트 이동
+			//response.sendRedirect("/servlet/error.html");//에러페이지 이동
+			response.sendRedirect("form.html");//입력페이지 이동
+			return;
+			*/
+			
+			out.println("<script type='text/javascript'>");
+			out.println("alert('비정상적인 접근입니다.');");
+			out.println("location.href='form.html';");
+			out.println("</script>");
 			return;
 		}
-		
-		
 		
 		//웹프로그램 요청시 전달된 값을 반환받아 저장
 		//형식)HttpServletRequest.getParameter(String name) : 전달값을 반환하는 메소드
@@ -47,6 +59,17 @@ public class JoinServlet extends HttpServlet {
 		// => 전달값을 매개변수에 전달된 이름(식별자)로 구분하여 값 반환
 		// => 이름(식별자)로 전달된 값이 없는 경우 null 반환
 		String id=request.getParameter("id");
+
+		//입력값에 대한 검증 - 생략 가능 : 보안성을 견고하게 구현하기 위해 작성하는 것을 권장
+		if(id==null || id.equals("")) {//입력값이 없는 경우 - 비정상적인 요청
+			response.sendRedirect("error.html");
+			return;
+		}
+		
+		if(!Pattern.matches("^[a-zA-Z]\\w{5,19}$", id)) {//입력형식이 맞지 않은 경우 - 비정상적인 요청
+			response.sendRedirect("error.html");
+			return;
+		}
 		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
