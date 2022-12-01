@@ -71,15 +71,4 @@ public class DataSourceServlet extends HttpServlet {
 		out.println("</body>");
 		out.println("</html>");
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
