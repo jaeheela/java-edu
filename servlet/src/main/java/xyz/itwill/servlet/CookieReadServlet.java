@@ -59,12 +59,18 @@ public class CookieReadServlet extends HttpServlet {
 			}
 			
 			if(!count.equals("")) {//쿠키값이 있는 경우
-				out.println("<p>서블릿 요청횟수 = "+count+"</p>");
+				int cnt=Integer.parseInt(count)+1;
+				out.println("<p>서블릿 요청횟수 = "+cnt+"</p>");
+				
+				//클라이언트에 저장된 기존 쿠키의 이름과 같은 이름의 쿠키를 전달하면 쿠키값 변경
+				Cookie cookie=new Cookie("count", cnt+"");
+				cookie.setMaxAge(24*60*60);
+				response.addCookie(cookie);
 			}
 		}
 		out.println("<hr>");
-		out.println("<a href='create.itwill'>쿠키 전달</a>");
-		out.println("<a href='remove.itwill'>쿠키 제거</a>");
+		out.println("<p><a href='create.itwill'>쿠키 전달</a></p>");
+		out.println("<p><a href='remove.itwill'>쿠키 제거</a></p>");
 		out.println("</body>");
 		out.println("</html>");
 	}

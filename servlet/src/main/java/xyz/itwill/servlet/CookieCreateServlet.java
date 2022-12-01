@@ -54,7 +54,7 @@ public class CookieCreateServlet extends HttpServlet {
 		out.println("<hr>");
 		out.println("<p>네 안에 쿠키 있다.</p>");
 		out.println("<hr>");
-		out.println("<a href='read.itwill'>쿠키 읽기</a>");
+		out.println("<p><a href='read.itwill'>쿠키 읽기</a></p>");
 		out.println("</body>");
 		out.println("</html>");
 	}
