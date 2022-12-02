@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //PHONEBOOK 테이블에 저장된 모든 회원정보를 검색하여 클라이언트에게 전달하는 서블릿 - JDBC
-// => JDBC 프로그램을 작성하기 위해 JDBC 관련 라이브러리 파일을 다운로드 받아 프로젝트에 빌드 처리
+// => JDBC 프로그램을 작성하기 위해 JDBC 관련 라이브러리 파일(ojdbc 라이브러리)을 다운로드 
+//받아 프로젝트에 빌드 처리
 @WebServlet("/old.itwill")
 public class PhonebookOldServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
