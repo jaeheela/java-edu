@@ -3,11 +3,11 @@ package xyz.itwill.dto;
 /*
 이름      널?       유형             
 ------- -------- -------------- 
-NO      NOT NULL NUMBER(10)      - 글번호
-NAME             VARCHAR2(40)    - 작성자
-REGDATE          DATE            - 작성일자
-TITLE            VARCHAR2(100)   - 제목
-CONTENT          VARCHAR2(4000)  - 내용
+NO      NOT NULL NUMBER(10)      - 글번호 : 시퀸스의 자동 증가값
+NAME             VARCHAR2(40)    - 작성자 : 사용자 입력값
+REGDATE          DATE            - 작성일자 : 시스템의 현재 날짜(시간)
+TITLE            VARCHAR2(100)   - 제목 : 사용자 입력값
+CONTENT          VARCHAR2(4000)  - 내용 : 사용자 입력값
 */
 
 public class GuestDTO {
