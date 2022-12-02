@@ -56,11 +56,3 @@ public abstract class JdbcDAO {
 		}
 	}
 }
-
-
-
-
-
-
-
-
