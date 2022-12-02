@@ -39,7 +39,7 @@ public class DataSourceServlet extends HttpServlet {
 		dataSource.setPassword("tiger");
 		dataSource.setInitialSize(10);//최초 생성될 Connection 객체의 갯수 변경
 		dataSource.setMaxIdle(10);//대기상태의 Connection 객체의 최대 갯수 변경
-		dataSource.setMaxTotal(10);//생성 가능한 최대 Connection 객체의 최대 갯수 변경
+		dataSource.setMaxTotal(15);//생성 가능한 최대 Connection 객체의 최대 갯수 변경
 		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
