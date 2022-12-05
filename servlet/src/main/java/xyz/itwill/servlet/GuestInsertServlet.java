@@ -28,9 +28,14 @@ public class GuestInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//전달값(게시글)을 반환받아 저장
-		String name=request.getParameter("name");
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
+		// => String.trim() 메소드를 호출하여 전달값의 앞 또는 뒤에 존재하는 모든 공백 제거
+		// => String.replace() 메소드를 호출하여 XSS 공격에 대한 방어를 위해 태그 관련 기호를 
+		//회피문자(Escape Character)로 변환
+		//XSS(Cross Site Scripting) : 입력태그에 악의적인 스트립트를 입력하여 출력페이지를
+		//파괴 시키거나 개인정보를 특정 사이트로 유출하는 웹사이트 공격 방법
+		String name=request.getParameter("name").trim().replace("<", "&lt;").replace(">","&gt;");
+		String title=request.getParameter("title").trim().replace("<", "&lt;").replace(">","&gt;");
+		String content=request.getParameter("content").trim().replace("<", "&lt;").replace(">","&gt;");
 		
 		//DTO 객체를 생성하여 전달값으로 필드값 변경
 		GuestDTO guest=new GuestDTO();
