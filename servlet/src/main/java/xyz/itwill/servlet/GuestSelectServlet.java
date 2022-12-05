@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import xyz.itwill.dao.GuestDAO;
 import xyz.itwill.dto.GuestDTO;
 
-//GUEST 테이블에 저장된 모든 게시글을 검색하여 클라이언트에게 전달하는 서블릿
+//GUEST 테이블에 저장된 모든 게시글을 검색하여 클라이언트에게 전달하는 서블릿 - 출력페이지
+// => [방명록 쓰기]를 클릭한 경우 게시글 입력페이지(insert.html)로 이동
 @WebServlet("/select.itwill")
 public class GuestSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -112,15 +113,3 @@ public class GuestSelectServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
