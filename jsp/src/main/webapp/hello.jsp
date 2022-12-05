@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSP</title>
+<title>JSP</title> 
 <style type="text/css">
 #displayDiv {
 	width: 600px;
