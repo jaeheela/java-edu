@@ -15,6 +15,7 @@ import xyz.itwill.dto.GuestDTO;
 
 //GUEST 테이블에 저장된 모든 게시글을 검색하여 클라이언트에게 전달하는 서블릿 - 출력페이지
 // => [방명록 쓰기]를 클릭한 경우 게시글 입력페이지(insert.html)로 이동
+// => 게시글의 [삭제]를 클릭한 경우 게시글 삭제페이지(delete.itwill)로 이동 - 글번호 전달
 @WebServlet("/select.itwill")
 public class GuestSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -93,6 +94,13 @@ public class GuestSelectServlet extends HttpServlet {
 				out.println(guest.getContent().replace("\n", "<br>"));
 				out.println("</td>");
 				out.println("</tr>");
+				
+				out.println("<tr>");
+				out.println("<td height='50' width='100%' class='t1'>");
+				out.println("<button type='button' onclick='location.href=\"delete.itwill?no="+guest.getNo()+"\"'>삭제</button>");
+				out.println("</td>");
+				out.println("</tr>");
+				
 				out.println("</table>");
 				out.println("</td>");
 				out.println("</tr>");
