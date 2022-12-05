@@ -37,12 +37,3 @@ public class GuestDeleteServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
