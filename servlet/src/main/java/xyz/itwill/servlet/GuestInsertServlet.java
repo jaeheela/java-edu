@@ -11,7 +11,7 @@ import xyz.itwill.dao.GuestDAO;
 import xyz.itwill.dto.GuestDTO;
 
 //입력페이지(insert.html)에서 전달된 게시글을 반환받아 GUEST 테이블에 삽입하고 클라이언트에게
-//게시글목록 출력페이지(select.itwill)로 이동하기 위한 URL 주소 전달 - 처리페이지
+//게시글목록 출력페이지(select.itwill)로 이동하기 위한 URL 주소 전달하는 서블릿 - 처리페이지
 @WebServlet("/insert.itwill")
 public class GuestInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
