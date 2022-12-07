@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%-- 사용자에게 회원정보를 입력받기 위한 JSP 문서 - 입력페이지 --%>
 <%-- => [가입]을 클릭한 경우 form 태그를 실행하여 처리페이지(join_action.jsp)를 [post] 방식으로
-요청해 페이지 이동 - 사용자 입력값(회원정보) 전달 --%>    
+요청해 페이지 이동 - 사용자 입력값(회원정보) 전달 --%>
+<%
+	//전달값(에러메세지)을 반환받아 저장
+	String message=request.getParameter("message");
+%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -144,5 +148,18 @@ function inputCheck(form) {
 		</tr>
 		</table>
 	</form>
+	<p align="center" style="color: red;"><%=message %></p>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
