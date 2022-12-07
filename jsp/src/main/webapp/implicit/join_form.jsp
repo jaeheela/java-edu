@@ -4,8 +4,22 @@
 <%-- => [가입]을 클릭한 경우 form 태그를 실행하여 처리페이지(join_action.jsp)를 [post] 방식으로
 요청해 페이지 이동 - 사용자 입력값(회원정보) 전달 --%>
 <%
+	/*
 	//전달값(에러메세지)을 반환받아 저장
 	String message=request.getParameter("message");
+	if(message==null) {//전달값이 없는 경우
+		message="";
+	}
+	*/
+	
+	//전달값(임의값)을 반환받아 저장
+	String message=request.getParameter("message");
+	if(message==null) {//전달값이 없는 경우
+		message="";
+	} else {//전달값이 있는 경우
+		message="비정상적인 방법으로 요청 하였습니다.";
+	}
+	
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -148,18 +162,7 @@ function inputCheck(form) {
 		</tr>
 		</table>
 	</form>
+	<%-- 표현식(Expression)으로 변수값 출력시 변수에 [null]이 저장된 경우 [null] 문자열로 변환되어 출력 --%>
 	<p align="center" style="color: red;"><%=message %></p>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

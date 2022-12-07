@@ -31,6 +31,7 @@
 		return;
 		*/
 		
+		/*
 		//질의문자열(QueryString)을 이용하여 요청 JSP 문서에 값 전달 가능
 		// => 질의문자열을 이용하여 전달할 수 있는 값은 영문자,숫자,일부 특수문자만으로 구성된 값만 가능
 		//문제점)영문자,숫자,일부 특수문자를 제외한 문자는 질의문자열로 전달 불가능
@@ -39,6 +40,10 @@
 		//문자열로 부호화 처리하여 반환하는 메소드 - Javascript의 encodeURIComponent 함수와 동일
 		String message=URLEncoder.encode("비정상적인 방법으로 요청 하였습니다.","utf-8");
 		response.sendRedirect("join_form.jsp?message="+message);//입력페이지 이동 - 값 전달
+		return;
+		*/
+		
+		response.sendRedirect("join_form.jsp?message=1");//입력페이지 이동 - 값 전달
 		return;
 	}
 
