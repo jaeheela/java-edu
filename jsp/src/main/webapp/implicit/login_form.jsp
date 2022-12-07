@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 사용자로부터 인증정보(아이디와 비밀번호)를 입력받기 위한 JSP 문서 --%>    
+<%-- => [로그인]을 클릭한 경우 form 태그를 실행하여 로그인 처리페이지(login_action.jsp)를
+[post] 방식으로 요청하여 이동 - 인증정보 전달 --%>
+<%
+	//session 내장객체에 저장된 속성값(에러메세지)을 반환받아 저장
+	String message=(String)session.getAttribute("message");
+	if(message==null) {
+		message="";
+	} else {
+		//다른 JSP 문서에서 session 내장객체에 저장된 속성값(에러메세지)을 사용하지 못하도록 속성값 삭제
+		session.removeAttribute("message");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +37,7 @@
 		</tr>
 	</table>
 	</form>
-	<p id="message" style="color: red;"></p>
+	<p id="message" style="color: red;"><%=message %></p>
 	
 	<script type="text/javascript">
 	loginForm.id.focus();
@@ -47,11 +60,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
