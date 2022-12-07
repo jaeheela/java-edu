@@ -12,6 +12,7 @@
 	}
 	*/
 	
+	/*
 	//전달값(임의값)을 반환받아 저장
 	String message=request.getParameter("message");
 	if(message==null) {//전달값이 없는 경우
@@ -19,7 +20,17 @@
 	} else {//전달값이 있는 경우
 		message="비정상적인 방법으로 요청 하였습니다.";
 	}
+	*/
 	
+	//session 내장객체에 저장된 속성값(에러메세지])을 반환받아 저장
+	String message=(String)session.getAttribute("message");
+	if(message==null) {//session 내장객체에 저장된 속성값이 없는 경우
+		message="";
+	} else {//session 내장객체에 저장된 속성값이 있는 경우
+		//session 내장객체에 저장된 속성값 삭제
+		// => 다른 JSP 문서에서 session 내장객체에 저장된 속성값을 반환받아 사용하지 못하도록 삭제 처리
+		session.removeAttribute("message");
+	}
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

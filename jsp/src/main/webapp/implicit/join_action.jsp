@@ -43,7 +43,15 @@
 		return;
 		*/
 		
+		/*
 		response.sendRedirect("join_form.jsp?message=1");//입력페이지 이동 - 값 전달
+		return;
+		*/
+		
+		//session 내장객체에 에러메세지를 속성값으로 저장
+		// => 같은 클라이언트의 모든 JSP 문서에서 속성값을 반환받아 사용 가능
+		session.setAttribute("message", "비정상적인 방법으로 요청 하였습니다.");
+		response.sendRedirect("join_form.jsp");//입력페이지 이동
 		return;
 	}
 
