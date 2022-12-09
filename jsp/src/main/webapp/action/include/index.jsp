@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//요청 JSP 문서 및 스레드가 이동된 JSP 문서에 적용
+	request.setCharacterEncoding("utf-8");
+
 	//전달값을 반환받아 저장
 	String category=request.getParameter("category");
 	if(category==null) {//JSP 문서 요청시 전달된 값이 없는 경우
@@ -8,14 +11,18 @@
 	}
 	
 	String headFileName="header.jsp";
+	String masterName="";
 
-	//전달값을 비교하여 Header 영역에 포함될 JSP 문서의 파일명 저장
+	//전달값을 비교하여 Header 영역에 포함될 JSP 문서의 파일명 저장 및 관리자명 저장
 	if(category.equals("main")) {
 		headFileName="header_main.jsp";
+		masterName="홍길동(hong@itwill.xyz)";
 	} else if(category.equals("blog")) {
 		headFileName="header_blog.jsp";
+		masterName="임꺽정(lim@itwill.xyz)";
 	} else if(category.equals("cafe")) {
 		headFileName="header_cafe.jsp";
+		masterName="전우치(cheon@itwill.xyz)";
 	} else {
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		return;
@@ -63,8 +70,20 @@
 	<p>요청에 의해 응답되는 아주 중요한 내용입니다.</p>
 
 	<%-- Footer 영역 --%>
+	<%-- 
 	<hr>
 	<p>Copyright ©itwill Corp. All rights reserved.</p>
-	<p>관리자 : 홍길동(hong@itwill.xyz)</p>
+	<!-- <p>관리자 : 홍길동(hong@itwill.xyz)</p> -->
+	<p>관리자 : <%=masterName %></p>
+	--%>
+	
+	<%-- param ActionTag : 스레드가 이동된 JSP 문서로 값을 전달하는 태그 --%>
+	<%-- => 리퀘스트 메세지(request 객체)의 몸체부에 값을 저장하여 스레드가 이동된 JSP 문서로 전달 --%>
+	<%-- => include 태그 또는 forward 태그의 자식태그로만 사영 가능 --%>
+	<%-- 주의)include 태그 또는 forward 태그에 자식태그로 param 태그를 제외한 코드가 존재할
+	경우 에러 발생 - JSP 주석문은 예외 --%>
+	<jsp:include page="footer.jsp">
+		<jsp:param value="<%=masterName %>" name="masterName"/>
+	</jsp:include>
 </body>
 </html>
