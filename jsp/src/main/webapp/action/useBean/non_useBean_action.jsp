@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 입력페이지(non_useBean_form.jsp)에서 전달된 값을 반환받아 내장객체의 속성값으로 저장하고
-출력페이지(non_useBean_display.jsp)로 포워드 이동 처리하는 JSP 문소 --%>    
+출력페이지(non_useBean_display.jsp)로 포워드 이동 처리하는 JSP 문서 --%>    
 <%
 	//비정상적인 요청에 대한 처리
 	if(request.getMethod().equals("GET")) {
