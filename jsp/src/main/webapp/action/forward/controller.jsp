@@ -18,7 +18,7 @@
 	String filePath=category+".jsp";
 	//System.out.println("filePath = "+filePath);
 %>
-<%-- forward ActionTag : 요청 JSP 문서에 page 속성값으로 설정된 JSP 문서로 스레드를 이동하여
+<%-- forward ActionTag : 요청 JSP 문서에서 page 속성값으로 설정된 JSP 문서로 스레드를 이동하여
 명령을 실행하고 처리결과를 클라이언트에게 전달하여 응답하기 위한 태그 --%>
 <%-- 형식) <jsp:forward page="JSP"></jsp:include> 또는 <jsp:forward page="JSP"/> --%>
 <%-- => page 속성값으로 JSP 표현식(Expression) 사용 가능 --%>
