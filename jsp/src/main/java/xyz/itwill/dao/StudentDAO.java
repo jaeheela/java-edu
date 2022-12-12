@@ -45,16 +45,3 @@ public class StudentDAO extends JdbcDAO {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
