@@ -23,7 +23,7 @@
 		return;
 	}
 	
-	//session 내장객체에 저장된 속성값을 반환받아 저장
+	//request 내장객체에 저장된 속성값을 반환받아 저장
 	Hewon hewon=(Hewon)request.getAttribute("hewon");
 %>
 <!DOCTYPE html>
