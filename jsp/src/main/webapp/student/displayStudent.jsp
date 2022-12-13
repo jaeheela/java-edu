@@ -8,7 +8,7 @@
 <%-- => 출력된 학생정보의 [삭제]를 클릭한 경우 학생정보 삭제페이지(deleteStudent.jsp)로 이동 - 학번 전달 --%>
 <%-- => 출력된 학생정보의 [변경]를 클릭한 경우 학생정보 입력페이지(updateFormStudent.jsp)로 이동 - 학번 전달 --%>
 <%
-	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드 호출하여
+	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드를 호출하여
 	//검색결과를 반환받아 저장
 	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
 %>
@@ -23,7 +23,7 @@
 	<table align="center" cellspacing="0" cellpadding="1" width="800">
 		<tr align="right">
 			<td>
-				<input type="button" value="학생추가">
+				<input type="button" value="학생추가" onclick="location.href='insertFormStudent.jsp';">
 			</td>
 		</tr>
 	</table>

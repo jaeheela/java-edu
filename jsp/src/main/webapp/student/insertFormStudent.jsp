@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 사용자로부터 학생정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [학생추가]를 클릭한 경우 학생정보 삽입페이지(insertStudent.jsp)로 이동 - 입력값 전달 --%>
+<%-- => [학생목록]을 클릭한 경우 학생목록 출력페이지(displayStudent.jsp)로 이동 --%>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +48,7 @@
 			<td width="200" colspan="2" align="center">
 				<input type="button" value="학생추가" onclick="submitCheck();">
 				<input type="reset" value="초기화">
-				<input type="button" value="학생목록">
+				<input type="button" value="학생목록" onclick="location.href='displayStudent.jsp';">
 			</td>
 		</tr>
 	</table>
