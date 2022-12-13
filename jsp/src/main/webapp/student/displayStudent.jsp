@@ -52,7 +52,7 @@
 				<td width="150"><%=student.getPhone() %></td>				
 				<td width="250"><%=student.getAddress() %></td>				
 				<td width="100"><%=student.getBirthday().substring(0, 10) %></td>				
-				<td width="50"><input type="button" value="삭제"></td>				
+				<td width="50"><input type="button" value="삭제" onclick="location.href='deleteStudent.jsp?no=<%=student.getNo()%>';"></td>				
 				<td width="50"><input type="button" value="변경"></td>				
 			</tr>	
 			<% } %>
