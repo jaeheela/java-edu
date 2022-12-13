@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [회원가입]을 클릭한 경우 회원정보 삽입페이지(member_join_action.jsp)로 이동 - 입력값 전달 --%>    
 <style type="text/css">
 fieldset {
 	text-align: left;
@@ -47,7 +49,7 @@ legend {
 	background: aqua;
 }
 </style>
-<form id="join" action="#" method="post">
+<form id="join" action="index.jsp?workgroup=member&work=member_join_action" method="post">
 <fieldset>
 	<legend>회원가입 정보</legend>
 	<ul>
