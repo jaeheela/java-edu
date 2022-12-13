@@ -3,6 +3,8 @@
 <%-- 클라이언트의 모든 요청에 대한 응답 결과를 제공하는 템플릿 페이지를 구현한 JSP 문서 --%>    
 <%-- => Content 영역에는 클라이언트 요청에 대한 JSP 문서의 결과(HTML)를 동적으로 포함 --%>    
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String workgroup=request.getParameter("workgroup");
 	if(workgroup==null) workgroup="main";
 	
