@@ -231,9 +231,23 @@ $("#id").change(function() {
 	$("#idCheckResult").val("0");
 });
 
+/*
 $("#postSearch").click(function() {
 	//팝업창 실행하여 우편번호 검색페이지(post_search.jsp) 요청
 	window.open("<%=request.getContextPath()%>/member/post_search.jsp","postseatch"
-			,"width=550,height=600,left=600,top=250");
+			,"width=600,height=600,left=600,top=250");
+});
+*/
+</script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+$("#postSearch").click(function() {
+	new daum.Postcode({
+	    oncomplete: function(data) {
+	        $("#zipcode").val(data.zonecode);
+	        $("#address1").val(data.address);
+	    }
+	}).open();
 });
 </script>
