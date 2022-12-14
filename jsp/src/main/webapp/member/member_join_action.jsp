@@ -25,7 +25,7 @@
 	
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");
-	String passwd=request.getParameter("passwd");
+	String passwd=Utili request.getParameter("passwd");
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
 	String mobile=request.getParameter("mobile1")+"-"
