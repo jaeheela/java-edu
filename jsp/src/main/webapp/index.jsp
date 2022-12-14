@@ -21,7 +21,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body> 
 	<%-- Header 영역 : 회사로고,메뉴 등 --%>
 	<div id="header">
 		<jsp:include page="header.jsp"/>

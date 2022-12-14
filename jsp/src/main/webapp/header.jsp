@@ -3,7 +3,7 @@
 <div id="profile">
 	<a href="index.jsp?workgroup=member&work=member_login">로그인</a>&nbsp;&nbsp;
 	<a href="index.jsp?workgroup=member&work=member_join">회원가입</a>&nbsp;&nbsp;
-</div>
+</div> 
 <div id="logo"><a href="index.jsp">쇼핑몰</a></div>
 <div id="menu">
 	<a href="index.jsp?workgroup=product&work=product_list">제품소개</a>
