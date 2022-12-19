@@ -48,7 +48,7 @@
 	member.setAddress2(address2);
 
 	//회원정보를 전달받아 MEMBER 테이블에 삽입하는 DAO 클래스의 메소드 호출
-	MemberDAO.getDAO().insertStudent(member);
+	MemberDAO.getDAO().insertMember(member);
 	
 	//클라이언트에게 URL 주소 전달
 	out.println("<script type='text/javascript'>");

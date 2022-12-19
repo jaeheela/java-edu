@@ -23,7 +23,7 @@ public class MemberDAO extends JdbcDAO {
 	}
 	
 	//회원정보를 전달받아 MEMBER 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
-	public int insertStudent(MemberDTO member) {
+	public int insertMember(MemberDTO member) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		int rows=0;
