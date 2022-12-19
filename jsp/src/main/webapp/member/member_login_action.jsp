@@ -48,6 +48,10 @@
 	//인증 성공 - 세션에 권한 관련 정보(회원정보) 저장
 	session.setAttribute("loginMember", member);
 	
+	//아이디를 전달받아 MEMBER 테이블에 저장된 해당 아이디의 회원정보에서 마지막 로그인 날짜를
+	//변경하는 DAO 클래스의 메소드 호출
+	MemberDAO.getDAO().updateLastLogin(id);
+	
 	//세션에 저장된 요청 페이지의 URL 주소를 반환받아 저장
 	String url=(String)session.getAttribute("url");
 	
