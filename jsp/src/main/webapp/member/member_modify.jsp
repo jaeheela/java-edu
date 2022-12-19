@@ -75,7 +75,7 @@ legend {
 	background: aqua;
 }
 </style>
-<form id="join" action="index.jsp?workgroup=member&work=member_join_action" method="post">
+<form id="join" action="index.jsp?workgroup=member&work=member_modify_action" method="post">
 <fieldset>
 	<legend>회원정보변경</legend>
 	<ul>
