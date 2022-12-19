@@ -1,8 +1,22 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="xyz.itwill.dto.MemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	//세션에 저장된 권한 관련 정보를 반환받아 저장
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+%>    
 <div id="profile">
-	<a href="index.jsp?workgroup=member&work=member_login">로그인</a>&nbsp;&nbsp;
-	<a href="index.jsp?workgroup=member&work=member_join">회원가입</a>&nbsp;&nbsp;
+	<% if(loginMember==null) {//비로그인 사용자인 경우 %>
+		<a href="index.jsp?workgroup=member&work=member_login">로그인</a>&nbsp;&nbsp;
+		<a href="index.jsp?workgroup=member&work=member_join">회원가입</a>&nbsp;&nbsp;
+	<% } else {//로그인 사용자인 경우  %>
+		<%=loginMember.getName() %>님 환영합니다.&nbsp;&nbsp;
+		<a href="index.jsp?workgroup=member&work=member_logout_action">로그아웃</a>&nbsp;&nbsp;
+		<a href="index.jsp?workgroup=member&work=member_mypage">내정보</a>&nbsp;&nbsp;
+		<% if(loginMember.getStatus()==9) {//로그인 사용자가 관리자인 경우 %>
+			<a href="index.jsp?workgroup=admin&work=main_page">관리자</a>&nbsp;&nbsp;
+		<% } %>
+	<% } %>	
 </div> 
 <div id="logo"><a href="index.jsp">쇼핑몰</a></div>
 <div id="menu">
