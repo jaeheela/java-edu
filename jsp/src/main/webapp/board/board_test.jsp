@@ -16,7 +16,7 @@
 		board.setStatus(1);
 		BoardDAO.getDAO().insertBoard(board);
 	}
-%>    
+%>     
 <!DOCTYPE html>
 <html>
 <head>
