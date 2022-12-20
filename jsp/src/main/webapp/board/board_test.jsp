@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- BOARD 테이블에 게시글(새글)을 500개 저장하는 JSP 문서 - 테스트 프로그램 --%>
-<%
+<% 
 	BoardDTO board=new BoardDTO();
 	for(int i=1;i<=500;i++) {
 		int num=BoardDAO.getDAO().selectNextNum();
