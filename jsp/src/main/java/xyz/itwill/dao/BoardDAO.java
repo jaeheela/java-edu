@@ -92,6 +92,60 @@ public class BoardDAO extends JdbcDAO {
 		}
 		return boardList;
 	}
+	
+	//BOARD_SEQ 시퀸스의 다음값을 검색하여 반환하는 메소드
+	public int selectNextNum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int nextNum=0;
+		try {
+			con=getConnection();
+			
+			String sql="select board_seq.nextval from dual";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nextNum=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectNextNum() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return nextNum;
+	}
+	
+	//게시글을 전달받아 BOARD 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
+	public int insertBoard(BoardDTO board) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into board values(?,?,?,sysdate,0,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, board.getNum());
+			pstmt.setString(2, board.getId());
+			pstmt.setString(3, board.getSubject());
+			pstmt.setInt(4, board.getRef());
+			pstmt.setInt(5, board.getReStep());
+			pstmt.setInt(6, board.getReLevel());
+			pstmt.setString(7, board.getContent());
+			pstmt.setString(8, board.getIp());
+			pstmt.setInt(9, board.getStatus());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertBoard() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 
