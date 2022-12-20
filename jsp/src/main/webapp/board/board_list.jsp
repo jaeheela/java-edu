@@ -116,9 +116,69 @@ td {
 
 <div id="board_list">
 	<div id="board_title">게시글 목록(게시글 갯수 : <%=totalBoard %>)</div>
+
+	<% if(loginMember!=null) {//로그인 사용자가 JSP 문서를 요청한 경우 %>
+	<div style="text-align: right;">
+		<button type="button">글쓰기</button>
+	</div>	
+	<% } %>
+
+	<%-- 게시글 목록 출력 --%>
+	<table>
+		<tr>
+			<th width="100">번호</th>
+			<th width="500">제목</th>
+			<th width="100">작성자</th>
+			<th width="100">조회수</th>
+			<th width="200">작성일</th>
+		</tr>
+	
+		<% if(totalBoard==0) { %>
+		<tr>
+			<td colspan="5">검색된 게시글이 없습니다.</td>
+		</tr>	
+		<% } else { %>
+			<%-- List 객체에서 요소(BoardDTO 객체)를 하나씩 제공받아 반복 처리 --%>
+			<% for(BoardDTO board:boardList) { %>
+			<tr>
+				<%-- 글번호 : BOARD 테이블에 저장된 게시글의 글번호가 아닌 출력 글번호로 응답 --%>
+				<td><%=pritnNum %></td>
+				<% pritnNum--; %><%-- 출력 글번호에 대한 1 감소 처리  --%> 
+
+				<%-- 제목 --%>
+				<td class="subject">
+					<%-- 게시글이 답글인 경우에 대한 응답 처리 --%>
+					<% if(board.getReStep()!=0) {//게시글이 답글인 경우 %>
+						<%-- 게시글의 깊이에 의해 왼쪽 여백을 다르게 설정하여 응답되도록 처리 --%>
+						<span style="margin-left: <%=board.getReLevel()*20%>px;">└[답글]</span>
+					<% } %>
+					
+					<%-- 게시글 상태를 구분하여 제목과 링크를 다르게 설정하여 응답되도록 처리 --%>
+					<% if(board.getStatus()==1) {//일반 게시글인 경우 %>
+						<a href="">
+							<%=board.getSubject() %>
+						</a>
+					<% } else if(board.getStatus()==2) {//비밀 게시글인 경우 %>
+						<span class="secret">비밀글</span>
+						<%-- 로그인 사용자가 작성자이거나 관리자인 경우 --%>
+						<% if(loginMember!=null && (loginMember.getId().equals(board.getId()) 
+								|| loginMember.getStatus()==9)) { %>
+							<a href="">
+								<%=board.getSubject() %>
+							</a>		
+						<% } else { %>
+							작성자 또는 관리자만 확인 가능합니다.
+						<% } %>		
+					<% } else if(board.getStatus()==0) {//삭제 게시글인 경우 %>
+						<span class="remove">삭제글</span>
+						작성자 또는 관리자에 의해 삭제된 게시글입니다.	
+					<% } %>
+				</td>
+			</tr>
+			<% } %>	
+		<% } %>
+	</table>
 </div>
-
-
 
 
 
