@@ -3,6 +3,11 @@
 <%-- 사용자로부터 로그인정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [로그인]을 클릭한 경우 로그인 처리페이지(member_login_action.jsp)로 이동 - 입력값 전달 --%>
 <%
+	if(request.getParameter("login")!=null) {//전달값이 있는 경우
+		//메인페이지로 이동되도록 세션에 저장된 기존 요청 URL 주소를 제거 
+		session.removeAttribute("returnUrl");
+	}
+
 	String message=(String)session.getAttribute("message");
 	if(message==null) {
 		message="";

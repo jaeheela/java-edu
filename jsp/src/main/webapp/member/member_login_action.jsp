@@ -62,7 +62,7 @@
 		out.println("location.href='"+request.getContextPath()+"/index.jsp?workgroup=main&work=main_page';");
 		out.println("</script>");
 	} else {//요청 페이지가 있는 경우
-		session.removeAttribute("url");
+		session.removeAttribute("returnUrl");
 		out.println("<script type='text/javascript'>");
 		out.println("location.href='"+returnUrl+"';");
 		out.println("</script>");

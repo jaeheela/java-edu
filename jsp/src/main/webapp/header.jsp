@@ -7,7 +7,7 @@
 %>    
 <div id="profile">
 	<% if(loginMember==null) {//비로그인 사용자인 경우 %>
-		<a href="index.jsp?workgroup=member&work=member_login">로그인</a>&nbsp;&nbsp;
+		<a href="index.jsp?workgroup=member&work=member_login&login=1">로그인</a>&nbsp;&nbsp;
 		<a href="index.jsp?workgroup=member&work=member_join">회원가입</a>&nbsp;&nbsp;
 	<% } else {//로그인 사용자인 경우  %>
 		<%=loginMember.getName() %>님 환영합니다.&nbsp;&nbsp;
