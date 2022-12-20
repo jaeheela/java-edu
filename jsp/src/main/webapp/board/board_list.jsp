@@ -174,6 +174,28 @@ td {
 						작성자 또는 관리자에 의해 삭제된 게시글입니다.	
 					<% } %>
 				</td>
+				
+				<% if(board.getStatus()!=0) {//삭제 게시글이 아닌 경우 %>
+				<%-- 작성자 --%>
+				<td><%=board.getWriter() %></td>
+				
+				<%-- 조회수 --%>
+				<td><%=board.getReadcount() %></td>
+				
+				<%-- 작성일 : 오늘 작성된 게시글은 시간만 출력하고 오늘 작성된 게시글이
+				아닌 게시글은 날짜와 시간 출력 --%>
+				<td>
+					<% if(currentDate.equals(board.getRegDate().substring(0,10))) {//오늘 작성된 게시글인 경우 %>
+						<%=board.getRegDate().substring(11) %>
+					<% } else {//오늘 작성된 게시글이 아닌 경우 %>
+						<%=board.getRegDate() %>
+					<% } %>
+				</td>
+				<% } else {//삭제 게시글인 경우 %>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<% } %>
 			</tr>
 			<% } %>	
 		<% } %>
