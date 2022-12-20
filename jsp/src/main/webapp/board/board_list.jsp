@@ -1,4 +1,9 @@
-﻿<%@page import="xyz.itwill.dao.BoardDAO"%>
+﻿<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="xyz.itwill.dto.MemberDTO"%>
+<%@page import="xyz.itwill.dto.BoardDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="xyz.itwill.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- BOARD 테이블에 저장된 게시글을 검색하여 게시글 목록을 클라이언트에게 전달하는 JSP 문서 --%>
@@ -43,10 +48,79 @@
 	//요청 페이지에 대한 시작 게시글의 행번호와 종료 게시글의 행번호를 전달받아 BAORD 테이블에
 	//저장된 게시글에서 해당 범위의 게시글만을 검색하여 반환하는 DAO 클래스의 메소드 호출
 	// => 검색 기능 미구현시 호출하는 메소드
-
+	List<BoardDTO> boardList=BoardDAO.getDAO().selectBoardList(startRow, endRow);
 	
+	//세션에 저장된 권한 관련 정보를 반환받아 저장
+	// => 로그인 사용자에게만 글쓰기 권한 제공
+	// => 비밀 게시글인 경우 로그인 사용자가 게시글 작성자이거나 관리자인 경우에만 접근 권한 제공
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+	
+	//서버 시스템의 현재 날짜를 반환받아 저장
+	// => 게시글의 작성날짜를 현재 날짜와 비교하여 구분 출력
+	String currentDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+	
+	//요청 페이지에 검색되어 출력될 게시글의 출력번호에 대한 시작값을 계산하여 저장
+	//ex)전체 게시글의 갯수 : 91 >> 1Page : 91~82, 2Page : 81~72, 3Page : 71~62,...
+	int pritnNum=totalBoard-(pageNum-1)*pageSize;
 %>                      
-<h1>게시판 목록</h1>
+<style type="text/css">
+#board_list {
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#board_title {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+table {
+	margin: 5px auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th {
+	border: 1px solid black;
+	background-color: black;
+	color: white;
+}
+
+td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.subject {
+	text-align: left;
+	padding: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#board_list a:hover {
+	text-decoration: none;
+	color: green;
+}
+
+.secret, .remove {
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	border: 1px solid black;
+	border-radius: 4px;
+}
+</style>
+
+<div id="board_list">
+	<div id="board_title">게시글 목록(게시글 갯수 : <%=totalBoard %>)</div>
+</div>
+
+
+
+
 
 
 
