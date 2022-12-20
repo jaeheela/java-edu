@@ -55,16 +55,16 @@
 	session.setAttribute("loginMember", MemberDAO.getDAO().selectMember(id));
 	
 	//세션에 저장된 요청 페이지의 URL 주소를 반환받아 저장
-	String url=(String)session.getAttribute("url");
+	String returnUrl=(String)session.getAttribute("returnUrl");
 	
-	if(url==null) {//요청 페이지가 없는 경우
+	if(returnUrl==null) {//요청 페이지가 없는 경우
 		out.println("<script type='text/javascript'>");
 		out.println("location.href='"+request.getContextPath()+"/index.jsp?workgroup=main&work=main_page';");
 		out.println("</script>");
 	} else {//요청 페이지가 있는 경우
 		session.removeAttribute("url");
 		out.println("<script type='text/javascript'>");
-		out.println("location.href='"+url+"';");
+		out.println("location.href='"+returnUrl+"';");
 		out.println("</script>");
 	}
 %>
