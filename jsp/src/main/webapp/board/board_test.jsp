@@ -15,7 +15,7 @@
 		board.setIp("192.168.13.31");
 		board.setStatus(1);
 		BoardDAO.getDAO().insertBoard(board);
-	}
+	} 
 %>     
 <!DOCTYPE html>
 <html>
