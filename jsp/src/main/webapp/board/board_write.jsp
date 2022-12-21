@@ -81,9 +81,9 @@ $("#boardForm").submit(function() {
 		return false;
 	}
 	
-	if($("#content").val()=="") {
+	if($("#board_content").val()=="") {
 		$("#message").text("내용을 입력해 주세요.");
-		$("#content").focus();
+		$("#board_content").focus();
 		return false;
 	}
 });
