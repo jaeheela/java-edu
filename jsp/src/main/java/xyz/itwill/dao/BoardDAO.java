@@ -196,6 +196,30 @@ public class BoardDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//부모글의 정보를 전달받아 BOARD 테이블에 저장된 게시글에서 그룹이 같은 게시글 중 
+	//부모글보다 순서가 높이 모든 게시글의 RE_STEP 컬럼값이 1씩 증가되도록 변경하고 
+	//변경행의 갯수를 반환하는 메소드
+	public int updateReStep(int ref, int reStep) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update board set re_step=re_step+1 where ref=? and re_step>?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, reStep);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateReStep() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 
