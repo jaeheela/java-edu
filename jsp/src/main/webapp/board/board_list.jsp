@@ -9,7 +9,8 @@
 <%-- BOARD 테이블에 저장된 게시글을 검색하여 게시글 목록을 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- => 게시글 목록을 페이지로 구분 검색하여 응답 처리 - 페이징 처리 --%>
 <%-- => [페이지 번호]를 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 페이지 번호 전달 --%>    
-<%-- => [검색]을 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 검색대상(컬럼명), 검색단어 전달 --%>    
+<%-- => [검색]을 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 검색대상(컬럼명), 검색단어 전달 --%>
+<%-- => [글쓰기]를 클릭한 경우 게시글 입력페이지(board_write.jsp)로 이동 - 로그인 사용자에게만 링크 제공 --%>    
 <%
 	//검색대상과 검색단어를 반환받아 저장
 	String search=request.getParameter("search");
@@ -144,7 +145,7 @@ td {
 
 	<% if(loginMember!=null) {//로그인 사용자가 JSP 문서를 요청한 경우 %>
 	<div style="text-align: right;">
-		<button type="button">글쓰기</button>
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_write';">글쓰기</button>
 	</div>	
 	<% } %>
 
