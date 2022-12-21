@@ -7,8 +7,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- BOARD 테이블에 저장된 게시글을 검색하여 게시글 목록을 클라이언트에게 전달하는 JSP 문서 --%>
-<%-- => 게시글 목록을 페이지로 구분 검색하여 응답 처리 - 페이징 처리 --%>    
+<%-- => 게시글 목록을 페이지로 구분 검색하여 응답 처리 - 페이징 처리 --%>
+<%-- => [페이지 번호]를 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 페이지 번호 전달 --%>    
+<%-- => [검색]을 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 검색대상(컬럼명), 검색단어 전달 --%>    
 <%
+	//검색대상과 검색단어를 반환받아 저장
+	String search=request.getParameter("search");
+	if(search==null) {
+		search="";
+	}
+	
+	String keyword=request.getParameter("keyword");
+	if(keyword==null) {
+		keyword="";
+	}
+	
+	//System.out.println("검색대상 = "+search+", 검색단어 = "+keyword);
+
 	//페이징 처리 관련 전달값(요청 페이지 번호)를 반환받아 저장
 	// => 요청 페이지 번호에 대한 전달값이 없는 경우 첫번째 페이지의 게시글 목록을 검색하여 응답
 	int pageNum=1;
@@ -21,7 +36,11 @@
 	
 	//BOARD 테이블에 저장된 전체 게시글의 갯수를 검색하여 반환하는 DAO 클래스의 메소드 호출
 	// => 검색 기능 미구현시 호출하는 메소드
-	int totalBoard=BoardDAO.getDAO().selectBoardCount();
+	//int totalBoard=BoardDAO.getDAO().selectBoardCount();
+	
+	//검색 관련 정보를 전달받아 BOARD 테이블에 저장된 특정 게시글의 갯수를 검색하여 반환하는
+	//DAO 클래스의 메소드 호출 - 검색 기능 구현시 호출하는 메소드
+	int totalBoard=BoardDAO.getDAO().selectBoardCount(search, keyword);
 	            
 	//전체 페이지의 갯수를 계산하여 저장
 	//int totalPage=totalBoard/pageSize+totalBoard%pageSize==0?0:1;
@@ -48,7 +67,12 @@
 	//요청 페이지에 대한 시작 게시글의 행번호와 종료 게시글의 행번호를 전달받아 BAORD 테이블에
 	//저장된 게시글에서 해당 범위의 게시글만을 검색하여 반환하는 DAO 클래스의 메소드 호출
 	// => 검색 기능 미구현시 호출하는 메소드
-	List<BoardDTO> boardList=BoardDAO.getDAO().selectBoardList(startRow, endRow);
+	//List<BoardDTO> boardList=BoardDAO.getDAO().selectBoardList(startRow, endRow);
+
+	//검색 관련 정보 및 요청 페이지에 대한 시작 게시글의 행번호와 종료 게시글의 행번호를 
+	//전달받아 BAORD 테이블에 저장된 특정 게시글에서 해당 범위의 게시글만을 검색하여 반환하는 
+	//DAO 클래스의 메소드 호출 - 검색 기능 구현시 호출하는 메소드
+	List<BoardDTO> boardList=BoardDAO.getDAO().selectBoardList(startRow, endRow, search, keyword);
 	
 	//세션에 저장된 권한 관련 정보를 반환받아 저장
 	// => 로그인 사용자에게만 글쓰기 권한 제공
@@ -210,7 +234,7 @@ td {
 		//페이지 블럭에 출력될 시작 페이지 번호를 계산하여 저장
 		//ex)1Block : 1, 2Block : 6, 3Block : 11, 4Block : 16,... 
 		int startPage=(pageNum-1)/blockSize*blockSize+1;
-		
+
 		//페이지 블럭에 출력될 종료 페이지 번호를 계산하여 저장
 		//ex)1Block : 5, 2Block : 10, 3Block : 15, 4Block : 20,...
 		int endPage=startPage+blockSize-1;
@@ -221,33 +245,31 @@ td {
 		}
 	%>
 	<% if(startPage>blockSize) {//첫번째 페이지 블럭이 아닌 경우%>
-		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage-blockSize%>">[이전]</a>
+		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage-blockSize%>&search=<%=search%>&keyword=<%=keyword%>">[이전]</a>
 	<% } %>
 	
 	<% for(int i=startPage;i<=endPage;i++) { %>
 		<% if(pageNum!=i) {//요청 페이지 번호와 이벤트 페이지 번호가 다른 경우 - 링크 제공 %>
-			<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=i%>">[<%=i %>]</a>
+			<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=i%>&search=<%=search%>&keyword=<%=keyword%>">[<%=i %>]</a>
 		<% } else {//요청 페이지 번호와 이벤트 페이지 번호가 같은 경우 - 링크 미제공 %>
 			[<%=i %>]
 		<% } %>	
 	<% } %>
 	
 	<% if(endPage!=totalPage) {//마지막 페이지 블럭이 아닌 경우 %>
-		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage+blockSize%>">[다음]</a>
+		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage+blockSize%>&search=<%=search%>&keyword=<%=keyword%>">[다음]</a>
 	<% } %>
 	
+	<%-- 사용자로부터 검색어를 입력받아 게시글 검색 기능 구현 --%>
+	<form action="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list" method="post">
+		<%-- select 태그에 의해 전달되는 값은 반드시 검색단어를 비교하기 위한 컬럼명과
+		같은 이름으로 전달되도록 설정 --%>
+		<select name="search">
+			<option value="name" selected="selected">&nbsp;작성자&nbsp;</option>
+			<option value="subject">&nbsp;제목&nbsp;</option>
+			<option value="content">&nbsp;내용&nbsp;</option>
+		</select>
+		<input type="text" name="keyword">
+		<button type="submit">검색</button>		
+	</form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
