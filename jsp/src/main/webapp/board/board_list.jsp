@@ -59,7 +59,7 @@
 	// => 게시글의 작성날짜를 현재 날짜와 비교하여 구분 출력
 	String currentDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	
-	//요청 페이지에 검색되어 출력될 게시글의 출력번호에 대한 시작값을 계산하여 저장
+	//요청 페이지에 검색되어 출력될 게시글의 일련번호에 대한 시작값을 계산하여 저장
 	//ex)전체 게시글의 갯수 : 91 >> 1Page : 91~82, 2Page : 81~72, 3Page : 71~62,...
 	int pritnNum=totalBoard-(pageNum-1)*pageSize;
 %>                      
@@ -102,7 +102,8 @@ td {
 
 #board_list a:hover {
 	text-decoration: none;
-	color: green;
+	color: red;
+	font-weight: bold;
 }
 
 .secret, .remove {
@@ -141,9 +142,9 @@ td {
 			<%-- List 객체에서 요소(BoardDTO 객체)를 하나씩 제공받아 반복 처리 --%>
 			<% for(BoardDTO board:boardList) { %>
 			<tr>
-				<%-- 글번호 : BOARD 테이블에 저장된 게시글의 글번호가 아닌 출력 글번호로 응답 --%>
+				<%-- 일련번호 : BOARD 테이블에 저장된 게시글의 글번호가 아닌 일련번호로 응답 --%>
 				<td><%=pritnNum %></td>
-				<% pritnNum--; %><%-- 출력 글번호에 대한 1 감소 처리  --%> 
+				<% pritnNum--; %><%-- 일련번호를 1씩 감소시켜 저장 --%> 
 
 				<%-- 제목 --%>
 				<td class="subject">
@@ -200,6 +201,41 @@ td {
 			<% } %>	
 		<% } %>
 	</table>
+	
+	<%-- 페이지 번호 출력 및 링크 설정 - 블럭화 처리 --%>
+	<%
+		//하나의 페이지 블럭에 출력될 페이지 번호의 갯수를 설정
+		int blockSize=5;
+	
+		//페이지 블럭에 출력될 시작 페이지 번호를 계산하여 저장
+		//ex)1Block : 1, 2Block : 6, 3Block : 11, 4Block : 16,... 
+		int startPage=(pageNum-1)/blockSize*blockSize+1;
+		
+		//페이지 블럭에 출력될 종료 페이지 번호를 계산하여 저장
+		//ex)1Block : 5, 2Block : 10, 3Block : 15, 4Block : 20,...
+		int endPage=startPage+blockSize-1;
+
+		//마지막 페이지 블럭의 종료 페이지 번호 변경
+		if(endPage>totalPage) {
+			endPage=totalPage;
+		}
+	%>
+	<% if(startPage>blockSize) {//첫번째 페이지 블럭이 아닌 경우%>
+		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage-blockSize%>">[이전]</a>
+	<% } %>
+	
+	<% for(int i=startPage;i<=endPage;i++) { %>
+		<% if(pageNum!=i) {//요청 페이지 번호와 이벤트 페이지 번호가 다른 경우 - 링크 제공 %>
+			<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=i%>">[<%=i %>]</a>
+		<% } else {//요청 페이지 번호와 이벤트 페이지 번호가 같은 경우 - 링크 미제공 %>
+			[<%=i %>]
+		<% } %>	
+	<% } %>
+	
+	<% if(endPage!=totalPage) {//마지막 페이지 블럭이 아닌 경우 %>
+		<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list&pageNum=<%=startPage+blockSize%>">[다음]</a>
+	<% } %>
+	
 </div>
 
 

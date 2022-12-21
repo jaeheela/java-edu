@@ -67,7 +67,7 @@
 	font-weight: bold;
 }
 
-a:hover {
+#search a:hover {
 	background-color: orange;
 }
 </style>
