@@ -38,7 +38,7 @@
 	//게시글 작성자의 컴퓨터 IP 주소를 반환받아 저장 - IP 컬럼값으로 저장
 	//request.getRemoteAddr() : JSP 문서를 요청한 클라이언트의 IP 주소를 반환하는 메소드
 	// => 이클립스에 등록되어 동작되는 WAS 프로그램은 기본적으로 IPV6 프로토콜의 128Bit 형식에 IP 주소 제공
-	//IPV4 프로토콜의 32Bit 형식에 IP 주소를 제공받을 수 있도록 이클립스 실행 환경설정 변경
+	//IPV4 프로토콜의 32Bit 형식에 IP 주소를 제공받을 수 있도록 이클립스 실행 환경 변경
 	// => Run >> Run Configurations... >> Apache Tomcat >> 사용중인 Apache Tomcat 선택
 	//    >> Arguments >> VM Arguments >> [-Djava.net.preferIPv4Stack=true] 추가 >> Apply 
 	String ip=request.getRemoteAddr();

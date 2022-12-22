@@ -8,9 +8,10 @@
     pageEncoding="UTF-8"%>
 <%-- BOARD 테이블에 저장된 게시글을 검색하여 게시글 목록을 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- => 게시글 목록을 페이지로 구분 검색하여 응답 처리 - 페이징 처리 --%>
-<%-- => [페이지 번호]를 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 페이지 번호 전달 --%>    
-<%-- => [검색]을 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 검색대상(컬럼명), 검색단어 전달 --%>
-<%-- => [글쓰기]를 클릭한 경우 게시글 입력페이지(board_write.jsp)로 이동 - 로그인 사용자에게만 링크 제공 --%>    
+<%-- => [페이지 번호]를 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 페이지번호,검색대상(컬럼명),검색단어 전달 --%>    
+<%-- => [검색]을 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 검색대상(컬럼명),검색단어 전달 --%>
+<%-- => [글쓰기]를 클릭한 경우 게시글 입력페이지(board_write.jsp)로 이동 - 로그인 사용자에게만 링크 제공 --%>
+<%-- => 게시글의 [제목]을 클릭한 경우 게시글 출력페이지(board_detail.jsp)로 이동 - 글번호,페이지번호,검색대상(컬럼명),검색단어 전달 --%>    
 <%
 	//검색대상과 검색단어를 반환받아 저장
 	String search=request.getParameter("search");
@@ -181,7 +182,7 @@ td {
 					
 					<%-- 게시글 상태를 구분하여 제목과 링크를 다르게 설정하여 응답되도록 처리 --%>
 					<% if(board.getStatus()==1) {//일반 게시글인 경우 %>
-						<a href="">
+						<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_detail&num=<%=board.getNum() %>&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>">
 							<%=board.getSubject() %>
 						</a>
 					<% } else if(board.getStatus()==2) {//비밀 게시글인 경우 %>
@@ -189,7 +190,7 @@ td {
 						<%-- 로그인 사용자가 작성자이거나 관리자인 경우 --%>
 						<% if(loginMember!=null && (loginMember.getId().equals(board.getId()) 
 								|| loginMember.getStatus()==9)) { %>
-							<a href="">
+							<a href="<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_detail&num=<%=board.getNum() %>&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>">
 								<%=board.getSubject() %>
 							</a>		
 						<% } else { %>

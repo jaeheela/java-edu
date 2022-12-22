@@ -68,7 +68,7 @@ public class BoardDAO extends JdbcDAO {
 			} else {//검색 기능을 사용한 경우
 				//검색대상(컬럼명)은 값이 아니므로 ?(InParameter)로 사용 불가능
 				String sql="select count(*) from board join member on board.id=member.id"
-						+ " where "+search+" like '%'||?||'%'";
+						+ " where "+search+" like '%'||?||'%' and board.status=1";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 			}
