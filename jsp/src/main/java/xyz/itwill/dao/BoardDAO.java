@@ -307,6 +307,28 @@ public class BoardDAO extends JdbcDAO {
 		return rows;
 	}
 	
+	//글번호와 글상태를 전달받아 BOARD 테이블에 저장된 해당 글번호의 게시글에 대한 상태를
+	//변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateStatus(int num, int status) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update board set status=? where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, status);
+			pstmt.setInt(2, num);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateStatus() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 
