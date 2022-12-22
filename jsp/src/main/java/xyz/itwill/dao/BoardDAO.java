@@ -220,6 +220,46 @@ public class BoardDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//글번호를 전달받아 BOARD 테이블에 저장된 해당 글번호의 게시글을 검색하여 반환하는 메소드
+	public BoardDTO selectBoard(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		BoardDTO board=null;
+		try {
+			con=getConnection();
+			
+			String sql="select num,member.id,name,subject,reg_date,readcount,ref,re_step"
+					+ ",re_level,content,ip,board.status from board join member"
+					+ " on board.id=member.id where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board=new BoardDTO();
+				board.setNum(rs.getInt("num"));
+				board.setId(rs.getString("id"));
+				board.setWriter(rs.getString("name"));
+				board.setSubject(rs.getString("subject"));
+				board.setRegDate(rs.getString("reg_date"));
+				board.setReadcount(rs.getInt("readcount"));
+				board.setRef(rs.getInt("ref"));
+				board.setReStep(rs.getInt("re_step"));
+				board.setReLevel(rs.getInt("re_level"));
+				board.setContent(rs.getString("content"));
+				board.setIp(rs.getString("ip"));
+				board.setStatus(rs.getInt("status"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectBoard() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return board;
+	}
 }
 
 
