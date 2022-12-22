@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dto.BoardDTO"%>
 <%@page import="xyz.itwill.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,12 +24,16 @@
 	int reStep=Integer.parseInt(request.getParameter("reStep"));
 	int reLevel=Integer.parseInt(request.getParameter("reLevel"));
 	String pageNum=request.getParameter("pageNum");
-	String subject=request.getParameter("subject");
+	//사용자로부터 입력받아 전달된 값에 태그 관련 문자가 존재할 경우 회피문자로 변경하여 저장
+	// => XSS 공격에 대한 방어 
+	//String subject=request.getParameter("subject");
+	//String subject=Utility.stripTag(request.getParameter("subject"));
+	String subject=Utility.escapeTag(request.getParameter("subject"));
 	int status=1;
 	if(request.getParameter("secret")!=null) {
 		status=Integer.parseInt(request.getParameter("secret"));
 	}
-	String content=request.getParameter("content");
+	String content=Utility.escapeTag(request.getParameter("content"));
 	
 	//BOARD_SEQ 시퀸스의 다음값(자동 증가값)을 검색하여 반환하는 DAO 클래스의 메소드 호출
 	// => 게시글(새글 또는 답글)의 글번호(NUM 컬럼값)로 저장
@@ -84,17 +89,3 @@
 	out.println("location.href='"+request.getContextPath()+"/index.jsp?workgroup=board&work=board_list&pageNum="+pageNum+"';");
 	out.println("</script>");
 %>   
-
-
-
-
-
-
-
-
-
-
-
-
-
-

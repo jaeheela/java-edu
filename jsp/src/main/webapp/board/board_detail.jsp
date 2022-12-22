@@ -4,7 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 글번호를 전달받아 BOARD 테이블에 저장된 해당 글번호의 게시글을 검색하여 클라이언트에게
-전달하는 JSP 문서 --%>    
+전달하는 JSP 문서 --%>
+<%-- => [글변경]을 클릭한 경우 게시글 입력페이지(board_modify.jsp)로 이동 - 글번호,페이지번호,검색대상,검색단어 전달 --%>    
+<%-- => [글삭제]를 클릭한 경우 게시글 삭제페이지(board_remove_action.jsp)로 이동 - 글번호 전달 --%>    
+<%-- => [답글쓰기]를 클릭한 경우 게시글 입력페이지(board_write.jsp)로 이동 - 그룹번호,그룹답글순서,답글깊이,페이지번호 전달 --%>    
+<%-- => [글목록]를 클릭한 경우 게시글목록 출력페이지(board_list.jsp)로 이동 - 페이지번호,검색대상,검색단어 전달 --%>
+<%-- => [글변경]과 [글삭제]는 관리자 또는 게시글 작성자에게만 링크를 제공하고 [답글쓰기]는
+로그인 사용자에게만 링크 제공 --%>    
 <%
 	//비정상적인 요청에 대한 응답 처리
 	if(request.getParameter("num")==null) {
@@ -45,8 +51,111 @@
 		}
 	}
 
-	
+	//글번호를 전달받아 BAORD 테이블에 저장된 해당 글번호의 게시글 조회수를 증가하는 
+	//DAO 클래스의 메소드 호출
+	BoardDAO.getDAO().updateReadcount(num);
 %>
+<style type="text/css">
+#board_detail {
+	width: 500px;
+	margin: 0 auto;
+}
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	padding: 5px;	
+}
+
+th {
+	width: 100px;
+	background-color: black;
+	color: white;
+}
+
+td {
+	width: 400px;
+}
+
+.subject, .content {
+	text-align: left;
+}
+
+.content {
+	height: 100px;
+	vertical-align: middle;
+}
+
+#board_menu {
+	text-align: right;
+	margin: 5px;
+}
+</style>
+<div id="board_detail">
+	<h2>게시글</h2>
+	<table>
+		<tr>
+			<th>작성자</th>
+			<td>
+				<%=board.getWriter() %>
+				<% if(loginMember!=null && loginMember.getStatus()==9) {//관리자인 경우 %>
+					[<%=board.getIp() %>]
+				<% } %>
+			</td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td>
+				<%=board.getRegDate() %>
+			</td>
+		</tr>
+		<tr>
+			<th>조회수</th>
+			<td>
+				<%=board.getReadcount()+1 %>
+			</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td class="subject">
+				<% if(board.getStatus()==2) {//비밀 게시글인 경우 %>
+					[비밀글]
+				<% } %>				
+				<%=board.getSubject() %>
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td class="content">
+				<%=board.getContent().replace("\n", "<br>") %>
+			</td>
+		</tr>
+	</table>
+	
+	<div id="board_menu">
+		<%-- 로그인 사용자 중 게시글 작성자이거나 관리자인 경우에만 태그를 이용하여 링크 제공 --%>
+		<% if(loginMember!=null && (loginMember.getId().equals(board.getId()) || loginMember.getStatus()==9)) { %>
+			<button type="button" id="modifyBtn">글변경</button>
+			<button type="button" id="removeBtn">글삭제</button>
+		<% } %>
+		<%-- 로그인 사용자인 경우에만 태그를 이용하여 링크 제공 --%>
+		<% if(loginMember!=null) { %>
+			<button type="button" id="replyBtn">답글쓰기</button>
+		<% } %>
+		<button type="button" id="listBtn">글목록</button>
+	</div>
+</div>
+
+
+
+
+
+
+
 
 
 
