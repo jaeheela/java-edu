@@ -282,6 +282,31 @@ public class BoardDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//게시글을 전달받아 BOARD 테이블에 저장된 해당 게시글을 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateBoard(BoardDTO board) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update board set subject=?,content=?,status=? where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getSubject());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getStatus());
+			pstmt.setInt(4, board.getNum());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateBoard() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
 }
 
 
