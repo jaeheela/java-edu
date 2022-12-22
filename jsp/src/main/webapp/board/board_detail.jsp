@@ -148,23 +148,44 @@ td {
 		<% } %>
 		<button type="button" id="listBtn">글목록</button>
 	</div>
+
+	<%-- 요청 페이지에 값을 전달하기 위한 form 태그 --%>
+	<form method="post" id="menuForm">
+		<%-- [글변경] 및 [글삭제]를 클릭한 경우 전달되는 값 --%>
+		<input type="hidden" name="num" value="<%=board.getNum()%>">
+		
+		<%-- [글변경] 및 [글목록]를 클릭한 경우 전달되는 값 --%>
+		<input type="hidden" name="pageNum" value="<%=pageNum%>">
+		<input type="hidden" name="search" value="<%=search%>">
+		<input type="hidden" name="keyword" value="<%=keyword%>">
+		
+		<%-- [답글쓰기]를 클릭한 경우 전달되는 값 --%>
+		<input type="hidden" name="ref" value="<%=board.getRef()%>">
+		<input type="hidden" name="reStep" value="<%=board.getReStep()%>">
+		<input type="hidden" name="reLevel" value="<%=board.getReLevel()%>">
+	</form>
 </div>
 
+<script type="text/javascript">
+$("#modifyBtn").click(function() {
+	$("#menuForm").attr("action", "<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_modify");
+	$("#menuForm").submit();
+});
 
+$("#removeBtn").click(function() {
+	if(confirm("게시글을 삭제 하시겠습니까?")) {
+		$("#menuForm").attr("action", "<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_remove_action");
+		$("#menuForm").submit();
+	}
+});
 
+$("#replyBtn").click(function() {
+	$("#menuForm").attr("action", "<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_write");
+	$("#menuForm").submit();
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$("#listBtn").click(function() {
+	$("#menuForm").attr("action", "<%=request.getContextPath()%>/index.jsp?workgroup=board&work=board_list");
+	$("#menuForm").submit();
+});
+</script>
