@@ -65,6 +65,32 @@ public class ProductDAO extends JdbcDAO {
 		}
 		return productList;
 	}
+	
+	//제품정보를 전달받아 PRODUCT 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
+	public int insertProduct(ProductDTO product) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+					
+			String sql="insert into product values(product_seq.nextval,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, product.getCategory());
+			pstmt.setString(2, product.getName());
+			pstmt.setString(3, product.getImageMain());
+			pstmt.setString(4, product.getImageDetail());
+			pstmt.setInt(5, product.getQty());
+			pstmt.setInt(6, product.getPrice());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 

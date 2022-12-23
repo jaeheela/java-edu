@@ -88,7 +88,7 @@ td a, td a:hover {
 					<%=DecimalFormat.getInstance().format(product.getQty()) %>
 				</td>
 				<td>
-					<%=DecimalFormat.getCurrencyInstance().format(product.getQty()) %>
+					<%=DecimalFormat.getCurrencyInstance().format(product.getPrice()) %>
 				</td>	
 			</tr>
 			<% } %>
@@ -118,6 +118,10 @@ td a, td a:hover {
 <script type="text/javascript">
 $("#addBtn").click(function() {
 	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=admin&work=product_add";
+});
+
+$("#category").change(function() {
+	$("#productForm").submit();
 });
 </script>
 
