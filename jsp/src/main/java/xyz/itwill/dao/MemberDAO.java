@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import xyz.itwill.dto.MemberDTO;
 
@@ -160,4 +162,57 @@ public class MemberDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//MEMBER 테이블에 저장된 모든 회원정보를 검색하여 반환하는 메소드
+	public List<MemberDTO> selectMemberList() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<MemberDTO> memberList=new ArrayList<>();
+		try {
+			con=getConnection();
+			
+			String sql="select * from member order by id";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberDTO member=new MemberDTO();
+				member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setMobile(rs.getString("mobile"));
+				member.setZipcode(rs.getString("zipcode"));
+				member.setAddress1(rs.getString("address1"));
+				member.setAddress2(rs.getString("address2"));
+				member.setJoinDate(rs.getString("join_date"));
+				member.setLastLogin(rs.getString("last_login"));
+				member.setStatus(rs.getInt("status"));
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectMemberList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return memberList;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
