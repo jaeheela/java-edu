@@ -39,9 +39,67 @@ th {
 .member_status { width: 80px; }
 </style>
 
-
-
 <h1>회원관리</h1>
+<form name="memberForm" id="memberForm">
+	<table>
+		<tr>
+			<th><input type="checkbox" id="allCheck"></th>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>이메일</th>
+			<th>전화번호</th>
+			<th>주소</th>
+			<th>가입날짜</th>
+			<th>최종로그인</th>
+			<th>상태</th>
+		</tr>
+		
+		<% for(MemberDTO member:memberList) { %>
+		<tr>
+			<td class="member_check">
+				<% if(member.getStatus()==9) { %>
+					관리자
+				<% } else { %>
+					<input type="checkbox" name="checkId" value="<%=member.getId()%>" class="check">
+				<% } %>
+			</td>
+			<td class="member_id"><%=member.getId() %></td>
+			<td class="member_name"><%=member.getName() %></td>
+			<td class="member_email"><%=member.getEmail() %></td>
+			<td class="member_mobile"><%=member.getMobile() %></td>
+			<td class="member_address">
+				[<%=member.getZipcode() %>]<%=member.getAddress1() %> <%=member.getAddress2() %>
+			</td>
+			<td class="member_join"><%=member.getJoinDate() %></td>
+			<td class="member_login">
+				<% if(member.getLastLogin()!=null) { %>
+				<%=member.getJoinDate() %>
+				<% } %>
+			</td>
+			<td class="member_status">
+				<select class="status" name="<%=member.getId()%>">
+					<option value="0" <% if(member.getStatus()==0) { %> selected="selected" <% } %>>탈퇴회원</option>
+					<option value="1" <% if(member.getStatus()==1) { %> selected="selected" <% } %>>일반회원</option>
+					<option value="9" <% if(member.getStatus()==9) { %> selected="selected" <% } %>>관리자</option>
+				</select>
+			</td>
+		</tr>
+		<% } %>
+	</table>
+	<p><button type="button" id="removeBtn">선택회원삭제</button></p>
+	<div id="message" style="color: red;"></div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
