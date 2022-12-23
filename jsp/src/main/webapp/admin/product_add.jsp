@@ -112,13 +112,3 @@ $("#productForm").submit(function() {
 	
 });	
 </script>
-
-
-
-
-
-
-
-
-
-
