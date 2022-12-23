@@ -4,7 +4,8 @@
     pageEncoding="UTF-8"%>
 <%-- MEMBER 테이블에 저장된 모든 회원정보를 검색하여 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- => 관리자만 요청 가능한 JSP 문서 --%>
-<%-- => [선택회원삭제]를 클릭한 경우 회원정보 삭제페이지(member_remove_action.jsp)로 이동 - 체크박스로 선택된 모든 회원의 아이디 전달  --%>    
+<%-- => [선택회원삭제]를 클릭한 경우 회원정보 삭제페이지(member_remove_action.jsp)로 이동 - 체크박스로 선택된 모든 회원의 아이디 전달  --%>
+<%-- => 회원정보에서 [상태]를 변경한 경우 회원상태 변경페이지(member_status_action.jsp)로 이동 - 아이디와 회원상태 전달 --%>    
 <%@include file="/security/admin_check.jspf" %>   
 <%
 	//MEMBER 테이블에 저장된 모든 회원정보를 검색하여 반환하는 DAO 클래스의 메소드 호출
@@ -111,19 +112,16 @@ $("#removeBtn").click(function() {
 	
 	$("#memberForm").submit();
 });
+
+$(".status").change(function() {
+	//이벤트가 발생된 입력태그의 태그 속성값을 반환받아 저장
+	// => 회원상태를 변경하고자 하는 회원의 아이디를 제공받아 저장 - 식별자
+	var id=$(this).attr("name");
+	
+	//이벤트가 발생된 입력태그의 입력값을 반환받아 저장
+	// => 변경할 회원상태를 제공받아 저장 - 변경값
+	var status=$(this).val();
+	
+	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=admin&work=member_status_action&id="+id+"&status="+status;
+});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
