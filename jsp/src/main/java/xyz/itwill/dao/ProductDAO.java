@@ -92,18 +92,3 @@ public class ProductDAO extends JdbcDAO {
 		return rows;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

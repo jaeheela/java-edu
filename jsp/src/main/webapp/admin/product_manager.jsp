@@ -124,16 +124,3 @@ $("#category").change(function() {
 	$("#productForm").submit();
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
