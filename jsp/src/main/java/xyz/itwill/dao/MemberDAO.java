@@ -199,20 +199,25 @@ public class MemberDAO extends JdbcDAO {
 		}
 		return memberList;
 	}
+	
+	//아이디를 전달받아 MEMBER 테이블에 저장된 해당 아이디의 회원정보를 삭제하고 삭제행의 갯수를 반환하는 메소드
+	public int deleteMember(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="delete from member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]deleteMember() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

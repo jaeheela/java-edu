@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- MEMBER 테이블에 저장된 모든 회원정보를 검색하여 클라이언트에게 전달하는 JSP 문서 --%>
-<%-- => 관리자만 요청 가능한 JSP 문서 --%>    
+<%-- => 관리자만 요청 가능한 JSP 문서 --%>
+<%-- => [선택회원삭제]를 클릭한 경우 회원정보 삭제페이지(member_remove_action.jsp)로 이동 - 체크박스로 선택된 모든 회원의 아이디 전달  --%>    
 <%@include file="/security/admin_check.jspf" %>   
 <%
 	//MEMBER 테이블에 저장된 모든 회원정보를 검색하여 반환하는 DAO 클래스의 메소드 호출
@@ -89,6 +90,28 @@ th {
 	<p><button type="button" id="removeBtn">선택회원삭제</button></p>
 	<div id="message" style="color: red;"></div>
 </form>
+
+<script type="text/javascript">
+$("#allCheck").change(function() {
+	if($(this).is(":checked")) {
+		$(".check").prop("checked",true);
+	} else {
+		$(".check").prop("checked",false);
+	}
+});
+
+$("#removeBtn").click(function() {
+	if($(".check").filter(":checked").length==0) {
+		$("#message").text("선택된 회원이 하나도 없습니다.");
+		return;
+	}
+	
+	$("#memberForm").attr("action", "<%=request.getContextPath()%>/index.jsp?workgroup=admin&work=member_remove_action");
+	$("#memberForm").attr("method","post");
+	
+	$("#memberForm").submit();
+});
+</script>
 
 
 
