@@ -41,7 +41,7 @@ th {
 .member_status { width: 80px; }
 </style>
 
-<h1>회원관리</h1>
+<h2>회원목록</h2>
 <form name="memberForm" id="memberForm">
 	<table>
 		<tr>
