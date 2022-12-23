@@ -10,7 +10,7 @@
 		<a href="index.jsp?workgroup=member&work=member_login&login=1">로그인</a>&nbsp;&nbsp;
 		<a href="index.jsp?workgroup=member&work=member_join">회원가입</a>&nbsp;&nbsp;
 	<% } else {//로그인 사용자인 경우  %>
-		<%=loginMember.getName() %>님 환영합니다.&nbsp;&nbsp;
+		<%=loginMember.getName() %>님, 환영합니다.&nbsp;&nbsp;
 		<a href="index.jsp?workgroup=member&work=member_logout_action">로그아웃</a>&nbsp;&nbsp;
 		<a href="index.jsp?workgroup=member&work=member_mypage">내정보</a>&nbsp;&nbsp;
 		<% if(loginMember.getStatus()==9) {//로그인 사용자가 관리자인 경우 %>
