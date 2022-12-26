@@ -6,7 +6,8 @@
     pageEncoding="UTF-8"%>
 <%-- 제품번호를 전달받아 PRODUCT 테이블에 저장된 해당 제품번호의 제품정보를 검색하여 
 클라이언트에게 전달하는 JSP 문서 --%>  
-<%-- => 관리자만 요청 가능한 JSP 문서 --%>    
+<%-- => 관리자만 요청 가능한 JSP 문서 --%>
+<%-- => [제품정보변경]을 클릭한 경우 제품정보 입력페이지(product_modify.jsp)로 이동 - 제품번호 전달 --%>    
 <%@include file="/security/admin_check.jspf" %>
 <%
 	//비정상적인 요청에 대한 응답 처리
@@ -93,4 +94,4 @@ td {
 	</tr>
 </table>
 
-<p><button type="button">제품정보 변경</button></p>
+<p><button type="button" onclick="location.href='<%=request.getContextPath()%>/index.jsp?workgroup=admin&work=product_modify&num=<%=product.getNum()%>';">제품정보변경</button></p>
