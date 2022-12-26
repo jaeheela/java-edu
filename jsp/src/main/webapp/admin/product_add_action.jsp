@@ -9,7 +9,7 @@
 이동하기 위한 URL 주소를 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- => 제품 관련 이미지는 서버 디렉토리에 저장하고 PRODUCT 테이블에서는 업로드 처리된 이미지 파일명 저장 --%>
 <%-- => 관리자만 요청 가능한 JSP 문서 --%>
-<%-- 입력페이지에서 전달된 [multipart/form-data]를 처리하기 위해 cos 라이브러리(cos.jar)의 클래스 사용 --%>
+<%-- 입력페이지에서 전달된 [multipart/form-data]를 처리하기 위해 cos 라이브러리(cos.jar)의 MultipartRequest 클래스 사용 --%>
 <%@include file="/security/admin_check.jspf" %>
 <%
 	//비정상적인 요청에 대한 응답 처리
@@ -25,8 +25,7 @@
 	String saveDirectory=request.getServletContext().getRealPath("/product_image");
 	//System.out.println("saveDirectory = "+saveDirectory);
 	
-	//MultipartRequest 객체 생성
-	// => [multipart/form-data]를 처리하기 위한 객체
+	//[multipart/form-data]를 처리하기 위한 MultipartRequest 객체 생성
 	// => 사용자로부터 입력받아 전달된 모든 파일을 서버 디렉토리에 자동으로 저장 - 파일 업로드
 	MultipartRequest multipartRequest=new MultipartRequest(request, saveDirectory
 			, 30*1024*1024, "utf-8", new DefaultFileRenamePolicy());
