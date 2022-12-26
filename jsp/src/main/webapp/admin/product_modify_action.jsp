@@ -48,14 +48,14 @@
 	} else {//전달된 대표이미지 파일이 있는 경우 - 대표이미지 변경
 		product.setImageMain(imageMain);
 		//서버 디렉토리에 저장된 기존 제품의 대표이미지 파일 삭제
-		new File(saveDirectory, imageMain).delete();
+		new File(saveDirectory, currentImageMain).delete();
 	}
 	if(imageDetail==null) {//전달된 상세이미지 파일이 없는 경우 - 상세이미지 미변경
 		product.setImageDetail(currentImageDetail);		
 	} else {//전달된 상세이미지 파일이 있는 경우 - 상세이미지 변경
 		product.setImageDetail(imageDetail);
 		//서버 디렉토리에 저장된 기존 제품의 상세이미지 파일 삭제
-		new File(saveDirectory, imageDetail).delete();
+		new File(saveDirectory, currentImageDetail).delete();
 	}
 	product.setQty(qty);
 	product.setPrice(price);
@@ -65,6 +65,6 @@
 	
 	//페이지 이동
 	out.println("<script type='text/javascript'>");
-	out.println("location.href='"+request.getContextPath()+"/index.jsp?workgroup=product&work=product_detail&num="+product.getNum()+"';");
+	out.println("location.href='"+request.getContextPath()+"/index.jsp?workgroup=admin&work=product_detail&num="+product.getNum()+"';");
 	out.println("</script>");
 %>  
