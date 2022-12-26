@@ -132,7 +132,7 @@ public class ProductDAO extends JdbcDAO {
 		int rows=0;
 		try {
 			con=getConnection();
-					
+			 		
 			String sql="update product set category=?,name=?,image_main=?,image_detail=?"
 					+ ",qty=?,price=? where num=?";
 			pstmt=con.prepareStatement(sql);

@@ -37,7 +37,7 @@
 	String imageDetail=multipartRequest.getFilesystemName("imageDetail");
 	int qty=Integer.parseInt(multipartRequest.getParameter("qty"));
 	int price=Integer.parseInt(multipartRequest.getParameter("price"));
-	
+		
 	//ProductDTO 객체를 생성하여 전달값과 업로드 파일명으로 필드값 변경
 	ProductDTO product=new ProductDTO();
 	product.setNum(num);
