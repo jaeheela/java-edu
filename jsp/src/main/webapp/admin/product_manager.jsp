@@ -9,6 +9,7 @@
 <%-- => 관리자만 요청 가능한 JSP 문서 --%>    
 <%-- => [제품등록]을 클릭한 경우 제품정보 입력페이지(product_add.jsp)로 이동 --%>
 <%-- => [카테고리]가 변경된 경우 제품목록 출력페이지(product_manager.jsp)로 이동 - 입력값 전달 --%>
+<%-- => 제품정보의 [제품명]을 클릭한 경우 제품정보 출력페이지(product_detail.jsp)로 이동 - 제품번호 전달 --%>
 <%@include file="/security/admin_check.jspf" %>
 <%
 	//전달값을 반환받아 저장
@@ -81,7 +82,7 @@ td a, td a:hover {
 			<tr>
 				<td><%=product.getNum() %></td>
 				<td>
-					<a href="">
+					<a href="<%=request.getContextPath() %>/index.jsp?workgroup=admin&work=product_detail&num=<%=product.getNum()%>">
 						<%=product.getName() %>
 					</a>
 				</td>
