@@ -91,4 +91,56 @@ public class ProductDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//제품번호를 전달받아 PRODUCT 테이블에 저장된 해당 제품번호의 제품정보를 검색하여 반환하는 메소드
+	public ProductDTO selectProduct(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ProductDTO product=null;
+		try {
+			con=getConnection();
+			
+			String sql="select * from product where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				product=new ProductDTO();
+				product.setNum(rs.getInt("num"));
+				product.setCategory(rs.getString("category"));
+				product.setName(rs.getString("name"));
+				product.setImageMain(rs.getString("image_main"));
+				product.setImageDetail(rs.getString("image_detail"));
+				product.setQty(rs.getInt("qty"));
+				product.setPrice(rs.getInt("price"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return product;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
