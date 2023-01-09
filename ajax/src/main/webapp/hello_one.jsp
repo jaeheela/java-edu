@@ -117,8 +117,8 @@
 			} else {//요청에 대한 비정상적인 실행결과를 응답받은 경우 - 에러코드 : 4XX or 5XX
 				alert("에러코드 = "+xhr.status);				
 			}
-		} else {
-						
+		} else {//요청에 응답결과를 제공받기 전인 경우
+			document.getElementById("display").innerHTML="<img src='images/loading.gif' width='50'>";			
 		}
 	}
 	
