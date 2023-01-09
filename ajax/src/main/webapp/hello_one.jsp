@@ -81,8 +81,8 @@
 		// => method : 요청방식 - GET, POST, PUT, PATCH, DELETE 등
 		// => url : 요청 웹프로그램의 URL 주소 - 현재 서버의 웹프로그램만 요청 가능
 		// => async : 동기식 통신 또는 비동기식 통신 구분 - false(동기식 통신) 또는 true(비동기식 통신 - 기본)
-		xhr.open("get","hello_two.jsp",true);//비동기식 통신
-		//xhr.open("get","hello_two.jsp",false);//동기식 통신
+		xhr.open("get","hello_two.jsp",true);//비동기식 통신 : 요청에 대한 응답의 기다림 미발생 - 다른 작업 가능 
+		//xhr.open("get","hello_two.jsp",false);//동기식 통신 - 요청에 대한 응답의 기다림 발생 - 다른 작업 불가능
 		
 		//4.XMLHttpRequest 객체로 send 메소드 호출 - 준비상태 : 2
 		//XMLHttpRequest.send(data) : XMLHttpRequest 객체로 웹프로그램을 요청하기 위한 메소드
@@ -117,7 +117,13 @@
 			} else {//요청에 대한 비정상적인 실행결과를 응답받은 경우 - 에러코드 : 4XX or 5XX
 				alert("에러코드 = "+xhr.status);				
 			}
+		} else {
+						
 		}
+	}
+	
+	document.getElementById("btn2").onclick=function() {
+		document.getElementById("display").style="background-color: green";
 	}
 	</script>
 </body>
