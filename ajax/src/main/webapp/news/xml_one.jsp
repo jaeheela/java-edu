@@ -55,8 +55,7 @@
 		sendRequest("get", "xml_two.jsp", null, function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
-					
-					
+										
 					
 				} else {
 					alert("에러코드 = "+xhr.status);
