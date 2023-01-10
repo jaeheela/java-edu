@@ -26,6 +26,7 @@
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
 					xmlDoc=xhr.responseXML;
+					loadBooksXSL();
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
@@ -39,6 +40,7 @@
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
 					xslDoc=xhr.responseXML;
+					doXSLT();
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
@@ -46,8 +48,28 @@
 		});
 	}
 	
+	//XSLT를 사용하여 XML 문서를 제공받아 HTML 문서로 변환하여 페이지를 변경하는 함수
+	function doXSLT() {
+		//alert(xmlDoc+" : "+xslDoc);
+		
+		//XSLTProcessor 객체 생성 - XSLT를 이용하여 XML 문서를 변환하기 위한 기능을 제공하는 객체
+		var xsltProcessor=new XSLTProcessor();
+		
+		//XSTLProcessor.importStylesheet(xslt) : XSLTProcessor 객체에 변환 관련 정보가 저장된
+		//XMLDocument 객체(XSLT)를 저장하기 위한 메소드
+		xsltProcessor.importStylesheet(xslDoc);
+		
+		//XSTLProcessor.transformToFragment(xml, document) : XML 문서를 전달받아 XSTLProcessor 객체에 
+		//저장된 변환 관련 정보(XSLT)를 사용하여 document 객체의 자식 Element 객체로 반환하는 메소드
+		var fragment=xsltProcessor.transformToFragment(xmlDoc, document);
+		
+		//반환받은 Element 객체를 특정 태그의 마지막 자식 태그로 추가하여 출력 처리
+		document.getElementById("books").appendChild(fragment);
+	}
+	
 	loadBooksXML();
-	loadBooksXSL();
+	//loadBooksXSL();
+	//doXSLT();
 	</script>
 </body>
 </html>
