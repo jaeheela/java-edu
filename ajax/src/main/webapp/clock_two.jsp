@@ -31,12 +31,3 @@
 	<%=displayTime %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
