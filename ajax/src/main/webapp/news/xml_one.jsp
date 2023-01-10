@@ -8,9 +8,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>AJAX</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/xhr.js"></script>
+<style type="text/css">
+#newsList {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#newsHead {
+	padding: 5px;
+	text-align: center;
+	font-size: x-large;
+	border: 2px solid black;
+}
+
+#newsContent {
+	padding: 5px;
+	font-size: medium;
+	border: 2px dashed black;
+	display: none;
+}
+</style>
 </head>
 <body>
+	<h1>헤드라인 뉴스</h1>
+	<hr>
+	<div id="newsList">
+		<div id="newsHead">헤드라인 뉴스</div>
+		<div id="newsContent">
+			<%-- 
+			<ol>
+				<li>뉴스제목-1[언론사-1]</li>
+				<li>뉴스제목-2[언론사-2]</li>
+				<li>뉴스제목-3[언론사-3]</li>
+				<li>뉴스제목-4[언론사-4]</li>
+				<li>뉴스제목-5[언론사-5]</li>
+			</ol>
+			--%>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	document.getElementById("newsList").onmouseover=function() {
+		//AJAX 기능을 사용하여 웹프로그램을 요청하여 응답결과를 제공받아 처리
+		sendRequest("get", "xml_two.jsp", null, function() {
+			if(xhr.readyState==4) {
+				if(xhr.status==200) {
+					
+					
+					
+				} else {
+					alert("에러코드 = "+xhr.status);
+				}
+			}
+		});
 
+		document.getElementById("newsContent").style="display: block;";
+	}
+	
+	document.getElementById("newsList").onmouseout=function() {
+		document.getElementById("newsContent").style="display: none;";
+	}
+	</script>
 </body>
 </html>
