@@ -56,7 +56,23 @@
 		sendRequest("get", "json_two.jsp", null, function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					//eval(text) : 문자값을 전달받아 자바스크립트 명령으로 실행하는 함수
+					// => 문자값을 전달받아 자바스크립트 객체로 변환하기 위해 () 연산자 추가
+					//var result=eval("("+xhr.responseText+")");
 					
+					//JSON.parse(json) : JSON 형식으로 표현된 데이타를 자바스크립트 객체로 변환하여 반환하는 메소드
+					var result=JSON.parse(xhr.responseText);
+					//alert(result);//[object Array]
+					
+					var html="<ol>";
+					for(i=0;i<result.length;i++) {
+						var title=result[i].title;
+						var publisher=result[i].publisher;
+						html+="<li>"+title+"["+publisher+"]</li>";
+					}
+					html+="</ol>";
+					
+					document.getElementById("newsContent").innerHTML=html;
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
