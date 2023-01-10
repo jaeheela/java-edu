@@ -55,7 +55,25 @@
 		sendRequest("get", "csv_two.jsp", null, function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					//document.getElementById("newsContent").innerHTML=xhr.responseText;
 					
+					var csv=xhr.responseText;
+					//행(뉴스)을 분리하여 반환되는 Array 객체를 변수에 저장
+					
+					var newsArray=csv.split("*");
+					//alert(newsArray.length);
+					
+					var html="<ol>";
+					for(i=0;i<newsArray.length;i++) {
+						//열(제목과 언론사)을 분리하여 반환되는 Array 객체를 변수에 저장
+						var news=newsArray[i].split("|");
+						var title=news[0].trim();//Array 객체의 0번째 요소값 >> 제목
+						var publishar=news[1].trim();//Array 객체의 1번째 요소값 >> 언론사
+						html+="<li>"+title+"["+publishar+"]</li>";
+					}
+					html+="</ol>";
+					
+					document.getElementById("newsContent").innerHTML=html;
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
