@@ -55,8 +55,32 @@
 		sendRequest("get", "xml_two.jsp", null, function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
-										
+					//XMLHttpRequest 객체의 responseXML 속성(Property)으로 요청에 대한
+					//응답 결과를 XML 문서로 제공받아 변수에 저장   
+					var xmlDoc=xhr.responseXML;					
+					//alert(xmlDoc);//[object XMLDocument]
 					
+					//Document.getElementsByTagName(tagName) : Document 객체(Element 객체)에서
+					//태그명을 이용하여 태그를 검색해 검색된 태그에 대한 Element 객체들이 저장된
+					//NodeList 객체(HTMLCollection 객체)를 반환하는 메소드
+					var newsList=xmlDoc.getElementsByTagName("news");
+					//alert(newsList);//[object HTMLCollection]
+					//alert(newsList.length);
+					
+					var html="<ol>";
+					for(i=0;i<newsList.length;i++) {
+						//NodeList.item(index) : NodeList 객체에서 첨자(Index) 위치의 Element 객체를 반환하는 메소드 
+						var news=newsList.item(i);
+						//alert(news);//[object Element]
+						
+						var title=news.getElementsByTagName("title").item(0).firstChild.nodeValue;
+						var publisher=news.getElementsByTagName("publisher").item(0).firstChild.nodeValue;
+						
+						html+="<li>"+title+"["+publisher+"]</li>";
+					}
+					html+="</ol>";
+					
+					document.getElementById("newsContent").innerHTML=html;
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
