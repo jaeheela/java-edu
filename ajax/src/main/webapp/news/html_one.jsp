@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- csv_two.jsp 문서를 AJAX 기능으로 요청하여 CSV 형식의 문서로 응답 받아 태그로 변경하여
-클라이언트에게 전달하는 JSP 문서 --%> 
-<%-- => CSV 형식의 데이타를 제공받아 HTML 태그로 변환하여 페이지의 요소 변경 - 파싱(Parsing) 처리 --%>
-<%-- CSV(Comma Separated Values) : 콤마(,)를 사용하여 값을 구분하는 비구조적인 데이타 표현 방식 --%>   
+<%-- html_two.jsp 문서를 AJAX 기능으로 요청하여 HTML 형식의 문서로 응답 받아 태그를 변경하여
+클라이언트에게 전달하는 JSP 문서 --%>
+<%-- 문제점)다른 웹프로그램에서 JSP 문서(html_two.jsp)를 AJAX 기능으로 요청하여 응답받아 사용하기 불편 --%>
+<%-- 해결법)AJAX 기능으로 요청하는 JSP 문서는 실행 결과를 HTML 문서가 아닌 데이타가 저장된
+문서 형식(CSV, XML, JSON 등)으로 응답되도록 처리 --%>
+<%-- => 웹프로그램에 대한 처리 결과값만 제공받아 HTML 태그로 변환(Parsing)하여 응답 처리 --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,28 +54,10 @@
 	<script type="text/javascript">
 	document.getElementById("newsList").onmouseover=function() {
 		//AJAX 기능을 사용하여 웹프로그램을 요청하여 응답결과를 제공받아 처리
-		sendRequest("get", "csv_two.jsp", null, function() {
+		sendRequest("get", "html_two.jsp", null, function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
-					//document.getElementById("newsContent").innerHTML=xhr.responseText;
-					
-					var csv=xhr.responseText;
-					//행(뉴스)을 분리하여 반환되는 Array 객체를 변수에 저장
-					
-					var newsArray=csv.split("*");
-					//alert(newsArray.length);
-					
-					var html="<ol>";
-					for(i=0;i<newsArray.length;i++) {
-						//열(제목과 언론사)을 분리하여 반환되는 Array 객체를 변수에 저장
-						var news=newsArray[i].split("|");
-						var title=news[0].trim();//Array 객체의 0번째 요소값 >> 제목
-						var publishar=news[1].trim();//Array 객체의 1번째 요소값 >> 언론사
-						html+="<li>"+title+"["+publishar+"]</li>";
-					}
-					html+="</ol>";
-					
-					document.getElementById("newsContent").innerHTML=html;
+					document.getElementById("newsContent").innerHTML=xhr.responseText;
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
@@ -89,13 +73,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
