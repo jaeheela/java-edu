@@ -56,7 +56,7 @@
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
 					//XMLHttpRequest 객체의 responseXML 속성(Property)으로 요청에 대한
-					//응답 결과를 XML 문서로 제공받아 변수에 저장   
+					//응답 결과를 XML 문서(XMLDocument 객체)로 제공받아 변수에 저장   
 					var xmlDoc=xhr.responseXML;					
 					//alert(xmlDoc);//[object XMLDocument]
 					
