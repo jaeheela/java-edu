@@ -9,6 +9,7 @@ POST 방식으로 요청하여 이동 - 사용자 입력값(회원정보) 전달
 <head>
 <meta charset="UTF-8">
 <title>AJAX</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/ajax.js"></script>
 <style type="text/css">
 .title {
 	width: 100px;
@@ -101,6 +102,9 @@ POST 방식으로 요청하여 이동 - 사용자 입력값(회원정보) 전달
 		} else if(!idReg.test(id)) {
 			document.getElementById("idValidMsg").style.display="block";
 			validResult=false;
+		} else if(!idCheckResult) {//아이디가 중복된 경우
+			document.getElementById("idDuplMsg").style.display="block";
+			validResult=false;
 		}
 		
 		var passwd=document.getElementById("passwd").value;
@@ -134,6 +138,32 @@ POST 방식으로 요청하여 이동 - 사용자 입력값(회원정보) 전달
 		}
 		
 		return validResult;
+	}
+
+	//아이디 중복 검증에 대한 결과값을 저장하기 위한 전역변수 선언
+	// => false : 아이디 사용 불가능, true : 아이디 사용 가능
+	var idCheckResult=false;
+	
+	//아이디 입력태그에서 키보드를 누른 경우 호출되는 이벤트 처리 함수 등록
+	document.getElementById("id").onkeyup=function() {
+		//alert("Keyup Event");
+		
+		idCheckResult=false;
+		
+		var id=document.getElementById("id").value;
+		if(id.length<6) return;
+		
+		//사용자로부터 입력받은 아이디의 중복 검사를 위한 웹프로그램(member_id_check.jsp)을 
+		//AJAX 기능을 이용하여 요청하고 실행결과를 XML 문서로 응답받아 처리
+		new xyz.itwill.Ajax("get", "member_id_check.jsp", "id="+id, function(xhr) {
+			if(xhr.readyState==4) {
+				if(xhr.status==200) {
+					
+				} else {
+					alert("에러코드 = "+xhr.status);
+				}
+			}
+		});
 	}
 	</script>
 </body>
