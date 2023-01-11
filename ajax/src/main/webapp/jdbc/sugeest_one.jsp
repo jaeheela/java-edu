@@ -53,6 +53,30 @@
 		<%-- 선택된 제시어 관련 정보를 출력하기 위한 태그 --%>
 		<div id="choice"></div>
 	</div>
+	
+	<script type="text/javascript">
+	document.getElementById("keyword").focus();
+	
+	document.getElementById("keyword").onkeyup=function() {
+		var keyword=this.value;
+		//alert(keyword);
+		
+		if(keyword=="") {
+			document.getElementById("suggest").style="display: none;";
+			return;
+		}
+		
+		new xyz.itwill.Ajax("post", "suggest_two.jsp", "keyword="+keyword, function(xhr) {
+			if(xhr.readyState==4) {
+				if(xhr.status==200) {
+					
+				} else {
+					alert("에러코드 = "+xhr.status);
+				}
+			}
+		});
+	}
+	</script>
 </body>
 </html>
 
