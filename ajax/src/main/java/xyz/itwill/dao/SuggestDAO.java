@@ -55,18 +55,3 @@ public class SuggestDAO extends JdbcDAO {
 		return suggestList;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
