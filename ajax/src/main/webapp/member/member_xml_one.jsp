@@ -16,7 +16,42 @@
 	<div id="log"></div>
 	
 	<script type="text/javascript">
-	
+	new xyz.itwill.Ajax("get", "member_xml_two.jsp", null, function(xhr) {
+		if(xhr.readyState==4) {
+			if(xhr.status==200) {
+				var xmlDoc=xhr.responseXML;
+				
+				//code 엘리먼트의 값을 반환받아 저장
+				var code=xmlDoc.getElementsByTagName("code").item(0).firstChild.nodeValue;
+				//log("code = "+code);
+				
+				if(code=="success") {
+					var memberList=xmlDoc.getElementsByTagName("member");
+					
+					for(i=0;i<memberList.length;i++) {
+						var member=memberList.item(i);
+						var id=member.getElementsByTagName("id").item(0).firstChild.nodeValue;
+						var name=member.getElementsByTagName("name").item(0).firstChild.nodeValue;
+						log("아이디 = "+id+", 이름 = "+name);				
+					}
+				} else {
+					log("검색된 회원정보가 없습니다.");
+				}
+			} else {
+				log("에러코드 = "+xhr.status);
+			}
+		}
+	});
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
