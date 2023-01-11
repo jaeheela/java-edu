@@ -59,7 +59,6 @@
 					
 					var csv=xhr.responseText;
 					//행(뉴스)을 분리하여 반환되는 Array 객체를 변수에 저장
-					
 					var newsArray=csv.split("*");
 					//alert(newsArray.length);
 					
