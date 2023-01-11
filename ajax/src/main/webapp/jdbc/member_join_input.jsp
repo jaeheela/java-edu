@@ -158,7 +158,13 @@ POST 방식으로 요청하여 이동 - 사용자 입력값(회원정보) 전달
 		new xyz.itwill.Ajax("get", "member_id_check.jsp", "id="+id, function(xhr) {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					var xmlDoc=xhr.responseXML;
 					
+					var code=xmlDoc.getElementsByTagName("code").item(0).firstChild.nodeValue;
+					
+					if(code=="possible") {//아이디가 중복되지 않는 경우
+						idCheckResult=true;	
+					}
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
