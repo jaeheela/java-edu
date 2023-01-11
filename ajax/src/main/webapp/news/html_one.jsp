@@ -4,7 +4,7 @@
 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- 문제점)다른 웹프로그램에서 JSP 문서(html_two.jsp)를 AJAX 기능으로 요청하여 응답받아 사용하기 불편 --%>
 <%-- 해결법)AJAX 기능으로 요청하는 JSP 문서는 실행 결과를 HTML 문서가 아닌 데이타가 저장된
-문서 형식(CSV, XML, JSON 등)으로 응답되도록 처리 --%>
+문서 형식(CSV, XML, JSON 등)으로 응답되도록 처리 - REST(RePresentional State Transfer) API --%>
 <%-- => 웹프로그램에 대한 처리 결과값만 제공받아 HTML 태그로 변환(Parsing)하여 응답 처리 --%>
 <!DOCTYPE html>
 <html>
