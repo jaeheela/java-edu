@@ -16,7 +16,40 @@
 	<div id="log"></div>
 	
 	<script type="text/javascript">
-	
+	new xyz.itwill.Ajax("get", "member_json_two.jsp", null, function(xhr) {
+		if(xhr.readyState==4) {
+			if(xhr.status==200) {
+				var result=JSON.parse(xhr.responseText);
+				
+				var code=result.code;
+				//log("code = "+code);
+				
+				if(code=="success") {
+					var memberList=result.data;
+					
+					for(i=0;i<memberList.length;i++) {
+						var id=memberList[i].id;
+						var name=memberList[i].name;
+						log("아이디 = "+id+", 이름 = "+name);
+					}
+				} else {
+					log("검색된 회원정보가 없습니다.");
+				}
+			} else {
+				log("에러코드 = "+xhr.status);
+			}
+		}		
+	});
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
