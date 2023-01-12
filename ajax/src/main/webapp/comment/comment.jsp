@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- AJAX_COMMENT 테이블의 댓글정보에 대한 저장,삭제,변경 기능을 제공하고 댓글 목록을 검색하여
+<%-- AJAX_COMMENT 테이블의 댓글정보에 대한 삽입,삭제,변경 기능을 제공하고 댓글 목록을 검색하여
 클라이언트에게 전달하는 JSP 문서 --%>    
 <!DOCTYPE html>
 <html>
@@ -133,15 +133,49 @@ h1 {
 			<button type="button" id="remove_cancel_btn">취소</button>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	displayComment();
+	
+	//comment_list.jsp 문서를 AJAX 기능으로 요청하여 댓글목록을 XML 문서로 응답받아 태그로 출력하는 함수
+	function displayComment() {
+		$.ajax({
+			type: "get",
+			url: "comment_list.jsp",
+			dataType: "xml",
+			success: function(xmlDoc) {
+				//댓글목록 출력영역에 출력된 기존 댓글 목록 삭제 - 초기화
+				$("#comment_list").children().remove();
+				
+				var code=$(xmlDoc).find("code").text();
+				
+				if(code=="success") {//검색된 댓글이 있는 경우
+					//data 엘리먼트의 값(댓글목록 - JSON)을 반환받아 자바스크립트 객체로 변환
+					var commentArray=JSON.parse($(xmlDoc).find("data").text());
+					
+					$(commentArray).each(function() {
+						//Array 객체의 요소값(Object 객체 - 댓글정보)을 HTML 태그로 변환
+						var html="<div class='comment' id='comment_"+this.num+"'>";
+						html+="<b>["+this.writer+"]</b><br>";//작성자
+						html+=this.content.replace("/\n/g", "<br>")+"<br>";//댓글내용
+						html+="("+this.regdate+")<br>";//작성날짜
+						html+="<button type='button'>댓글변경</button>&nbsp;";//변경버튼
+						html+="<button type='button'>댓글삭제</button>&nbsp;";//삭제버튼
+						html+="</div>";
+
+						//댓글목록 출력영역에 댓글정보를 마지막 자식태그로 추가하여 출력
+						$("#comment_list").append(html);
+					});
+				} else {//검색된 댓글이 없는 경우
+					var message=$(xmlDoc).find("message").text();
+					$("#comment_list").html("<div class='no_comment'>"+message+"</div>");
+				}
+			},
+			erorr: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	}
+	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
