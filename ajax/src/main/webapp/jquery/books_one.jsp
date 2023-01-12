@@ -6,9 +6,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AJAX</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
-
+	<h1>jQuery AJAX</h1>
+	<hr>
+	<div id="bookList"></div>
+	
+	<script type="text/javascript">
+	$.ajax({
+		type: "get",
+		url: "books_two.jsp",
+		//요청 웹프로그램의 응답결과의 문서형식과 dataType 속성값이 맞지 않은 경우 에러(200) 발생
+		dataType: "xml",
+		success: function(xmlDoc) {
+			
+		},
+		error: function(xhr) {
+			alert("에러코드 = "+xhr.status);
+		}
+	});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
