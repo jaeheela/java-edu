@@ -52,10 +52,17 @@
 		$.ajax({
 			type: "post",
 			url: "search_id_two.jsp",
-			data: "id="+id+"&name="+name,
+			data: "name="+name+"&email="+email,
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
 				
+				if(code=="ok") {
+					var id=$(xmlDoc).find("id").text();
+					$("#result").html(name+"님의 아이디는 ["+id+"]입니다.");
+				} else {
+					$("#result").html(name+"님의 아이디는 존재하지 않습니다.");
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
@@ -65,24 +72,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
