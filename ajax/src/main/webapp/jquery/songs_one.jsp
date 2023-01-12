@@ -21,7 +21,18 @@
 		url: "songs_two.jsp",
 		dataType: "json",
 		success: function(obj) {
+			//요청에 대한 응답결과가 JSON 문서인 경우 매개변수에 자바스크립트 객체가 저장되어 제공
+			//alert(obj);//[object Object]
 			
+			$("#now").html(obj.now);
+			
+			var html="<ol>";
+			$(obj.songs).each(function() {
+				html+="<li><b>"+this.title+"</b> - "+this.singer+"</li>";
+			});
+			html+="</ol>";
+			
+			$("#songList").html(html);
 		},
 		error: function(xhr) {
 			alert("에러코드 = "+xhr.status);
