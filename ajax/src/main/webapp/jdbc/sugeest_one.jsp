@@ -69,24 +69,41 @@
 		new xyz.itwill.Ajax("post", "suggest_two.jsp", "keyword="+keyword, function(xhr) {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					var xmlDoc=xhr.responseXML;
 					
+					var code=xmlDoc.getElementsByTagName("code").item(0).firstChild.nodeValue;
+					
+					if(code=="success") {
+						var data=xmlDoc.getElementsByTagName("data").item(0).firstChild.nodeValue;
+						
+						var suggestList=JSON.parse(data);
+						
+						var html="";
+						for(i=0;i<suggestList.length;i++) {
+							html+="<a href=\"javascript:selectSuggest('"+suggestList[i].word
+								+"','"+suggestList[i].url+"');\">"+suggestList[i].word+"</a><br>";
+						}
+						document.getElementById("suggestList").innerHTML=html;
+						
+						document.getElementById("suggest").style="display: block;";
+					} else {
+						document.getElementById("suggest").style="display: none;";
+					}
 				} else {
 					alert("에러코드 = "+xhr.status);
 				}
 			}
 		});
 	}
+	
+	function selectSuggest(word, url) {
+		//alert(word+" = "+url);
+		
+		document.getElementById("keyword").value=word;//입력태그의 입력값 변경
+		document.getElementById("choice").innerHTML="<a href="+url+">"+word+"</a>";//태그 변경
+
+		document.getElementById("suggest").style="display: none;";
+	}
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
