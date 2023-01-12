@@ -52,7 +52,9 @@
 		$.ajax({
 			type: "post",
 			url: "search_id_two.jsp",
-			data: "name="+name+"&email="+email,
+			//data: "name="+name+"&email="+email,
+			//값을 Object 객체 형식으로 표현하여 전달 가능
+			data: {"name":name, "email":email},
 			dataType: "xml",
 			success: function(xmlDoc) {
 				var code=$(xmlDoc).find("code").text();
