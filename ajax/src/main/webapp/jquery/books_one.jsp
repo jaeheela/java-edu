@@ -21,7 +21,25 @@
 		//요청 웹프로그램의 응답결과의 문서형식과 dataType 속성값이 맞지 않은 경우 에러(200) 발생
 		dataType: "xml",
 		success: function(xmlDoc) {
+			//요청에 대한 응답결과가 XML 문서인 경우 매개변수에 XMLDocument 객체가 저장되어 제공
+			//alert(xmlDoc);//[object XMLDocument]
 			
+			var count=$(xmlDoc).find("book").length;
+			if(count==0) {
+				$("#bookList").html("<p>검색된 교재가 하나도 없습니다.</p>");
+				return;
+			}
+			
+			var html="<p>감색된 교재가 "+count+"권 있습니다.<p>";
+			html+="<ol>";
+			$(xmlDoc).find("book").each(function() {
+				var title=$(this).find("title").text();
+				var author=$(this).find("author").text();
+				html+="<li><b>"+title+"</b>["+author+"]</li>";
+			});
+			html+="</ol>";
+			
+			$("#bookList").html(html);
 		},
 		error: function(xhr) {
 			alert("에러코드 = "+xhr.status);
@@ -30,14 +48,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
