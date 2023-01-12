@@ -10,4 +10,4 @@
 			,{"id":"mnb174","name":"장길산"}
 		]
 	]]></data>
-</result>    
+</result>
