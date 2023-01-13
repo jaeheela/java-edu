@@ -128,6 +128,7 @@ h1 {
 	
 	<%-- 댓글삭제태그 --%>
 	<div id="comment_remove">
+		<input type="hidden" id="remove_num" value="">
 		<div id="remove_message">
 			<b>정말로 삭제 하시겠습니까?</b>
 			<button type="button" id="remove_btn">삭제</button>
@@ -161,7 +162,7 @@ h1 {
 						html+=this.content.replace(/\n/g, "<br>")+"<br>";//댓글내용
 						html+="("+this.regdate+")<br>";//작성날짜
 						html+="<button type='button' onclick='modifyCommnet("+this.num+");'>댓글변경</button>&nbsp;";//변경버튼
-						html+="<button type='button'>댓글삭제</button>&nbsp;";//삭제버튼
+						html+="<button type='button' onclick='removeComment("+this.num+");'>댓글삭제</button>&nbsp;";//삭제버튼
 						html+="</div>";
 
 						//댓글목록 출력태그에 댓글정보를 마지막 자식태그로 추가하여 출력
@@ -231,9 +232,15 @@ h1 {
 		$("#modify_content").val("");
 		//댓글변경태그에서 메세지 출력태그 초기화
 		$("#modify_message").html("");
+		
+		//댓글삭제태그를 숨기고 document 객체의 자식태그로 이동
+		$("#comment_remove").hide().appendTo(document.documentElement);
+		
+		//댓글삭제태그에서 입력태그 초기화
+		$("#remove_num").val("");
 	}
 	
-	//댓글 출력 태그에서 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	//댓글 출력태그에서 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
 	// => comment_get.jsp 문서를 AJAX 기능으로 요청하여 변경할 댓글정보를 XML 문서로 응답받아 처리
 	function modifyCommnet(num) {
 		//alert(num);
@@ -294,7 +301,14 @@ h1 {
 			data: {"num":num,"writer":writer,"content":content},
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
 				
+				if(code=="success") {
+					displayComment();//댓글목록 출력
+					init();
+				} else {
+					alert("댓글 변경 실패");
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
@@ -306,6 +320,14 @@ h1 {
 	//댓글변경태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
 	// => 댓글변경태그와 탯글삭제태그를 초기화 처리하기 위한 함수 호출
 	$("#modify_cancel_btn").click(init);
+	
+	//댓글 출력태그에서 [댓글삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	function removeComment(num) {
+		init();
+		
+		//댓글삭제태그를 보여지도록 처리하고 변경할 댓글 출력태그의 자식태그로 이동
+		$("#comment_remove").show().appendTo("#comment_"+num);
+	}
 	</script>
 </body>
 </html>
