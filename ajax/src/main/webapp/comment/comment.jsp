@@ -159,7 +159,7 @@ h1 {
 						html+="<b>["+this.writer+"]</b><br>";//작성자
 						html+=this.content.replace(/\n/g, "<br>")+"<br>";//댓글내용
 						html+="("+this.regdate+")<br>";//작성날짜
-						html+="<button type='button'>댓글변경</button>&nbsp;";//변경버튼
+						html+="<button type='button' onclick='modifyCommnet("+this.num+");'>댓글변경</button>&nbsp;";//변경버튼
 						html+="<button type='button'>댓글삭제</button>&nbsp;";//삭제버튼
 						html+="</div>";
 
@@ -218,6 +218,28 @@ h1 {
 			}
 		});
 	});
+	
+	//댓글 출력 태그에서 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => comment_get.jsp 문서를 AJAX 기능으로 요청하여 변경할 댓글정보를 XML 문서로 응답받아 처리
+	function modifyCommnet(num) {
+		//alert(num);
+		
+		//댓글변경태그를 보여지도록 처리하고 변경할 댓글출력태그의 자식태그로 이동
+		$("#comment_modify").show().appendTo("#comment_"+num);
+		
+		$.ajax({
+			type: "get",
+			url: "comment_get.jsp",
+			data: {"num":num},
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	}
 	</script>
 </body>
 </html>
