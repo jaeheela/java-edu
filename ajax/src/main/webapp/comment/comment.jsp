@@ -205,7 +205,13 @@ h1 {
 			data: {"writer":writer, "content":content},
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
 				
+				if(code=="success") {
+					displayComment();//댓글목록 출력
+				} else {
+					alert("댓글 삽입 실패");
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
