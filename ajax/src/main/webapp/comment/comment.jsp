@@ -157,7 +157,7 @@ h1 {
 						//Array 객체의 요소값(Object 객체 - 댓글정보)을 HTML 태그로 변환
 						var html="<div class='comment' id='comment_"+this.num+"'>";
 						html+="<b>["+this.writer+"]</b><br>";//작성자
-						html+=this.content.replace("/\n/g", "<br>")+"<br>";//댓글내용
+						html+=this.content.replace(/\n/g, "<br>")+"<br>";//댓글내용
 						html+="("+this.regdate+")<br>";//작성날짜
 						html+="<button type='button'>댓글변경</button>&nbsp;";//변경버튼
 						html+="<button type='button'>댓글삭제</button>&nbsp;";//삭제버튼
