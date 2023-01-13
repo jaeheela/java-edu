@@ -114,7 +114,7 @@ h1 {
 			<tr>
 				<td class="title">댓글내용</td>
 				<td class="input"><textarea rows="3" cols="50" id="modify_content"></textarea></td> 
-			</tr>
+			</tr> 
 			<tr>
 				<td class="btn" colspan="2">
 					<button type="button" id="modify_btn">변경</button>
@@ -176,6 +176,53 @@ h1 {
 			}
 		});
 	}
+	
+	//[댓글등록] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 입력태그의 입력값(댓글정보)을 반환받아 AJAX_COMMENT 테이블에 삽입하는 comment_add.jsp
+	//문서를 AJAX 기능으로 요청하고 실행결과를 XML 문서로 응답받아 처리
+	$("#add_btn").click(function() {
+		var writer=$("#add_writer").val();
+		if(writer=="") {
+			$("#add_message").html("작성자를 입력해 주세요.");
+			$("#add_writer").focus();
+			return;
+		}
+		
+		var content=$("#add_content").val();
+		if(content=="") {
+			$("#add_message").html("내용을 입력해 주세요.");
+			$("#add_content").focus();
+			return;
+		}
+		
+		$("#add_writer").val("");
+		$("#add_content").val("");
+		$("#add_message").html("");
+		
+		$.ajax({
+			type: "post",
+			url: "comment_add.jsp",
+			data: {"writer":writer, "content":content},
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

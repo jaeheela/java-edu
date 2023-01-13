@@ -50,6 +50,8 @@
 		});
 		*/
 		
+		//$.post(url[,data][,success][,dataType]) : AJAX 기능을 사용하여 웹프로그램을 POST
+		//방식으로 요청하여 실행결과를 응답받아 처리하는 메소드
 		$.post("welcome_two.jsp", "name="+name, function(result) {
 			$("#message").html(result);
 		}, "html");

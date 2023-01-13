@@ -143,7 +143,7 @@ POST 방식으로 요청하여 이동 - 사용자 입력값(회원정보) 전달
 	var idCheckResult=false;
 	
 	//아이디 입력태그에서 키보드를 누른 경우 호출되는 이벤트 처리 함수 등록
-	$("#id").onkeyup(function() {
+	$("#id").keyup(function() {
 		idCheckResult=false;
 		
 		var id=$("#id").val();
