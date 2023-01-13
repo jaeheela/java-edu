@@ -266,6 +266,46 @@ h1 {
 			}
 		});
 	}
+	
+	//댓글변경태그에서 [변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 댓글변경태그에서 입력태그의 변경값을 반환받아 AJAX_COMMENT 테이블의 댓글정보를 변경하는 
+	//comment_modify.jsp 문서를 AJAX 기능으로 요청하고 실행결과를 XML 문서로 응답받아 처리
+	$("#modify_btn").click(function() {
+		//입력태그의 변경값을 반환받아 변수에 저장
+		var num=$("#modify_num").val();
+		
+		var writer=$("#modify_writer").val();
+		if(writer=="") {
+			$("#modify_message").html("작성자를 입력해 주세요.");
+			$("#modify_writer").focus();
+			return;
+		}
+		
+		var content=$("#modify_content").val();
+		if(content=="") {
+			$("#modify_message").html("내용을 입력해 주세요.");
+			$("#modify_content").focus();
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "comment_modify.jsp",
+			data: {"num":num,"writer":writer,"content":content},
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+		
+	});
+	
+	//댓글변경태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 댓글변경태그와 탯글삭제태그를 초기화 처리하기 위한 함수 호출
+	$("#modify_cancel_btn").click(init);
 	</script>
 </body>
 </html>
