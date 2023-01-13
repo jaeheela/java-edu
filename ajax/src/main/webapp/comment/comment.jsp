@@ -81,7 +81,7 @@ h1 {
 <body>
 	<h1>AJAX 댓글</h1>
 	<hr>
-	<%-- 댓글 등록 영역 --%>
+	<%-- 댓글등록태그 --%>
 	<div id="comment_add">
 		<table class="comment_table">
 			<tr>
@@ -101,10 +101,10 @@ h1 {
 		<div id="add_message">&nbsp;</div>
 	</div>
 	
-	<%-- 댓글목록 출력 영역 --%>
+	<%-- 댓글목록 출력태그 --%>
 	<div id="comment_list"></div>
 	
-	<%-- 댓글 변경 영역 --%>
+	<%-- 댓글변경태그 --%>
 	<div id="comment_modify">
 		<input type="hidden" id="modify_num" value="">
 		<table class="comment_table">
@@ -126,7 +126,7 @@ h1 {
 		<div id="modify_message">&nbsp;</div>
 	</div>
 	
-	<%-- 댓글 삭제 영역 --%>
+	<%-- 댓글삭제태그 --%>
 	<div id="comment_remove">
 		<div id="remove_message">
 			<b>정말로 삭제 하시겠습니까?</b>
@@ -145,7 +145,7 @@ h1 {
 			url: "comment_list.jsp",
 			dataType: "xml",
 			success: function(xmlDoc) {
-				//댓글목록 출력영역에 출력된 기존 댓글 목록 삭제 - 초기화
+				//댓글목록 출력영역에 출력된 기존 댓글목록 삭제 - 초기화
 				$("#comment_list").children().remove();
 				
 				var code=$(xmlDoc).find("code").text();
@@ -164,7 +164,7 @@ h1 {
 						html+="<button type='button'>댓글삭제</button>&nbsp;";//삭제버튼
 						html+="</div>";
 
-						//댓글목록 출력영역에 댓글정보를 마지막 자식태그로 추가하여 출력
+						//댓글목록 출력태그에 댓글정보를 마지막 자식태그로 추가하여 출력
 						$("#comment_list").append(html);
 					});
 				} else {//검색된 댓글이 없는 경우
