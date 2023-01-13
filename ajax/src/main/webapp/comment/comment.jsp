@@ -327,7 +327,41 @@ h1 {
 		
 		//댓글삭제태그를 보여지도록 처리하고 변경할 댓글 출력태그의 자식태그로 이동
 		$("#comment_remove").show().appendTo("#comment_"+num);
+		
+		//댓글삭제태그에서 입력태그에 댓글번호 저장
+		$("#remove_num").val(num);
 	}
+	
+	//댓글삭제태그에서 [삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 댓글삭제태그에서 입력태그의 댓글번호를 반환받아 AJAX_COMMENT 테이블에 저장된 해당 댓글번호의
+	//댓글정보를 삭제하는 comment_remove.jsp 문서를 AJAX 기능으로 요청하고 실행결과를 XML 문서로 응답받아 처리
+	$("#remove_btn").click(function() {
+		var num=$("#remove_num").val();
+		
+		$.ajax({
+			type: "get",
+			url: "comment_remove.jsp",
+			data: {"num":num},
+			dateType: "xml",
+			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
+				
+				if(code=="success") {
+					displayComment();//댓글목록 출력
+					init();
+				} else {
+					alert("댓글 삭제 실패");
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
+	
+	//댓글삭제태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 댓글변경태그와 탯글삭제태그를 초기화 처리하기 위한 함수 호출
+	$("#remove_cancel_btn").click(init);	
 	</script>
 </body>
 </html>
