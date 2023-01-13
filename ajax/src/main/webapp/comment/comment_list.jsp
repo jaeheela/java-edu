@@ -16,6 +16,8 @@
 		<% for(int i=0;i<ajaxCommentList.size();i++) { %>
 			<% if(i>0) { %>,<% } %>
 			{"num":<%=ajaxCommentList.get(i).getNum()%>
+			<%-- 문제점)검색된 결과값에서 JSON 형식의 데이타로 표현할 수 없는 문자값이 존재하는 경우 에러 발생 --%>
+			<%-- 해결법)JSON 형식의 데이타로 표현할 수 없는 문자값을 변환하여 사용 --%>
 			,"writer":"<%=ajaxCommentList.get(i).getWriter()%>"
 			,"content":"<%=ajaxCommentList.get(i).getContent()%>"
 			,"regdate":"<%=ajaxCommentList.get(i).getRegdate()%>"}
