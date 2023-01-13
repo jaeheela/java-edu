@@ -106,6 +106,7 @@ h1 {
 	
 	<%-- 댓글 변경 영역 --%>
 	<div id="comment_modify">
+		<input type="hidden" id="modify_num" value="">
 		<table class="comment_table">
 			<tr>
 				<td class="title">작성자</td>
@@ -219,10 +220,25 @@ h1 {
 		});
 	});
 	
+	//댓글변경태그와 댓글삭제태그를 초기화 처리하기 위한 함수
+	function init() {
+		//댓글변경태그를 숨기고 document 객체의 자식태그로 이동
+		$("#comment_modify").hide().appendTo(document.documentElement);
+		
+		//댓글변경태그에서 입력태그 초기화
+		$("#modify_num").val("");
+		$("#modify_writer").val("");
+		$("#modify_content").val("");
+		//댓글변경태그에서 메세지 출력태그 초기화
+		$("#modify_message").html("");
+	}
+	
 	//댓글 출력 태그에서 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
 	// => comment_get.jsp 문서를 AJAX 기능으로 요청하여 변경할 댓글정보를 XML 문서로 응답받아 처리
 	function modifyCommnet(num) {
 		//alert(num);
+		
+		init();
 		
 		//댓글변경태그를 보여지도록 처리하고 변경할 댓글출력태그의 자식태그로 이동
 		$("#comment_modify").show().appendTo("#comment_"+num);
@@ -233,7 +249,17 @@ h1 {
 			data: {"num":num},
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
 				
+				if(code=="success") {
+					var comment=JSON.parse($(xmlDoc).find("data").text());
+					//댓글변경태그에서 입력태그의 입력값을 검색결과값으로 변경
+					$("#modify_num").val(comment.num);
+					$("#modify_writer").val(comment.writer);
+					$("#modify_content").val(comment.content);
+				} else {
+					init();
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
