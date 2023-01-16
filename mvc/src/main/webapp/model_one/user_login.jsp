@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 사용자로부터 로그인정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [로그인] 태그를 클릭한 경우 로그인 처리페이지(user_login_action.jsp)로 이동 - 입력값 전달 --%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
