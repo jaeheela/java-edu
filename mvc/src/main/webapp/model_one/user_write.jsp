@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 <%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 회원정보 삽입페이지(user_write_action.jsp)로 이동 - 입력값 전달 --%>
-<%-- => [로그인] 태그를 클릭한 경우 로그인정보 입력페이지(user_login.jsp)로 이동 --%>    
+<%-- => [로그인] 태그를 클릭한 경우 로그인정보 입력페이지(user_login.jsp)로 이동 --%>
+<%
+	String message=(String)session.getAttribute("message");
+	if(message==null) {
+		message="";
+	} else {
+		session.removeAttribute("message");
+	}
+%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,7 +45,7 @@ function userCreate() {
 <table width=780 border=0 cellpadding=0 cellspacing=0>
 	<tr>
 	  <td width="20"></td>
-	  <td style="color: red;"></td>			
+	  <td style="color: red;"><%=message %></td>			
 	</tr>
 
 	<tr>

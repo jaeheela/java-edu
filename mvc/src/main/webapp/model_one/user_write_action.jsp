@@ -25,7 +25,13 @@
 	userinfo.setEmail(email);
 	userinfo.setStatus(status);
 
-	UserinfoModelOneDAO.getDAO().insertUserinfo(userinfo);
+	int rows=UserinfoModelOneDAO.getDAO().insertUserinfo(userinfo);
 	
-	response.sendRedirect("user_login.jsp");
+	if(rows>0) {//회원등록이 성공한 경우
+		response.sendRedirect("user_login.jsp");
+	} else {//회원등록이 실패한 경우 - 전달받은 아이디에 대한 PK 제약조건 위반으로 인해 발생
+		session.setAttribute("message", "이미 사용중인 아이디를 입력 하였습니다.");
+		session.setAttribute("userinfo", userinfo);
+		response.sendRedirect("user_write.jsp");
+	}
 %>
