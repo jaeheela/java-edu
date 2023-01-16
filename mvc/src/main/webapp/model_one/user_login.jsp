@@ -6,7 +6,7 @@
 <%-- 로그인 사용자인 경우 환영메세지를 전달하는 JSP 문서 --%>
 <%-- => [회원목록] 태그를 클릭한 경우 회원목록 출력페이지(user_list.jsp)로 이동 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 로그아웃 처리페이지(user_logout_action.jsp)로 이동 --%>
-<%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(user_write.jsp)로 이동 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(user_write.jsp)로 이동 - 관리자에게만 제공 --%>
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
@@ -109,7 +109,9 @@ function userLogin() {
 			<td align=center>
 				<button type="button" onclick="location.href='user_list.jsp';">회원목록</button>
 				<button type="button" onclick="location.href='user_logout_action.jsp';">로그아웃</button>
+				<% if(loginUserinfo.getStatus()==9) { %>
 				<button type="button" onclick="location.href='user_write.jsp';">회원등록</button>
+				<% } %>
 			</td>
 		  </tr>
 	  </table>
