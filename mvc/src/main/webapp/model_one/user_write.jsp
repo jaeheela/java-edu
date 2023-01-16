@@ -1,10 +1,17 @@
 ﻿<%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 - 관리자만 요청 가능한 페이지 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 회원정보 삽입페이지(user_write_action.jsp)로 이동 - 입력값 전달 --%>
 <%-- => [로그인] 태그를 클릭한 경우 로그인정보 입력페이지(user_login.jsp)로 이동 --%>
 <%
+	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
+	//비로그인 사용자이거나 로그인 사용자가 관리자가 아닌 경우 - 비정상적인 요청
+	if(loginUserinfo==null || loginUserinfo.getStatus()!=9) {
+		response.sendRedirect("user_error.jsp");
+		return;		
+	}
+
 	String message=(String)session.getAttribute("message");
 	if(message==null) {
 		message="";
