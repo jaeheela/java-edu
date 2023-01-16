@@ -107,6 +107,7 @@ public class UserinfoModelOneDAO extends JdbcDAO {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
+				userinfo=new UserinfoDTO();
 				userinfo.setUserid(rs.getString("userid"));
 				userinfo.setPassword(rs.getString("password"));
 				userinfo.setName(rs.getString("name"));
