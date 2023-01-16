@@ -1,5 +1,22 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="xyz.itwill.dao.UserinfoModelOneDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="xyz.itwill.dto.UserinfoDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- USERINFO 테이블에 저장된 모든 회원정보를 검색하여 전달하는 JSP 문서 - 로그인 사용자만 요청 가능한 페이지 --%>
+<%-- => 회원정보에서 [회원이름]을 클릭한 경우 회원정보 출력페이지(user_view.jsp)로 이동 - 아이디 전달 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(user_write.jsp)로 이동 - 관리자에게만 제공 --%>
+<%-- => [로그아웃] 태그를 클릭한 경우 로그아웃 처리페이지(user_logout_action.jsp)로 이동 --%>
+<%
+	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
+	//비로그인 사용자인 경우 - 비정상적인 요청
+	if(loginUserinfo==null) {
+		response.sendRedirect("user_error.jsp");
+		return;		
+	}
+	
+	List<UserinfoDTO> userinfoList=UserinfoModelOneDAO.getDAO().selectUserinfoList();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,41 +44,32 @@
 				<td width=200 align=center bgcolor="E6ECDE">이메일</td>
 		  	</tr>
 		  	
+		  	<% for(UserinfoDTO userinfo:userinfoList) { %>
 		  	<tr>
 				<td width=190 align=center bgcolor="ffffff" height="20">
-					abc
+					<%=userinfo.getUserid() %>
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					<a href="user_view.jsp?userid=abc" class="user">
-						홍길동
+					<a href="user_view.jsp?userid=<%=userinfo.getUserid() %>" class="user">
+						<%=userinfo.getName() %>
 					</a>
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					abc@daum.com
+					<% if(userinfo.getEmail()!=null) { %>
+						<%=userinfo.getEmail() %>
+					<% } %>
 				</td>
 		  	</tr>
-		  	
-		  	<tr>
-				<td width=190 align=center bgcolor="ffffff" height="20">
-					xyz
-				</td>
-				<td width=200 align=center bgcolor="ffffff">
-					<a href="user_view.jsp?userId=xyz" class="user">
-						임꺽정
-					</a>
-				</td>
-				<td width=200 align=center bgcolor="ffffff">
-					xyz@naver.com
-				</td>
-		  	</tr>
-		  	
+		  	<% } %>
 	  	</table>
 
 		<br>
 	  	<table border="0" cellpadding="0" cellspacing="1" width="590">
 			<tr>
 				<td align="right">
+					<% if(loginUserinfo.getStatus()==9) { %>
 					<input type="button" value="회원등록" onclick="location.href='user_write.jsp';"/>
+					<% } %>
 					<input type="button" value="로그아웃" onclick="location.href='user_logout_action.jsp';"/>
 				</td>
 			</tr>
