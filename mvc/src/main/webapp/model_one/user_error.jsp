@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 에러메세지를 클라이언트에게 전달하는 JSP 문서 --%>
+<%-- 에러메세지를 전달하는 JSP 문서 --%>
 <%-- => [로그인 페이지 이동] 태그를 클릭한 경우 로그인정보 입력페이지(user_login.jsp)로 이동 --%>    
 <!DOCTYPE html>
 <html>
