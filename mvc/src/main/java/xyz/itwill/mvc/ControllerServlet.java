@@ -58,7 +58,11 @@ public class ControllerServlet extends HttpServlet {
 		// => 에러메세지 출력페이지 - /error.do >> ErrorModel Class
 		
 		if(command.equals("/loginForm.do")) {
-			
+			LoginFormModel loginFormModel=new LoginFormModel();
+			loginFormModel.run();
+		} else if(command.equals("/login.do")) {
+			LoginModel loginModel=new LoginModel();
+			loginModel.execute();
 		}
 	}
 }
