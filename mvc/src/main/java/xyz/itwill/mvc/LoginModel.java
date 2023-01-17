@@ -38,7 +38,7 @@ public class LoginModel implements Action {
 			UserinfoService.getService().auth(userid, password);
 		} catch (AuthFailException e) {
 			request.setAttribute("message", e.getMessage());
-			request.setAttribute("userid", request.getParameter("user_id"));
+			request.setAttribute("userid", request.getParameter("userid"));
 			actionForward.setForward(true);
 			actionForward.setPath("/model_two/user_login.jsp");
 		} catch (Exception e) {
