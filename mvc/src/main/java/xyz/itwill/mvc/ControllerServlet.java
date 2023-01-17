@@ -57,24 +57,30 @@ public class ControllerServlet extends HttpServlet {
 		// => 회원정보 삭제페이지 - /remove.do >> RemoveModel Class
 		// => 에러메세지 출력페이지 - /error.do >> ErrorModel Class
 		
+		//모델 클래스가 상속받은 인터페이스를 이용하여 참조변수 선언
+		// => 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)로 생성된 객체 저장 가능
+		Action action=null;
+		
 		if(command.equals("/loginForm.do")) {
-			LoginFormModel loginFormModel=new LoginFormModel();
-			loginFormModel.run();
+			action=new LoginFormModel();
 		} else if(command.equals("/login.do")) {
-			LoginModel loginModel=new LoginModel();
-			loginModel.execute();
+			action=new LoginModel();
+		}
+		
+		//인터페이스 참조변수를 이용하여 추상메소드를 호출하면 참조변수에 저장된 모델 객체에
+		//오버라이드 선언된 요청 처리 메소드 호출 - 오버라이드에 의한 다형성
+		// => 요청 처리 메소드에 의해 요청 처리 후 응답 관련 정보가 저장된 ActionForward 
+		//객체를 반환받아 저장
+		ActionForward actionForward=action.execute(request, response);
+		
+		//4.응답 관련 정보를 저장된 ActionForward 객체를 이용하여 응답 처리
+		if(actionForward.isForward()) {//ActionForward 객체의 forward 필드값이 [true]인 경우 - 포워드 이동
+			//컨트롤러에서 뷰(XXX.jsp)로 스레드를 이동하여 JSP 문서의 실행결과(HTML 문서)를 
+			//클라이언트에게 전달하여 응답
+			request.getRequestDispatcher(actionForward.getPath()).forward(request, response);
+		} else {//ActionForward 객체의 forward 필드값이 [false]인 경우 - 라다이렉트 이동
+			//컨트롤러에서 클라이언트에게 요청 URL 주소(XXX.do)를 전달하여 재요청하도록 응답
+			response.sendRedirect(actionForward.getPath());
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
