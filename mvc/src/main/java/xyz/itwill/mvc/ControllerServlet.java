@@ -65,6 +65,8 @@ public class ControllerServlet extends HttpServlet {
 			action=new LoginFormModel();
 		} else if(command.equals("/login.do")) {
 			action=new LoginModel();
+		} else if(command.equals("/logout.do")) {
+			action=new LogoutModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//요청에 대한 모델 클래스가 없는 경우
