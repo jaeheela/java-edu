@@ -1,9 +1,9 @@
 ﻿<%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 비로그인 사용자인 경우 사용자로부터 로그인정보를 입력받기 위한 JSP 문서 --%>
+<%-- 비로그인 사용자인 경우 - 사용자로부터 로그인정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [로그인] 태그를 클릭한 경우 로그인 처리페이지(user_login_action.jsp)로 이동 - 입력값 전달 --%>
-<%-- 로그인 사용자인 경우 환영메세지를 전달하는 JSP 문서 --%>
+<%-- 로그인 사용자인 경우 - 환영메세지를 전달하는 JSP 문서 --%>
 <%-- => [회원목록] 태그를 클릭한 경우 회원목록 출력페이지(user_list.jsp)로 이동 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 로그아웃 처리페이지(user_logout_action.jsp)로 이동 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(user_write.jsp)로 이동 - 관리자에게만 제공 --%>
