@@ -2,11 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 비로그인 사용자인 경우 - 사용자로부터 로그인정보를 입력받기 위한 JSP 문서 --%>
-<%-- => [로그인] 태그를 클릭한 경우 로그인 처리페이지(user_login_action.jsp)로 이동 - 입력값 전달 --%>
+<%-- => [로그인] 태그를 클릭한 경우 로그인 처리페이지(/login.do)로 이동 - 입력값 전달 --%>
 <%-- 로그인 사용자인 경우 - 환영메세지를 전달하는 JSP 문서 --%>
-<%-- => [회원목록] 태그를 클릭한 경우 회원목록 출력페이지(user_list.jsp)로 이동 --%>
-<%-- => [로그아웃] 태그를 클릭한 경우 로그아웃 처리페이지(user_logout_action.jsp)로 이동 --%>
-<%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(user_write.jsp)로 이동 - 관리자에게만 제공 --%>
+<%-- => [회원목록] 태그를 클릭한 경우 회원목록 출력페이지(/list.do)로 이동 --%>
+<%-- => [로그아웃] 태그를 클릭한 경우 로그아웃 처리페이지(/logout.do)로 이동 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 회원정보 입력페이지(/writeForm.do)로 이동 - 관리자에게만 제공 --%>
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
@@ -29,7 +29,9 @@
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="css/user.css" type="text/css">
+<%-- 요청 웹프로그램(컨트롤러)의 URL 주소 경로와 응답 JSP 문서의 경로가 서로 다르므로
+웹자원의 경로는 절대경로로 표현하는 것을 권장 --%>
+<link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css">
 <script language="JavaScript">
 function userLogin() {
 	if ( f.userid.value == "" ) {
@@ -43,7 +45,7 @@ function userLogin() {
 		return;
 	}	
 	
-	f.action = "user_login_action.jsp";
+	f.action = "login.do";
 	f.submit();
 }
 </script>
@@ -107,10 +109,10 @@ function userLogin() {
 	  <table width=590 border=0 cellpadding=0 cellspacing=0>
 		  <tr>
 			<td align=center>
-				<button type="button" onclick="location.href='user_list.jsp';">회원목록</button>
-				<button type="button" onclick="location.href='user_logout_action.jsp';">로그아웃</button>
+				<button type="button" onclick="location.href='list.do';">회원목록</button>
+				<button type="button" onclick="location.href='logout.do';">로그아웃</button>
 				<% if(loginUserinfo.getStatus()==9) { %>
-				<button type="button" onclick="location.href='user_write.jsp';">회원등록</button>
+				<button type="button" onclick="location.href='writeForm.do';">회원등록</button>
 				<% } %>
 			</td>
 		  </tr>

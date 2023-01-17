@@ -14,7 +14,7 @@ public class LoginFormModel implements Action {
 			throws ServletException, IOException {
 		ActionForward actionForward=new ActionForward();
 		actionForward.setForward(true);
-		actionForward.setPath("/model_two/ser_login.jsp");
+		actionForward.setPath("/model_two/user_login.jsp");
 		return actionForward;
 	}
 }
