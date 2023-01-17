@@ -100,7 +100,6 @@ function userLogin() {
 			<td align=center bgcolor="E6ECDE" height="22">
 				<%=loginUserinfo.getName() %>님, 환영합니다.
 			</td>
-			</td>
 		  </tr>
 	  </table>
 	  <br>

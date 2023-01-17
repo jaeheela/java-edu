@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import xyz.itwill.exception.AuthFailException;
 import xyz.itwill.service.UserinfoService;
@@ -36,7 +37,19 @@ public class LoginModel implements Action {
 			//UserinfoService 클래스의 auth() 메소드를 호출하여 인증 처리
 			// => AuthFailException이 발생된 경우 인증 실패 
 			UserinfoService.getService().auth(userid, password);
+			
+			//인증이 성공된 경우 세션에 권한 관련 정보(회원정보) 저장
+			// => 세션 바인딩하여 HttpSession 객체를 반환받아 저장
+			HttpSession session=request.getSession();
+			//Session Scope : 동일한 세션을 사용하는 모든 웹프로그램에서 속성값을 반환받아 사용 가능
+			// => 웹브라우저가 종료되면 클라이언트에 바인딩된 세션은 자동으로 제거
+			session.setAttribute("loginUserinfo", UserinfoService.getService().getUserinfo(userid));
+			
+			actionForward.setForward(false);
+			actionForward.setPath("loginForm.do");
 		} catch (AuthFailException e) {
+			//인증 실패에 의해 발생된 예외에 대한 처리 명령 작성
+			//Request Scope : 스레드가 이동된 웹프로그램(JSP)에서만 속성값을 반환받아 사용 가능
 			request.setAttribute("message", e.getMessage());
 			request.setAttribute("userid", request.getParameter("userid"));
 			actionForward.setForward(true);
