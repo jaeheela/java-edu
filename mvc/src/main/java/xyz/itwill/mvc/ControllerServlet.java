@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 //컨트롤러(Controller - Servlet) : 클라이언트의 모든 요청을 모델(Model - Class)의 요청 처리 메소드를
 //호출하여 요청을 처리하고 처리결과를 뷰(View - JSP)로 전달하여 응답되도록 제어하는 웹프로그램
 
-//1.클라이언트의 모든 요청을 받을 수 있도록 서블릿을 설정하여 단일 진입점의 기능 구현
+//1.클라이언트의 모든  요청을 받을 수 있도록 서블릿을 설정하여 단일 진입점의 기능 구현
 // => Front Controller Pattern
 //@WebServlet("URL") : 서블릿 클래스를 웹프로그램(서블릿)으로 등록하고 요청 URL 주소를 매핑하는 어노테이션
 // => 매핑 설정될 URL 주소에 패턴문자(* : 전체 또는 ? : 문자 하나)를 사용하여 URL 패턴 등록 가능  
@@ -76,6 +76,8 @@ public class ControllerServlet extends HttpServlet {
 			action=new ViewModel();
 		} else if(command.equals("/modifyForm.do")) {
 			action=new ModifyFormModel();
+		} else if(command.equals("/modify.do")) {
+			action=new ModifyModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//요청에 대한 모델 클래스가 없는 경우
