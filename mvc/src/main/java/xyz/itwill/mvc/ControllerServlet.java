@@ -1,5 +1,6 @@
 package xyz.itwill.mvc;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,9 +61,54 @@ public class ControllerServlet extends HttpServlet {
 		//Properties 파일의 정보를 저장하기 위한 Properties 객체 생성
 		Properties properties=new Properties();
 		
+		//ServletConfig.getInitParameter(String name) : [web.xml] 파일에서 init-param 
+		//엘리먼트로 제공되는 값을 읽어와 반환하는 메소드		
+		String configFile=config.getInitParameter("configFile");
+		//System.out.println("configFile = "+configFile);
+		
 		//Properties 파일의 시스템 경로를 반환받아 저장
-		String configFilePath=config.getServletContext().getRealPath("/WEB-INF/model.propeties");
+		//String configFilePath=config.getServletContext().getRealPath("/WEB-INF/model.propeties");
+		String configFilePath=config.getServletContext().getRealPath(configFile);
 		//System.out.println("configFilePath = "+configFilePath);
+		
+		try {
+			//Properties 파일에 대한 입력스트림을 생성하여 저장
+			FileInputStream in=new FileInputStream(configFilePath);
+			
+			//입력스트림을 사용하여 Properties 파일의 내용을 읽어 Properties 객체에 엔트리로 저장
+			properties.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//Properties 객체의 모든 키(Key)를 반환받아 반복 처리
+		//Properties.keySet() : Properties 객체에 저장된 모든 엔트리의 키(Key)를 Set 객체로 반환하는 메소드
+		for(Object key:properties.keySet()) {//Set 객체로부터 요소를 하나씩 제공받아 반복 처리
+			//Properties 객체에 저장된 엔트리의 키(Key) - 요청정보
+			String actionCommand=(String)key;
+			
+			//Properties 객체에 저장된 엔트리의 값(Value) - 모델 클래스
+			String actionClass=(String)properties.get(key);
+			
+			try {
+				//모델 클래스를 이용하여 모델 객체 생성 - 리플렉션 기능 사용
+				//리플렉션(Reflection) : 프로그램 실행시 클래스(Clazz)를 읽어 객체를 생성하고
+				//객체의 필드 또는 메소드에 접근하도록 제공하는 기능
+				//Class.forName(String className) : 문자열로 표현된 클래스를 전달받아 클래스를
+				//읽어 메모리에 저장하고 Class 객체(Clazz)를 반환하는 메소드 - ClassNotFoundException 발생
+				//Class.getDeclaredConstructor() : 메모리에 저장된 클래스(Class 객체)의 생성자가 저장된
+				//Constructor 객체를 반환하는 메소드
+				//Constructor.newInstance() : Constructor 객체에 저장된 생성자를 이용하여
+				//Object 타입의 객체를 생성하여 반환하는 메소드
+				Action actionObject=(Action)Class
+					.forName(actionClass).getDeclaredConstructor().newInstance();
+				
+				//Map 객체에 엔트리(Entry - Key : 요청정보, Value : 모델 객체) 추가
+				actionMap.put(actionCommand, actionObject);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	//클라이언트의 요청을 처리하기 위한 자동 호출되는 메소드
