@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//컨트롤러(Controller - Servlet) : 클라이언트의 모든 요청을 받아 모델(Model - Class)의 요청
-//처리 메소드를 호출하여 요청을 처리하고 처리결과를 뷰(View - JSP)로 전달받아 응답되도록
-//제어하는 웹프로그램
+//컨트롤러(Controller - Servlet) : 클라이언트의 모든 요청을 모델(Model - Class)의 요청 처리 메소드를
+//호출하여 요청을 처리하고 처리결과를 뷰(View - JSP)로 전달하여 응답되도록 제어하는 웹프로그램
 
 //1.클라이언트의 모든 요청을 받을 수 있도록 서블릿을 설정하여 단일 진입점의 기능 구현
 // => Front Controller Pattern
