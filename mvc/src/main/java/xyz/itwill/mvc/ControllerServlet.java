@@ -1,7 +1,10 @@
 package xyz.itwill.mvc;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,33 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//요청정보(Key - String)와 모델 객체(Value - Action)를 하나의 요소(Entry)로 묶어 여러개
+	//저장할 Map 객체의 필드
+	// => Map 객체를 이용하여 요청정보(Key)로 모델 객체(Value)를 빠르게 제공받기 위해 사용
+	private Map<String, Action> actionMap;
+	
+	//클라이언트 최초 요청에 의해 서블릿 객체가 생성된 후 가장 먼저 자동으로 1번만 호출되는 메소드
+	// => 서블릿 객체의 초기화 작업을 위해 오버라이드 선언
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		//System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
+		
+		actionMap=new HashMap<String, Action>();
+		
+		//Map 객체에 엔트리(Entry - Key : 요청정보, Value : 모델 객체) 추가
+		actionMap.put("/loginForm.do", new LoginFormModel());
+		actionMap.put("/login.do", new LoginModel());
+		actionMap.put("/logout.do", new LogoutModel());
+		actionMap.put("/writeForm.do", new WriteFormModel());
+		actionMap.put("/write.do", new WriteModel());
+		actionMap.put("/list.do", new ListModel());
+		actionMap.put("/view.do", new ViewModel());
+		actionMap.put("/modifyForm.do", new ModifyFormModel());
+		actionMap.put("/modify.do", new ModifyModel());
+		actionMap.put("/remove.do", new RemoveModel());
+		actionMap.put("/error.do", new ErrorModel());
+	}
+	
 	//클라이언트의 요청을 처리하기 위한 자동 호출되는 메소드
 	// => 클라이언트가 서블릿(웹프로그램)을 요청할 때마다 서블릿 객체를 이용하여 반복적으로 호출
 	@Override
@@ -56,6 +86,7 @@ public class ControllerServlet extends HttpServlet {
 		// => 회원정보 삭제페이지 - /remove.do >> RemoveModel Class
 		// => 에러메세지 출력페이지 - /error.do >> ErrorModel Class
 		
+		/*
 		//모델 클래스가 상속받은 인터페이스를 이용하여 참조변수 선언
 		// => 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)로 생성된 객체 저장 가능
 		Action action=null;
@@ -84,6 +115,14 @@ public class ControllerServlet extends HttpServlet {
 			action=new ErrorModel();
 		} else {//요청에 대한 모델 클래스가 없는 경우
 			action=new ErrorModel();
+		}
+		*/
+		
+		//Map 객체에 저장된 엔트리에서 요청정보(Key)를 이용하여 모델 객체(Value)를 반환받아 저장
+		// => 메모리 효율 및 가독성 증가
+		Action action=actionMap.get(command);
+		if(action==null) {//참조변수에 요청에 대한 모델 객체가 저장되어 있지 않은 경우
+			action=actionMap.get("/error.do");
 		}
 		
 		//인터페이스 참조변수를 이용하여 추상메소드를 호출하면 참조변수에 저장된 모델 객체에
