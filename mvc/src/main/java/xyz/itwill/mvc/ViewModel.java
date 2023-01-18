@@ -28,6 +28,10 @@ public class ViewModel implements Action {
 				throw new Exception();
 			}
 			
+			if(request.getParameter("userid")==null) {
+				throw new Exception();
+			}
+			
 			String userid=request.getParameter("userid");
 			
 			//UserinfoService 클래스의 getUserinfo() 메소드를 호출하여 반환된 회원정보를
