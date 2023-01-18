@@ -78,6 +78,8 @@ public class ControllerServlet extends HttpServlet {
 			action=new ModifyFormModel();
 		} else if(command.equals("/modify.do")) {
 			action=new ModifyModel();
+		} else if(command.equals("/remove.do")) {
+			action=new RemoveModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//요청에 대한 모델 클래스가 없는 경우
