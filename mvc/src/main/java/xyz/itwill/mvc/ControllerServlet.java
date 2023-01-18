@@ -3,6 +3,7 @@ package xyz.itwill.mvc;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		actionMap=new HashMap<String, Action>();
 		
+		/*
 		//Map 객체에 엔트리(Entry - Key : 요청정보, Value : 모델 객체) 추가
 		actionMap.put("/loginForm.do", new LoginFormModel());
 		actionMap.put("/login.do", new LoginModel());
@@ -48,6 +50,19 @@ public class ControllerServlet extends HttpServlet {
 		actionMap.put("/modify.do", new ModifyModel());
 		actionMap.put("/remove.do", new RemoveModel());
 		actionMap.put("/error.do", new ErrorModel());
+		*/
+		
+		//Properties 파일에 요청정보와 모델 클래스를 저장하고 파일을 읽어 Map 객체의 엔트리 추가
+		// => 유지보수의 효율성 증가 - 컨트롤러를 변경하지 않고 Properties 파일만 변경하여
+		//요청정보와 모델 객체 변경 가능
+		//Properties 파일(XXX.properties) : 프로그램 실행에 필요한 값을 제공하기 위한 텍스트 파일
+		
+		//Properties 파일의 정보를 저장하기 위한 Properties 객체 생성
+		Properties properties=new Properties();
+		
+		//Properties 파일의 시스템 경로를 반환받아 저장
+		String configFilePath=config.getServletContext().getRealPath("/WEB-INF/model.propeties");
+		//System.out.println("configFilePath = "+configFilePath);
 	}
 	
 	//클라이언트의 요청을 처리하기 위한 자동 호출되는 메소드
