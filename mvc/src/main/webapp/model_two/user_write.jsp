@@ -1,25 +1,16 @@
 ﻿<%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 - 관리자만 요청 가능한 페이지 --%>
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 회원정보 삽입페이지(write.do)로 이동 - 입력값 전달 --%>
 <%-- => [로그인] 태그를 클릭한 경우 로그인정보 입력페이지(loginForm.do)로 이동 --%>
 <%
-	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
-	//비로그인 사용자이거나 로그인 사용자가 관리자가 아닌 경우 - 비정상적인 요청
-	if(loginUserinfo==null || loginUserinfo.getStatus()!=9) {
-		response.sendRedirect("user_error.jsp");
-		return;		
-	}
-
-	String message=(String)session.getAttribute("message");
+	String message=(String)request.getAttribute("message");
 	if(message==null) {
 		message="";
-	} else {
-		session.removeAttribute("message");
 	}
 	
-	UserinfoDTO userinfo=(UserinfoDTO)session.getAttribute("userinfo");
+	UserinfoDTO userinfo=(UserinfoDTO)request.getAttribute("userinfo");
 	if(userinfo==null) {
 		userinfo=new UserinfoDTO();
 		userinfo.setUserid("");
@@ -27,8 +18,6 @@
 		userinfo.setName("");
 		userinfo.setEmail("");
 		userinfo.setStatus(1);
-	} else {
-		session.removeAttribute("userinfo");
 	}
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
