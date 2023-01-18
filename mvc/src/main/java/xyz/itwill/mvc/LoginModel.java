@@ -12,7 +12,7 @@ import xyz.itwill.service.UserinfoService;
 
 //클라이언트가 [/login.do]로 요청한 경우 실행될 모델 클래스
 // => 로그인정보를 전달받아 USERINFO 테이블에 저장된 회원정보와 비교하여 인증 처리
-// => 인증 성공 : 세션에 권한 관련 정보를 저장하고 [loginForm.do]로 리다이렉트 이동하기
+// => 인증 성공 : 세션에 권한 관련 정보를 저장하고 [loginForm.do]로 리다이렉트 이동하기 위한
 //정보가 저장된 ActionForward 객체 반환
 // => 인증 실패 : [user_login.jsp]로 포워드 이동하기 위한 정보가 저장된 ActionForward 
 //객체 반환 - 에러메세지와 아이디를 request 속성값으로 저장하여 JSP 문서에 제공
