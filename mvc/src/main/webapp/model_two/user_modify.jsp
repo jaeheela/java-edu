@@ -4,7 +4,7 @@
 <%-- request 속성값으로 제공된 회원정보를 입력태그의 초기값으로 설정하고 변경할 회원정보를
 사용자로부터 입력받기 위한 JSP 문서 --%>
 <%-- => [수정] 태그를 클릭한 경우 회원정보 변경페이지(modify.do)로 이동 - 입력값 전달 --%>
-<%-- => [목록] 태그를 클릭한 경우 회원목록 출력페이지(remove.do)로 이동 --%>
+<%-- => [목록] 태그를 클릭한 경우 회원목록 출력페이지(list.do)로 이동 --%>
 <%
 	UserinfoDTO userinfo=(UserinfoDTO)request.getAttribute("userinfo");
 %> 
