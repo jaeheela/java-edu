@@ -3,7 +3,7 @@
 <%-- 사용자 입력값을 전달받아 클라이언트에게 전달하는 JSP 문서 --%>
 <%-- POST 방식으로 요청하여 리퀘스트 메세지 몸체부에 저장되어 전달하는 값에 대한 캐릭터셋 변경 --%>
 <%-- => 인코딩 필터를 이용할 경우 필터에 의해 웹프로그램 실행 전 캐릭터셋 변경 가능 --%>
-<% request.setCharacterEncoding("utf-8"); %>    
+<%-- request.setCharacterEncoding("utf-8"); --%>    
 <!DOCTYPE html>
 <html>
 <head>
