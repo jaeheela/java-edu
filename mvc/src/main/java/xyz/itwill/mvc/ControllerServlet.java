@@ -92,8 +92,8 @@ public class ControllerServlet extends HttpServlet {
 			
 			try {
 				//모델 클래스를 이용하여 모델 객체 생성 - 리플렉션 기능 사용
-				//리플렉션(Reflection) : 프로그램 실행시 클래스(Clazz)를 읽어 객체를 생성하고
-				//객체의 필드 또는 메소드에 접근하도록 제공하는 기능
+				//리플렉션(Reflection) : 프로그램의 명령 실행시 클래스(Clazz)를 읽어 객체를 
+				//생성하여 객체의 필드 또는 메소드에 접근하도록 제공하는 기능
 				//Class.forName(String className) : 문자열로 표현된 클래스를 전달받아 클래스를
 				//읽어 메모리에 저장하고 Class 객체(Clazz)를 반환하는 메소드 - ClassNotFoundException 발생
 				//Class.getDeclaredConstructor() : 메모리에 저장된 클래스(Class 객체)의 생성자가 저장된
