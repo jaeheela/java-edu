@@ -14,6 +14,10 @@
 		<div>이름 : <input type="text" name="name"></div>
 		<div>주소 : <input type="text" name="address"></div>
 		<br>
+		<div><b>좋아하는 음식</b></div>
+		<div>음식-1 : <input type="text" name="food"></div>
+		<div>음식-2 : <input type="text" name="food"></div>
+		<br>
 		<button type="submit">전송</button>
 	</form>
 </body>
