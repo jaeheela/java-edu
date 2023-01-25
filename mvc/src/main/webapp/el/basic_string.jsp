@@ -3,7 +3,7 @@
 <%
 	//pageContext.setAttribute(String attributeName, Object attributeValue)
 	// => pageContext 내장객체에 속성명(문자열)과 속성값(객체)을 전달받아 저장하는 메소드 - Page Scope
-	//Page Scope : 스코프 속성값을 저장한 웹프로그램에서만 객체를 반환하아 사용 가능
+	//Page Scope : 스코프 속성값을 저장한 웹프로그램에서만 객체를 반환받아 사용 가능
 	pageContext.setAttribute("name", "홍길동");
 %>    
 <!DOCTYPE html>
@@ -39,6 +39,6 @@
 	<%-- => getAttribute() 메소드를 호출하지 않아도 스코프의 속성값을 제공받아 사용 가능 --%>
 	<p>이름(name) = ${name }</p>
 	<%-- 스코프 속성명으로 저장된 속성값이 없는 경우 EL 미실행 - 속성값 미출력 --%>
-	<p>이름(paagName) = ${pageName }</p>
+	<p>이름(pageName) = ${pageName }</p>
 </body>
 </html>
