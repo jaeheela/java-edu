@@ -21,7 +21,7 @@
 		<li>${nameArray[2] }</li>
 		<li>${nameArray[3] }</li>
 		<li>${nameArray[4] }</li>
-		<%-- EL 표현식의 참자가 배열 요소의 범위를 벗어난 경우 EL 미실행 - 미출력 --%>
+		<%-- EL 표현식의 첨자가 배열 요소의 범위를 벗어난 경우 EL 미실행 - 미출력 --%>
 		<li>${nameArray[5] }</li>
 	</ul>
 </body>
