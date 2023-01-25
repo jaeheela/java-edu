@@ -13,7 +13,7 @@
   <function>
   	<!-- name : EL 함수의 이름을 설정하기 위한 엘리먼트 -->
   	<name>hello</name>
-  	<!-- function-class : EL 함수 사용시 생성될 객체의 자료형(클래스)을 설정하기 위한 엘리먼트 -->
+  	<!-- function-class : EL 함수 사용시 호출될 메소드가 선언된 자료형(클래스)을 설정하기 위한 엘리먼트 -->
   	<function-class>xyz.itiwll.el.HelloEL</function-class>
   	<!-- function-signature : EL 함수 사용시 객체에 의해 호출되는 메소드의 머릿부를 설정하기 위한 엘리먼트 -->
   	<function-signature>java.lang.String hello(java.lang.String)</function-signature>
