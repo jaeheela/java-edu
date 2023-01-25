@@ -27,11 +27,12 @@
 		String modelName=car.getModelName();
 		String carColor=car.getCarColor();
 	%>
+	<h2>EL 미사용</h2>
 	<p>자동차 = <%=car %></p>
 	<p>자동차 모델명 = <%=modelName %></p>
 	<p>자동차 색상 = <%=carColor %></p>
 	<hr>
-	<h2>EL 미사용</h2>
+	<h2>EL 사용</h2>
 	<p>자동차 = ${car }</p>
 	<%-- EL 표현식으로 제공받은 객체의 메소드 호출 가능 --%>
 	<%-- <p>자동차 모델명 = ${car.getModelName() }</p> --%>
