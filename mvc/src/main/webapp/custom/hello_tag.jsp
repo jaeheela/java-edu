@@ -6,9 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MVC</title>
 </head>
 <body>
-
+	<h1>Custom Tag - NoAttribute And NoBody</h1>
+	<hr>
+	<%-- 태그내용이 있는 경우 시작태그와 종료태그를 따로 작성 --%>
+	<%-- <simple:hello></simple:hello> --%>
+	<%-- 태그내용이 없는 경우 시작태그와 종료태그를 같이 작성 --%>
+	<simple:hello/>
+	<simple:hello/>
+	<simple:hello/>
+	<simple:hello/>
+	<simple:hello/>
 </body>
 </html>
