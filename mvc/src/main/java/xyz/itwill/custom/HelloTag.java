@@ -20,7 +20,7 @@ public class HelloTag extends TagSupport {
 	public HelloTag() {
 		//System.out.println("HelloTag 클래스의 기본 생성자 호출 - 객체 생성");
 	}
-	
+
 	//JSP 문서에서 커스텀 태그의 시작태그를 사용할 때마다 자동 호출되는 메소드
 	@Override
 	public int doStartTag() throws JspException {
