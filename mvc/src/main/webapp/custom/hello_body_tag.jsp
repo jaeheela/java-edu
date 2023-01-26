@@ -12,5 +12,19 @@
 	<hr>
 	<simple:helloBody test="true">홍길동</simple:helloBody>
 	<simple:helloBody test="false">임꺽정</simple:helloBody>
+	<hr>
+	<%
+		String name="전우치";
+		request.setAttribute("name", "일지매");
+	%>
+	<simple:helloBody test="true"><%=name %></simple:helloBody>
+	<simple:helloBody test="false">${name }</simple:helloBody>
+	<hr>
+	<%
+		boolean sw=true;
+		request.setAttribute("sw", false);
+	%>
+	<simple:helloBody test="<%=sw %>">장길산</simple:helloBody>
+	<simple:helloBody test="${sw }">홍경래</simple:helloBody>
 </body>
 </html>
