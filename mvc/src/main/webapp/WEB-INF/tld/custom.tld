@@ -29,6 +29,17 @@
   		<required>true</required>
   	</attribute>
   </tag>
+  
+  <tag>
+  	<name>helloBody</name>
+  	<tag-class>xyz.itwill.custom.HelloBodyTag</tag-class>
+  	<!-- body-content 엘리먼트 값으로 [JSP]를 설정하면 태그내용으로 JSP 명령 사용 가능 -->
+  	<body-content>JSP</body-content>
+  	<attribute>
+  		<name>test</name>
+  		<required>true</required>
+  	</attribute>
+  </tag>
 </taglib>
 
 
