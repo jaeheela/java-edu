@@ -11,7 +11,6 @@
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- <link rel=stylesheet href="${pageContext.request.contextPath }/model_two/css/user.css" type="text/css"> --%>
 <link rel=stylesheet href="<c:url value="/model_two/css/user.css"/>" type="text/css">
 <script language="JavaScript">
 function userRemove(userid) {
