@@ -9,6 +9,6 @@
 <body>
 	<h1>Core - URL 관리 태그</h1>
 	<hr>
-	
+	<img src="images/Koala.jpg" width="200">
 </body>
 </html>
