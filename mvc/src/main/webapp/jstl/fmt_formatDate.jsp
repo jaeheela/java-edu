@@ -48,7 +48,7 @@
 	<p>now(날짜와 시간) = <fmt:formatDate value="${now }" type="both" dateStyle="full" timeStyle="full"/>
 	<p>now(날짜와 시간) = <fmt:formatDate value="${now }" type="both" dateStyle="short" timeStyle="short"/>
 	
-	<%-- pattern 속성 : 날짜와 시간을 변환하기 위한 패턴문자이 포함된 문자열을 속성값으로 설정 --%>
+	<%-- pattern 속성 : 날짜와 시간을 변환하기 위한 패턴문자가 포함된 문자열을 속성값으로 설정 --%>
 	<p>now(패턴) = <fmt:formatDate value="${now }" pattern="yyyy-MM-dd HH:mm:ss"/>
 	
 	<%-- timeZone 태그 : 타임존(TimeZone)을 변경하는 태그 --%>
