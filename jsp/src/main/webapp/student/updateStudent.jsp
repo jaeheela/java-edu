@@ -1,5 +1,6 @@
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
-<%@page import="xyz.itwill.dto.Student"%>
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 입력페이지(updateFormStudent.jsp)에서 전달된 학생정보를 반환받아 STUDENT 테이블에 저장된 학생정보를
@@ -22,7 +23,7 @@
         	String birthday=request.getParameter("birthday");
         	
         	//StudentDTO 객체를 생성하고 전달값을 이용하여 필드값 변경
-        	Student student=new Student();
+        	StudentDTO student=new StudentDTO();
         	student.setNo(no);
         	student.setName(name);
         	student.setPhone(phone);

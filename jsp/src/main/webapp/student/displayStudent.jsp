@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dto.Student"%>
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +10,7 @@
 <%
 //STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드를 호출하여
 	//검색결과를 반환받아 저장
-	List<Student> studentList=StudentDAO.getDAO().selectStudentList();
+	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,7 +50,7 @@
 			<%-- List 객체에 저장된 요소를 차례대로 제공받아 응답하도록 반복 처리 --%>
 			<%-- => 반복문에서는 요소(학생정보 - StudentDTO 객체)의 필드값을 반환받아 클라이언트에게 전달 --%>
 			<%
-			for(Student student:studentList) {
+			for(StudentDTO student:studentList) {
 			%>
 			<tr align="center">
 				<td width="100"><%=student.getNo() %></td>				

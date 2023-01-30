@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dto.Student"%>
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,7 +19,7 @@
 	
 	//학생번호를 전달받아 STUDENT 테이블에 저장된 해당 학생번호의 학생정보를 검색하여 반환하는
 	//DAO 클래스의 메소드 호출
-	Student student=StudentDAO.getDAO().selectStudent(no);
+	StudentDTO student=StudentDAO.getDAO().selectStudent(no);
 	
 	if(student==null) {//검색된 학생정보가 없는 경우 - 비정상적인 요청
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);

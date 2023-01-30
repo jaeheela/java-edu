@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dto.Student"%>
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 사용자로부터 학생정보를 입력받기 위한 JSP 문서 --%>
@@ -12,7 +12,7 @@ String message=(String)session.getAttribute("message");
 		session.removeAttribute("message");
 	}
 	
-	Student student=(Student)session.getAttribute("student");
+	StudentDTO student=(StudentDTO)session.getAttribute("student");
 	if(student!=null) {
 		session.removeAttribute("student");
 	}

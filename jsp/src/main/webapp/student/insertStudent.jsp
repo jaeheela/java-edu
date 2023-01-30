@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dto.Student"%>
+<%@page import="xyz.itwill.dto.StudentDTO"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -23,7 +23,7 @@
     	String birthday=request.getParameter("birthday");
     	
     	//StudentDTO 객체를 생성하고 전달값으로 객체의 필드값 변경 - DAO 클래스의 메소드 호출에 사용
-    	Student student=new Student();
+    	StudentDTO student=new StudentDTO();
     	student.setNo(no);
     	student.setName(name);
     	student.setPhone(phone);
