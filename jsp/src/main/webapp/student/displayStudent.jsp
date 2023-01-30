@@ -1,4 +1,4 @@
-﻿<%@page import="xyz.itwill.dto.StudentDTO"%>
+<%@page import="xyz.itwill.dto.Student"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,9 +8,9 @@
 <%-- => 출력된 학생정보의 [삭제]를 클릭한 경우 학생정보 삭제페이지(deleteStudent.jsp)로 이동 - 학번 전달 --%>
 <%-- => 출력된 학생정보의 [변경]를 클릭한 경우 학생정보 입력페이지(updateFormStudent.jsp)로 이동 - 학번 전달 --%>
 <%
-	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드를 호출하여
+//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드를 호출하여
 	//검색결과를 반환받아 저장
-	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
+	List<Student> studentList=StudentDAO.getDAO().selectStudentList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,14 +38,20 @@
 			<th width="50">변경</th>
 		</tr>
 		
-		<% if(studentList.isEmpty()) {//List 객체에 저장된 요소가 없는 경우 %>
+		<%
+				if(studentList.isEmpty()) {//List 객체에 저장된 요소가 없는 경우
+				%>
 		<tr align="center">
 			<td colspan="7">검색된 학생정보가 없습니다.</td>
 		</tr>		
-		<% } else {//List 객체에 저장된 요소가 있는 경우 %>
+		<%
+				} else {//List 객체에 저장된 요소가 있는 경우
+				%>
 			<%-- List 객체에 저장된 요소를 차례대로 제공받아 응답하도록 반복 처리 --%>
 			<%-- => 반복문에서는 요소(학생정보 - StudentDTO 객체)의 필드값을 반환받아 클라이언트에게 전달 --%>
-			<% for(StudentDTO student:studentList) { %>
+			<%
+			for(Student student:studentList) {
+			%>
 			<tr align="center">
 				<td width="100"><%=student.getNo() %></td>				
 				<td width="100"><%=student.getName() %></td>				

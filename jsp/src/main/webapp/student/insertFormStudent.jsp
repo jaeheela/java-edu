@@ -1,18 +1,18 @@
-﻿<%@page import="xyz.itwill.dto.StudentDTO"%>
+<%@page import="xyz.itwill.dto.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 사용자로부터 학생정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [학생추가]를 클릭한 경우 학생정보 삽입페이지(insertStudent.jsp)로 이동 - 입력값 전달 --%>
 <%-- => [학생목록]을 클릭한 경우 학생목록 출력페이지(displayStudent.jsp)로 이동 --%>
 <%
-	String message=(String)session.getAttribute("message");
+String message=(String)session.getAttribute("message");
 	if(message==null) {
 		message="";
 	} else {
 		session.removeAttribute("message");
 	}
 	
-	StudentDTO student=(StudentDTO)session.getAttribute("student");
+	Student student=(Student)session.getAttribute("student");
 	if(student!=null) {
 		session.removeAttribute("student");
 	}
