@@ -13,6 +13,6 @@
 	<!-- resultType 속성 : SQL 명령의 실행 결과를 객체로 매핑하여 제공하기 위한 Java 자료형을 속성값으로 설정 -->
 	<!-- => SELECT 명령으로 실행된 하나의 검색행에 대한 Java 자료형을 설정하여 객체로 매핑되도록 처리 -->
 	<select id="selectStudentList" resultType="xyz.itwill.dto.Student">
-		select * from student ordey by no
+		select * from student order by no
 	</select>
 </mapper>
