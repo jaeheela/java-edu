@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis 환경설정 파일 : SqlSessionFactory 객체를 생성하기 위해 필요한 정보를 제공하는 파일 -->
 <configuration>
-	<!-- environments : 1개 이상의 environment 엘리먼트을 등록하기 위한 상위 엘리먼트 -->
+	<!-- properties : 1개 이상의 property 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 -->
+	<!-- => property 엘리먼트 대신 Properties 파일에서 제공되는 값을 mybatis 환경설정 파일에서 사용 가능 -->
+	<properties resource="dbms.properties">
+		<!-- property : mybatis 환경설정 파일에 필요한 값을 제공하는 엘리먼트 -->
+		<!-- => 다른 엘리먼트에서 ${이름} 형식으로 표현하여 property 엘리먼트의 값을 제공받아 사용 -->
+		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위해 설정 - 유지보수의 효율성 증가 -->
+		<!-- name 속성 : property 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+		<!-- value 속성 : property 엘리먼트를 제공하기 위한 값을 속성값으로 설정 -->
+		<property name="oracleDriver" value="oracle.jdbc.driver.OracleDriver"/>
+	</properties>
+
+	<!-- settings : 1개 이상의 setting 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<settings>
+		<!-- setting : mybatis 프레임워크가 실행될 때 필요한 값을 제공하기 위한 엘리먼트 -->
+		<!-- => setting 엘리먼트를 설정하지 않아도 실행에 필요한 값은 기본값으로 제공받아 사용 -->
+		<!-- => 기본값이 아닌 값을 사용할 경우에만 setting 엘리먼트를 설정하여 실행에 필요한 값을 제공받아 사용 -->
+		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
+
+	<!-- typeAliases : 1개 이상의 typeAlias 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<typeAliases>
+		<!-- typeAlias : XML 기반의 매퍼 파일에서 Java 자료형을 간단하게 표현하기 위한 
+		별칭(AliasName)을 설정하기 위한 엘리먼트 -->
+		<!-- => mybatis 프레임워크는 내부적으로 설정된 Java 자료형에 대한 별칭 제공 -->
+		<!-- type 속성 : Java 자료형을 속성값으로 설정 -->
+		<!-- alias 속성 : Java 자료형 대신 사용할 별칭을 속성값으로 설정 -->
+		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
+	</typeAliases>
+
+	<!-- environments : 1개 이상의 environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
 	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버를 표현하기 위한 속성 -->
 	<environments default="development">
@@ -23,15 +55,17 @@
 				<!-- property : Connection 객체를 생성하기 위한 값을 제공하는 엘리먼트 -->
 				<!-- name 속성 : Connection 객체 생성에 필요한 값이 저장될 이름을 속성값으로 설정 -->
 				<!-- value 속성 : Connection 객체 생성에 필요한 값을 속성값으로 설정 -->
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> -->
+				<property name="driver" value="${oracleDriver}"/>
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> -->
+				<property name="url" value="${local}"/>
 				<property name="username" value="scott"/>
 				<property name="password" value="tiger"/>
 			</dataSource>
 		</environment>
 	</environments>
 	
-	<!-- mappers : 1개 이상의 mapper 엘리먼트을 등록하기 위한 상위 엘리먼트 -->
+	<!-- mappers : 1개 이상의 mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<mappers>
 		<!-- mapper : 매퍼(Mapper)을 등록하기 위한 엘리먼트 -->
 		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 실행결과를
