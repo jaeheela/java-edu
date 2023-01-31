@@ -47,7 +47,7 @@ public class MyMemberXMLDAO {
 			// => elementId : SQL 명령이 등록된 맵퍼와 엘리먼트의 식별자를 매개변수에 전달
 			// => parameterValue : SQL 명령에 필요한 객체(값)을 매개변수에 전달 - parameterType 속성값으로 사용
 			// => 엘리먼트에 전달할 값이 없는 경우 parameterValue 매개변수에 값 전달 생략
-			int rows=sqlSession.insert("MyMemberMapper.insertMember",member);
+			int rows=sqlSession.insert("MyMemberXMLMapper.insertMember",member);
 			
 			//mybatis 프레임워크는 기본적으로 AutoCommit 기능을 비활성화 처리하고 SQL 명령을 전달하여 실행
 			// => DML 명령을 전달하여 실행한 경우 반드시 트렌젝션 관련 메소드 호출하여 커밋 또는 롤백 처리
@@ -73,7 +73,7 @@ public class MyMemberXMLDAO {
 		try {
 			//SqlSession.update(String elementId, Object parameterValue) : 매퍼에 등록된 update 
 			//엘리먼트의 SQL 명령을 제공받아 전달하여 실행하고 변경행의 갯수를 반환하는 메소드
-			return sqlSession.update("MyMemberMapper.updateMember", member);
+			return sqlSession.update("MyMemberXMLMapper.updateMember", member);
 		} finally {
 			sqlSession.close();
 		}
@@ -85,7 +85,7 @@ public class MyMemberXMLDAO {
 		try {
 			//SqlSession.delete(String elementId, Object parameterValue) : 매퍼에 등록된 delete 
 			//엘리먼트의 SQL 명령을 제공받아 전달하여 실행하고 삭제행의 갯수를 반환하는 메소드
-			return sqlSession.delete("MyMemberMapper.deleteMember", id);
+			return sqlSession.delete("MyMemberXMLMapper.deleteMember", id);
 		} finally {
 			sqlSession.close();
 		}
@@ -99,7 +99,7 @@ public class MyMemberXMLDAO {
 			//select 엘리먼트의 SQL 명령을 제공받아 전달하여 실행하고 검색결과를 하나의
 			//객체(값)으로 매핑하여 반환하는 메소드
 			// => 하나의 행만 검색하는 SELECT 명령을 전달하여 실행할 경우 호출하는 메소드
-			return sqlSession.selectOne("MyMemberMapper.selectMember",id);
+			return sqlSession.selectOne("MyMemberXMLMapper.selectMember",id);
 		} finally {
 			sqlSession.close();
 		}
@@ -113,7 +113,7 @@ public class MyMemberXMLDAO {
 			//select 엘리먼트의 SQL 명령을 제공받아 전달하여 실행하고 검색결과를 요소로 생성
 			//되도록 매핑하고 List 객체에 추가하여 반환하는 메소드
 			// => 여러 개의 행을 검색하는 SELECT 명령을 전달하여 실행할 경우 호출하는 메소드
-			return sqlSession.selectList("MyMemberMapper.selectMemberList");
+			return sqlSession.selectList("MyMemberXMLMapper.selectMemberList");
 		} finally {
 			sqlSession.close();
 		}
