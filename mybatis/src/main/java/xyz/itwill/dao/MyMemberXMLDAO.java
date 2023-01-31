@@ -113,7 +113,7 @@ public class MyMemberXMLDAO {
 			//select 엘리먼트의 SQL 명령을 제공받아 전달하여 실행하고 검색결과를 요소로 생성
 			//되도록 매핑하고 List 객체에 추가하여 반환하는 메소드
 			// => 여러 개의 행을 검색하는 SELECT 명령을 전달하여 실행할 경우 호출하는 메소드
-			return sqlSession.selectList("MyMemberMapper.selectMember");
+			return sqlSession.selectList("MyMemberMapper.selectMemberList");
 		} finally {
 			sqlSession.close();
 		}
