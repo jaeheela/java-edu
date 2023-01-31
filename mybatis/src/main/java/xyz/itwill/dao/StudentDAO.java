@@ -53,7 +53,7 @@ public class StudentDAO {
 	// => SqlSession 객체의 메소드를 호출하여 메소드 작성
 	public List<Student> selectStudentList() {
 		//SqlSessionFactory.openSession() :  SqlSession 객체를 생성하여 반환하는 메소드
-		//SqlSession 객체 : 매퍼에 등록에 등록된 정보를 이용하여 SQL 명령을 전달하여 실행하고
+		//SqlSession 객체 : 매퍼에 등록된 정보를 이용하여 SQL 명령을 전달하여 실행하고
 		//실행결과를 Java 객체로 반환하는 기능을 제공하는 객체
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		try {
