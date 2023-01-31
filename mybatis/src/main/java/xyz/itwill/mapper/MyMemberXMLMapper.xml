@@ -41,6 +41,6 @@
 	<!-- SELECT 명령에 의해 여러개 행이 검색되도 resultType 속성에는 하나의 검색행에 대한 
 	Java 자료형을 속성값으로 설정 -->
 	<select id="selectMemberList" resultType="MyMember">
-		select * from mymeber order by id
+		select * from mymember order by id
 	</select>
 </mapper>
