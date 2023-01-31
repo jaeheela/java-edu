@@ -35,8 +35,7 @@ $(document).ready(function() {
 			return;
 		}
 		
-		$("#input").attr("method","POST").attr("action"
-				,"memberInputAction.jsp").submit();
+		$("#input").attr("method","POST").attr("action","memberInputAction.jsp").submit();
 	});
 	
 	$("#resetBtn").click(function() {
