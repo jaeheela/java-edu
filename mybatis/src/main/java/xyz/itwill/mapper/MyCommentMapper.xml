@@ -24,4 +24,19 @@
 	<select id="selectCommentList1" resultType="MyComment1">
 		select * from mycomment order by comment_no desc
 	</select>
+	
+	<select id="selectCommentList2" resultType="MyComment2">
+		select * from mycomment order by comment_no desc
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
