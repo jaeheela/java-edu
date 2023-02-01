@@ -16,6 +16,7 @@ COMMENT_CONTENT          VARCHAR2(100) - 게시글 내용
 COMMENT_DATE             DATE          - 게시글 작성일
 */
 
+//테이블의 컬럼명을 같은 이름의 필드로 선언하여 클래스 작성
 public class MyComment1 {
 	private int commentNo;
 	private String commentId;
