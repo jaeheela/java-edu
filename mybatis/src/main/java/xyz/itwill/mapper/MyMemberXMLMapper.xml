@@ -10,7 +10,7 @@
 	갯수를 무조건 정수값(int)으로 매핑하여 재공하므로 resultType 속성 생략 -->
 	<insert id="insertMember" parameterType="MyMember">
 		<!-- parameterType 속성으로 전달받은 값은 SQL 명령에서 #{변수명|필드명|맵키} 형식으로 표현하여 사용 -->
-		<!-- => parameterType 속성으로 전달받은 값이 Java 객체인 경우 #{필드명| 형식으로 
+		<!-- => parameterType 속성으로 전달받은 값이 Java 객체인 경우 #{필드명} 형식으로 
 		필드값을 제공받아 사용 - Getter 메소드 자동 호출 -->
 		<!-- => ibatis 프레임워크에서는 #변수명|필드명|맵키# 형식으로 표현하여 사용 -->
 		insert into mymember values(#{id},#{name},#{phone},#{email})
