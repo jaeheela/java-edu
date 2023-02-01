@@ -15,6 +15,7 @@
 	member.setName(name);
 	member.setPhone(phone);
 	member.setEmail(email);
+	
 	try {
 		//SqlSession 객체를 이용하여 매퍼에 등록된 SQL 명령을 전달하여 실행한 경우 문제가
 		//발생되면 PersistenceException 발생 - 예외처리
