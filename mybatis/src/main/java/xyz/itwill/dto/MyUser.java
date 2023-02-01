@@ -24,6 +24,12 @@ public class MyUser {
 	public MyUser() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public MyUser(String userId, String userName) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+	}
 
 	public String getUserId() {
 		return userId;
