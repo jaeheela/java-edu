@@ -115,6 +115,34 @@
 		select comment_no,comment_id,comment_content,comment_date,user_id,user_name
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
+	
+	<!-- resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 필드가 Java 객체를 저장하기 위한
+	필드로 선언된 경우 하위 엘리먼트로 association 엘리먼트를 사용하여 Java 객체를 제공받아
+	필드에 저장되도록 설정 -->
+	<resultMap type="MyCommentUser2" id="myCommentUser2ResultMap">
+		<!-- association : 1:1 관계의 테이블 조인에서 1개의 검색행을 Java 객체로 제공받아
+		필드에 저장되도록 매핑 처리하는 엘리먼트 - 포함관계 성립 -->
+		<!-- => id 엘리먼트와 result 엘리먼트를 하위 엘리먼트로 사용하여 검색행의 컬럼값이
+		포함 관계의 객체의 필드에 저장되도록 설정 -->
+		<!-- property 속성 : 포함 관계의 객체를 저장하기 위한 필드명을 속성값으로 설정 -->
+		<!-- javaType 속성 : 검색결과를 제공받기 위한 객체의 Java 자료형을 속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정된 별칭 사용 가능 -->
+		<association property="comment" javaType="MyComment1">
+			<id column="comment_no" property="commentNo"/>
+			<result column="comment_id" property="commentId"/>
+			<result column="comment_content" property="commentContent"/>
+			<result column="comment_date" property="commentDate"/>
+		</association>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectCommentUserList2" resultMap="myCommentUser2ResultMap">
+		select comment_no,comment_id,comment_content,comment_date,user_id,user_name
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
 </mapper>
 
 

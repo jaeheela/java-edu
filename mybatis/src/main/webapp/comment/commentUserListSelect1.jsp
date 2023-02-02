@@ -42,7 +42,8 @@ td {
 		<% for(MyCommentUser1 commentUser:commentUserList) { %>
 		<tr>
 			<td><%=commentUser.getCommentNo() %></td>
-			<td><%=commentUser.getUserName() %>(<%=commentUser.getCommentId() %>)</td>
+			<%-- <td><%=commentUser.getUserName() %>(<%=commentUser.getCommentId() %>)</td> --%>
+			<td><%=commentUser.getUserName() %>(<%=commentUser.getUserId() %>)</td>
 			<td><%=commentUser.getCommentContent() %></td>
 			<td><%=commentUser.getCommentDate() %></td>
 		</tr>
