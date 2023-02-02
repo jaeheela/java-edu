@@ -7,7 +7,7 @@ public class MyCommentUser1 {
 	private int commentNo;
 	private String commentId;
 	private String commentContent;
-	private String commentdate;
+	private String commentDate;
 	
 	//MYUSER 테이블(회원정보)의 검색결과를 저장하기 위한 필드 - 검색행 1개
 	private String userId;
@@ -41,12 +41,12 @@ public class MyCommentUser1 {
 		this.commentContent = commentContent;
 	}
 
-	public String getCommentdate() {
-		return commentdate;
+	public String getCommentDate() {
+		return commentDate;
 	}
 
-	public void setCommentdate(String commentdate) {
-		this.commentdate = commentdate;
+	public void setCommentdate(String commentDate) {
+		this.commentDate = commentDate;
 	}
 
 	public String getUserId() {
