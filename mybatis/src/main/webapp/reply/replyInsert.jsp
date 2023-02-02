@@ -26,7 +26,7 @@
 	
 	//세번째 게시글에 대한 댓글 삽입 - 1개
 	MyReply reply4=new MyReply();
-	reply4.setReplyCommentNo(2);
+	reply4.setReplyCommentNo(3);
 	reply4.setReplyId("abc");
 	reply4.setReplyContent("세번째 게시글에 대한 댓글-1");
 	MyReplyDAO.getDAO().insertReply(reply4);
