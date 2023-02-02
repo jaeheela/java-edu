@@ -28,7 +28,7 @@
 		]]> 	  
 	</select>
 	
-	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap1">
 		<association property="reply" javaType="MyReply">
 			<id column="reply_no" property="replyNo"/>
 			<result column="reply_id" property="replyId"/>
@@ -42,7 +42,7 @@
 		</association>
 	</resultMap>
 	
-	<select id="selectReplyUserList" resultMap="myReplyUserResultMap">
+	<select id="selectReplyUserList1" resultMap="myReplyUserResultMap1">
 		select reply_no,reply_id,reply_content,reply_date,reply_comment_no,user_id,user_name
 			from myreply join myuser on reply_id=user_id order by reply_no desc
 	</select>

@@ -9,5 +9,5 @@ public interface MyReplyMapper {
 	int insertReply(MyReply reply);
 	List<MyReply> selectReplyList();
 	List<MyReply> selectCountReplyList();
-	List<MyReplyUser> selectReplyUserList();
+	List<MyReplyUser> selectReplyUserList1();
 }

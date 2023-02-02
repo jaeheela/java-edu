@@ -50,10 +50,10 @@ public class MyReplyDAO extends AbstractSession {
 		}
 	}
 	
-	public List<MyReplyUser> selectReplyUserList() {
+	public List<MyReplyUser> selectReplyUserList1() {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
-			return sqlSession.getMapper(MyReplyMapper.class).selectReplyUserList();
+			return sqlSession.getMapper(MyReplyMapper.class).selectReplyUserList1();
 		} finally {
 			sqlSession.close();
 		}
