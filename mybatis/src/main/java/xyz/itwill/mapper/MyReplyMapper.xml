@@ -82,17 +82,3 @@
 		select * from myreply order by reply_no desc
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
