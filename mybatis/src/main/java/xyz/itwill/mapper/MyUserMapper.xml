@@ -24,6 +24,7 @@
 	-->
 	
 	<!-- sql : SQL 명령을 구성하는 일부분의 문장을 등록하기 위한 엘리먼트 -->
+	<!-- id 속성 : sql 엘리먼트의 식별자를 속성값으로 설정 -->
 	<sql id="myUserColumnAlias">
 		user_id userId,user_name userName
 	</sql>
