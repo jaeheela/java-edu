@@ -46,7 +46,44 @@
 		select reply_no,reply_id,reply_content,reply_date,reply_comment_no,user_id,user_name
 			from myreply join myuser on reply_id=user_id order by reply_no desc
 	</select>
+	
+	<resultMap type="MyReply" id="myReplyResultMap">
+		<id column="reply_no" property="replyNo"/>
+		<result column="reply_id" property="replyId"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="reply_date" property="replyDate"/>
+		<result column="reply_comment_no" property="replyCommentNo"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap2">
+		<!-- reultMap 속성 : reultMap 엘리먼트의 식별자를 속성값을 설정 -->
+		<!-- => reultMap 엘리먼트로 설정된 매핑정보를 이용하여 검색행의 컬럼값을 객체 필드에
+		저장하여 객체를 제공받아 포함 객체의 필드에 저장 -->
+		<association property="reply" resultMap="myReplyResultMap"/>
+		<!-- select 속성 : select 엘리먼트의 식별자를 속성값으로 설정 -->
+		<!-- => select 엘리먼트의 SELECT 명령으로 실행된 검색결과를 객체로 제공받아 포함 객체 필드에 저장 -->
+		<!-- column 속성 : SELECT 명령으로 검색된 행의 컬럼명을 속성값으로 설정 -->
+		<!-- => SELECT 명령으로 검색된 행의 컬럼값을 select 속성값으로 설정된 select 엘리먼트
+		의 parameterType 속성값으로 전달하여 SQL 명령에서 사용 -->
+		<association property="user" select="selectMyUser" column="reply_id"/>
+	</resultMap>
+	
+	<!-- association 엘리먼트에서만 사용하기 위한 SELECT 명령 등록 -->
+	<!-- => parameterType 속성으로 전달받은 값으로 단일행이 검색되도록 SELECT 명령 작성 -->
+	<!-- => DAO 클래스의 메소드에서 사용될 SQL 명령이 아니므로 Interface 기반의 맵퍼 파일에서
+	추상메소드 미선언 -->
+	<select id="selectMyUser" parameterType="string" resultType="MyUser">
+		select * from myuser where user_id=#{userId}
+	</select>
+	
+	<!-- 테이블 조인을 사용하지 않고 resultMap 엘리먼트의 매핑정보를 제공받아 2개 이상의
+	테이블의 컬럼값을 검색하여 Java 객체로 제공 가능 -->
+	<select id="selectReplyUserList2" resultMap="myReplyUserResultMap2">
+		select * from myreply order by reply_no desc
+	</select>
 </mapper>
+
+
 
 
 

@@ -58,6 +58,15 @@ public class MyReplyDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public List<MyReplyUser> selectReplyUserList2() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyReplyMapper.class).selectReplyUserList2();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
 
 
