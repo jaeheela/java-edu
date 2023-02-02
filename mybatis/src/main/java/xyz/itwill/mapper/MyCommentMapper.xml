@@ -63,8 +63,8 @@
 	작성된 생성자로 객체를 생성하고 생성자 매개변수에 검색행의 컬럼값을 전달하여 객체의 
 	필드에 저장되도록 매핑 처리  -->
 	<resultMap type="MyComment2" id="myComment2ConstructResultMap">
-		<!-- constructor : type 속성값으로 설정된 Java 클래스의 생성자를 이용하여 매핑 
-		처리하기 위한 정보를 제공하는 엘리먼트 -->
+		<!-- constructor : resultMap 엘리먼트의 type 속성값으로 설정된 Java 클래스의 생성자를 
+		이용하여 매핑 처리하기 위한 정보를 제공하는 엘리먼트 -->
 		<!-- => 하위 엘리먼트 : idArg, arg -->
 		<!-- => 생성자 매개변수와 하위 엘리먼트의 갯수와 자료형이 동일해야만 매핑 가능 -->
 		<constructor>
@@ -90,10 +90,43 @@
 		select * from mycomment order by comment_no desc
 	</select>
 	
+	<!--  
 	<select id="selectCommentList3" resultType="MyComment3">
 		select comment_no "no",comment_id "id",user_name "name",comment_content "content"
 			,comment_date "date" from mycomment join myuser on comment_id=user_id 
 			order by comment_no desc
 	</select>
+	-->
 	
+	<resultMap type="MyComment3" id="myComment3ResultMap">
+		<id column="comment_no" property="no"/>
+		<result column="comment_id" property="id"/>
+		<result column="user_name" property="name"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
+	</resultMap>
+	
+	<select id="selectCommentList3" resultMap="myComment3ResultMap">
+		select comment_no,comment_id,user_name,comment_content,comment_date
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
+	
+	<select id="selectCommentUserList1" resultType="MyCommentUser1">
+		select comment_no,comment_id,comment_content,comment_date,user_id,user_name
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
