@@ -158,7 +158,17 @@
 	
 	<!-- resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 필드 자료형이 List인 경우
 	collection 엘리먼트를 사용하여 List 객체를 생성하여 필드에 저장되도록 설정 -->
+	<!-- resultMap 엘리리먼의 하위 엘리먼트 작성 순서 -->
+	<!-- => constructor, id, result, association, collection, discriminator -->
+	<!-- => association 엘리먼트가 resultMap 엘리먼트의 첫번째 하위 엘리먼트인 경우 내부적으로
+	selectOne 메소드를 사용하여 하나의 검색행에 대한 객체만 제공하여 필드에 저장 -->
+	<!-- 문제점)association 엘리먼트가 resultMap 엘리먼트의 첫번째 하위 엘리먼트인 경우 다수의
+	행이 검색된 경우 TooManyResultsException 발생 -->
+	<!-- 해결법)다수행을 검색할 경우 resultMap 엘리먼트의 첫번째 하위 엘리먼트를 association
+	엘리먼트가 아닌 다른 엘리먼트로 설정하여 매핑 처리 -->
 	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<id column="comment_no" property="commentNo"/>	
+	
 		<association property="comment" javaType="MyComment1">
 			<id column="comment_no" property="commentNo"/>
 			<result column="comment_id" property="commentId"/>

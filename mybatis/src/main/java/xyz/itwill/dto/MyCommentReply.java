@@ -5,6 +5,8 @@ import java.util.List;
 //MYCOMMENT 테이블과 MYREPLY 테이블의 검색결과를 저장하기 위한 클래스
 // => 1:N 관계의 조인 검색 결과를 저장하기 위한 클래스
 public class MyCommentReply {
+	private int commentNo;
+	
 	//MYCOMMENT 테이블(게시글정보)의 검색결과를 저장하기 위한 필드 - 검색행 : 1개
 	private MyComment1 comment;
 	
@@ -13,6 +15,14 @@ public class MyCommentReply {
 	
 	public MyCommentReply() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getCommentNo() {
+		return commentNo;
+	}
+
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
 	}
 
 	public MyComment1 getComment() {
