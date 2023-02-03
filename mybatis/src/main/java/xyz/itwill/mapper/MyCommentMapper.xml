@@ -153,7 +153,7 @@
 	<!-- 게시글번호를 전달받아 MYREPLY 테이블에 저장된 해당 게시글번호의 댓글을 검색하여
 	MuReply 객체로 제공하는 엘리먼트 - 검색행 : 0개 이상 -->
 	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
-		select * from myreply where reply_comment_no=#{replyCommentNo}
+		select * from myreply where reply_comment_no=#{replyCommentNo} order by reply_no desc
 	</select>
 </mapper>
 
