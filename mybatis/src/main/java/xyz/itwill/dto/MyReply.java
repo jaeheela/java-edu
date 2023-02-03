@@ -5,7 +5,7 @@ MYREPLY 테이블 : 게시글에 대한 댓글을 저장하기 위한 테이블
 create table myreply(reply_no number primary key, reply_id varchar2(50)
     ,reply_content varchar2(100),reply_date date,reply_comment_no number);
  
-MYREPLY_SEQ : MYREPLY 테이블의 REPLY_NO 컬럼에 저장될 자동 증가값을 제공하기 위한 시퀸스    
+MYREPLY_SEQ 시퀀스 : MYREPLY 테이블의 REPLY_NO 컬럼에 저장될 자동 증가값을 제공하기 위한 시퀸스    
 create sequence myreply_seq;    
 
 이름               널?       유형            
