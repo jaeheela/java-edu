@@ -155,6 +155,41 @@
 	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
 		select * from myreply where reply_comment_no=#{replyCommentNo} order by reply_no desc
 	</select>
+	
+	<!-- resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 필드 자료형이 List인 경우
+	collection 엘리먼트를 사용하여 List 객체를 생성하여 필드에 저장되도록 설정 -->
+	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<association property="comment" javaType="MyComment1">
+			<id column="comment_no" property="commentNo"/>
+			<result column="comment_id" property="commentId"/>
+			<result column="comment_content" property="commentContent"/>
+			<result column="comment_date" property="commentDate"/>
+		</association>
+		
+		<!-- collection: List 객체를 생성하여 포함 객체 필드에 저장하기 위한 엘리먼트 -->
+		<!-- => 1:N 관계의 테이블 조인에서 0개 이상의 검색행을 List 객체의 요소로 저장하여 생성 -->
+		<!-- => id 엘리먼트와 result 엘리먼트를 하위 엘리먼트로 사용하여 검색행의 컬럼값이
+		List 객체의 요소 필드에 저장되도록 설정 -->
+		<!-- property 속성 : resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 필드명을 속성값으로 설정 -->
+		<!-- ofType 속성 : List 객체에 저장될 요소의 Java 자료형을 속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정된 별칭 사용 가능 -->
+		<collection property="replyList" ofType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 1:N 관계의 조인은 반드시 OUTER JOIN 사용하여 검색 -->
+	<!-- => 댓글이 없는 게시글을 검색하기 위해 LEFT OUTER JOIN 사용 -->
+	<select id="selectCommentReply" parameterType="int" resultMap="myCommentReplyResultMap">
+		select comment_no,comment_id,comment_content,comment_date,reply_no,reply_id
+			,reply_content,reply_date,reply_comment_no from mycomment left join
+			myreply on comment_no=reply_comment_no where comment_no=#{commentNo}
+			order by reply_no desc 
+	</select>
 </mapper>
 
 
