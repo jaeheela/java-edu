@@ -11,7 +11,7 @@
 		response.sendRedirect("commentUserListSelect2.jsp");
 		return;
 	}
-
+ 
 	//전달값(게시글번호)을 반환받아 저장
 	int commentNo=Integer.parseInt(request.getParameter("commentNo"));
 	
@@ -75,7 +75,7 @@ td {
 			<td class="date">댓글작성일</td>
 			<td class="comment">게시글번호</td>
 		</tr>
-		<% if(commentReplyUser.getReplyUserList().isEmpty()) { %>
+		<% if(commentReplyUser.getReplyUserList()==null || commentReplyUser.getReplyUserList().isEmpty()) { %>
 		<tr>
 			<td colspan="5">댓글이 존재하지 않습니다.</td>
 		</tr>
