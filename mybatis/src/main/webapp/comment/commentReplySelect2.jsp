@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.dto.MyCommentReply"%>
 <%@page import="xyz.itwill.dto.MyReply"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.MyCommentDAO"%>
@@ -13,11 +14,8 @@
 	//전달값(게시글번호)을 반환받아 저장
 	int commentNo=Integer.parseInt(request.getParameter("commentNo"));
 	
-	//전달받은 게시글번호에 대한 게시글(1개)을 검색하여 반환하는 DAO 클래스의 메소드 호출
-	MyComment1 comment=MyCommentDAO.getDAO().selectComment(commentNo);
-	
-	//전달받은 게시글번호에 대한 댓글(0개 이상)을 검색하여 반환하는 DAO 클래스의 메소드 호출
-	List<MyReply> replyList=MyCommentDAO.getDAO().selectCommentNoReplyList(commentNo);
+	//전달받은 게시글번호에 대한 게시글과 댓글목록을 검색하여 반환하는 DAO 클래스의 메소드 호출
+	MyCommentReply commentReply=MyCommentDAO.getDAO().selectCommentReply(commentNo);
 %>    
 <!DOCTYPE html>
 <html>
@@ -50,19 +48,19 @@ td {
 	<table>
 		<tr>
 			<td width="200">게시글번호</td>
-			<td width="300"><%=comment.getCommentNo() %></td>
+			<td width="300"><%=commentReply.getComment().getCommentNo() %></td>
 		</tr>
 		<tr>
 			<td width="200">게시글작성자</td>
-			<td width="300"><%=comment.getCommentId() %></td>
+			<td width="300"><%=commentReply.getComment().getCommentId() %></td>
 		</tr>
 		<tr>
 			<td width="200">게시글내용</td>
-			<td width="300"><%=comment.getCommentContent() %></td>
+			<td width="300"><%=commentReply.getComment().getCommentContent() %></td>
 		</tr>
 		<tr>
 			<td width="200">게시글작성일</td>
-			<td width="300"><%=comment.getCommentDate() %></td>
+			<td width="300"><%=commentReply.getComment().getCommentDate() %></td>
 		</tr>
 	</table>
 	<br>
@@ -76,12 +74,12 @@ td {
 			<td class="date">댓글작성일</td>
 			<td class="comment">게시글번호</td>
 		</tr>
-		<% if(replyList.isEmpty()) { %>
+		<% if(commentReply.getReplyList().isEmpty()) { %>
 		<tr>
 			<td colspan="5">댓글이 존재하지 않습니다.</td>
 		</tr>
 		<% } else { %>
-			<% for(MyReply reply:replyList) { %>
+			<% for(MyReply reply:commentReply.getReplyList()) { %>
 			<tr>
 				<td><%=reply.getReplyNo() %></td>
 				<td><%=reply.getReplyId() %></td>
