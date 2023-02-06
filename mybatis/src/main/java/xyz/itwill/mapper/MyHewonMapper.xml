@@ -144,10 +144,12 @@
 	대한 아이디를 검색하여 검색결과를 제공하는 엘리먼트 -->
 	<!-- => 값을 여러개 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 JavaBean(DTO)
 	클래스를 설정하고 SQL 명령에서는 #{필드명} 형식으로 전달받은 JavaBean 객체의 필드값 사용  -->
+	<!-- 
 	<select id="selectBeanHewonId" parameterType="MyHewon" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
-	
+	-->
+	 
 	<!-- Interface 기반의 매퍼 파일과 바인딩된 경우 전달값에 상관없이 parameterType	속성 생략 가능 -->
 	<select id="selectBeanHewonId" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
