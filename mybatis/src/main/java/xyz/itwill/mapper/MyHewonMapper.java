@@ -14,4 +14,5 @@ public interface MyHewonMapper {
 	//HashMap 클래스(Map 인터페이스)의 제네릭은 맵키를 [String]으로 설정하고 맵값은 [Object]로 설정하여 사용
 	String selectMapHewonId(Map<String, Object> map);
 	int insertMapHewon(Map<String, Object> map);
+	List<Map<String, Object>> selectMapHewonList();
 }

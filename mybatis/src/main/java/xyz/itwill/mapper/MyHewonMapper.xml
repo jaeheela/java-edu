@@ -166,6 +166,14 @@
 	<insert id="insertMapHewon" parameterType="map">
 		insert into myhewon values(#{id},#{name},#{phone},#{email},#{state})
 	</insert>
+	
+	<!-- select 엘리먼트의 resultType 속성값으로 HashMap 클래스(Map 인터페이스)로 설정하면
+	검색행을 Map 객체로 제공 - Map 객체가 하나의 검색행을 표현 -->
+	<!-- => 검색행의 컬럼명을 맵키로 매핑되고 컬럼값이 맵값으로 저장되어 엔트리로 추가 -->
+	<!-- => 검색행의 컬럼명은 대문자로 검색되어 맵키로 매핑 처리 -->
+	<select id="selectMapHewonList" resultType="map">
+		select * from myhewon order by hewon_id
+	</select>
 </mapper>
 
 
