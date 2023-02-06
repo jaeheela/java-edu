@@ -9,4 +9,5 @@ public interface MyHewonMapper {
 	List<MyHewon> selectHewonList();
 	List<MyHewon> selectDiscriminatorHewonList();
 	List<MyHewon> selectStateHewonList(int state);
+	String selectBeanHewonId(MyHewon hewon);
 }
