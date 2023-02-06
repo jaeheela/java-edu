@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.mapper.MyHewonMapper">
+	<insert id="insertHewon" parameterType="MyHewon">
+		insert into myhewon values(#{id},#{name},#{phone},#{email},#{state})
+	</insert>
+	
+	<resultMap type="MyHewon" id="myHewonResultMap">
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_name" property="name"/>
+		<result column="hewon_phone" property="phone"/>
+		<result column="hewon_email" property="email"/>
+		<result column="hewon_state" property="state"/>
+	</resultMap>
+	
+	<select id="selectHewonList" resultMap="myHewonResultMap">
+		select * from myhewon order by hewon_id
+	</select>
+</mapper>
