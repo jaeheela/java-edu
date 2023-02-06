@@ -76,15 +76,3 @@ public class MyHewon {
 		this.state = state;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
