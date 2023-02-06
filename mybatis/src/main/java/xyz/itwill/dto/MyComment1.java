@@ -22,7 +22,7 @@ COMMENT_DATE             DATE          - 게시글 작성일
 //XML 기반의 매퍼 파일에서 cache 엘리먼트를 사용한 경우 SELECT 명령에 대한 검색결과로 제공될
 //객체의 클래스는 반드시 객체 직렬화 클래스로 선언
 // => 객체 직렬화 클래스는 Serializable 인터페이스를 상속받아 작성
-// => 객체 직렬화 클래스는 serialVersionUID 이름의  static final 필드 선언하는 것을 권장
+// => 객체 직렬화 클래스는 serialVersionUID 이름의 static final 필드(상수)를 선언하는 것을 권장
 public class MyComment1 implements Serializable {
 	private static final long serialVersionUID = -7534009978055893003L;
 
