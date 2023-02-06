@@ -186,8 +186,12 @@
 	
 	<!-- 검색 컬럼명과 검색 단어를 전달받아 MYHEWON 테이블에 저장된 회원정보 중 검색 컬럼에
 	검색 단어가 저장된 회원정보를 검색하여 검색결과를 제공하는 엘리먼트 -->
-	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonMap">
-		select * from myhewon where #{searchColumn}=#{searchKeyword} order by hewon_id 
+	<!-- #{변수명|필드명|맵키} : '전달값' - 전달값이 SQL 명령에서 문자값으로 표현 -->
+	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값이 SQL 명령에서 문장으로 표현 -->
+	<!-- => ibatis 프레임워크에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
+	<!-- => $ 표현식은 InSQL 공갹에 취약하므로 사용하는 것을 비권장 -->
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon where ${searchColumn}=#{searchKeyword} order by hewon_id 
 	</select>
 </mapper>
 
