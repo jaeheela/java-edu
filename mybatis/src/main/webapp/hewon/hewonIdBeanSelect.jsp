@@ -41,6 +41,7 @@
 		</tr>
 	</table>	
 	</form>
+	<hr>
 	
 	<% if(name!=null && email!=null) { %>
 	<div style="font-weight: bold; color: red;">

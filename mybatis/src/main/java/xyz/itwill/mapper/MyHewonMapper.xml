@@ -136,8 +136,6 @@
 	
 	<!-- XML 기반의 매퍼 파일만 설정할 경우 parameterType 속성값으로 원시형(Wrapper 클래스) 
 	또는 String 클래스를 설정한 경우 parameterType 속성 생략 가능 -->
-	<!-- => Interface 기반의 매퍼 파일과 바인딩된 경우 전달값에 상관없이 parameterType
-	속성 생략 가능 -->
 	<select id="selectStateHewonList" resultMap="myHewonResultMap">
 		select * from myhewon where hewon_state=#{state} order by hewon_id
 	</select>
@@ -147,6 +145,19 @@
 	<!-- => 값을 여러개 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 JavaBean(DTO)
 	클래스를 설정하고 SQL 명령에서는 #{필드명} 형식으로 전달받은 JavaBean 객체의 필드값 사용  -->
 	<select id="selectBeanHewonId" parameterType="MyHewon" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
+	</select>
+	
+	<!-- Interface 기반의 매퍼 파일과 바인딩된 경우 전달값에 상관없이 parameterType	속성 생략 가능 -->
+	<select id="selectBeanHewonId" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
+	</select>
+	
+	<!-- 이름과 이메일을 전달받아 MYHEWON 테이블에 저장된 해당 이름과 이메일의 회원정보에
+	대한 아이디를 검색하여 검색결과를 제공하는 엘리먼트 -->
+	<!-- => 값을 여러개 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 HashMap 클래스
+	(Map 인터페이스)를 설정하고 SQL 명령에서는 #{맵키} 형식으로 전달받은 Map 객체의 맵값 사용  -->
+	<select id="selectMapHewonId" parameterType="map" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
 </mapper>
