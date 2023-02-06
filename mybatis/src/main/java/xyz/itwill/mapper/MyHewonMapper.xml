@@ -162,6 +162,10 @@
 	<select id="selectMapHewonId" parameterType="map" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
+	
+	<insert id="insertMapHewon" parameterType="map">
+		insert into myhewon values(#{id},#{name},#{phone},#{email},#{state})
+	</insert>
 </mapper>
 
 
