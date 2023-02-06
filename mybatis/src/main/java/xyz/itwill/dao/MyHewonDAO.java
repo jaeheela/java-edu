@@ -94,4 +94,24 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public String selectParamHewonId(String name,String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectParamHewonId(name, email);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

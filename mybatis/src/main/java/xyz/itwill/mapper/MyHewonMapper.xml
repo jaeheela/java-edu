@@ -120,7 +120,7 @@
 	속성값으로 설정 - SQL 명령에서 #{맵키} 형식으로 전달값(맵값)을 사용 -->
 	<!-- 2.인터페이스 기반의 매퍼 파일에서 추상메소드의 매개변수에 @Param 어노테이션을
 	설정하여 매개변수에 전달값을 SQL 명령에서 사용 -->
-	<!-- => 바인딩된 XML 기반의 매퍼 파일의 엘리먼트에 등록된 SQL 명령에서도 사용 가능 -->
+	<!-- => 바인딩된 XML 기반의 매퍼 파일의 엘리먼트에 등록된 SQL 명령에서도 전달값 사용 가능 -->
 	<!-- => XML 기반의 매퍼 파일에 엘리먼트에서 prarmeterType 속성 생략 -->
 	
 	<!-- 공개범위를 전달받아 MYHEWON 테이블에 저장된 해당 공개범위의 회원정보를 검색하여
@@ -173,6 +173,15 @@
 	<!-- => 검색행의 컬럼명은 대문자로 검색되어 맵키로 매핑 처리 -->
 	<select id="selectMapHewonList" resultType="map">
 		select * from myhewon order by hewon_id
+	</select>
+	
+	<!-- 이름과 이메일을 전달받아 MYHEWON 테이블에 저장된 해당 이름과 이메일의 회원정보에
+	대한 아이디를 검색하여 검색결과를 제공하는 엘리먼트 -->
+	<!-- 매퍼 바인딩된 처리된 인터페이스 기반의 매퍼파일에서 추상메소드의 매개변수에 전달된 
+	값을 @Param 어노테이션의 value 속성값으로 제공받아 SQL 명령에서 #{속성값}으로 전달값 사용 -->
+	<!-- => parameterType 속성를 반드시 생략 -->
+	<select id="selectParamHewonId" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
 </mapper>
 
