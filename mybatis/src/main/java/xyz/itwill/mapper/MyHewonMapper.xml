@@ -183,6 +183,12 @@
 	<select id="selectParamHewonId" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
+	
+	<!-- 검색 컬럼명과 검색 단어를 전달받아 MYHEWON 테이블에 저장된 회원정보 중 검색 컬럼에
+	검색 단어가 저장된 회원정보를 검색하여 검색결과를 제공하는 엘리먼트 -->
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonMap">
+		select * from myhewon where #{searchColumn}=#{searchKeyword} order by hewon_id 
+	</select>
 </mapper>
 
 
