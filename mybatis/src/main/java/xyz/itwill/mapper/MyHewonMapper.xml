@@ -240,6 +240,9 @@
 	<!-- 아이디 또는 이름을 전달받지 않은 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하고
 	아이디 또는 이름을 전달받은 경우  MYHEWON 테이블에 저장된 회원정보 중 해당 아이디 또는
 	이름의 회원정보를 검색하여 검색결과를 제공하는 엘리먼트 -->
+	<!-- 문제점)아이디와 이름이 모두 전달된 경우 에러 발생 -->
+	<!-- => 모든 if 엘리먼트의 test 속성값이 [true]이므로 WHERE 문장이 2번 포함 -->
+	<!--  
 	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select * from myhewon
 		<if test="id!=null and id!=''">
@@ -248,6 +251,48 @@
 		<if test="name!=null and name!=''">
 			where hewon_name=#{name}
 		</if>
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- 해결법-1)아이디와 이름이 모두 전달돼도 하나의 WHERE 문장만 포함되도록 설정 -->
+	<!-- choose : 조건에 맞는 하나의 엘리먼트 내용(SQL 명령을 구성하는 문장)이 포함되도록 설정하는 엘리먼트 -->
+	<!-- => 하위 엘리먼트 : when 엘리먼트(1개 이상), otherwise 엘리먼트(0개 또는 1개) -->
+	<!-- => 다수의 하위 엘리먼트 중 하나의 엘리먼트 내용만 SQL 명령에 포함 -->
+	<!-- when : 조건에 의한 엘리먼트 내용 포함여부를 설정하는 엘리먼트 -->
+	<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
+	<!-- otherwise : when 엘리먼트의 모든 조건이 거짓인 경우 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 -->
+	<!--  
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<choose>
+			<when test="id!=null and id!=''">
+				where hewon_id=#{id}
+			</when>
+			<when test="name!=null and name!=''">
+				where hewon_name=#{name}
+			</when>
+		</choose>
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- 해결법-2)아이디와 이름이 모두 전달된 경우 하나의 WHERE 문장에 포함되도록 설정  -->
+	<!-- trim : SQL 명령에 필요한 문장을 필요한 값을 추가하거나 삭제하여 엘리먼트 내용을
+	포함하는 엘리먼트 --> 
+	<!-- => 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
+	<!-- prefix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 추가될 문장을 속성값으로 설정 -->
+	<!-- prefixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 제거될 문장을 속성값으로 설정 -->
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id!=null and id!=''">
+				hewon_id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+				${choice} hewon_name=#{name}
+			</if>
+		</trim>
 		order by hewon_id
 	</select>
 </mapper>

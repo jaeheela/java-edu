@@ -10,10 +10,12 @@
 
 	String id=request.getParameter("id");
 	String name=request.getParameter("name");
+	String choice=request.getParameter("choice");
 	
 	Map<String, Object> map=new HashMap<String, Object>();
 	map.put("id", id);
 	map.put("name", name);
+	map.put("choice", choice);
 	
 	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectDynamicHewonList(map);
 %>    
