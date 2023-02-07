@@ -324,6 +324,9 @@
 	
 	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 회원정보를 변경하는 엘리먼트 -->
 	<!-- => 아이디를 비교하여 아이디를 제외한 전달값이 존재하는 회원정보 변경 -->
+	<!-- test 속성값에서 관계연산자를 기호(>,<,>=,<=) 대신 문자(gt,lt,gte,lte)로 표현하여 사용  -->
+	<!-- => 관계연산자를 기호로 사용한 경우 에러 발생 -->
+	<!--  
 	<update id="updateDynamicHewon" parameterType="MyHewon">
 		update myhewon 
 		<trim prefix="set" suffixOverrides=",">
@@ -342,21 +345,51 @@
 		</trim>
 		where hewon_id=#{id}
 	</update>
+	-->
+	
+	<!-- set : 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 [,]가 있으면 삭제하고 
+	엘리먼트 내용 앞에 [set] 키워드를 추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<!-- => 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+		<set>
+			<if test="name!=null and name!=''">
+				hewon_name=#{name},
+			</if>
+			<if test="phone!=null and phone!=''">
+				hewon_phone=#{phone},
+			</if>
+			<if test="email!=null and email!=''">
+				hewon_email=#{email},
+			</if>
+			<if test="state gte 1 and state lte 4">
+				hewon_state=#{state}
+			</if>
+		</set>
+		where hewon_id=#{id}
+	</update>
+	
+	<!-- 아이디 목록을 전달받아 MYHEWON 테이블에 저장된 해당 아이디의 회원정보를 검색하여
+	검색결과를 제공하는 엘리먼트 -->
+	<!-- => 아이디 목록을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 회원정보 검색 -->
+	<!-- parameterType 속성값으로 ArrayList 클래스(List 인터페이스)를 설정하여 아이디 목록을  
+	List 객체로 제공받아 사용 -->
+	<!-- => parameterType 속성값으로 ArrayList 클래스(List 인터페이스)를 설정한 경우 List 객체를
+	전달받아 SQL명령에서 [list] 이름으로 표현하여 사용 -->
+	<select id="selectMultiDynamicHewonList" parameterType="list" resultMap="myHewonResultMap">
+		select * from myhewon
+		<if test="list!=null">
+			where hewon_id in
+			<!-- foreach : 전달받은 List 객체의 요소값을 반복적으로 제공받아 SQL 명령에 포함하는 엘리먼트 -->
+			<!-- collection 속성 : 반복 처리하기 위한 List 객체의 이름을 속성값으로 설정 -->
+			<!-- item 속성 : List 객체의 요소값을 저장하기 위한 이름을 속성값으로 설정 -->
+			<!-- open 속성 : foreach 엘리먼트의 내용 앞부분에 추가될 문장을 속성값으로 설정 -->
+			<!-- close 속성 : foreach 엘리먼트의 내용 뒷부분에 추가될 문장을 속성값으로 설정 -->
+			<!-- separator 속성 : List 객체의 요소값을 구분하기 위한 문장을 속성값으로 설정 -->
+			<foreach collection="list" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</if>
+		order by hewon_id
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
