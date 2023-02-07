@@ -8,9 +8,14 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
+	String id=request.getParameter("id");
 	String name=request.getParameter("name");
 	
-	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectDynamicNameHewonList(name);
+	Map<String, Object> map=new HashMap<String, Object>();
+	map.put("id", id);
+	map.put("name", name);
+	
+	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectDynamicHewonList(map);
 %>    
 <!DOCTYPE html>
 <html>
@@ -66,6 +71,11 @@ td {
 	<br>
 	
 	<form method="post">
+		아이디 : <input type="text" name="id">
+		<select name="choice">
+			<option value="or" selected="selected">&nbsp;OR&nbsp;</option>
+			<option value="and">&nbsp;AND&nbsp;</option>
+		</select>
 		이름 : <input type="text" name="name">
 		<button type="submit">검색</button>
 	</form>

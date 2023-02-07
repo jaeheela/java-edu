@@ -226,7 +226,7 @@
 	<!-- 이름을 전달받지 않을 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하고 이름을 전달받은
 	경우 MYHEWON 테이블에 저장된 해당 이름의 회원정보를 검색하여 검색결과를 제공하는 엘리먼트 -->
 	<!-- => 동적 SQL 관련 엘리먼트를 사용하여 전달값에 따라 SQL 명령이 다르게 등록되도록 설정 -->
-	<select id="selectDynaminNameHewonList" parameterType="string" resultMap="myHewonResultMap">
+	<select id="selectDynamicNameHewonList" parameterType="string" resultMap="myHewonResultMap">
 		select * from myhewon
 		<!-- if : 조건에 의해 엘리먼트 내용(SQL 명령을 구성하는 문장)의 포함여부를 설정하는 엘리먼트 -->
 		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
