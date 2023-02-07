@@ -321,6 +321,27 @@
 		update myhewon set hewon_name=#{name},hewon_phone=#{phone},hewon_email=#{email}
 			,hewon_state=#{state} where hewon_id=#{id}
 	</update>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 회원정보를 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 전달값이 존재하는 회원정보 변경 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null and name!=''">
+				hewon_name=#{name},
+			</if>
+			<if test="phone!=null and phone!=''">
+				hewon_phone=#{phone},
+			</if>
+			<if test="email!=null and email!=''">
+				hewon_email=#{email},
+			</if>
+			<if test="state gte 1 and state lte 4">
+				hewon_state=#{state}
+			</if>
+		</trim>
+		where hewon_id=#{id}
+	</update>
 </mapper>
 
 
