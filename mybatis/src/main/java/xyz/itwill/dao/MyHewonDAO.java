@@ -121,6 +121,15 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public List<MyHewon> selectDynaminNameHewonList(String name) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectDynaminNameHewonList(name);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
 
 
