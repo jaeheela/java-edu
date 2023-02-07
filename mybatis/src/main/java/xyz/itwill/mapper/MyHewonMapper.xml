@@ -190,8 +190,34 @@
 	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값이 SQL 명령에서 문장으로 표현 -->
 	<!-- => ibatis 프레임워크에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
 	<!-- => $ 표현식은 InSQL 공격에 취약하므로 사용하는 것을 비권장 -->
+	<!--  
 	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select * from myhewon where ${searchColumn}=#{searchKeyword} order by hewon_id 
+	</select>
+	-->
+	
+	<!-- 검색 컬럼명과 검색 단어를 전달받아 MYHEWON 테이블에 저장된 회원정보 중 검색 컬럼에
+	검색 단어가 포함된 회원정보를 검색하여 검색결과를 제공하는 엘리먼트 -->
+	<!--  
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon where ${searchColumn} like '%'||#{searchKeyword}||'%' order by hewon_id 
+	</select>
+	-->
+	
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		<!-- bind : SQL 명령에서 사용하기 위한 이름과 값을 설정하는 엘리먼트 - 전달값 변경 -->
+		<!-- => bind 엘리먼트로 설정된 값은 SQL 명령에서 #{이름} 형식으로 표현하여 사용 -->
+		<!-- name 속성 : SQL 명령에서 사용될 값을 구분하기 위한 식별자를 속성값 설정 -->
+		<!-- value 속성 : SQL 명령에서 사용될 값을 속성값으로 설정 -->
+		<!-- => parameterType 속성으로 전달된 값을 사용할 있으며 문자값 결합(+ 연산자) 기능 제공 -->
+		<bind name="keyword" value="'%'+searchKeyword+'%'"/>
+		select * from myhewon where ${searchColumn} like #{keyword} order by hewon_id 
+	</select>
+	
+	<!-- 이름을 전달받아 MYHEWON 테이블에 저장된 해당 이름의 회원정보를 검색하여 검색결과를  
+	제공하는 엘리먼트 -->
+	<select id="selectNameHewonList" parameterType="string" resultMap="myHewonResultMap">
+		select * from myhewon where hewon_name=#{name} order by hewon_id
 	</select>
 </mapper>
 
