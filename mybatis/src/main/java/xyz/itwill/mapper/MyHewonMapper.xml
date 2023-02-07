@@ -278,11 +278,12 @@
 	-->
 	
 	<!-- 해결법-2)아이디와 이름이 모두 전달된 경우 하나의 WHERE 문장에 포함되도록 설정  -->
-	<!-- trim : SQL 명령에 필요한 문장을 필요한 값을 추가하거나 삭제하여 엘리먼트 내용을
-	포함하는 엘리먼트 --> 
+	<!-- trim : 엘리먼트 내용에 필요한 값을 추가하거나 삭제하여 SQL 명령에 포함하는 엘리먼트 --> 
 	<!-- => 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
 	<!-- prefix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 추가될 문장을 속성값으로 설정 -->
 	<!-- prefixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 제거될 문장을 속성값으로 설정 -->
+	<!-- suffix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 추가될 문장을 속성값으로 설정 -->
+	<!-- suffixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 제거될 문장을 속성값으로 설정 -->
 	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select * from myhewon
 		<trim prefix="where" prefixOverrides="and|or">
