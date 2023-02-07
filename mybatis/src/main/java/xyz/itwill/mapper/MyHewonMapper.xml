@@ -284,6 +284,7 @@
 	<!-- prefixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 제거될 문장을 속성값으로 설정 -->
 	<!-- suffix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 추가될 문장을 속성값으로 설정 -->
 	<!-- suffixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 제거될 문장을 속성값으로 설정 -->
+	<!--  
 	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select * from myhewon
 		<trim prefix="where" prefixOverrides="and|or">
@@ -296,6 +297,30 @@
 		</trim>
 		order by hewon_id
 	</select>
+	-->
+	
+	<!-- where : 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 [and] 또는 [or] 키워드가 
+	있으면 삭제하고 [where] 키워드를 추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<!-- => 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<where>
+			<if test="id!=null and id!=''">
+				hewon_id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+				${choice} hewon_name=#{name}
+			</if>
+		</where>
+		order by hewon_id
+	</select>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 회원정보를 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 모든 회원정보 변경 -->
+	<update id="updateHewon" parameterType="MyHewon">
+		update myhewon set hewon_name=#{name},hewon_phone=#{phone},hewon_email=#{email}
+			,hewon_state=#{state} where hewon_id=#{id}
+	</update>
 </mapper>
 
 
