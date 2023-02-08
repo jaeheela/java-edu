@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 
 import xyz.itwill.dto.MyHewon;
 
@@ -42,15 +43,13 @@ public interface MyHewonInterfaceMapper {
 	})
 	@Select("select * from myhewon where hewon_name=#{name} order by hewon_id")
 	List<MyHewon> selectNameHewonList(String name);
+	
+	//@SelectProvider : SQL Builder 클래스의 메소드를 호출하여 SELECT 명령을 반환받아 등록하는 어노테이션
+	// => 동적 SQL 기능을 사용하기 위한 어노테이션
+	//SQL Builder 클래스 : SQL 객체를 생성하여 메소드를 호출해 SQL 명령을 작성하고 객체에 저장된 
+	//SQL 명령을 반환하는 기능을 제공하는 클래스
+	//type 속성 : SQL Builder 관련 클래스(Class 객체 - Clazz)를 속성값으로 설정
+	//method 속성 : SQL 객체를 생성하여 SQL 명령을 작성해 반환하는 메소드의 이름을 속성값으로 설정
+	@SelectProvider(type = MyHewonProvider.class, method = "selectDynamicName")
+	List<MyHewon> selectDynamicHewonList(String name);
 }
-
-
-
-
-
-
-
-
-
-
-
