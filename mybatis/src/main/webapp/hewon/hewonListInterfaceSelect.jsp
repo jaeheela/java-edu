@@ -8,12 +8,16 @@
 
 	String name=request.getParameter("name");
 	
+	/*
 	List<MyHewon> hewonList=null;
 	if(name==null || name.equals("")) {
 		hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();
 	} else {
 		hewonList=MyHewonInterfaceDAO.getDAO().selectNameHewonList(name);
 	}
+	*/
+	
+	List<MyHewon> hewonList=MyHewonInterfaceDAO.getDAO().selectDynamicHewonList(name);
 %>    
 <!DOCTYPE html>
 <html>
@@ -74,14 +78,3 @@ td {
 	</form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
