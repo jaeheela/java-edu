@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import xyz.itwill.dto.MyMember;
-
+//aa
 //mybatis 프레임워크에서는 인터페이스를 이용하여 매퍼 설정 가능
 // => 추상메소드에 매퍼 어노테이션(Mapper Annotation)을 사용하여 SQL 명령 등록
 public interface MyMemberInterfaceMapper {
