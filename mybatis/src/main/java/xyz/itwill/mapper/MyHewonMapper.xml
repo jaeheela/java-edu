@@ -229,6 +229,7 @@
 	<select id="selectDynamicNameHewonList" parameterType="string" resultMap="myHewonResultMap">
 		select * from myhewon
 		<!-- if : 조건에 의해 엘리먼트 내용(SQL 명령을 구성하는 문장)의 포함여부를 설정하는 엘리먼트 -->
+		<!-- => if 엘리먼트의 조건이 참인 경우 엘리먼트 내용을 SQL 명령에 포함 -->
 		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
 		<!-- => parameterType 속성으로 전달된 값에 대한 조건식을 사용하여 test 속성값으로 제공 -->
 		<if test="name!=null and name!=''"><!-- 전달값(이름)이 있는 경우 >> [true] -->
