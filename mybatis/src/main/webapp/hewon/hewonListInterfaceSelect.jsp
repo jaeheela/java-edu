@@ -4,7 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyHewon> hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();
+	request.setCharacterEncoding("utf-8");
+
+	String name=request.getParameter("name");
+	
+	List<MyHewon> hewonList=null;
+	if(name==null || name.equals("")) {
+		hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();
+	} else {
+		hewonList=MyHewonInterfaceDAO.getDAO().selectNameHewonList(name);
+	}
 %>    
 <!DOCTYPE html>
 <html>
@@ -41,15 +50,38 @@ td {
 			<td class="email">이메일</td>
 			<td class="state">공개범위</td>
 		</tr>	
-		<% for(MyHewon hewon:hewonList) { %>
+		<% if(hewonList.isEmpty()) { %>
 		<tr>
-			<td><%=hewon.getId() %></td>
-			<td><%=hewon.getName() %></td>
-			<td><%=hewon.getPhone() %></td>
-			<td><%=hewon.getEmail() %></td>
-			<td><%=hewon.getState() %></td>
+			<td colspan="5">검색된 회원정보가 없습니다.</td>
 		</tr>
+		<% } else { %>
+			<% for(MyHewon hewon:hewonList) { %>
+			<tr>
+				<td><%=hewon.getId() %></td>
+				<td><%=hewon.getName() %></td>
+				<td><%=hewon.getPhone() %></td>
+				<td><%=hewon.getEmail() %></td>
+				<td><%=hewon.getState() %></td>
+			</tr>
+			<% } %>
 		<% } %>
 	</table>
+	<br>
+	
+	<form method="post">
+		이름 : <input type="text" name="name">
+		<button type="submit">검색</button>
+	</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
