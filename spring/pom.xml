@@ -32,10 +32,10 @@
 	<!-- dependencies : dependency 엘리먼트 목록을 설정하기 위한 엘리먼트 -->
 	<dependencies>
 		<!-- Spring -->
-		<!-- dependency : 라이브러리 파일을 프로젝트 빌드 처리하기 위한 엘리먼트 -->
+		<!-- dependency : 라이브러리를 프로젝트 빌드 처리하기 위한 엘리먼트 -->
 		<!-- => 의존관계로 설정된 라이브러리 파일도 자동으로 빌드 처리 -->
 		<dependency>
-			<!-- groupId : 라이브러리를 제공하는 그룹의 식별자(도메인)를 설정하기 위한 엘리먼트 --> 
+			<!-- groupId : 라이브러리 파일을 제공하는 그룹의 식별자(도메인)를 설정하기 위한 엘리먼트 --> 
 			<groupId>org.springframework</groupId>
 			<!-- artifactId : 라이브러리의 이름(식별자)을 설정하기 위한 엘리먼트 --> 
 			<artifactId>spring-context</artifactId>
