@@ -37,12 +37,36 @@
 		</layout>
 	</appender>
 	
+	<appender name="sample" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%c{1} 클래스의 %M 메소드 - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="dailyLogFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="dailyLog"/>
+		<param name="DatePattern" value=".yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}]%-5p : %c - %m%n" />
+		</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<!-- logger : 특정 패키지의 클래스에서 발생되는 로그 이벤트를 기록하기 위한 엘리먼트 -->
 	<!-- name 속성 : 패키지 경로를 속성값으로 설정 -->
 	<logger name="xyz.itwill.controller">
 		<!-- level : 패키지에 작성된 클래스에서 발생되는 로그 이벤트를 설정하기 위한 엘리먼트 -->
 		<level value="info" />
+	</logger>
+	
+	<!-- additivity 속성 : false 또는 true(기본) 중 하나를 속성값으로 설정 -->
+	<!-- => 속성값이 [false]인 경우 root 엘리먼트의 로그 구현체(Appender)를 포함하지 않도록
+	동작되고 [true]인 경우 root 엘리먼트의 로그 구현체(Appender)를 포함되도록 동작 -->
+	<logger name="xyz.itwill00.log" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="sample" />
+		<appender-ref ref="dailyLogFile" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
