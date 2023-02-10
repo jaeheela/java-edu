@@ -5,6 +5,6 @@ package xyz.itwill02.factory;
 //인터페이스로 참조변수를 생성하면 참조변수에는 인터페이스를 상속받은 모든 자식클래스의 객체 저장 가능
 // => 인터페이스로 생성된 참조변수로 추상메소드를 호출하면 참조변수에 저장된 자식클래스 객체의
 //오버라이드 메소드 호출 - 오버라이드에 의한 다형성 : 객체간의 결합도 감소
-public interface MessgeObject {
+public interface MessageObject {
 	String getMessage();
 }
