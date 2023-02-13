@@ -27,6 +27,13 @@
 	<!-- factory-method 속성 : 싱글톤 클래스에서 객체를 반환하는 메소드의 이름을 속성값으로 설정 -->
 	<!-- => 스프링 컨테이너에 의해 객체를 생성하지 않고 정적영역의 명령으로 객체를 생성하여 사용 -->
 	<bean class="xyz.itwill04.bean.FactoryMehodBean" factory-method="getFactoryMehodBean"/>
+	
+	<!-- 스프링 컨테이너틑 bean 엘리먼트의 선언 순서대로 등록된 클래스를 객체로 생성 -->
+	<!-- depends-on 속성 : Spring Bean를 구분하기 위한 식별자(beanName)를 속성값으로 설정 -->
+	<!-- => bean 엘리먼트에 등록된 클래스를 객체로 생성하기 전에 depends-on 속성값으로 설정된 
+	Spring Bean의 클래스를 객체로 미리 생성 -->
+	<bean class="xyz.itwill04.bean.DependsOnOneBean" depends-on="dependsOnTwoBean"/>
+	<bean class="xyz.itwill04.bean.DependsOnTwoBean" id="dependsOnTwoBean"/>
 </beans>
 
 
