@@ -23,6 +23,8 @@ public class BeanAttributeApp {
 		//bean.destroy();
 		
 		System.out.println("================================================================");
+		context.getBean("lazyInitBean", LazyInitBean.class);
+		System.out.println("================================================================");
 		((ClassPathXmlApplicationContext)context).close();
 		System.out.println("================================================================");
 	}

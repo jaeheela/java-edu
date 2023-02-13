@@ -12,4 +12,25 @@
 	<bean class="xyz.itwill04.bean.InitDestroyMethodBean" id="initDestroyMethodBean"
 		init-method="init" destroy-method="destroy"/>
 
+	<!-- lazy-init 속성 : false 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => false(기본) : 스프링 컨테이너를 초기화할 때 객체(Spring Bean)를 미리 생성  -->
+	<!-- => true : 스프링 컨테이너로부터 Spring Bean를 제공받기 위해 getBean() 메소드를 호출할 때 객체 생성 -->
+	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>
+	
+	
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
