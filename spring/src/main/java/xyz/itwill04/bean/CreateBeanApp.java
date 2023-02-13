@@ -24,7 +24,7 @@ public class CreateBeanApp {
 		BeanFactory factory=new XmlBeanFactory(
 				new FileSystemResource("src/main/resources/04-1_beanCreate.xml"));
 		System.out.println("================== Spring Container 초기화 후 ==================");
-		//BeanFactory.getBean(String beanName) : 스프링 컨테이너에서 Spring Bean를 구분하기 위한 
+		//BeanFactory.getBean(String beanName) : 스프링 컨테이너에게 Spring Bean를 구분하기 위한 
 		//식별자(beanId 또는 beanName)을 전달하여 객체(Spring Bean)를 생성하여 반환하는 메소드
 		// => Object 타입의 객체를 반환하므로 반드시 명시적 객체 형변환 사용
 		// => 전달받은 식별자(beanName)에 대한 Spring Bean이 없는 경우 NoSuchBeanDefinitionException 발생
@@ -42,7 +42,7 @@ public class CreateBeanApp {
 		ApplicationContext context=new ClassPathXmlApplicationContext("04-1_beanCreate.xml");
 		System.out.println("================== Spring Container 초기화 후 ==================");
 		//DL(Dependency Lookup) : 스프링 컨테이너로부터 필요한 Spring Bean를 검색하여 제공하는 기능
-		//ApplicationContext.getBean(String beanName) : 스프링 컨테이너에서 Spring Bean를 구분
+		//ApplicationContext.getBean(String beanName) : 스프링 컨테이너에게 Spring Bean를 구분
 		//하기 위한 식별자(beanName)을 전달하여 객체(Spring Bean)를 반환하는 메소드
 		CreateBean bean2=(CreateBean)context.getBean("createBean");
 		bean2.display();
