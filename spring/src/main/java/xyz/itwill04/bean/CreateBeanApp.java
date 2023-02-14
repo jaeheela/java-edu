@@ -37,7 +37,7 @@ public class CreateBeanApp {
 		// => ApplicationContext 객체를 생성할 때 Spring Bean Configuration File를 제공받아  
 		//스프링 컨테이너 생성 - 스프링 컨테이너의 초기화 작업 
 		// => 클래스가 참조 가능한 디렉토리(ClassPath)에 있는 Spring Bean Configuration File로 설정
-		// => ApplicationContext 객체는  Spring Bean Configuration File에 등록된 클래스로 미리
+		// => ApplicationContext 객체는 Spring Bean Configuration File에 등록된 클래스로 미리
 		//객체를 생성하여 Spring Bean 요청시 제공
 		ApplicationContext context=new ClassPathXmlApplicationContext("04-1_beanCreate.xml");
 		System.out.println("================== Spring Container 초기화 후 ==================");
