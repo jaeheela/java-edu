@@ -15,6 +15,15 @@ public class StudentApp {
 		Student student2=context.getBean("student2",Student.class);
 		System.out.println(student2);
 		System.out.println("================================================================");
+		Student student3=context.getBean("student3",Student.class);
+		System.out.println(student3);
+		System.out.println("================================================================");
+		Student student4=context.getBean("student4",Student.class);
+		System.out.println(student4);
+		System.out.println("================================================================");
+		Student student5=context.getBean("student5",Student.class);
+		System.out.println(student5);
+		System.out.println("================================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }
