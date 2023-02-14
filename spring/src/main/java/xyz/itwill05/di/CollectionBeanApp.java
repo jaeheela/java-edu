@@ -14,6 +14,9 @@ public class CollectionBeanApp {
 		// => Collection 객체의 toString() 메소드 자동 호출 - Collection 객체에 저장된 모든 요소값이 문자열로 반환 
 		System.out.println("nameSet = "+bean.getNameSet());
 		System.out.println("nameList = "+bean.getNameList());
+		System.out.println("controllerSet = "+bean.getControllerSet());
+		System.out.println("controllerList = "+bean.getControllerList());
+		System.out.println("controllerMap = "+bean.getControllerMap());
 		System.out.println("================================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	}

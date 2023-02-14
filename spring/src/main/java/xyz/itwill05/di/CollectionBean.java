@@ -1,6 +1,7 @@
 package xyz.itwill05.di;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CollectionBean {
@@ -10,6 +11,7 @@ public class CollectionBean {
 	//상속받은 모든 자식클래스의 객체 저장 가능
 	private Set<Controller> controllerSet;
 	private List<Controller> controllerList;
+	private Map<String, Controller> controllerMap;
 	
 	public CollectionBean() {
 		System.out.println("### CollectionBean 클래스의 기본 생성자 호출 ###");
@@ -45,5 +47,13 @@ public class CollectionBean {
 
 	public void setControllerList(List<Controller> controllerList) {
 		this.controllerList = controllerList;
+	}
+
+	public Map<String, Controller> getControllerMap() {
+		return controllerMap;
+	}
+
+	public void setControllerMap(Map<String, Controller> controllerMap) {
+		this.controllerMap = controllerMap;
 	}
 }

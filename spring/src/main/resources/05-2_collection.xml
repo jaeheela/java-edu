@@ -47,8 +47,39 @@
 				<ref bean="listController"/>
 			</list>
 		</property>
+		
+		<property name="controllerMap">
+			<!-- map : Map 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
+			<map>
+				<!-- entry : Map 객체에 엔트리(Entry - Key & Value)를 추가하기 위한 엘리먼트 -->
+				<entry>
+					<!-- key : 엔트리의 맵키(String)를 설정하기 위한 엘리먼트 -->
+					<key>
+						<value>login</value>
+					</key> 
+					<!-- ref : 엔트리의 맵값(Controller 객체)를 설정하기 위한 엘리먼트 -->
+					<ref bean="loginController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>logout</value>
+					</key> 
+					<ref bean="logoutController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>list</value>
+					</key> 
+					<ref bean="listController"/>
+				</entry>
+			</map>
+		</property>
 	</bean>
 </beans>
+
+
+
+
 
 
 
