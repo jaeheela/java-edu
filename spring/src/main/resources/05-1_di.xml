@@ -3,5 +3,33 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- Spring Bean으로 등록된 클래스의 기본 생성자를 이용하여 객체 생성 -->
+	<!-- => 객체의 필드에는 기본값(숫자형 : 0, 논리형 : false, 참조형 : null) 저장 -->
 	<bean class="xyz.itwill05.di.Student" id="student1"/>
+	
+	<!-- Spring Bean으로 등록된 클래스의 매개변수가 선언된 생성자를 이용하여 객체 생성 -->
+	<!-- => bean 엘리먼트의 하위 엘리먼트를 사용하여 생성자 매개변수에 값을 전달하여 필드값으로 저장 -->
+	<!-- => Constructor Injection : 생성자를 이용하여 객체 필드 초기화 작업 실행 -->
+	<bean class="xyz.itwill05.di.Student" id="student2">
+		<!-- constructor-arg : Spring Bean으로 등록된 클래스의 생성자 매개변수에 값(객체)을 
+		전달하기 위한 엘리먼트 -->
+		<!-- => 엘리먼트의 갯수만큼 매개변수가 선언된 생성자를 반드시 작성 -->
+		<!-- value 속성 : 매개변수에 전달하기 위한 값을 속성값으로 설정 -->
+		<!-- => Spring Bean으로 등록된 클래스가 객체로 생성될 때 필드에 전달값 저장 -->
+		<!-- => Value Injection : 객체의 필드에 값이 저장되도록 초기화 작업 실행 - 값 주입 -->
+		<!-- => 전달값은 기본적으로 문자열(String 객체)로 전달 - 매개변수의 자료형에 의해 자동 형변환 -->
+		<!-- => 매개변수의 자료형에 의해 자동 형변환될 경우 NumberFormatException 발생 가능 -->
+		<constructor-arg value="1000"/>
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+

@@ -15,6 +15,14 @@ public class Student {
 		this.num = num;
 		System.out.println("### Student 클래스의 매개변수(학번)가 선언된 생성자 호출 ###");
 	}
+	
+	/*
+	public Student(String name) {
+		super();
+		this.name = name;
+		System.out.println("### Student 클래스의 매개변수(이름)가 선언된 생성자 호출 ###");
+	}
+	*/
 
 	public Student(int num, String name) {
 		super();
