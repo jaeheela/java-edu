@@ -24,6 +24,9 @@ public class StudentApp {
 		Student student5=context.getBean("student5",Student.class);
 		System.out.println(student5);
 		System.out.println("================================================================");
+		Student student6=context.getBean("student6",Student.class);
+		System.out.println(student6);
+		System.out.println("================================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }

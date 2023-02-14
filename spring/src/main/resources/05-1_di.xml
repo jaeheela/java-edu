@@ -64,6 +64,29 @@
 		<constructor-arg value="전우치"/>
 		<property name="email" value="opq@itwill.xyz"/>
 	</bean>
+	
+	<!-- PropertyPlaceholderConfigurer 클래스 : Properties 파일을 제공받아 파일에 설정된
+	값을 Spring Bean Configuration File에서 사용할 수 있도록 제공하는 클래스 -->
+	<!-- => locations 필드에 Properties 파일의 경로를 전달하여 저장 -->
+	<!-- => Properties 파일에 의해 제공되는 값은 Spring Bean Configuration File에서 ${이름}으로 사용 -->
+	<!--  
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="xyz/itwill05/di/student.properties"/>
+	</bean>
+	-->
+	
+	<!-- Spring 5.2 이상에서는 PropertySourcesPlaceholderConfigurer 클래스를 사용하여
+	Properties 파일을 제공받아 Spring Bean Configuration File에서 사용할 수 있도록 변경 -->
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations" value="xyz/itwill05/di/student.properties"/>
+	</bean>
+	
+	<!-- Properties 파일에 의해 제공되는 값을 사용하여 객체 필드 초기화 작업 -->
+	<bean class="xyz.itwill05.di.Student" id="student6">
+		<property name="num" value="${num}"/>
+		<property name="name" value="${name}"/>
+		<property name="email" value="${email}"/>
+	</bean>
 </beans>
 
 
