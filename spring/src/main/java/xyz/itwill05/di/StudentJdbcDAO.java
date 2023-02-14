@@ -40,6 +40,4 @@ public class StudentJdbcDAO implements StudentDAO {
 		System.out.println("*** StudentJdbcDAO 클래스 selectStudentList() 메소드 호출 ***");
 		return null;
 	}
-	
-
 }
