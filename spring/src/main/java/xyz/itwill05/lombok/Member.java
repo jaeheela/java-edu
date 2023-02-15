@@ -17,11 +17,8 @@ import lombok.Data;
 
 //회원정보를 저장하기 위한 클래스 - VO 클래스 : 값을 저장하기 위한 목적의 객체를 생성하기 위한 클래스
 //@Setter : 필드의 Setter 메소드를 자동 생성하여 제공하는 어노테이션 
-//@Setter
 //@Getter : 필드의 Getter 메소드를 자동 생성하여 제공하는 어노테이션 
-//@Getter
 //@ToString : 클래스의 필드값을 반환하는 toString 메소드를 자동 생성하여 제공하는 어노테이션 
-//@ToString
 //@Data : Setter, Getter, toString 메소드 등을 자동 생성하는 어노테이션
 @Data
 public class Member {
