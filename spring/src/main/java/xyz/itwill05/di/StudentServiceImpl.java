@@ -3,12 +3,12 @@ package xyz.itwill05.di;
 import java.util.List;
 
 //Service 클래스 : 프로그램 실행에 필요한 데이타 처리 기능을 모듈화하여 제공하는 클래스 - 컴퍼넌트
-// => Service 클래스의 메소드는 DAO 클래스의 메소드를 호출하여 작성 - 모듈화
+// => Service 클래스의 메소드는 다수의 DAO 클래스의 메소드를 호출하여 작성 - 모듈화
 // => DAO 클래스는 Service 클래스와 포함관계(의존관계)로 설정되도록 작성
 // => Service 클래스가 변경돼도 Service 클래스와 관계가 있는 클래스(모델 클래스)에 영향을 최소화
 //하기 위해 반드시 인터페이스 상속받아 작성 - 결합도를 낮춰 유지보수의 효율성 증가
 public class StudentServiceImpl implements StudentService {
-	//StudentJdbcDAO 객체를 저장하기 위한 필드
+	//StudentJdbcDAO 클래스로 필드 선언 - StudentJdbcDAO객체만을 저장하기 위한 필드
 	// => 필드에 StudentJdbcDAO 객체를 저장해야만 의존관계가 성립 
 	// => StudentServiceImpl 클래스의 메소드에서 StudentJdbcDAO 객체의 메소드 호출 가능
 	//문제점)DAO 클래스가 변경될 경우 Service 클래스의 필드 및 메소드 변경 
@@ -17,7 +17,8 @@ public class StudentServiceImpl implements StudentService {
 	// => 필드에는 인터페이스를 상속받은 모든 DAO 클래스의 객체 저장 가능
 	//private StudentJdbcDAO studentJdbcDAO;
 	
-	//StudentDAO 인터페이스를 상속받은 모든 DAO 클래스의 객체를 저장할 수 있는 필드
+	//StudentDAO 인터페이스로 필드 선언 - StudentDAO 인터페이스를 상속받은 모든 DAO 클래스의
+	//자식 객체를 저장할 수 있는 필드
 	// => StudentDAO 인터페이스를 상속받은 DAO 클래스의 객체를 저장해야만 의존관계 성립
 	// => Service 클래스의 메소드에서 필드로 추상메소드를 호출하면 필드에 저장된 자식 객체의 
 	//메소드 호출 - 오버라이딩에 의한 다형성 : 결합도를 낮춰 유지보수의 효율성 증가

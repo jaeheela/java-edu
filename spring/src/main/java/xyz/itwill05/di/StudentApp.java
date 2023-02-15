@@ -45,17 +45,3 @@ public class StudentApp {
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
