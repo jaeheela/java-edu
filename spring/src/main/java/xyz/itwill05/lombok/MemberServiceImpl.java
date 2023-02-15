@@ -23,7 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	//@Autowired
 	//private MemberDAO memberDAO;
 	
-	//@RequiredArgsConstructor 어노테이션으로 의존성 주입을 하기 위한 필드에는 final 키워드를 사용하여 선언
+	//@RequiredArgsConstructor 어노테이션으로 생성자를 이용하여 의존성 주입을 하기 위한 필드에는
+	//반드시 final 키워드를 사용하여 선언
 	private final MemberDAO memberDAO;
 	
 	//필드의 Setter 메소드에 @Autowired 어노테이션을 선언하여 필드에 의존성 주입 - Setter 의존성 주입
