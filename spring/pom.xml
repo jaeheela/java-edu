@@ -161,6 +161,16 @@
 		    <version>3.3.0</version>
 		</dependency>
 		-->
+		
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<!-- => 클래스에 생성자 또는 메소드를 자동으로 생성하는 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.26</version>
+		    <scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 	
     <build>
