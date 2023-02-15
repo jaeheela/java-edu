@@ -2,7 +2,22 @@ package xyz.itwill05.di;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+//@Component("studentService")
+
+//@Service : Service 클래스를 스프링 컨테이너가 관리할 수 있는 Spring Bean으로 등록하기 위한 어노테이션
+// => 클래스의 이름을 beanName으로 자동 설정하지만 value 속성으로 beanName 변경 가능
+@Service("studentService")
 public class AnnotationStudentServiceImpl implements StudentService {
+	//@Autowired : 스프링 컨테이너로부터 Spring Bean를 제공받아 필드에 저장되도록 의존관계를 
+	//자동으로 구현하기 위한 어노테이션
+	// => 의존성 주입을 위해 필드에 사용하는 어노테이션 - 선언된 필드마다 어노테이션 설정 
+	// => bean 엘리먼트에서 autowire 속성값을 [byType]으로 설정한 것과 같은 방법으로 의존성 주입 - Setter Injection
+	// => Setter 메소드를 이용하여 의존관계를 설정하지만 Setter 메소드를 작성하지 않아도 의존성 주입
+	//문제점)필드의 자료형과 같은 자료형의 Spring Bean이 2개 이상 존재할 경우 의존성 주입 실패 - NoUniqueBeanDefinitionException 발생 
+	@Autowired
 	private StudentDAO studentDAO;
 	
 	public AnnotationStudentServiceImpl() {
