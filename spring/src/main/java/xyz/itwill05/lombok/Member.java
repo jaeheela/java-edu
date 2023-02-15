@@ -1,6 +1,7 @@
 package xyz.itwill05.lombok;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 //클래스의 생성자나 메소드를 자동으로 만들어주는 Lombok 라이브러리를 사용하는 방법
 //1.Lombok 라이브러리를 프로젝트에 빌드 처리 - 메이븐 사용 : pom.xml
@@ -14,6 +15,7 @@ import lombok.Data;
 //5.Lombok이 설치된 이클립스 폴더로 이동하여 eclipse.ini 파일 변경
 // => javaagent 속성의 lombok 경로를 절대경로에서 상대경로로 변경 => -javaagent:lombok.jar
 //6.이클립스를 실행하여 Lombok 라이브러리가 제공하는 어노테이션 사용
+// => @Setter, @Getter, @ToString, @Data, @AllArgsConstructor, @RequiredArgsConstructor 등
 
 //회원정보를 저장하기 위한 클래스 - VO 클래스 : 값을 저장하기 위한 목적의 객체를 생성하기 위한 클래스
 //@Setter : 필드의 Setter 메소드를 자동 생성하여 제공하는 어노테이션 
