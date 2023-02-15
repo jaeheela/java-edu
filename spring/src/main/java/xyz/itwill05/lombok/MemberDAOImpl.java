@@ -2,6 +2,9 @@ package xyz.itwill05.lombok;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 	public MemberDAOImpl() {
 		System.out.println("### MemberDAOImpl 클래스의 기본 생성자 호출 ###");
