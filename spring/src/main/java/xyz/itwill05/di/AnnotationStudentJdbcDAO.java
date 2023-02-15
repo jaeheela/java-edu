@@ -11,7 +11,11 @@ import org.springframework.stereotype.Repository;
 
 //@Repository : DAO 클래스를 스프링 컨테이너가 관리할 수 있는 Spring Bean으로 등록하기 위한 어노테이션
 // => 클래스의 이름을 beanName으로 자동 설정하지만 value 속성으로 beanName 변경 가능
+//@Repository("studentDAO")
 @Repository
+//@Primary : 의존성을 주입하기 위한 우선권을 제공하기 위한 어노테이션
+// => 동일 자료형의 클래스에 @Primary 어노테이션을 사용한 경우 의존성 주입 실패
+//@Primary
 public class AnnotationStudentJdbcDAO implements StudentDAO {
 	public AnnotationStudentJdbcDAO() {
 		System.out.println("### AnnotationStudentJdbcDAO 클래스의 기본 생성자 호출 ###");
