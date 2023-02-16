@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 
 	//필드를 초기화 시키는 매개변수가 선언된 생성자에 @Autowired 어노테이션을 선언하여 
 	//필드에 의존성 주입 - 생성자 의존성 주입
-	// => Spring Framework에서는 순환 참조 반지를 위해 생성자 의존성 주입 권장
+	// => Spring Framework에서는 순환 참조 방지를 위해 생성자 의존성 주입 권장
 	// => 생성자를 이용하여 의존성 주입할 때 생성자가 하나만 선언된 경우 @Autowired 생략 가능
 	//@Autowired
 	/*

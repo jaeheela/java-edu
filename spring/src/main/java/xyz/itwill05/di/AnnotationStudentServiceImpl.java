@@ -12,26 +12,26 @@ import org.springframework.stereotype.Service;
 // => 클래스의 이름을 beanName으로 자동 설정하지만 value 속성으로 beanName 변경 가능
 @Service("studentService")
 public class AnnotationStudentServiceImpl implements StudentService {
-	//@Autowired : 스프링 컨테이너로부터 Spring Bean를 제공받아 필드에 저장되도록 의존관계를 
+	//@Autowired : 스프링 컨테이너로부터 Spring Bean를 제공받아 필드에 저장하여 의존관계를 
 	//자동으로 구현하기 위한 어노테이션
 	// => 의존성 주입을 위해 필드에 사용하는 어노테이션 - 선언된 필드마다 어노테이션 설정 
 	// => bean 엘리먼트에서 autowire 속성값을 [byType]으로 설정한 것과 같은 방법으로 의존성 주입 - Setter Injection
-	// => Setter 메소드를 이용하여 의존관계를 설정하지만 Setter 메소드를 작성하지 않아도 의존성 주입
+	// => Setter 메소드를 이용하여 의존관계를 구현하지만 Setter 메소드를 작성하지 않아도 의존성 주입
 	//문제점)필드의 자료형과 같은 자료형의 Spring Bean이 2개 이상 존재할 경우 의존성 주입 실패 - NoUniqueBeanDefinitionException 발생
 	//해결법-1)필드의 자료형과 같은 자료형의 Spring Bean이 2개 이상 존재할 경우 필드에 저장될
 	//Spring Bean의 식별자(beanName)를 필드명과 같은 이름으로 변경
 	// => @Autowired 어노테이션은 필드의 자료형과 같은 자료형의 Spring Bean이 2개 이상 존재하는
 	//경우 bean 엘리먼트에서 autowire 속성값을 [byName]으로 설정한 것과 같은 방법으로 의존성 주입
-	@Autowired
 	//해결법-2)필드의 자료형과 같은 자료형의 Spring Bean이 2개 이상 존재할 경우 필드에 저장될
 	//Spring Bean에 대한 클래스에 @Primary 어노테이션을 사용하여 작성
+	@Autowired
 	//해결법-3)필드에 @Qualifier 어노테이션을 사용하여 의존성 주입을 위한 Spring Bean 지정
 	// => @Primary 어노테이션과 @Qualifier 어노테이션이 같이 설정된 경우 @Qualifier 어노테이션으로 의존성 주입
 	//@Qualifier : 필드와 의존관계가 설정될 Spring Bean를 직접 지정하기 위한 어노테이션
 	// => @Autowired 어노테이션에 종속된 어노테이션
 	//value 속성 : 의존성 주입을 위한 Spring Bean의 식별자(beanName)를 속성값으로 설정
 	// => 다른 속성이 없는 경우 속성값만 설정 가능
-	//@Qualifier("annotationStudentJdbcDAO")
+	//@Qualifier(value="annotationStudentJdbcDAO")
 	@Qualifier("anntationStudentMybatisDAO")
 	private StudentDAO studentDAO;
 	
