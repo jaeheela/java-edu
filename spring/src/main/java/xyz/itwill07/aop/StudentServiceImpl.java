@@ -24,7 +24,8 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getStudentList() {
 		System.out.println("*** StudentServiceImpl 클래스의 getStudentList() 메소드 호출 ***");
-		return studentDAO.selectStudentList();
+		throw new RuntimeException();//인위적 예외 발생
+		//return studentDAO.selectStudentList();
 	}
 
 }
