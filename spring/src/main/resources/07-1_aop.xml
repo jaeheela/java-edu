@@ -56,7 +56,20 @@
 			<!-- 형식)within(패키지.클래스명) -->
 			<!-- => 클래스 대신 인터페이스 사용 불가능 -->
 			<!-- <aop:before method="beforeLog" pointcut="within(xyz.itwill07.aop.StudentDAOImpl)"/> -->
-			<aop:before method="beforeLog" pointcut="within(xyz.itwill07.aop.StudentServiceImpl)"/>
+			<!-- <aop:before method="beforeLog" pointcut="within(xyz.itwill07.aop.StudentServiceImpl)"/> -->
+			
+			<!-- pointcut : 핵심관심모듈의 메소드 중 횡단관심모듈의 메소드가 삽입된 타겟
+			메소드를 지정하기 위한 엘리먼트 -->
+			<!-- => 자주 사용되는 PointCut 표현식을 저장하여 타겟메소드에 대한 정보 제공 -->
+			<!-- => aspect 엘리먼트 선언 전에 작성하거나 aspect 엘리먼트의 하위 엘리먼트로 작성 -->
+			<!-- expression 속성 : 타겟메소드를 지정하기 위한 PointCut 표현식을 속성값으로 설정 -->
+			<!-- id 속성 : PointCut 표현식을 구분하기 위한 식별자를 속성값으로 설정 -->
+			<aop:pointcut expression="execution(* xyz.itwill07..StudentDAO.*(..))" id="studentDAOPointCut"/>
+			<aop:pointcut expression="execution(* xyz.itwill07..StudentService.*(..))" id="studentServicePointCut"/>
+			
+			<!-- pointcut-ref 속성 : pointcut 엘리먼트의 식별자를 속성값으로 설정 -->
+			<!-- <aop:before method="beforeLog" pointcut-ref="studentDAOPointCut"/> -->
+			<aop:before method="beforeLog" pointcut-ref="studentServicePointCut"/>
 		</aop:aspect>
 	</aop:config>
 </beans>
