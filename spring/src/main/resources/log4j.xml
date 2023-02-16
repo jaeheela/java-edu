@@ -69,6 +69,10 @@
 		<appender-ref ref="dailyLogFile" />
 	</logger>
 	
+	<logger name="xyz.itwill07.aop">
+		<level value="info" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
