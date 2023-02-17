@@ -18,9 +18,9 @@ public class AopProxy implements Aop {
 	}
 
 	//인터페이스의 추상메소드(PointCut)를 오버라이드 선언하여 핵심관심코드와 횡단관심코드를
-	//결합하여 실행되도록 작성 - Weaving
-	// => 핵심관심모듈의 메소드 호출 전 또는 후에 횡단관심모듈의 모듈의 메소드를 호출하여
-	//실행되도록 설정 - JoinPoint
+	//결합(Weaving)하여 실행되도록 작성 
+	// => 핵심관심모듈의 메소드 호출 전 또는 후에 횡단관심모듈의 메소드를 호출하여 실행되도록
+	//설정 - 횡단관심모듈의 메소드 삽입 위치 : JoinPoint
 	@Override
 	public void display1() {
 		logger.beforeLog();
