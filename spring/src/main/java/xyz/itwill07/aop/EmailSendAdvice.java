@@ -29,17 +29,3 @@ public class EmailSendAdvice {
 		logger.info("이메일 전송 실패 = "+exception.getMessage());
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
