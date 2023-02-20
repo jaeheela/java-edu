@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import lombok.Setter;
 
 //Java Mail 기능을 구현하기 위해서는 spring-context-support 라이브러리와 javax.mail 라이브러리가
-//프로젝트에 빌드되도록 처리 - 메이블 사용 : pom.xml
+//프로젝트에 빌드되도록 처리 - 메이븐사용 : pom.xml
 
 //메일 전송 기능을 제공하는 클래스 - 메일 서버의 SMTP 서비스를 사용하여 메일 전송
 // => 메일 서버(Mail Server) : 메일을 송수신하는 서비스를 제공하는 컴퓨터
@@ -18,7 +18,7 @@ import lombok.Setter;
 //서비스나 IMAP(Internet Message Access Protocol) 서비스로 메일을 받아 사용자에게 전달
 @Setter
 public class EmailSendBean {
-	//메일을 전송하는 서비스(SMTP)를 제공하는 메일서버의 정보가 저장된 JavaMailSender 객체를 저장하기 위한 필드 선언
+	//메일을 전송하는 서비스(SMTP)를 제공하는 서버의 정보가 저장된 JavaMailSender 객체를 저장하기 위한 필드 선언
 	private JavaMailSender javaMailSender;
 	
 	//메일을 전송하는 메소드
@@ -33,7 +33,7 @@ public class EmailSendBean {
 			//MimeMessage.setSubject(subject) : 전송할 메일의 제목을 변경하는 메소드
 			message.setSubject(subject);
 			
-			//MimeMessage.setText(content) : 전송할 메일의 내용(텍스트 메소드)을 변경하는 메소드
+			//MimeMessage.setText(content) : 전송할 메일의 내용(텍스트 메세지)을 변경하는 메소드
 			message.setText(content);
 			
 			//MimeMessage.setRecipient(RecipientType type, Address address) : 받는 사람의
@@ -43,8 +43,7 @@ public class EmailSendBean {
 			//InternetAddress.parse(String email) : 문자열로 전달된 이메일 주소를 Address 객체 배열로 반환
 			message.setRecipient(MimeMessage.RecipientType.TO, InternetAddress.parse(email)[0]);
 			
-			//JavaMailSender.send(MimeMessage message) : 메일을 보내는 서비스를 이용하여
-			//메일을 전송하는 메소드
+			//JavaMailSender.send(MimeMessage message) : 메일을 보내는 서비스를 이용하여 메일을 전송하는 메소드
 			javaMailSender.send(message);
 			
 			System.out.println("[메세지]메일을 성공적으로 전송 하였습니다.");
