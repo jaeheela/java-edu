@@ -32,13 +32,22 @@ public class EmailSendBean {
 			
 		//MimeMessage.setText(content) : 전송할 메일의 내용(텍스트 메세지)을 변경하는 메소드
 		message.setText(content);
+		
+		//MimeMessage.setText(Object o, String type) : 전송할 메일의 내용을 변경하는 메소드
+		// => type 매개변수에 문서의 형식(MimeType)을 전달하여 저장 
+		//message.setContent(content, "text/html; charset=utf-8");
 			
 		//MimeMessage.setRecipient(RecipientType type, Address address) : 받는 사람의
 		//이메일 주소 관련 정보를 변경하는 메소드
 		// => RecipientType : 메일 수신 사용자를 구분하기 위한 상수값 전달
 		// => Address : 이메일 주소가 저장된 Address 객체를 전달
-		//InternetAddress.parse(String email) : 문자열로 전달된 이메일 주소를 Address 객체 배열로 반환
-		message.setRecipient(MimeMessage.RecipientType.TO, InternetAddress.parse(email)[0]);
+		//InternetAddress : 이메일 주소를 저장하기 위한 클래스 - Address 추상 클래스를 상속받은 자식클래스
+		message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(email));
+
+		//MimeMessage.setRecipients(RecipientType type, Address[] addresses) : 받는 사람의
+		//이메일 주소 관련 정보를 변경하는 메소드 - 다수의 메일을 전송하는 메소드
+		//InternetAddress.parse(String emailList) : 문자열로 전달된 이메일 주소 목록을 Address 객체 배열로 반환
+		//message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
 			
 		//JavaMailSender.send(MimeMessage message) : 메일을 보내는 서비스를 이용하여 메일을 전송하는 메소드
 		javaMailSender.send(message);

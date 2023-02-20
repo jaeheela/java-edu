@@ -18,7 +18,7 @@
 		<!-- => 사용자 비밀번호 대신 앱 비밀번호를 필드에 저장 -->
 		<!-- 구글의 SMTP 서비스를 제공받기 위해서는 계정의 2단계 보안 인증 후 앱 비밀번호를 발급받아 사용 -->
 		<!-- => 구글 계정 관리에서 보안 메뉴에 앱 비밀번호를 생성하여 사용 -->
-		<property name="password" value="lzhokvvcxorqtpid"/>
+		<property name="password" value="ltenpwrauykrnopz"/>
 		<!-- javaMailProperties 필드 : SMTP 서비스를 제공하는 메일 서버의 메일 전송 관련 부가적인 
 		정보를 Properties 객체로 전달하여 저장 -->
 		<property name="javaMailProperties">
