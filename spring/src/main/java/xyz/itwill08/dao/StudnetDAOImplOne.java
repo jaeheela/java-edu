@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -48,18 +49,46 @@ public class StudnetDAOImplOne implements StudentDAO {
 
 	@Override
 	public Student seleteStudent(int no) {
-		String sql="select * from student where no=?";
-		//JdbcTemplate.queryForObject(String sql, RowMapper<T> rowMapper, Object ... args)
+		try {
+			String sql="select * from student where no=?";
+			//JdbcTemplate.queryForObject(String sql, RowMapper<T> rowMapper, Object ... args)
+			// => SQL 명령(SELECT)을 DBMS 서버에 전달하여 실행하는 메소드
+			// => 단일행의 검색결과를 하나의 Java 객체로 반환받기 위해 사용
+			// => 매개변수에는 DBMS 서버에 전달한 SQL 명령과 검색행을 Java 객체로 변환하기 위한 매핑정보를 
+			//저장한 RowMapper 객체와 SQL 명령의 InParameter(?) 대신 표현될 값을 차례대로 나열하여 제공
+			//RowMapper 객체 : 검색행의 컬럼값을 Java 객체의 필드값으로 저장하여 반환하기 위한 정보를 제공하는 객체
+			// => RowMapper 인터페이스를 상속받은 익명의 내부클래스(Annoymous Inner Class)로 객체 생성
+			// => RowMapper 인터페이스의 제네릭에는 RowMapper 객체가 매핑하여 반환할 Java 객체의 자료형(클래스)을 설정
+			// => RowMapper 인터페이스의 mapRow 추상메소드를 반드시 오버라이드 선언
+			// => mapRow 메소드 : 검색행의 컬럼값을 객체 필드에 매핑되도록 설정 - 매개변수로 검색결과를 제공받아 사용 가능
+			return jdbcTemplate.queryForObject(sql, new RowMapper<Student>() {
+				@Override
+				public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Student student=new Student();
+					student.setNo(rs.getInt("no"));
+					student.setName(rs.getString("name"));
+					student.setPhone(rs.getString("phone"));
+					student.setAddress(rs.getString("address"));
+					student.setBirthday(rs.getString("birthday"));
+					return student;
+				}
+			}, no);
+		} catch (EmptyResultDataAccessException e) {
+			//EmptyResultDataAccessException : queryForObject() 메소드에 의해 검색된 행이
+			//없는 경우 발생되는 예외
+			return null;
+		}
+	}
+
+	@Override
+	public List<Student> seleteStudentList() {
+		String sql="select * from student order by no";
+		//JdbcTemplate.query(String sql, RowMapper<T> rowMapper, Object ... args)
 		// => SQL 명령(SELECT)을 DBMS 서버에 전달하여 실행하는 메소드
-		// => 단일행의 검색결과를 하나의 Java 객체로 반환받기 위해 사용
+		// => 다수행의 검색결과를 List 객체로 반환받기 위해 사용 - 하나의 검색행은 List 객체의 요소로 추가
 		// => 매개변수에는 DBMS 서버에 전달한 SQL 명령과 검색행을 Java 객체로 변환하기 위한 매핑정보를 
 		//저장한 RowMapper 객체와 SQL 명령의 InParameter(?) 대신 표현될 값을 차례대로 나열하여 제공
-		//RowMapper 객체 : 검색행의 컬럼값을 Java 객체의 필드값으로 저장하여 반환하기 위한 정보를 제공하는 객체
-		// => RowMapper 인터페이스를 상속받은 익명의 내부클래스(Annoymous Inner Class)로 객체 생성
-		// => RowMapper 인터페이스의 제네릭에는 RowMapper 객체가 매핑하여 반환할 Java 객체의 자료형(클래스)을 설정
-		// => RowMapper 인터페이스의 mapRow 추상메소드를 반드시 오버라이드 선언
-		// => mapRow 메소드 : 검색행의 컬럼값을 객체 필드에 매핑되도록 설정 - 매개변수로 검색결과를 제공받아 사용 가능
-		return jdbcTemplate.queryForObject(sql, new RowMapper<Student>() {
+		return jdbcTemplate.query(sql, new RowMapper<Student>() {
 			@Override
 			public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Student student=new Student();
@@ -70,30 +99,6 @@ public class StudnetDAOImplOne implements StudentDAO {
 				student.setBirthday(rs.getString("birthday"));
 				return student;
 			}
-		}, no);
+		});
 	}
-
-	@Override
-	public List<Student> seleteStudentList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
