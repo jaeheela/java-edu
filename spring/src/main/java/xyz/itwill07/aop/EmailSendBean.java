@@ -26,7 +26,7 @@ public class EmailSendBean {
 		//JavaMailSender.createMimeMessage() : MimeMessage 객체를 생성하여 반환하는 메소드
 		//MimeMessage 객체 : 메일 전송 관련 정보를 저장하기 위한 객체
 		MimeMessage message=javaMailSender.createMimeMessage();
-		
+		 
 		//MimeMessage.setSubject(subject) : 전송할 메일의 제목을 변경하는 메소드
 		message.setSubject(subject);
 			
