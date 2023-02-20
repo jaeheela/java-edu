@@ -33,7 +33,7 @@ public class EmailSendBean {
 		//MimeMessage.setText(content) : 전송할 메일의 내용(텍스트 메세지)을 변경하는 메소드
 		//message.setText(content);
 		
-		//MimeMessage.setText(Object o, String type) : 전송할 메일의 내용을 변경하는 메소드
+		//MimeMessage.setContent(Object o, String type) : 전송할 메일의 내용을 변경하는 메소드
 		// => type 매개변수에 문서의 형식(MimeType)을 전달하여 저장 
 		message.setContent(content, "text/html; charset=utf-8");
 			
@@ -41,7 +41,7 @@ public class EmailSendBean {
 		//이메일 주소 관련 정보를 변경하는 메소드
 		// => RecipientType : 메일 수신 사용자를 구분하기 위한 상수값 전달
 		// => Address : 이메일 주소가 저장된 Address 객체를 전달
-		//InternetAddress : 이메일 주소를 저장하기 위한 클래스 - Address 추상 클래스를 상속받은 자식클래스
+		//InternetAddress : 이메일 주소를 저장하기 위한 클래스 - Address 클래스를 상속받은 자식클래스
 		message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(email));
 
 		//MimeMessage.setRecipients(RecipientType type, Address[] addresses) : 받는 사람의
