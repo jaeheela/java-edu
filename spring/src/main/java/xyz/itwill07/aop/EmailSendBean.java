@@ -31,11 +31,11 @@ public class EmailSendBean {
 		message.setSubject(subject);
 			
 		//MimeMessage.setText(content) : 전송할 메일의 내용(텍스트 메세지)을 변경하는 메소드
-		message.setText(content);
+		//message.setText(content);
 		
 		//MimeMessage.setText(Object o, String type) : 전송할 메일의 내용을 변경하는 메소드
 		// => type 매개변수에 문서의 형식(MimeType)을 전달하여 저장 
-		//message.setContent(content, "text/html; charset=utf-8");
+		message.setContent(content, "text/html; charset=utf-8");
 			
 		//MimeMessage.setRecipient(RecipientType type, Address address) : 받는 사람의
 		//이메일 주소 관련 정보를 변경하는 메소드
