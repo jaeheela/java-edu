@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class EmailSendApp {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ApplicationContext context=new ClassPathXmlApplicationContext("07-4_email.xml");
 		EmailSendBean bean=context.getBean("emailSendBean", EmailSendBean.class);
 		System.out.println("================================================================");

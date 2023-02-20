@@ -26,6 +26,6 @@ public class EmailSendAdvice {
 	//예외가 발생되어 메일 전송이 실패한 경우 삽입되어 실행될 명령이 작성된 메소드 - After Throwing 메소드
 	// => 타겟메소드(sendEmail)의 명령 실행시 발생된 예외(Exception 객체)를 얻어와 저장하기 위한 매개변수 필요
 	public void errorLog(Exception exception) {
-		logger.info("이메일 전송 실패 = "+exception.getMessage());
+		logger.error("이메일 전송 실패 = "+exception.getMessage());
 	}
 }
