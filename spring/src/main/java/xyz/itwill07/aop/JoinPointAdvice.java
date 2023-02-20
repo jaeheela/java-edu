@@ -7,7 +7,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 public class JoinPointAdvice {
 	//Around Advice 메소드를 제외한 나머지 Advice 메소드는 일반적으로 반환형을 void로 작성하고
 	//매개변수를 작성하지 않거나 JoinPoint 인터페이스로 선언된 매개변수 작성 가능
-	// => Advice 메소드를 작성 규칙에 맞지 않게 작성할 경우 IllegalArgumentException 발생
+	// => Advice 클래스의 메소드를 작성 규칙에 맞지 않게 작성할 경우 IllegalArgumentException 발생
 	//JoinPoint 객체 : 타겟메소드 관련 정보가 저장된 객체
 	// => 스프링 컨테이너가 Advice 클래스의 메소드를 호출할 때 타겟메소드 관련 정보를 JoinPoint
 	//객체에 저장하여 매개변수에 전달
@@ -17,7 +17,7 @@ public class JoinPointAdvice {
 	public void beforeDisplay(JoinPoint joinPoint) {
 		//System.out.println("[before]핵심관심코드 실행 전에 삽입되어 실행될 횡단관심코드");
 		
-		//JoinPoint.getTarget() : 타겟메소드를 호출한 객체(Spring Bean)를 반환하는 메소드
+		//JoinPoint.getTarget() : 타겟메소드를 호출한 객체(핵심관심모듈)를 반환하는 메소드
 		//Object.getClass() : 객체를 생성한 클래스의 Class 객체(Clazz)를 반환하는 메소드
 		//Class.getName() : Class 객체에 저장된 클래스의 이름(패키지 포함)을 문자열로 반환하는 메소드
 		//System.out.println(joinPoint.getTarget().getClass().getName());
@@ -113,7 +113,7 @@ public class JoinPointAdvice {
 		//예외를 처리하거나 예외를 전달
 		Object object=joinPoint.proceed();
 		System.out.println("[around]핵심관심코드 실행 후 삽입되어 실행될 횡단관심코드");
-		return object;//타겟메소드를 호출하여 반환된 결과값을 메소드를 호출한 명령으로 반환
+		return object;//타겟메소드를 호출하여 반환된 결과값을 타겟메소드를 호출한 명령으로 반환
 	}
 }
 
