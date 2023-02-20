@@ -49,8 +49,6 @@ public class EmailSendBean {
 			System.out.println("[메세지]메일을 성공적으로 전송 하였습니다.");
 		} catch (MessagingException e) {//메일 전송 관련 오류가 발생괸 경우
 			System.out.println("[에러]메일을 받은 사람의 이메일 주소에 문제가 있습니다.");
-		} catch (MailException e) {
-			System.out.println("[에러]메일서버에 문제가 있습니다.");
 		}
 		return email;
 	}
