@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //컨트롤러 역활을 제공하기 위한 클래스
 // => 클라이언트의 모든 요청을 받아 처리하는 단일 진입점의 역활을 수행하는 서블릿 - Front Controller Pattern
-// => web.xml 파일에서 클래스를 서블릿(웹프로그램)으로 등록하고 클라이언트의 모든 요청을 처리
+// => [web.xml] 파일에서 클래스를 서블릿(웹프로그램)으로 등록하고 클라이언트의 모든 요청을 처리
 //할 수 있도록 URL 주소의 패턴을 설정
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
