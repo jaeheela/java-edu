@@ -15,10 +15,10 @@ import lombok.Setter;
 
 //DAO 클래스에 JdbcTemple 객체를 제공받아 사용하는 방법
 //1.DI(Dependency Injection)를 이용하여 JdbcTemple 객체를 제공받아 필드에 저장하여 사용
-//2.JdbcTempleSupport 클래스를 상속받아 JdbcTemple 객체의 Getter 메소드를 호출하여 사용
+//2.JdbcDaoSupport 클래스를 상속받아 JdbcTemple 객체의 Getter 메소드를 호출하여 사용
 
 @Setter
-public class StudnetDAOImplOne implements StudentDAO {
+public class StudentDAOImplOne implements StudentDAO {
 	//JdbcTemplate 객체를 저장하기 위한 필드
 	// => Spring Bean Configuration File에서 DAO 클래스를 Spring Bean으로 등록할 때 JdbcTemplate
 	//클래스의 Spring Bean를 제공받아 의존관계 구현 - Setter 메소드를 이용한 의존성 주입
