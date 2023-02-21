@@ -26,9 +26,19 @@ public class DispatcherServlet extends HttpServlet {
 		String contextPath=request.getContextPath();
 		String command=requestURI.substring(contextPath.length());
 		
-		//2.요구사항을 비교하여 요청 처리 클래스(Model)로 객체를 생성하여 객체의 메소드를
-		//호출하여 클라이언트 요청에 대한 처리 작업
+		//2.클라이언트의 요구사항을 이용하여 요청 처리 클래스(Model)의 객체를 제공받아 객체의
+		//메소드를 호출하여 클라이언트 요청에 대한 처리 작업
+		/*
+		Controller controller=null;
+		//클라이언트의 요구사항을 비교하여 요청 처리 클래스를 객체로 생성
+		if(command.equals("/list.itwill")) {
+			controller=new ListController();
+		} else if(command.equals("/view.itwill")) {
+			controller=new ViewController();
+		}
+		*/
 		
+		//HandlerMapping 클래스로 객체 생성
 	}
 }
 
