@@ -40,7 +40,7 @@ public class StudentDAOImplOne implements StudentDAO {
 	public int updateStudent(Student student) {
 		String sql="update student set name=?,phone=?,address=?,birthday=? where no=?";
 		return jdbcTemplate.update(sql, student.getName(), student.getPhone()
-				, student.getAddress(), student.getBirthday(), student.getNo());
+				, student.getAddress(), student.getBirthday().substring(0, 10), student.getNo());
 	}
 	
 	@Override
