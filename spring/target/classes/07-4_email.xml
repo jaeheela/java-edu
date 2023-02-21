@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- JavaMailSender 인터페이스를 상속받은 JavaMailSenderImpl 클래스를 Spring Bean으로 등록 -->
-	<!-- => SMPT 서비스를 제공하는 메일 서버의 정보를 JavaMailSenderImpl 객체 필드에 저장되도록 값 주입 -->
+	<!-- => SMTP 서비스를 제공하는 메일 서버의 정보를 JavaMailSenderImpl 객체 필드에 저장되도록 값 주입 -->
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">
 		<!-- host 필드 : SMTP 서비스를 제공하는 메일 서버의 이름을 전달하여 저장 -->
 		<property name="host" value="smtp.gmail.com"/>

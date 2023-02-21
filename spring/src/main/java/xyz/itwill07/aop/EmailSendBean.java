@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 import lombok.Setter;
 
-//Java Mail 기능을 구현하기 위해서는 spring-context-support 라이브러리와 javax.mail 라이브러리가
+//JavaMail 기능을 구현하기 위해서는 spring-context-support 라이브러리와 javax.mail 라이브러리가
 //프로젝트에 빌드되도록 처리 - 메이븐사용 : pom.xml
 
 //메일 전송 기능을 제공하는 클래스 - 메일 서버의 SMTP 서비스를 사용하여 메일 전송
@@ -26,7 +26,7 @@ public class EmailSendBean {
 		//JavaMailSender.createMimeMessage() : MimeMessage 객체를 생성하여 반환하는 메소드
 		//MimeMessage 객체 : 메일 전송 관련 정보를 저장하기 위한 객체
 		MimeMessage message=javaMailSender.createMimeMessage();
-		 
+	
 		//MimeMessage.setSubject(subject) : 전송할 메일의 제목을 변경하는 메소드
 		message.setSubject(subject);
 			
