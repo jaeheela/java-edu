@@ -13,10 +13,7 @@ public class ViewController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Member member=new Member("abc", "홍길동", "서울시 강남구");
-		
 		request.setAttribute("member", member);
-		
 		return "member_view";
 	}
-	
 }
