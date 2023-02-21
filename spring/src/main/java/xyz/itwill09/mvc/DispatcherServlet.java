@@ -29,6 +29,7 @@ public class DispatcherServlet extends HttpServlet {
 		//2.클라이언트의 요구사항을 이용하여 요청 처리 클래스(Model)의 객체를 제공받아 객체의
 		//메소드를 호출하여 클라이언트 요청에 대한 처리 작업
 		/*
+		//인터페이스를 참조변수로 선언하면 인터페이스를 상속받아 모든 자식클래스의 객체 저장 가능
 		Controller controller=null;
 		//클라이언트의 요구사항을 비교하여 요청 처리 클래스를 객체로 생성
 		if(command.equals("/list.itwill")) {
@@ -39,21 +40,21 @@ public class DispatcherServlet extends HttpServlet {
 		*/
 		
 		//HandlerMapping 클래스로 객체 생성
+		// => 클라이언트의 요구사항과 요청 처리 클래스의 객체가 엔트리로 저장된 Map 객체 사용 가능
+		HandlerMapping handlerMapping=new HandlerMapping();
+		//HandlerMapping 객체의 메소드를 호출하여 클라이언트의 요구사항을 처리하기 위한
+		//요청 처리 클래스의 객체를 반환받아 저장
+		Controller controller=handlerMapping.getController(command);
+		
+		//요청 처리 클래스의 메소드를 호출하여 클라이언트의 요청을 처리하고 JSP 문서의 
+		//이름(ViewName)을 반환받아 저장
+		String viewName=controller.handleRequest(request, response);
+		
+		//3.JSP 문서로 포워드 이동하여 클라이언트에게 처리결과가 응답되도록 처리
+		// => 요청 처리 메소드의 반환값(ViewName)을 이용하여 JSP 문서의 경로를 완성하여 포워드 이동
+		//ViewResolver 클래스로 객체 생성
+		ViewResolver viewResolver=new ViewResolver();
+		String view=viewResolver.getView(viewName);//응답할 JSP 문서의 경로 완성
+		request.getRequestDispatcher(view).forward(request, response);		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
