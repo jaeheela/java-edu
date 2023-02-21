@@ -10,23 +10,24 @@ import org.springframework.jdbc.core.RowMapper;
 
 import lombok.Setter;
 
-//Spring DAO 기능을 이용하여 DAO 클래스 작성 - spring-jdbc 라이브러리를 프로젝트에 빌드 처리 
+//SpringDAO 기능을 이용하여 DAO 클래스 작성 - spring-jdbc 라이브러리를 프로젝트에 빌드 처리 
 // => JdbcTemple 객체의 템플릿 메소드를 호출하여 DAO 클래스의 메소드 작성
-//JdbcTemple 객체를 제공받아 사용하는 방법
+
+//DAO 클래스에 JdbcTemple 객체를 제공받아 사용하는 방법
 //1.DI(Dependency Injection)를 이용하여 JdbcTemple 객체를 제공받아 필드에 저장하여 사용
 //2.JdbcTempleSupport 클래스를 상속받아 JdbcTemple 객체의 Getter 메소드를 호출하여 사용
 
 @Setter
 public class StudnetDAOImplOne implements StudentDAO {
 	//JdbcTemplate 객체를 저장하기 위한 필드
-	// => Spring Bean Configuration File에서 클래스를 Spring Bean으로 등록할 때 JdbcTemplate
+	// => Spring Bean Configuration File에서 DAO 클래스를 Spring Bean으로 등록할 때 JdbcTemplate
 	//클래스의 Spring Bean를 제공받아 의존관계 구현 - Setter 메소드를 이용한 의존성 주입
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public int insertStudent(Student student) {
 		String sql="insert into student values(?,?,?,?,?)";
-		//JdbcTemplate.update(String sql, Object ... args) : SQL 명령(INSET,UPDATE,DELETE)을
+		//JdbcTemplate.update(String sql, Object ... args) : SQL 명령(INSERT,UPDATE,DELETE)을
 		//DBMS 서버에 전달하여 실행하는 메소드 - 조작행의 갯수 반환
 		// => 매개변수에는 DBMS 서버에 전달한 SQL 명령과 SQL 명령의 InParameter(?) 대신 표현될
 		//값을 차례대로 나열하여 제공
