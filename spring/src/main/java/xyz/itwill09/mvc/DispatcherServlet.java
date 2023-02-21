@@ -7,10 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//컨트롤러(Controller) : 클라이언트의 모든 요청을 받아 URL 주소를 분석하여 요청 처리 클래스(Model)의
-//메소드를 호출하여 데이타 처리 후 JSP 문서(View)로 스레드를 이동하여 응답되도록 프로그램의 흐름 제어
+//컨트롤러(Controller) : 클라이언트의 모든 요청을 받아 URL 주소를 분석하여 요청 처리 클래스
+//(Model)의 메소드를 호출하여 데이타 처리 후 JSP 문서(View)로 스레드를 이동하여 응답되도록 
+//프로그램의 흐름 제어하는 기능을 제공하는 서블릿
 
-//컨트롤러 역활을 제공하기 위한 클래스 - 서블릿 클래스
+//컨트롤러 역활을 제공하기 위한 클래스
 // => 클라이언트의 모든 요청을 받아 처리하는 단일 진입점의 역활을 수행하는 서블릿 - Front Controller Pattern
 // => web.xml 파일에서 클래스를 서블릿(웹프로그램)으로 등록하고 클라이언트의 모든 요청을 처리
 //할 수 있도록 URL 주소의 패턴을 설정
