@@ -27,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
 		String command=requestURI.substring(contextPath.length());
 		
 		//2.클라이언트의 요구사항을 이용하여 요청 처리 클래스(Model)의 객체를 제공받아 객체의
-		//메소드를 호출하여 클라이언트 요청에 대한 처리 작업
+		//메소드를 호출하여 클라이언트 요청에 대한 처리 후 출력(View) 관련 정보를 반환받아 저장
 		/*
 		//인터페이스를 참조변수로 선언하면 인터페이스를 상속받아 모든 자식클래스의 객체 저장 가능
 		Controller controller=null;
@@ -55,6 +55,6 @@ public class DispatcherServlet extends HttpServlet {
 		//ViewResolver 클래스로 객체 생성
 		ViewResolver viewResolver=new ViewResolver();
 		String view=viewResolver.getView(viewName);//응답할 JSP 문서의 경로 완성
-		request.getRequestDispatcher(view).forward(request, response);		
+		request.getRequestDispatcher(view).forward(request, response);//JSP 문서로 포워드 이동 - 응답		
 	}
 }
