@@ -3,5 +3,34 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- Spring Framework 라이브러리의 Controller 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill09.spring.ListController" id="listController"/>
+	<bean class="xyz.itwill09.spring.ViewController" id="viewController"/>
+	
+	<!-- Spring Framework 라이브러리의 SimpleUrlHandlerMapping 클래스를 Spring Bean으로 등록 -->
+	<!-- SimpleUrlHandlerMapping 객체 : 컨트롤러(DispatcherServlet)에게 클라이언트의 요구사항을 
+	전달받아 요청 처리 클래스의 객체(Spring Bean)를 반환하는 기능을 제공하는 객체 -->
+	<!-- => mappings 필드에 Map 객체를 저장하여 엔트리(Entry) 추가 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<!-- 맵키(MapKey)는 클라이언트의 요구사항(String)를 전달하고 맵값(MapValue)은 
+			요청 처리 클래스의 Spring Bean에 대한 beanName(String)을 전달하여 Map 객체의 
+			엔트리로 추가 - map 엘리먼트 대신 props 엘리먼트 사용 가능 -->
+			<props>
+				<prop key="/list.do">listController</prop>	
+				<prop key="/view.do">viewController</prop>	
+			</props>	
+		</property>
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
