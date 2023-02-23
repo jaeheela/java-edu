@@ -103,11 +103,12 @@ public class JoinController {
 
 	//요청 페이지의 전달값이 있는 경우 요청 처리 메소드의 매개변수 자료형을 Map 인터페이스로
 	//작성하면 Front Controller는 Map 객체를 생성하여 매개변수에 전달하여 저장
-	// => Map 객체는 전달값의 이름을 맵키(MapKey)로 설정하여 전달값을 맵값(MapValue)로 제공받아 엔트리로 추가
+	// => Map 객체는 전달값의 이름을 맵키(MapKey - String)로 설정하여 전달값을 맵값
+	//(MapValue - String)로 제공받아 엔트리로 추가
 	// => Map 인터페이스로 작성된 매개변수에는 반드시 @RequestParam 어노테이션을 사용해야만
 	//Map 객체의 맵값으로 전달값을 제공받아 사용 가능
 	@RequestMapping(value = "join", method=RequestMethod.POST)
-	public String join(@RequestParam Map<String, Object> map, Model model) {
+	public String join(@RequestParam Map<String, String> map, Model model) {
 		model.addAttribute("mem", map);
 		return "join_display";
 	}
