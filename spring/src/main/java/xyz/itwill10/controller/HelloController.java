@@ -20,8 +20,9 @@ public class HelloController {//모델(Model) 역활을 제공하는 클래스 -
 	//Front Controller에 의해 JSP 문서로 포워드 이동하여 응답되도록 뷰이름을 제공하는 방법 
 	// => JSP 문서로 응답 처리하지 않을 경우 요청 처리 메소드의 반환형을 Model 또는 Map으로 설정 가능
 	//1.요청 처리 메소드의 반환형을 void로 설정한 경우 Front Controller에게 메소드의 이름을 뷰이름으로 제공 
-	//2.요청 처리 메소드의 반환형을 String로 설정한 경우 Front Controller에게 반환값을 뷰이름으로 제공 
-	//3.요청 처리 메소드의 반환형을 ModelAndView로 설정한 경우 Front Controller에게 ModelAndView 객체에 뷰이름을 저장하여 제공
+	//2.요청 처리 메소드의 반환형을 String로 설정한 경우 Front Controller에게 반환되는 문자열을 뷰이름으로 제공 
+	//3.요청 처리 메소드의 반환형을 ModelAndView로 설정한 경우 Front Controller에게 반환되는 
+	//ModelAndView 객체의 뷰이름을 저장하여 제공
 	
 	//@RequestMapping : 클라이언트 요청을 처리하기 위한 메소드를 선언하기 위한 어노테이션
 	// => 기본적으로 클라이언트의 모든 요청방식(Method - GET, POST, PUT, PATCH, DELETE 등)에
@@ -29,8 +30,8 @@ public class HelloController {//모델(Model) 역활을 제공하는 클래스 -
 	// => 클라이언트의 요청방식을 구분하여 요청 처리 메소드가 호출되도록 처리하고자 할 경우 @GetMaaping
 	//, @PostMapping, @PutMapping, @PatchMapping, @DeleteMapping 등의 어노테이션 사용 가능
 	//value 속성 : 클라이언트의 요청 URL 주소를 속성값으로 설정
-	// => Front Controller에 의해 등록된 클라이언트 요청 URL 주소(식별자)로 요청 처리 메소드가
-	//자동 호출되어 클라이언트의 요청 처리
+	// => 클라이언트 요청 URL 주소(식별자)로 Front Controller에 의해 요청 처리 메소드가 자동
+	//호출되어 클라이언트의 요청 처리
 	// => 다른 속성이 없는 경우 속성값만 설정 가능
 	// => 다른 요청 처리 메소드의 value 속성값과 요청 URL 주소가 중복될 경우 WAS 시작시 에러 발생
 	@RequestMapping(value = "/hello")
