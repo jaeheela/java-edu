@@ -53,23 +53,25 @@ public class ParamController {
 	}
 	*/
 	
+	/*
 	//value 속성 : 전달값의 이름을 속성값으로 설정
 	// => @RequestParam 속성을 사용하여 전달값의 이름으로 값을 제공받아 매개변수에 저장 가능
 	// => 전달값의 이름과 매개변수의 이름이 다른 경우 사용
 	// => 다른 속성이 없는 경우 속성값만 설정 가능
+	//required 속성 : false(미필수) 또는 true(필수 - 기본) 중 하나를 속성값으로 설정
+	// => 전달값이 매개변수에 전달되어 저장회는 필수 여부를 구분하기 위한 속성 
 	@RequestMapping(value = "/param", method = RequestMethod.POST)
-	public String result(@RequestParam(value = "foodname") String food, Model model) {
+	public String result(@RequestParam(value = "foodname", required = true) String food, Model model) {
+		model.addAttribute("food", food);
+		return "param_display";
+	}
+	*/
+	
+	//defaultValue 속성 : 전달값과 매개변수이 다른 경우 사용될 기본값을 속성값으로 설정
+	// => 전달값이 없는 경우에도 매개변수에 null 대신 저장될 기본값으로 사용
+	@RequestMapping(value = "/param", method = RequestMethod.POST)
+	public String result(@RequestParam(value = "foodname", defaultValue = "된장찌개") String food, Model model) {
 		model.addAttribute("food", food);
 		return "param_display";
 	}
 }
-
-
-
-
-
-
-
-
-
-
