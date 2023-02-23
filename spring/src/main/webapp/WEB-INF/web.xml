@@ -32,12 +32,35 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- filter : 필터 클래스를 필터(Filter)로 등록하기 위한 엘리먼트 -->
+	<!-- => 필터(Filter) : 웹프로그램 실행 전과 후에 실행될 명령을 제공 -->
+	<filter>
+		<!-- filter-name : 필터를 구분하기 위한 식별자를 설정하기 위한 엘리먼트 -->
+		<filter-name>encodingFilter</filter-name>
+		<!-- filter-class : 클라이언트 요청에 의해 객체로 생성되어 실행될 필터 클래스을 설정하기 위한 엘리먼트 -->
+		<!-- CharacterEncodingFilter : 리퀘스트 메세지 몸체부의 저장된 값에 대한 문자형태를 변경하기 위한 필터 클래스 -->
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- init-param 엘리먼트를 사용하여 CharacterEncodingFilter 클래스에 의해 변경하고자
+		하는 문자형태(캐릭터셋)을 제공  -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<!-- filter-mapping : 필터가 실행되기 위한 웹프로그램의 요청 URL 주소의 패턴을 등록하기 위한 엘리먼트 -->
+	<filter-mapping>
+		<!-- filter-name : 클라이언트 요청에 의해 실행될 필터의 식별자를 설정하기 위한 엘리먼트 -->
+		<filter-name>encodingFilter</filter-name>
+		<!-- url-pattern : 필터가 실행되기 위한 웹프로그램의 요청 URL 주소의 패턴을 설정하기 위한 엘리먼트 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- servlet : 서블릿 클래스를 서블릿(웹프로그램)으로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<!-- servlet-name : 서블릿을 구분하기 위한 식별자를 설정하기 위한 엘리먼트 -->
 		<servlet-name>mvc</servlet-name>
-		<!-- servlet-class : 클라이언트 요청에 의해 객체로 생성되어 실행될 서블릿 클래스을
-		설정하기 위한 엘리먼트 -->
+		<!-- servlet-class : 클라이언트 요청에 의해 객체로 생성되어 실행될 서블릿 클래스을 설정하기 위한 엘리먼트 -->
 		<!-- DispatcherServlet 클래스 : 컨트롤러(Controller) 역활을 제공하는 클래스 - Front Controller -->
 		<servlet-class>xyz.itwill09.mvc.DispatcherServlet</servlet-class>
 	</servlet>
