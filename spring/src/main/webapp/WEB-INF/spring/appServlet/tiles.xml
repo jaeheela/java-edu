@@ -17,4 +17,27 @@
 		<put-attribute name="content" value="/WEB-INF/views/layout/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 	</definition>
+	
+	<!-- name 속성값을 [*]로 설정한 경우 요청 처리 메소드에서 [문자값] 형식으로 반환되는 
+	모든 뷰이름을 제공받아 처리 -->
+	<!-- extends 속성 : definition 엘리먼트의 식별자를 속성값으로 설정 -->
+	<!-- => definition 엘리먼트의 템플릿 페이지와 하위 엘리먼트의 정보를 상속받아 사용 가능 -->
+	<definition name="*" extends="main">
+		<!-- put-attribute 엘리먼트에서 상속받은 put-attribute 엘리먼트와 같은 식별자를 사용하여  
+		작성하면 기존 JSP 문서 대신 변경된 JSP 문서 제공받아 사용 가능 - 오버라이드(Override) -->
+		<!-- definition 엘리먼트의 ame 속성값을 [*]로 설정하면 put-attribute 엘리먼트의 value
+		속성에서는 반환되는 [문자값]을 {정수값} 형식으로 표현하여 사용 -->
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
 </tiles-definitions>	
+
+
+
+
+
+
+
+
+
+
+
