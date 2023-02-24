@@ -33,7 +33,6 @@
 	</listener>
 
 	<!-- filter : 필터 클래스를 필터(Filter)로 등록하기 위한 엘리먼트 -->
-	<!-- => 필터(Filter) : 웹프로그램 실행 전과 후에 실행될 명령을 제공 -->
 	<filter>
 		<!-- filter-name : 필터를 구분하기 위한 식별자를 설정하기 위한 엘리먼트 -->
 		<filter-name>encodingFilter</filter-name>
