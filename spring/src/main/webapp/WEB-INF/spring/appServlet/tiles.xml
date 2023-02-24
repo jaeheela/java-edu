@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "//Apache Software Foundation//DTD Tiles Configuration 3.0/EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- definition : 요청 처리 메소드의 반환값(ViewName)을 제공받아 응답 처리할 템플릿 
+	페이지의 JSP 문서를 설정하기 위한 엘리먼트 -->
+	<!-- name 속성 : definition 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- => 요청 처리 메소드의 반환값을 제공받아 응답 처리하기 위한 definition 엘리먼트 지정 -->
+	<!-- template 속성 : 템플릿 페이지의 JSP 문서 경로를 속성값으로 설정 -->
+	<definition name="main" template="/WEB-INF/views/template.jsp">
+		<!-- put-attribute : definition 엘리먼트의 템플릿 페이지를 구성하기 위한 JSP 문서를 제공하는 엘리먼트 -->
+		<!-- name 속성 : put-attribute 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+		<!-- => 템플릿 페이지의 JSP 문서에서 put-attribute 엘리먼트로 제공된 JSP 문서의 
+		실행 결과를 제공받아 포함하기 위해 사용하는 이름 -->
+		<!-- value 속성 : put-attribute 엘리먼트로 제공될 JSP 문서의 경로를 속성값으로 설정 -->
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/layout/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
+	</definition>
+</tiles-definitions>	
