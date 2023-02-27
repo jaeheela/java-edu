@@ -14,7 +14,7 @@ public class RedirectController {
 		//뷰를 생성하기 위한 뷰이름(ViewName) 반환
 		// => Front Controller는 제공받은 뷰이름을 InternalResourceViewResolver 객체를 사용하여 
 		//JSP 문서로 변환하고 JSP 문서로 포워드 이동하여 응답 처리
-		//포워드 이동 : 서버 내부에서 현재 웹프로그램의 스레드를 다른 웹프로그램으로 이동하여 명령 실행
+		//포워드 이동 : 서버 내부에서 현재 웹프로그램의 스레드를 다른 웹프로그램으로 이동하여 응답 처리
 		// => 클라이언트의 요청 URL 주소는 변경되지 않으며 Request Scope 속성값을 객체로 제공받아 사용 가능
 		return "display_forward";
 	}
@@ -32,7 +32,7 @@ public class RedirectController {
 		//반환받은 뷰이름의 URL 주소를 클라이언트에게 전달 - 리다이렉트 이동
 		// => 클라이언트에게 URL 주소를 전달하여 응답 처리하면 클라이언트는 해당 URL 주소로
 		//브라우저의 주소를 변경하고 서버에 URL 주소의 페이지 요청 처리
-		//리다이렉트 이동 : 클라이언트에게 URL 주소를 전달하여 페이지를 재요청하여 웹프로그램의 명령 실행
+		//리다이렉트 이동 : 클라이언트에게 URL 주소를 전달하여 페이지를 재요청하여 웹프로그램의 실행결과로 응답 처리
 		// => 클라이언트의 요청 URL 주소 변경되지만 Request Scope 속성값 사용 불가능
 		return "redirect:/redirect_move";
 	}
