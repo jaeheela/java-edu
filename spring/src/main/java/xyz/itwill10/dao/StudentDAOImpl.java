@@ -2,9 +2,12 @@ package xyz.itwill10.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dto.Student;
+import xyz.itwill10.mapper.StudentMapper;
 
 //SpringMVC Framework에 Mybatis Framework를 사용하여 DAO 클래스를 작성하는 방법
 //1.DataSource 관련 라이브러리와 Mybatis 관련 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
@@ -16,6 +19,7 @@ import xyz.itwill10.dto.Student;
 //3.DataSource 관련 클래스, SqlSessionFactroy 관련 클래스, SqlSession 관련 클래스를 Spring Bean으로 등록
 // => SpringMVC Framework의 스프링 컨테이너를 초기화 처리하기 위한 Spring Bean Configuration 
 //File에서 bean 엘리먼트로 해당 클래스를 Spring Bean으로 등록 - root-context.xml 또는 servlet-context.xml
+//4.테이블 생성 >> DTO 클래스 작성 >> 매퍼 파일 작성 >> DAO 클래스 작성 - 반복
 
 //DAO 클래스 : 저장매체에게 행에 대한 삽입,변경,삭제,검색 기능을 제공하는 객체를 생성하기 위한 클래스
 // => DAO 클래스의 메소드에서는 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행결과를 제공받아
@@ -28,18 +32,24 @@ import xyz.itwill10.dto.Student;
 // => @Repository 어노테이션를 스프링 컨테이너가 처리하기 위해서는 반드시 클래스를 작성한 패키지를  
 //Spring Bean Configuration File(servlet-context.xml)의 component-scan 엘리먼트로 검색되도록 설정
 @Repository
+//final 필드만 초기화 설정하는 생성자를 만들어 주는 어노테이션
+// => 생성자가 하나만 작성된 경우 @Autowired 어노테이션 생략 가능
+@RequiredArgsConstructor
 public class StudentDAOImpl implements StudentDAO {
-
+	//Mybatis Framework로 DAO 클래스를 작성할 경우 매퍼에 등록된 SQL 명령을 전달하여 실행하고
+	//결과를 Java 객체(원시값)로 반환받기 위해 SqlSession 객체가 반드시 필요
+	// => SqlSession 객체를 저장하기 위한 필드에 스프링 컨테이너에 의해 관리되는 Spring Bean
+	//중 SqlSession 관련 객체를 제공받아 필드에 인젝션 처리 - DI
+	// => 필드를 초기화하는 생성자를 생성하여 @Autowired 어노테이션을 사용하여 의존성 주입
+	private final SqlSession sqlSession;
+	
 	@Override
 	public int insertStudent(Student student) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(StudentMapper.class).insertStudent(student);
 	}
 
 	@Override
 	public List<Student> selectStudentList() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.getMapper(StudentMapper.class).selectStudentList();
 	}
-
 }
