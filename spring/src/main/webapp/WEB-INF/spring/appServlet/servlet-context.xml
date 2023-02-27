@@ -69,7 +69,22 @@
 	<!-- component-scan : 스프링 컨테이너가 스프링 어노테이션을 검색하여 처리하기 위한 엘리먼트 -->
 	<!-- base-package 속성 : 스프링 어노테이션을 검색하기 위해 어노테이션을 사용한 클래스의 패키지를 속성값으로 설정 -->	
 	<!-- <context:component-scan base-package="xyz.itwill.controller" /> -->
-	<!-- xyz.itwill10.controller 패키지에 요청 처리 클래스(Model)를 작성하고 스프링 어노테이션을
-	이용하여 Spring Bean으로 등록 -->
+	<!-- xyz.itwill10.controller 패키지에 요청 처리 클래스(Model)를 작성하고 스프링 어노테이션을 이용하여 Spring Bean으로 등록 -->
 	<context:component-scan base-package="xyz.itwill10.controller" />
+	<!-- xyz.itwill10.dao 패키지에 DAO 클래스를 작성하고 스프링 어노테이션을 이용하여 Spring Bean으로 등록 -->
+	<context:component-scan base-package="xyz.itwill10.dao" />
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

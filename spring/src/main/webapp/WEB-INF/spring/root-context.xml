@@ -9,4 +9,54 @@
 	<!-- => DAO 클래스 작성에 필요한 클래스를 Spring Bean으로 등록 -->
 	<!-- => DataSource, SqlSessionFactory, SqlSession, TransactionManager 등 -->
 		
+	<!-- DataSource 관련 클래스를 Spring Bean으로 등록 - DBCP(DataBase Connection Pool) -->
+	<!-- => DataSource 객체 필드에 Connection 객체 생성에 필요한 값을 인젝션 처리 -->	
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- SqlSessionFactory 관련 클래스를 Spring Bean으로 등록 -->
+	<!-- => SqlSessionFactoryBean 객체 필드에 객체 생성에 필요한 값을 인젝션 처리 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<!-- configLocation 필드에 Mybatis Framework의 환경설정파일에 경로가 저장되도록 설정 -->
+		<!-- => SpringMVC Framework에서 사용하는 스프링 컨테이너(WebApplicationContext 객체)는
+		[src/main/webapp] 폴더를 웹자원의 최상위 폴더로 처리하여 환경설정파일의 경로를 제공 -->
+		<!-- <property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml"/> -->
+		<!-- [src/main/java] 폴더 또는 [src/main/resources] 폴더에 환경설정파일이 있는 경우
+		classpath 접두사를 사용하면 스프링 컨테이너로 접근 가능 -->
+		<!-- => 폴더의 패키지에 작성된 환경설정파일 파일 시스템 경로 표현하여 접근 가능 -->
+		<!-- <property name="configLocation" value="classpath:xyz/itwill/config/mybatis-config.xml"/> -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		
+		<!-- dataSource 필드에 DataSource 관련 클래스의 Spring Bean이 저장되도록 설정 - DI -->
+		<!-- => Mybatis 환경설정파일에서 environment 엘리먼트와 유사한 기능 제공 -->
+		<property name="dataSource" ref="dataSource"/>
+		
+		<!-- typeAliasesPackage 필드에 DTO 클래스를 작성한 패키지가 저장되도록 설정 -->
+		<!-- => XML 기반의 매퍼파일(MapperFile)에서 Java 자료형 대신 사용할 별칭을 제공하기 위한 기능 -->
+		<!-- => Mybatis 환경설정파일에서 typeAliases 엘리먼트의 package 엘리먼트와 유사한 기능 제공 -->
+		<property name="typeAliasesPackage" value="xyz.itwill10.dto"/>
+		
+		<!-- mapperLocations 필드에 List 객체를 생성하여 저장되도록 설정 -->
+		<!-- => List 객체에는 XML 기반의 매퍼 파일의 경로가 요소값으로 저장되도록 추가 - 매퍼 등록 -->
+		<property name="mapperLocations">
+			<list>
+				<!-- [src/main/java] 폴더의 패키지에 매퍼 파일을 작성하기 위한 classpath 접두사 사용  -->
+				<value>classpath:xyz/itwill10/mapper/*.xml</value>
+			</list>
+		</property>				
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
