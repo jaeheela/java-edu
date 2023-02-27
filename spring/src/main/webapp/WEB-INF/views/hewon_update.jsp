@@ -12,7 +12,9 @@
 	<form action="hewon_update" method="post">
 	<!-- 회원정보를 변경하기 위해 hidden 타입의 입력태그로 아이디 전달 -->
 	<!-- => 아이디를 입력태그의 초기값으로 설정하여 read-only 속성을 사용해 전달 가능 -->
-	<input type="hidden" name="id" value="${hewon.id }">
+	<%-- @SessionAttributes 어노테이션을 사용한 경우 아이디를 전달하지 않아도 회원정보 변경
+	페이지의 요청 처리 메소드에서 회원정보를 제공받아 사용 가능 --%>
+	<%-- <input type="hidden" name="id" value="${hewon.id }"> --%>
 	<table>
 		<tr>
 			<td>아이디</td>

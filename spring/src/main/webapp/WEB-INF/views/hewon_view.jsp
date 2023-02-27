@@ -16,7 +16,10 @@
 	</ul>
 	
 	<%-- 회원정보 변경페이지를 요청할 수 있는 링크 제공 - 아이디 전달 --%>
-	<button type="button" onclick="location.href='hewon_update?id=${hewon.id}';">회원정보변경</button>
+	<%-- <button type="button" onclick="location.href='hewon_update?id=${hewon.id}';">회원정보변경</button> --%>
+	<%-- @SessionAttributes 어노테이션을 사용한 경우 아이디를 전달하지 않아도 회원정보 변경
+	페이지의 요청 처리 메소드에서 회원정보를 제공받아 사용 가능 --%>
+	<button type="button" onclick="location.href='hewon_update';">회원정보변경</button>
 </body>
 </html>
 
