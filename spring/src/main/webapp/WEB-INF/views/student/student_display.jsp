@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1 align="center">학생목록</h1>
-	<table align="center" cellspacing="0" cellpadding="1" width="800">
+	<table align="center" cellspacing="0" cellpadding="1" width="700">
 		<tr align="right">
 			<td>
 				<input type="button" value="학생추가" onclick="location.href='student/add';">
@@ -28,11 +28,11 @@
 			<td colspan="7">검색된 학생정보가 없습니다.</td>
 		</tr>		
 		<tr align="center">
-			<td width="100"></td>				
-			<td width="100"></td>				
-			<td width="150"></td>				
-			<td width="250"></td>				
-			<td width="100"></td>				
+			<td width="100">1000</td>				
+			<td width="100">홍길동</td>				
+			<td width="150">010-1234-5678</td>				
+			<td width="250">서울시 강남구</td>				
+			<td width="100">2000-01-01</td>				
 		</tr>	
 	</table>
 </body>
