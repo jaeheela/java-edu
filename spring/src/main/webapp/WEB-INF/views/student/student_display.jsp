@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +13,8 @@
 	<table align="center" cellspacing="0" cellpadding="1" width="700">
 		<tr align="right">
 			<td>
-				<input type="button" value="학생추가" onclick="location.href='student/add';">
+				<%-- <input type="button" value="학생추가" onclick="location.href='add';"> --%>
+				<input type="button" value="학생추가" onclick="location.href='${pageContext.request.contextPath}/student/add';">
 			</td>
 		</tr>
 	</table>
@@ -23,17 +26,24 @@
 			<th width="250">주소</th>
 			<th width="100">생년월일</th>
 		</tr>
-		
-		<tr align="center">
-			<td colspan="7">검색된 학생정보가 없습니다.</td>
-		</tr>		
-		<tr align="center">
-			<td width="100">1000</td>				
-			<td width="100">홍길동</td>				
-			<td width="150">010-1234-5678</td>				
-			<td width="250">서울시 강남구</td>				
-			<td width="100">2000-01-01</td>				
-		</tr>	
+		<c:choose>
+			<c:when test="${empty(studentList)}">
+				<tr align="center">
+					<td colspan="5">검색된 학생정보가 없습니다.</td>
+				</tr>		
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="student" items="${studentList }">
+					<tr align="center">
+						<td width="100">${student.no }</td>				
+						<td width="100">${student.name }</td>				
+						<td width="150">${student.phone }</td>				
+						<td width="250">${student.address }</td>				
+						<td width="100">${fn:substring(student.birthday,0,10) }</td>				
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>	
 	</table>
 </body>
 </html>

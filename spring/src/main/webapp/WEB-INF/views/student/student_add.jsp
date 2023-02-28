@@ -45,7 +45,7 @@
 			<td width="200" colspan="2" align="center">
 				<input type="button" value="학생추가" onclick="submitCheck();">
 				<input type="reset" value="초기화">
-				<input type="button" value="학생목록" onclick="location.href='displayStudent.jsp';">
+				<input type="button" value="학생목록" onclick="location.href='${pageContext.request.contextPath}/student/display';">
 			</td>
 		</tr>
 	</table>
