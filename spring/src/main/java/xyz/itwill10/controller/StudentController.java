@@ -25,6 +25,9 @@ import xyz.itwill10.service.StudentService;
 //Spring Bean Configuration File(servlet-context.xml)의 component-scan 엘리먼트로 검색되도록 설정
 
 @Controller
+//@RequestMapping 어노테이션을 클래스에 선언하면 Controller 클래스의 모든 요청 처리 메소드에
+//요청 URL 주소 앞부분에 공통적으로 포함될 URL 주소를 제공
+@RequestMapping("/student")
 @RequiredArgsConstructor
 public class StudentController {
 	//Controller 클래스의 요청 처리 메소드에서 사용될 Service 객체를 저장하기 위한 필드 선언
@@ -32,14 +35,16 @@ public class StudentController {
 	private final StudentService studentService;
 	
 	//학생정보를 입력받기 위한 JSP 문서 관련 뷰이름을 반환하는 요청 처리 메소드
-	@RequestMapping(value = "/student/add", method = RequestMethod.GET)
+	//@RequestMapping(value = "/student/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "student/student_add";
 	}
 	
 	//학생정보를 전달받아 STUDENT 테이블에 삽입하고 회원목록 출력페이지를 요청할 수 있는
 	//URL 주소를 클라이언트에게 전달하는 요청 처리 메소드
-	@RequestMapping(value = "/student/add", method = RequestMethod.POST)
+	//@RequestMapping(value = "/student/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute Student student,Model model) {
 		try {
 			//STUDENT 테이블에 학생정보 삽입시 PK 제약조건에 의해 예외 발생 가능
@@ -53,7 +58,8 @@ public class StudentController {
 	
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 속성값으로 저장하고 학생목록을 출력하는
 	//JSP 문서 관련 뷰이름을 반환하는 요청 처리 메소드
-	@RequestMapping("/student/display")
+	//@RequestMapping("/student/display")
+	@RequestMapping("/display")
 	public String display(Model model) {
 		model.addAttribute("studentList",studentService.getStudentList());
 		return "student/student_display";
