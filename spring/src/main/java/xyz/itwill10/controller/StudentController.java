@@ -40,8 +40,14 @@ public class StudentController {
 	//학생정보를 전달받아 STUDENT 테이블에 삽입하고 회원목록 출력페이지를 요청할 수 있는
 	//URL 주소를 클라이언트에게 전달하는 요청 처리 메소드
 	@RequestMapping(value = "/student/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute Student student) {
-		studentService.addStudent(student);
+	public String add(@ModelAttribute Student student,Model model) {
+		try {
+			//STUDENT 테이블에 학생정보 삽입시 PK 제약조건에 의해 예외 발생 가능
+			studentService.addStudent(student);
+		} catch (Exception e) {
+			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
+			return "student/student_add";
+		}
 		return "redirect:/student/display";//리다이렉트 이동
 	}
 	

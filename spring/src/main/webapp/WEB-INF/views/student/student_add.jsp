@@ -14,31 +14,31 @@
 		<tr height="40">
 			<th bgcolor="yellow" width="100">학생번호</th>
 			<td width="200" align="center">
-				<input type="text" name="no">
+				<input type="text" name="no" value="${student.no }">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">이름</th>
 			<td width="200" align="center">
-				<input type="text" name="name">
+				<input type="text" name="name" value="${student.name }">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">전화번호</th>
 			<td width="200" align="center">
-				<input type="text" name="phone">
+				<input type="text" name="phone" value="${student.phone }">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">주소</th>
 			<td width="200" align="center">
-				<input type="text" name="address">
+				<input type="text" name="address" value="${student.address }">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">생년월일</th>
 			<td width="200" align="center">
-				<input type="text" name="birthday">
+				<input type="text" name="birthday" value="${student.birthday}">
 			</td>
 		</tr>
 		<tr height="40">
@@ -51,7 +51,7 @@
 	</table>
 	</form>
 	
-	<p align="center" style="color: red;"></p>
+	<p align="center" style="color: red;">${message }</p>
 	
 	<script type="text/javascript">
 	studentForm.no.focus();
