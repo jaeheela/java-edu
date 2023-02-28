@@ -55,6 +55,5 @@ public class StudentControllerTest {
 		logger.info(result.getModelAndView().getViewName());
 		logger.info(result.getModelAndView().getModel().toString());
 	}
-	
 }
 
