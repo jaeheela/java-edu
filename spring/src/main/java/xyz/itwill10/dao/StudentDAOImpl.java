@@ -28,6 +28,8 @@ import xyz.itwill10.mapper.StudentMapper;
 //3.[src/main/resources] 폴더에 [log4jdbc.log4j2.properties] 파일 작성
 // => Mybatis Framework의 로그 이벤트를 Spring Framework에게 전달하기 위한 SpyLogDelegator 
 //클래스를 지정하기 위한 파일
+//4.SpyLogDelegator 객체에 의해 발생된 로그 이벤트를 SpyLogDelegator의 로그 구현체에 의해 
+//기록되도록 환경설정파일 변경 - log4j.xml : logger 엘리먼트 추가
 
 //DAO 클래스 : 저장매체에게 행에 대한 삽입,변경,삭제,검색 기능을 제공하는 객체를 생성하기 위한 클래스
 // => DAO 클래스의 메소드에서는 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행결과를 제공받아
