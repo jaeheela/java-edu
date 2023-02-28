@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	<!-- servlet-context.xml : appServlet 이름의 Front Controller에서 사용될 클래스의 Spring
-	Bean을 등록하기 위한 Spring Bean Configuration File -->
+	<!-- servlet-context.xml : appServlet 이름의 Front Controller에서 객체로 사용될 클래스를 
+	Spring Bean으로 등록하기 위한 Spring Bean Configuration File -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- annotation-driven : @Controller 어노테이션을 사용하여 요청 처리 클래스를 Spring Bean으로
@@ -74,17 +74,3 @@
 	<!-- xyz.itwill10.dao 패키지에 DAO 클래스를 작성하고 스프링 어노테이션을 이용하여 Spring Bean으로 등록 -->
 	<context:component-scan base-package="xyz.itwill10.dao" />
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

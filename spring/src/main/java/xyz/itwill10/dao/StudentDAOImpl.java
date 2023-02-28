@@ -11,7 +11,7 @@ import xyz.itwill10.mapper.StudentMapper;
 
 //SpringMVC Framework에 Mybatis Framework를 사용하여 DAO 클래스를 작성하는 방법
 //1.DataSource 관련 라이브러리와 Mybatis 관련 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
-// => ojdbc11, spring-jdbc(spring-tx), mybatis, mybatis-spring
+// => ojdbc, spring-jdbc(spring-tx), mybatis, mybatis-spring
 //2.Mybatis Framework의 환경설정파일 작성 - 생략 가능
 // => src/main/webapp 폴더에 작성해야만 스프링 컨테이너(WebApplicationContenxt 객체)가 Mybatis 
 //Framework의 환경설정파일에 접근 가능 
@@ -26,7 +26,7 @@ import xyz.itwill10.mapper.StudentMapper;
 //Java 객체(원시값)으로 변환하여 반환되도록 작성
 // => DAO 클래스가 변경돼도 의존관계로 설정된 Service 클래스에 영향을 최소화 하기 위해 인터페이스를 상속받아 작성
 
-//DAO 클래스는 Service 클래스에서 객체로 제공받아 사용되도록 반드시 Spring Bean으로 등록
+//DAO 클래스는 Service 클래스의 객체로 제공받아 사용되도록 반드시 Spring Bean으로 등록
 // => DAO 클래스는 @Repository 어노테이션을 사용하여 Spring Bean으로 등록되도록 처리
 // => @Repository 어노테이션을 사용하면 SQL 명령으로 발생되는 예외를 Spring 관련 예외로 제공되도록 처리
 // => @Repository 어노테이션를 스프링 컨테이너가 처리하기 위해서는 반드시 클래스를 작성한 패키지를  
@@ -38,9 +38,9 @@ import xyz.itwill10.mapper.StudentMapper;
 public class StudentDAOImpl implements StudentDAO {
 	//Mybatis Framework로 DAO 클래스를 작성할 경우 매퍼에 등록된 SQL 명령을 전달하여 실행하고
 	//결과를 Java 객체(원시값)로 반환받기 위해 SqlSession 객체가 반드시 필요
-	// => SqlSession 객체를 저장하기 위한 필드에 스프링 컨테이너에 의해 관리되는 Spring Bean
-	//중 SqlSession 관련 객체를 제공받아 필드에 인젝션 처리 - DI
-	// => 필드를 초기화하는 생성자를 생성하여 @Autowired 어노테이션을 사용하여 의존성 주입
+	// => SqlSession 객체를 저장하기 위한 필드를 선언하고 스프링 컨테이너에 의해 관리되는 
+	//Spring Bean에서 SqlSession 관련 객체를 제공받아 필드에 인젝션 처리 - DI
+	// => 필드를 초기화하는 생성자를 생성하여 @Autowired 어노테이션을 사용하여 의존성 주입 - 순환참조 방지
 	private final SqlSession sqlSession;
 	
 	@Override
