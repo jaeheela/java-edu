@@ -22,13 +22,3 @@ public class PointUserServiceImpl implements PointUserService {
 		return pointUserDAO.selectPointUser(user.getId());
 	}
 }
-
-
-
-
-
-
-
-
-
-
