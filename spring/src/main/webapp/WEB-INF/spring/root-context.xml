@@ -28,7 +28,7 @@
 		<property name="username" value="scott"/>
 		<property name="password" value="tiger"/>
 	</bean>
-	
+
 	<!-- SqlSessionFactory 관련 클래스를 Spring Bean으로 등록 -->
 	<!-- => SqlSessionFactoryBean 객체 필드에 객체 생성에 필요한 값을 인젝션 처리 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">

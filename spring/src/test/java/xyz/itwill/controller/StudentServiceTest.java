@@ -28,7 +28,7 @@ import xyz.itwill10.service.StudentService;
 //@FixMethodOrder : 테스트 메소드의 호출순서를 설정하기 위한 어노테이션
 //value 속성 : MethodSorters 자료형(Enum)의 상수 중 하나를 속성값으로 설정
 // => MethodSorters.DEFAULT : JUnit 프로그램의 내부 규칙에 의해 정렬되어 메소드 호출 - 테스트마다 동일한 순서로 메소드 호출
-// => MethodSorters.JVM : JVM에 의해 정렬되어 메소드 호출 - 테스트마다 변경된 순서로 메소드 호출
+// => MethodSorters.JVM : JVM에 의해 정렬되어 메소드 호출 - 테스트마다 불규칙한 순서로 메소드 호출
 // => MethodSorters.NAME_ASCENDING : 테스트 메소드의 이름을 오름차순 정렬하여 메소드 호출
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
