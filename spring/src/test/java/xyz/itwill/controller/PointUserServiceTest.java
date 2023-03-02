@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import xyz.itwill10.dto.PointUser;
 import xyz.itwill10.service.PointUserService;
@@ -21,6 +22,7 @@ public class PointUserServiceTest {
 	@Autowired
 	private PointUserService pointUserService;
 	
+	/*
 	@Test
 	public void testAddPointUser() throws Exception {
 		PointUser user=new PointUser();
@@ -31,7 +33,25 @@ public class PointUserServiceTest {
 		try {
 			addUser=pointUserService.addPointUser(user);
 		} catch (Exception e) {
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
+		}
+		
+		logger.info(addUser.toString());
+	}
+	*/
+	
+	@Transactional
+	@Test
+	public void testAddPointUser() throws Exception {
+		PointUser user=new PointUser();
+		user.setId("xyz789");
+		user.setName("임꺽정");
+		
+		PointUser addUser=null;
+		try {
+			addUser=pointUserService.addPointUser(user);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
 		
 		logger.info(addUser.toString());
