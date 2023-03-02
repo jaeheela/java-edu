@@ -11,7 +11,7 @@ import xyz.itwill10.mapper.PointUserMapper;
 @RequiredArgsConstructor
 public class PointUserDAOImpl implements PointUserDAO {
 	//@Autowired
-	//private final SqlSession sqlSession;
+	//private SqlSession sqlSession;
 	
 	private final SqlSession sqlSession;
 
