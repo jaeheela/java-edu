@@ -4,7 +4,7 @@
 	<insert id="insertUserinfo">
 		insert into userinfo values(#{userid},#{password},#{name},#{email},#{status})
 	</insert>
-	
+	 
 	<update id="updateUserinfo">
 		update userinfo
 		<set>

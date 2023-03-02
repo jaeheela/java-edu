@@ -13,7 +13,7 @@ STATUS            NUMBER(1)
 */
 
 @Data
-public class Userinfo {
+public class Userinfo { 
 	private String userid;
 	private String password;
 	private String name;
