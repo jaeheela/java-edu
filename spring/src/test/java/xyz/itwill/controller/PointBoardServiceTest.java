@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import xyz.itwill10.dto.PointBoard;
 import xyz.itwill10.dto.PointUser;
@@ -25,6 +26,7 @@ public class PointBoardServiceTest {
 	@Autowired
 	private PointBoardService pointBoardService;
 	
+	@Transactional
 	@Test
 	public void test1() {
 		PointBoard board=new PointBoard();
@@ -51,6 +53,7 @@ public class PointBoardServiceTest {
 	}
 	
 	/*
+	@Transactional
 	@Test
 	public void test2() {
 		PointUser user=null;
