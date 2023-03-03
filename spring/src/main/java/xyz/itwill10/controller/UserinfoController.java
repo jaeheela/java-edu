@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dto.Userinfo;
 import xyz.itwill10.exception.ExistsUserinfoException;
 import xyz.itwill10.exception.LoginAuthFailException;
+import xyz.itwill10.exception.UserinfoNotFoundException;
 import xyz.itwill10.service.UserinfoService;
 
 @Controller
@@ -132,6 +134,15 @@ public class UserinfoController {
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
+	
+	//아이디를 전달바다 USERINFO 테이블에 저장된 해당 아이디의 회원정보를 검색하여 속성값으로
+	//저장하여 회원정보를 출력하는 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자가 페이지를 요청할 경우 권한 관련 인터셉터를 이용하여 처리
+	@RequestMapping("/view")
+	public String view(@RequestParam String userid, Model model) throws UserinfoNotFoundException {
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_view";
+	}
 		
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하도록 설정하는 어노테이션
 	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생되어 Front Controller에게 전달된
@@ -147,15 +158,20 @@ public class UserinfoController {
 		return "userinfo/user_write";
 	}
 	
-	@ExceptionHandler(value = LoginAuthFailException.class)
+	@ExceptionHandler(LoginAuthFailException.class)
 	public String userinfoExceptionHandler(LoginAuthFailException exception, Model model) {
 		model.addAttribute("message", exception.getMessage());
 		model.addAttribute("userid",exception.getUserid());
 		return "userinfo/user_login";
 	}
 	
+	@ExceptionHandler(UserinfoNotFoundException.class)
+	public String userinfoExceptionHandler(UserinfoNotFoundException exception) {
+		return "userinfo/user_error";
+	}
+	
 	/*
-	@ExceptionHandler(value = Exception.class)
+	@ExceptionHandler(Exception.class)
 	public String userinfoExceptionHandler() {
 		return "userinfo/user_error";
 	}
