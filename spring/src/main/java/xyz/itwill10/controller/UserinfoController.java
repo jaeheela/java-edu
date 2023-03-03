@@ -21,8 +21,10 @@ import xyz.itwill10.service.UserinfoService;
 public class UserinfoController {
 	private final UserinfoService userinfoService;
 	
+	/*
 	//회원등록을 위해 회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
-	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청한 경우 인위적 예외 발생 - 예외 처리 메소드에 의해 예외 처리
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청한 경우 인위적 예외 발생 
+	// => 예외 처리 메소드에 의해 예외 처리 - 에러 메세지를 출력하는 JSP 문서로 포워드 이동하여 응답 
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) throws Exception {
 		//세션에 저장된 권한 관련 객체를 반환받아 저장
@@ -33,6 +35,16 @@ public class UserinfoController {
 		
 		return "userinfo/user_write";
 	}
+	*/
+	
+	//회원등록을 위해 회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지 요청할 경우 권한 관련 인터셉터를 이용하여 처리
+	// => 권한 관련 인터셉터를 이용할 경우 요청 처리 메소드에서 권한 관련 명령 미작성 가능
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String write(HttpSession session) throws Exception {
+		return "userinfo/user_write";
+	}
+	
 	
 	/*
 	//회원정보를 전달받아 USERINFO 테이블에 삽입하고 로그인 페이지를 요청하기 위한 URL 주소를
@@ -96,6 +108,7 @@ public class UserinfoController {
 		return "redirect:/userinfo/login";
 	}
 	
+	/*
 	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장하여 회원목록을 출력
 	//하는 뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청한 경우 인위적 예외 발생 - 예외 처리 메소드에 의해 예외 처리
@@ -108,6 +121,16 @@ public class UserinfoController {
 		
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		
+		return "userinfo/user_list";
+	}
+	*/
+	
+	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장하여 회원목록을 출력
+	//하는 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자가 페이지를 요청할 경우 권한 관련 인터셉터를 이용하여 처리  
+	@RequestMapping("/list")
+	public String list(Model model, HttpSession session) throws Exception {
+		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
 		
