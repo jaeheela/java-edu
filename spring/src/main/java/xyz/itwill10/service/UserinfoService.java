@@ -13,5 +13,5 @@ public interface UserinfoService {
 	void removeUserinfo(String userid) throws UserinfoNotFoundException;
 	Userinfo getUserinfo(String userid) throws UserinfoNotFoundException;
 	List<Userinfo> getUserinfoList();
-	void loginAuth(Userinfo userinfo) throws LoginAuthFailException;
+	Userinfo loginAuth(Userinfo userinfo) throws LoginAuthFailException;
 }

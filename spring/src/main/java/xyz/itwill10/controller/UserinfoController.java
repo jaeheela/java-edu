@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dto.Userinfo;
 import xyz.itwill10.exception.ExistsUserinfoException;
+import xyz.itwill10.exception.LoginAuthFailException;
 import xyz.itwill10.service.UserinfoService;
 
 @Controller
@@ -74,6 +75,29 @@ public class UserinfoController {
 		return "userinfo/user_login";
 	}
 	
+	//인증정보를 전달받아 로그인 처리 후 환영 메세지를 출력하기 위한 뷰이름을 반환하는 요청 처리 메소드
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute Userinfo userinfo, HttpSession session) throws LoginAuthFailException {
+		//인증 실패시 LoginAuthFailException 발생하고 인증 성공시 검색된 회원정보 반환받아 저장
+		Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
+		System.out.println(authUserinfo.toString());
+		
+		
+		//세션에 권한 관련 정보를 속성값으로 저장
+		session.setAttribute("loginUserinfo", authUserinfo);
+		
+		return "userinfo/user_login";
+	}
+	
+	//로그아웃 처리 후 로그인 페이지를 요청하기 위한 URL 주소를 클라이언트에게 전달하는 요청 처리 메소드
+	@RequestMapping("/logout")
+	public String login(HttpSession session) {
+		//session.removeAttribute("loginUserinfo");
+		session.invalidate();
+		
+		return "redirect:/userinfo/login";
+	}
+	
 	
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하도록 설정하는 어노테이션
 	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생되어 Front Controller에게 전달된
@@ -87,6 +111,13 @@ public class UserinfoController {
 		model.addAttribute("message", exception.getMessage());
 		model.addAttribute("userinfo",exception.getUserinfo());
 		return "userinfo/user_write";
+	}
+	
+	@ExceptionHandler(value = LoginAuthFailException.class)
+	public String userinfoExceptionHandler(LoginAuthFailException exception, Model model) {
+		model.addAttribute("message", exception.getMessage());
+		model.addAttribute("userinfo",exception.getUserid());
+		return "userinfo/user_login";
 	}
 	
 	/*

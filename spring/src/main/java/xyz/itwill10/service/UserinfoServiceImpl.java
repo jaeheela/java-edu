@@ -94,10 +94,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 		return userinfoDAO.selectUserinfoList();
 	}
 
-	//회원정보를 전달받아 인증 처리하기 위한 메소드
-	// => 예외가 발생된 경우 인증 실패로 처리하고 예외가 발생되지 않은 경우 인증 성공으로 처리
+	//회원정보를 전달받아 인증 처리하기 위한 메소드 - 예외가 발생된 경우 인증 실패
+	// => 예외가 발생되지 않은 경우 인증 성공으로 검색된 회원정보를 반환
 	@Override
-	public void loginAuth(Userinfo userinfo) throws LoginAuthFailException {
+	public Userinfo loginAuth(Userinfo userinfo) throws LoginAuthFailException {
 		//전달받은 회원정보의 아이디로 기존 회원정보를 검색하여 검색결과를 반환받아 저장
 		Userinfo authUserinfo=userinfoDAO.selectUserinfo(userinfo.getUserid());
 		
@@ -110,5 +110,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 		if(!BCrypt.checkpw(userinfo.getPassword(), authUserinfo.getPassword())) {
 			throw new LoginAuthFailException("아이디가 없거나 비밀번호가 맞지 않습니다.", userinfo.getUserid());
 		}
+		
+		return authUserinfo;
 	}
 }
