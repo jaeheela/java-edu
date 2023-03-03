@@ -12,8 +12,8 @@ import xyz.itwill10.dto.Userinfo;
 //Interceptor 클래스 : Front Controller에 의해 요청 처리 메소드가 호출되어 실행되기 전 또는 후에
 //삽입되어 실행될 기능을 제공하는 클래스
 // => Interceptor 클래스는 반드시 HandlerInterceptor 인터페이스를 상속받아 작성 - 필요한 메소드만 오버라이드 선언하여 작성
-// => Spring Bean Configuration File(servlet-context.xml)에 Spring Bean으로 등록하고 인터셉터가
-//동작될 수 있도록 환경 설정
+// => Spring Bean Configuration File(servlet-context.xml)에 Spring Bean으로 등록하고 요청 처리
+//메소드 호출 전후에 인터셉터가 동작될 수 있도록 환경 설정
 
 //관리자 관련 권한 처리를 위해 작성된 Interceptor 클래스
 // => 요청 처리 메소드의 명령 실행 전에 비로그인 사용자이거나 관리자가 아닌 사용자가 페이지를 
