@@ -29,12 +29,7 @@ public class PointUserServiceTest {
 		user.setId("abc123");
 		user.setName("홍길동");
 		
-		PointUser addUser=null;
-		try {
-			addUser=pointUserService.addPointUser(user);
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
+		PointUser addUser=pointUserService.addPointUser(user);
 		
 		logger.info(addUser.toString());
 	}
@@ -47,12 +42,7 @@ public class PointUserServiceTest {
 		user.setId("xyz789");
 		user.setName("임꺽정");
 		
-		PointUser addUser=null;
-		try {
-			addUser=pointUserService.addPointUser(user);
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
+		PointUser addUser=pointUserService.addPointUser(user);
 		
 		logger.info(addUser.toString());
 	}

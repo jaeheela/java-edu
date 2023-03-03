@@ -87,13 +87,3 @@
 	<!-- => tx 네임스페이스로 spring-tx.xsd 파일을 제공받아 엘리먼트 작성 -->
 	<tx:annotation-driven/>
 </beans>
-
-
-
-
-
-
-
-
-
-
