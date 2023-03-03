@@ -138,12 +138,14 @@
 			<!-- => * : 현재 폴더의 모든 요청 페이지, ** : 현재 폴더 및 하위 폴더의 모든 요청 페이지 -->
 			<!-- <mapping path="/*"/>  -->
 			<!-- <mapping path="/**"/> -->
-			<!-- <mapping path="/userinfo/*"/> -->
+			<mapping path="/userinfo/*"/>
 			<!-- exclude-mapping : 인터셉터 기능을 제공하지 않기 위한 요청 URL 주소를 설정하는 엘리먼트 -->
-			<!-- <exclude-mapping path="/userinfo/login"/> -->
+			<exclude-mapping path="/userinfo/login"/>
 			
+			<!-- 
 			<mapping path="/userinfo/list"/>
 			<mapping path="/userinfo/view"/>
+			-->
 			<beans:ref bean="loginAuthInterceptor"/>
 		</interceptor>
 	</interceptors>
