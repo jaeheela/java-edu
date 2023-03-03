@@ -22,7 +22,7 @@ public class UserinfoController {
 	private final UserinfoService userinfoService;
 	
 	//회원등록을 위해 회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
-	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청한 경우 인위적 예외 발생
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청한 경우 인위적 예외 발생 - 예외 처리 메소드에 의해 예외 처리
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) throws Exception {
 		//세션에 저장된 권한 관련 객체를 반환받아 저장
@@ -80,8 +80,6 @@ public class UserinfoController {
 	public String login(@ModelAttribute Userinfo userinfo, HttpSession session) throws LoginAuthFailException {
 		//인증 실패시 LoginAuthFailException 발생하고 인증 성공시 검색된 회원정보 반환받아 저장
 		Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
-		System.out.println(authUserinfo.toString());
-		
 		
 		//세션에 권한 관련 정보를 속성값으로 저장
 		session.setAttribute("loginUserinfo", authUserinfo);
@@ -98,7 +96,21 @@ public class UserinfoController {
 		return "redirect:/userinfo/login";
 	}
 	
-	
+	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장하여 회원목록을 출력
+	//하는 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자가 페이지를 요청한 경우 인위적 예외 발생 - 예외 처리 메소드에 의해 예외 처리
+	@RequestMapping("/list")
+	public String list(Model model, HttpSession session) throws Exception {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		if(loginUserinfo==null) {//비로그인 사용자가 페이지를 요청한 경우
+			throw new Exception("비정상적인 요청입니다.");//인위적 예외 발생
+		}
+		
+		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
+		
+		return "userinfo/user_list";
+	}
+		
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하도록 설정하는 어노테이션
 	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생되어 Front Controller에게 전달된
 	//경우 예외 관련 객체를 제공받아 예외 처리하기 위한 메소드 - ExceptionHandler Mothod 
@@ -116,7 +128,7 @@ public class UserinfoController {
 	@ExceptionHandler(value = LoginAuthFailException.class)
 	public String userinfoExceptionHandler(LoginAuthFailException exception, Model model) {
 		model.addAttribute("message", exception.getMessage());
-		model.addAttribute("userinfo",exception.getUserid());
+		model.addAttribute("userid",exception.getUserid());
 		return "userinfo/user_login";
 	}
 	
