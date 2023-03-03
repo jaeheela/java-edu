@@ -41,10 +41,9 @@ public class UserinfoController {
 	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지 요청할 경우 권한 관련 인터셉터를 이용하여 처리
 	// => 권한 관련 인터셉터를 이용할 경우 요청 처리 메소드에서 권한 관련 명령 미작성 가능
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(HttpSession session) throws Exception {
+	public String write() {
 		return "userinfo/user_write";
 	}
-	
 	
 	/*
 	//회원정보를 전달받아 USERINFO 테이블에 삽입하고 로그인 페이지를 요청하기 위한 URL 주소를
@@ -129,7 +128,7 @@ public class UserinfoController {
 	//하는 뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청할 경우 권한 관련 인터셉터를 이용하여 처리  
 	@RequestMapping("/list")
-	public String list(Model model, HttpSession session) throws Exception {
+	public String list(Model model) {
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
