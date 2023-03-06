@@ -32,6 +32,11 @@ public class RestBoardController {
 		//System.out.println("pageNum = "+pageNum);
 		
 		//RESTBOARD 테이블에 저장된 모든 게시글의 갯수를 반환하는 메소드 호출
+		int totalBoard=restBoardService.getRestBoardCount();
+		int pageSize=5;//하나의 페이지에 출력될 게시글의 갯수 저장
+		int blockSize=5;//하나의 블럭에 출력될 페이지 번호의 갯수 저장
+		
+		
 		
 		return null;
 	}
