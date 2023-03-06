@@ -9,6 +9,7 @@ public interface RestBoardService {
 	void addRestBoard(RestBoard restBoard);
 	void modifyRestBoard(RestBoard restBoard);
 	void removeRestBoard(int num);
+	int getRestBoardCount();
 	RestBoard getRestBoard(int num);
 	List<RestBoard> getRestBoardList(Map<String, Object> map);
 }

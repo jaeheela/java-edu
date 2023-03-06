@@ -30,6 +30,12 @@ public class RestBoardDAOImpl implements RestBoardDAO {
 		return sqlSession.getMapper(RestBoardMapper.class).deleteRestBoard(num);
 	}
 
+	
+	@Override
+	public int selectRestBoardCount() {
+		return sqlSession.getMapper(RestBoardMapper.class).selectRestBoardCount();
+	}
+	
 	@Override
 	public RestBoard selectRestBoard(int num) {
 		return sqlSession.getMapper(RestBoardMapper.class).selectRestBoard(num);

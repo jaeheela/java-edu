@@ -39,6 +39,11 @@ public class RestBoardServiceImpl implements RestBoardService {
 	}
 
 	@Override
+	public int getRestBoardCount() {
+		return restBoardDAO.selectRestBoardCount();
+	}
+	
+	@Override
 	public RestBoard getRestBoard(int num) {
 		return restBoardDAO.selectRestBoard(num);
 	}

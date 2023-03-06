@@ -16,6 +16,10 @@
 		delete from restboard where num=#{num}
 	</delete>
 	
+	<select id="selectRestBoardCount" resultType="int">
+		select count(*) from restboard
+	</select>
+	
 	<select id="selectRestBoard" resultType="RestBoard">
 		select * from restboard where num=#{num}
 	</select>

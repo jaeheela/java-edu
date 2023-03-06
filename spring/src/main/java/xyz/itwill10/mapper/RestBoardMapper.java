@@ -9,6 +9,7 @@ public interface RestBoardMapper {
 	int insertRestBoard(RestBoard restBoard);
 	int updateRestBoard(RestBoard restBoard);
 	int deleteRestBoard(int num);
+	int selectRestBoardCount();
 	RestBoard selectRestBoard(int num);
 	List<RestBoard> selectRestBoardList(Map<String, Object> map);
 }
