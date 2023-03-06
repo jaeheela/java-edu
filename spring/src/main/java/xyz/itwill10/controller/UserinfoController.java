@@ -74,8 +74,8 @@ public class UserinfoController {
 	//클라이언트에게 전달하는 요청 처리 메소드
 	// => UserinfoService 객체의 메소드 호출시 예외 발생 가능 - Front Controller에게 예외 전달
 	// => Front Controller는 전달받은 예외로 인해 500 에러코드 발생하여 클라이언트에게 전달 
-	// => Front Controller는 해당 예외에 대한 ExceptionHandler 기능을 제공하는 메소드가 
-	//작성된 경우 ExceptionHandler 기능의 메소드를 호출하여 예외 처리 가능 
+	// => Front Controller는 해당 예외를 처리할 수 있는 ExceptionHandler 기능의 메소드가 작성된 
+	//경우 ExceptionHandler 기능의 메소드를 호출하여 예외 처리 가능 
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute Userinfo userinfo) throws ExistsUserinfoException {
 		userinfoService.addUserinfo(userinfo);
@@ -84,7 +84,7 @@ public class UserinfoController {
 	
 	//로그인을 위해 인증정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() throws Exception {
+	public String login() {
 		return "userinfo/user_login";
 	}
 	
@@ -135,13 +135,19 @@ public class UserinfoController {
 		return "userinfo/user_list";
 	}
 	
-	//아이디를 전달바다 USERINFO 테이블에 저장된 해당 아이디의 회원정보를 검색하여 속성값으로
+	//아이디를 전달받아 USERINFO 테이블에 저장된 해당 아이디의 회원정보를 검색하여 속성값으로
 	//저장하여 회원정보를 출력하는 뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청할 경우 권한 관련 인터셉터를 이용하여 처리
 	@RequestMapping("/view")
 	public String view(@RequestParam String userid, Model model) throws UserinfoNotFoundException {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_view";
+	}
+	
+	@RequestMapping(value="/modify", method = RequestMethod.GET)
+	public String modify(@RequestParam String userid, Model model) {
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_modify";
 	}
 		
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하도록 설정하는 어노테이션

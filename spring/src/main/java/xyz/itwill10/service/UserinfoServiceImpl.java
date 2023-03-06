@@ -17,7 +17,7 @@ import xyz.itwill10.exception.UserinfoNotFoundException;
 //1.jbcrypt 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
 //2.BCrypt.hashpw(String password, String salt) 메소드를 호출하여 비밀번호의 암호화 처리
 // => 매개변수로 문자열과 첨가물을 전달받아 암호화 처리 - 첨가물에 의해 비밀번호가 다르게 변환
-// => BCrypt 클래스 : BlowFish 알고리즘을 기반으로 설계된 단방향 암호화 기능을 제공하는 클래스
+// => BCrypt 클래스 : 단방향 암호화 기능의 BlowFish 알고리즘을 기반으로 설계된 암호화 처리 클래스
 // => BCrypt.gensalt(int log_bounds) : 첨가물(Salt - String)의 길이를 전달받아 첨가물을 생성하여 반환하는 메소드
 // => 매개변수가 없는 메소드로 호출할 경우 첨가물의 기본 길이는 [10]으로 자동 설정
 //3.BCrypt.checkpw(String plaintext, String hashed)로 암호화된 비밀번호를 비교하여 결과를 반환받아 처리
