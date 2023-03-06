@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.service.RestBoardService;
+import xyz.itwill10.util.Pager;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,7 +37,8 @@ public class RestBoardController {
 		int pageSize=5;//하나의 페이지에 출력될 게시글의 갯수 저장
 		int blockSize=5;//하나의 블럭에 출력될 페이지 번호의 갯수 저장
 		
-		
+		//페이징 처리 관련 값이 필드에 저장된 Pager 객체 생성 
+		Pager pager=new Pager(pageNum, totalBoard, pageSize, blockSize);
 		
 		return null;
 	}
