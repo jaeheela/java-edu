@@ -265,6 +265,13 @@
 		    <version>0.4</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<!-- => Java 객체를 JSON 형식의 텍스트 데이타로 변환하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.14.2</version>
+		</dependency>
 	</dependencies>
 	
     <build>
