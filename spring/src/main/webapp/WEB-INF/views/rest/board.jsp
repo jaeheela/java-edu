@@ -92,9 +92,48 @@
 	</div>
 	
 	<script type="text/javascript">
+	//현재 요청 페이지의 번호를 저장하기 위한 전역변수 
+	// => 모든 함수에서 사용 가능하며 프로그램 종료 전까지 값을 유지
+	var page=1;
 	
+	//특정 페이지 번호의 게시글 목록을 출력하는 함수 호출
+	boardListDisplay(page);
+	
+	//RESTBOARD 테이블에 저장된 게시글 목록을 페이징 처리하여 검색하고 처리결과를 JSON 형식의
+	//데이타로 응답하는 페이지를 AJAX 기능으로 요청 
+	// => 응답받은 JSON 형식의 데이타로 게시글 목록 출력 태그를 변경
+	function boardListDisplay(pageNum) {
+		page=pageNum;
+		$.ajax({
+			type: "get",
+			url: "${pageContext.request.contextPath}/board_list?pageNum="+pageNum,
+			dataType: "json",
+			success: function(result) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 목록 검색) = "+xhr.status)
+			}
+		});
+	}
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
