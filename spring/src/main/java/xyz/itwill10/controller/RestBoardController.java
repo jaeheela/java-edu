@@ -1,5 +1,7 @@
 package xyz.itwill10.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import xyz.itwill10.dto.RestBoard;
 import xyz.itwill10.service.RestBoardService;
 import xyz.itwill10.util.Pager;
 
@@ -40,7 +43,21 @@ public class RestBoardController {
 		//페이징 처리 관련 값이 필드에 저장된 Pager 객체 생성 
 		Pager pager=new Pager(pageNum, totalBoard, pageSize, blockSize);
 		
-		return null;
+		//RestBoardService 클래스의 getRestBoardList() 메소드를 호출하기 위해 Map 객체 생성
+		// => Map 객체에는 요청 페이지의 시작 행번호와 종료 행번호를 엔트리로 저장하여 SQL 명령에서 사용
+		Map<String, Object> pageMap=new HashMap<String, Object>();
+		pageMap.put("startRow", pager.getStartRow());
+		pageMap.put("endRow", pager.getEndRow());
+		//요청 페이지 번호에 대한 게시글 목록을 List 객체로 반환받아 저장
+		List<RestBoard> restBoardList=restBoardService.getRestBoardList(pageMap);
+		
+		//처리결과를 저장하기 위한 Map 객체 생성 
+		// => Map 객체에는 게시글 목록(List 객체)과 페이징 처리 관련 값이 저장된 객체(Pager 객체)를 엔트리로 저장
+		Map<String, Object> resultMap=new HashMap<String, Object>();
+		resultMap.put("restBoardList", restBoardList);
+		resultMap.put("pager", pager);
+		
+		return resultMap;//Map 객체를 반환하여 JSON 형식의 데이타로 응답
 	}
 }
 
