@@ -144,10 +144,45 @@ public class UserinfoController {
 		return "userinfo/user_view";
 	}
 	
+	//아이디를 전달받아 USERINFO 테이블에 저장된 해당 아이디의 회원정보를 검색하여 속성값으로
+	//저장하여 변경할 회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지 요청할 경우 권한 관련 인터셉터를 이용하여 처리
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
-	public String modify(@RequestParam String userid, Model model) {
+	public String modify(@RequestParam String userid, Model model) throws UserinfoNotFoundException {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_modify";
+	}
+	
+	//회원정보를 전달받아 USERINFO 테이블에 저장된 회원정보를 변경하고 회원정보를 출력하는
+	//페이지를 요청하기 위한 URL 주소를 클라이언트에게 전달하는 요청 처리 메소드
+	// => 변경 처리 하기 위한 사용자가 로그인 사용자인 경우 세션에 저장된 권한 관련 정보 변경 
+	@RequestMapping(value="/modify", method = RequestMethod.POST)
+	public String modify(@ModelAttribute Userinfo userinfo, HttpSession session) throws UserinfoNotFoundException {
+		userinfoService.modifyUserinfo(userinfo);
+		
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//변경 처리된 사용자가 로그인 사용자인 경우
+		if(loginUserinfo.getUserid().equals(userinfo.getUserid())) {
+			session.setAttribute("loginUserinfo", userinfoService.getUserinfo(userinfo.getUserid()));
+		}
+		
+		return "redirect:/userinfo/view?userid="+userinfo.getUserid();
+	}
+	
+	//아이디를 전달받아 USERINFO 테이블에 저장된 해당 아이디의 회원정보를 삭제하고 회원목록을
+	//출력하는 페이지를 요청하기 위한 URL 주소를 클라이언트에게 전달하는 요청 처리 메소드
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지 요청할 경우 권한 관련 인터셉터를 이용하여 처리
+	@RequestMapping("/remove")
+	public String remove(@RequestParam String userid, HttpSession session) throws UserinfoNotFoundException {
+		userinfoService.removeUserinfo(userid);
+		
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//로그인 사용자가 삭제된 경우
+		if(loginUserinfo.getUserid().equals(userid)) {
+			return "redirect:/userinfo/logout";
+		}
+		
+		return "redirect:/userinfo/list";
 	}
 		
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하도록 설정하는 어노테이션
