@@ -29,11 +29,3 @@
 			order by num desc) board) where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>
-
-
-
-
-
-
-
-

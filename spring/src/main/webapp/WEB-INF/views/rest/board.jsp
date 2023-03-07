@@ -100,7 +100,7 @@
 	boardListDisplay(page);
 	
 	//RESTBOARD 테이블에 저장된 게시글 목록을 페이징 처리하여 검색하고 처리결과를 JSON 형식의
-	//데이타로 응답하는 페이지를 AJAX 기능으로 요청 
+	//데이타로 응답하는 페이지(board_list)를 AJAX 기능으로 요청 
 	// => 응답받은 JSON 형식의 데이타로 게시글 목록 출력 태그를 변경
 	function boardListDisplay(pageNum) {
 		page=pageNum;

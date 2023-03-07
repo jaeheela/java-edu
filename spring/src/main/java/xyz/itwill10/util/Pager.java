@@ -30,7 +30,7 @@ public class Pager {
 		calcPage();
 	}
 	
-	//계산 결과값을 필드에 저장하는 메소드 - 생성자에서 호출하여 사용
+	//계산된 결과값을 필드에 저장하는 메소드 - 생성자에서 호출하여 사용
 	private void calcPage() {
 		totalPage=(int)Math.ceil((double)totalBoard/pageSize);
 		if(pageNum<=0 || pageNum>totalPage) {

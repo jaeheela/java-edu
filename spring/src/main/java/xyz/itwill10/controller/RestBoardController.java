@@ -26,7 +26,7 @@ public class RestBoardController {
 	}
 	
 	//페이지 번호를 전달받아 RESTBOARD 테이블에 저장된 게시글 목록 중 해당 페이지 번호의 범위에
-	//게시글 목록 검색하여 JSON 형식의 데이타로 응답하는 요청 처리 메소드
+	//게시글 목록을 검색하여 JSON 형식의 데이타로 응답하는 요청 처리 메소드
 	// => 게시글 목록을 페이징 처리하여 출력하기 위해 요청 페이지 번호의 게시글 목록과 페이지 
 	//번호 출력 관련 값이 저장된 객체를 Map 객체의 엔트리로 저장하여 JSON 형식의 데이타로 응답
 	//처리되도록 반환
@@ -51,7 +51,7 @@ public class RestBoardController {
 		//요청 페이지 번호에 대한 게시글 목록을 List 객체로 반환받아 저장
 		List<RestBoard> restBoardList=restBoardService.getRestBoardList(pageMap);
 		
-		//처리결과를 저장하기 위한 Map 객체 생성 
+		//처리결과를 저장하여 반환하기 위한 Map 객체 생성 
 		// => Map 객체에는 게시글 목록(List 객체)과 페이징 처리 관련 값이 저장된 객체(Pager 객체)를 엔트리로 저장
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("restBoardList", restBoardList);
