@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import lombok.RequiredArgsConstructor;
 
 //파일 업로드 처리를 위한 환경설정 방법
 //1.commons-fileupload 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
@@ -16,12 +20,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 //3.MultipartHttpServletRequest 객체를 사용하여 [multipart/form-data] 형태로 전달된 값 또는 파일 처리
 
 @Controller
+@RequiredArgsConstructor
 public class FileController {
+	//WebApplicationContext 객체(Spring Container)를 제공받아 필드에 의존성 주입
+	private final WebApplicationContext context;	
+	
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String upload() {
 		return "file/upload_form";
 	}
 	
+	/*
 	//요청 처리 메소드에 MultipartHttpServletRequest 인터페이스로 매개변수를 선언하면 Front
 	//Controller에 의해 MultipartHttpServletRequest 객체를 제공받아 사용 가능
 	//MultipartHttpServletRequest 객체 : [multipart/form-data] 형식으로 전달된 값 또는 파일을
@@ -64,6 +73,61 @@ public class FileController {
 		
 		request.setAttribute("uploaderName", uploaderName);
 		request.setAttribute("uploadFilename", uploadFile.getOriginalFilename());
+		
+		return "file/upload_ok";
+	}
+	*/
+	
+	//요청 처리 메소드에 매개변수를 작성하여 전달값과 전달파일을 제공받아 사용 가능
+	// => 업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 기존 파일 대신 업로드
+	//파일이 저장 - 덮어씌위기(OverWrite)
+	// => commons-fileupload 라이브러리에는 업로드 파일을 변경하는 기능의 클래스 미존재
+	// => 업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 업로드 파일명을 변경하는 명령 작성 필요
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String upload(@RequestParam String uploaderName
+			, @RequestParam MultipartFile uploadFile, Model model) throws IOException {
+		if(uploadFile.isEmpty()) {
+			return "file/upload_fail";
+		}
+	
+		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
+		// => WebApplicationContext 객체(Spring Container)에게 ServletContext 객체를 제공받아 사용
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
+		
+		//사용자로부터 입력되어 전달된 원본 파일명을 반환받아 저장
+		String originalFilename=uploadFile.getOriginalFilename();
+		
+		//서버 디렉토리에 저장하기 위한 파일정보가 저장된 File 객체 생성
+		File file=new File(uploadDirectory, originalFilename);
+		
+		//서버 디렉토리에 저장될 파일명을 저장하기 위한 변수
+		// => 초기값으로 사용자로부터 입력되어 전달된 원본 파일명을 저장
+		String uploadFilename=originalFilename;
+		
+		//업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 서버 디렉토리에 
+		//저장될 파일명을 구분하기 위한 식별자를 저장하기 위한 변수
+		int i=0;
+		
+		//File.exists() : File 객체에 저장된 파일이 시스템이 존재하지 않을 경우 [false]를
+		//반환하고 존재할 경우 [true]를 반환하는 메소드
+		while(file.exists()) {//업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 반복 처리
+			i++;
+			
+			//파일명과 확장자를 구분하기 위한 문자열(.)를 사용하여 위치값(Index)을 반환받아 저장
+			int index=originalFilename.lastIndexOf(".");
+
+			//원본 파일명을 이용하여 업로드 파일명 생성
+			uploadFilename=originalFilename.substring(0, index)+"_"+i+originalFilename.substring(index);
+			
+			//서버 디렉토리에 저장될 파일명을 저장하기 위한 변수
+			file=new File(uploadDirectory, uploadFilename);
+		}
+		
+		uploadFile.transferTo(file);
+		
+		model.addAttribute("uploaderName", uploaderName);
+		model.addAttribute("originalFilename", originalFilename);
+		model.addAttribute("uploadFilename", uploadFilename);
 		
 		return "file/upload_ok";
 	}
