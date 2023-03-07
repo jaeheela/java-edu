@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dao.FileBoardDAO;
 import xyz.itwill10.dto.FileBoard;
-
+ 
 @Service
 @RequiredArgsConstructor
 public class FileBoardServiceImpl implements FileBoardService {
