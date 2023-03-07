@@ -17,6 +17,11 @@ import xyz.itwill10.dto.RestBoard;
 import xyz.itwill10.service.RestBoardService;
 import xyz.itwill10.util.Pager;
 
+//REST 기능을 제공하는 요청 처리 메소드의 페이지 요청방식
+// => @RequestMapping 어노테이션의 method 속성값을 사용하여 구분 - @GetMapping, @PostMapping 등의 어노테이션 사용 가능
+// => 페이지 요청방식 : GET(검색), POST(삽입), PUT(전체 변경), PATCH(부분 변경), DELETE(삭제) 등
+// => PUT, PATCH, DELETE 등의 요청방식은 POST 요청방식에서 파생된 요청방식 - 리퀘스트 메세지의 몸체부에 전달값 저장
+
 @Controller
 @RequiredArgsConstructor
 public class RestBoardController {
@@ -74,7 +79,23 @@ public class RestBoardController {
 		return "success";
 	}
 	
+	//글번호를 전달받아 RESTBOARD 테이블에 저장된 해당 글번호의 게시글을 검색하여 JSON 형식의
+	//텍스트 데이타로 응답하는 요청 처리 메소드
+	@RequestMapping(value="/board_view", method = RequestMethod.GET)
+	@ResponseBody
+	public RestBoard restBoardView(@RequestParam int num) {
+		return restBoardService.getRestBoard(num);
+	}
 	
+	//게시글을 전달받아 RESTBOARD 테이블에 저장된 해당 게시글을 변경하고 처리결과를 일반
+	//텍스트로 응답하기 위한 요청 처리 메소드
+	// => 페이지 요청 방식을 여러개로 설정할 경우 @RequestMapping 어노테이션의 method 속성값으로 배열 사용 가능
+	@RequestMapping(value="/board_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	@ResponseBody
+	public String restBoardModify(@RequestBody RestBoard restBoard) {
+		restBoardService.modifyRestBoard(restBoard);
+		return "success";
+	}
 }
 
 
