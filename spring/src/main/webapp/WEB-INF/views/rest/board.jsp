@@ -320,31 +320,30 @@
 	});
 
 	//게시글의 [삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 글번호를 전달받아 RESTBOARD 테이블에 저장된 해당 글번호의 게시글을 삭제하는 페이지를
+	//AJAX 기능으로 요청하여 처리결과를 일반 텍스트로 제공받아 응답 처리 
 	function remove(num) {
-		alert(num);		
+		//alert(num);
+		
+		if(confirm("게시글을 삭제 하시겠습니까?")) {
+			$.ajax({
+				type: "delete",
+				//페이지 요청시 요청 URL 주소를 사용하여 값 전달
+				// => 요청 처리 메소드의 매개변수에 @PathVariable 어노테이션을 사용하여 값을 제공받아 사용
+				url: "${pageContext.request.contextPath}/board_remove/"+num,
+				dataType: "text",
+				success: function(result) {
+					if(result=="success") {
+						//특정 페이지 번호의 게시글 목록을 출력하는 함수 호출
+						boardListDisplay(page);
+					}
+				}, 
+				error: function(xhr) {
+					alert("에러코드(게시글 삭제) = "+xhr.status)
+				}
+			});
+		}
 	}
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
