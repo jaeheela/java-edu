@@ -15,11 +15,11 @@
 	<form action="upload" method="post" enctype="mulitpart/form-data">
 	<table>
 		<tr>
-			<td>이름</td>
+			<td>업로더 이름</td>
 			<td><input type="text" name="username"></td>
 		</tr>
 		<tr>
-			<td>그림파일</td>
+			<td>업로드 파일</td>
 			<td><input type="file" name="filename"></td>
 		</tr>
 		<tr>
