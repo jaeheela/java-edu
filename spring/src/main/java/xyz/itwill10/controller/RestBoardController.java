@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dto.RestBoard;
@@ -59,6 +61,20 @@ public class RestBoardController {
 		
 		return resultMap;//Map 객체를 반환하여 JSON 형식의 데이타로 응답
 	}
+	
+	//게시글을 전달받아 RESTBOARD 테이블에 삽입하고 처리결과를 일반 텍스트로 응답하는 요청 처리 메소드
+	// => [application/json] 형식으로 전달된 값을 Java 객체로 제공받기 위해 매개변수에 @RequestBody 어노테이션 사용
+	@RequestMapping(value="/board_add", method = RequestMethod.POST)
+	@ResponseBody
+	public String restBoardAdd(@RequestBody RestBoard restBoard) {
+		//HtmlUtils.htmlEscape(String str) : 전달받은 문자열에서 HTML 태그 관련 문자를 회피
+		//문자(Escape Character)로 변환하여 반환하는 메소드 - XSS 공격에 대한 방어
+		restBoard.setContent(HtmlUtils.htmlEscape(restBoard.getContent()));
+		restBoardService.addRestBoard(restBoard);
+		return "success";
+	}
+	
+	
 }
 
 

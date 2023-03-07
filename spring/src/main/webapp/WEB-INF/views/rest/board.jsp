@@ -176,9 +176,78 @@
 		
 		$("#pageNumDiv").html(html);
 	}
+	
+	//[글쓰기] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	$("#writeBtn").click(function() {
+		//변경 게시글을 입력받기 위한 태그 초기화
+		$(".update").val("");//입력태그 초기화
+		$("#updateDiv").hide();//태그 숨김
+		
+		//신규 게시글을 입력받기 위한 태그 출력
+		$("#insertDiv").show();
+	});
+	
+	//신규 게시글을 입력받기 위한 태그에서 [저장] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 사용자 입력값을 얻어와 RESTBOARD 테이블에 삽입하는 페이지를 AJAX 기능으로 요청하여
+	//처리결과를 제공받아 응답 처리
+	$("#insertBtn").click(function() {
+		var writer=$("#insertWriter").val();
+		var content=$("#insertContent").val();
+		
+		if(writer=="") {
+			alert("작성자를 입력해 주세요.");
+			return;
+		}
+		
+		if(content=="") {
+			alert("내용 입력해 주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "${pageContext.request.contextPath}/board_add",
+			//headers : 요청정보가 저장된 리퀘스트 메세지의 머릿부(Header)를 변경하기 위한 속성
+			// => 리퀘스트 메세지의 머릿부에서 몸체부에 저장된 전달값에 대한 문서형식(MimeType)을 변경
+			//headers: {"contentType":"application/json"},
+			//contentType : 리퀘스트 몸체부에 저장된 전달값에 대한 문서형식을 변경하기 위한 속성
+			// => 리퀘스트 몸체부에 저장된 전달값을 JSON 형식의 텍스트 데이타로 전달
+			// => 요청 처리 메소드의 매개변수에서 @RequestBody 어노테이션을 사용하여 모든 전달값을
+			//Java 객체로 제공받아 사용 - 전달값은 Java 객체의 필드값으로 저장
+			contentType: "application/json",
+			//JSON.stringify(object) : JavaScript 객체를 전달받아 JSON 형식의 텍스트 데이타로 변환하는 메소드
+			data: JSON.stringify({"writer":writer,"content":content}),
+			dataType: "text",
+			success: function(result) {
+				if(result=="success") {
+					//신규 게시글을 입력받기 위한 태그 초기화
+					$(".insert").val("");//입력태그 초기화
+					$("#insertDiv").hide();//태그 숨김
+					
+					//특정 페이지 번호의 게시글 목록을 출력하는 함수 호출
+					boardListDisplay(page);
+				}
+			}, 
+			error: function(xhr) {
+				alert("에러코드(게시글 삽입) = "+xhr.status)
+			}
+		});
+	});
+	
+	//신규 게시글을 입력받기 위한 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	$("#cancelInsertBtn").click(function() {
+		//신규 게시글을 입력받기 위한 태그 초기화
+		$(".insert").val("");//입력태그 초기화
+		$("#insertDiv").hide();//태그 숨김
+	});
+	
 	</script>
 </body>
 </html>
+
+
+
+
 
 
 
