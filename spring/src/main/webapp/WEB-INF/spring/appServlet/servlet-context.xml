@@ -70,6 +70,15 @@
 		</beans:property>
 	</beans:bean>
 
+	<!-- BeanNameViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- BeanNameViewResolver : 요청 처리 메소드에서 반환되는 문자열(ViewName)을 제공받아 
+	같은 이름(beanName)의 객체(Spring Bean)의 실행 메소드를 호출하여 클라이언트에게 응답 -->
+	<!-- => JSP 문서를 이용하여 응답하지 않고 메소드의 명령을 실행하여 응답 처리 -->
+	<!-- => 반드시 JSP 문서로 응답되는 ViewResolver 객체로바 우선순위를 높도록 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+
 	<!-- component-scan : 스프링 컨테이너가 스프링 어노테이션을 검색하여 처리하기 위한 엘리먼트 -->
 	<!-- base-package 속성 : 스프링 어노테이션을 검색하기 위해 어노테이션을 사용한 클래스의 패키지를 속성값으로 설정 -->	
 	<!-- <context:component-scan base-package="xyz.itwill.controller" /> -->
@@ -158,18 +167,9 @@
 		<!-- defaultEncoding 필드에 전달값에 대한 문자형태(캐릭터셋)을 주입 -->
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>
+	
+	<!-- BeanNameViewResolver 객체에 의해 실행될 클래스를 Spring Bean으로 등록 -->
+	<!-- => 요청 처리 메소드의 반환값(ViewName)과 Spring Bean의 식별자(beanName)이 같아야
+	Front Controller에 의해 객체의 실행 메소드를 호출하여 응답 처리  -->
+	<beans:bean class="xyz.itwill10.util.FileDownload" id="fileDownload"/>
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

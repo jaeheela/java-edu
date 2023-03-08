@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -178,15 +179,37 @@ public class FileController {
 		model.addAttribute("fileBoardList", fileBoardService.getFileBoardList());
 		return "file/board_list";
 	}
+	
+	//URL 주소로 전달된 값을 @PathVariable 어노테이션을 사용하여 매개변수로 제공받아 사용
+	@RequestMapping("/fileboard/delete/{num}")
+	public String fileBoardDelete(@PathVariable int num) {
+		FileBoard fileBoard=fileBoardService.getFileBoard(num);
+		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
+		//서버 디렉토리에 저장된 업로드 파일을 삭제 처리
+		new File(uploadDir, fileBoard.getUpload()).delete();
+		fileBoardService.removeFileBoard(num);
+		return "redirect:/fileboard/list";
+	}
+	
+	//다운로드(Download) : 서버 디렉토리에 존재하는 파일을 클라이언트에 전달하여 저장하는 기능
+	//요청 처리 메소드에 의해 반환되는 문자열(ViewName)으로 다운로드 프로그램을 실행하여 
+	//서버 디렉토리에 저장된 파일을 클라이언트에게 전달하여 응답 처리
+	// => BeanNameViewResolver 객체를 사용하여 반환하는 문자열로 특정 프로그램 실행
+	// => Spring Bean Configuration File(servlet-context.xml)에 BeanNameViewResolver 클래스를 Spring Bean으로 등록
+	//현재 사용중인 ViewResolver 객체는 요청 처리 메소드에서 반환되는 문자열을 이용해 JSP 문서로 응답되도록 처리
+	// => UrlBasedViewResolver(TilesView), InternalResourceViewResolver
+	@RequestMapping("/fileboard/download/{num}")
+	public String fileBoardDownload(@PathVariable int num, Model model) {
+		FileBoard fileBoard=fileBoardService.getFileBoard(num);
+		
+		//Model 객체를 이용하여 실행될 프로그램(Spring Bean)에서 사용하기 위한 객체를 속성값으로 저장하여 제공
+		model.addAttribute("uploadDir", context.getServletContext().getRealPath("/WEB-INF/upload"));
+		model.addAttribute("uploadFilename",fileBoard.getUpload());
+		model.addAttribute("originalFilename",fileBoard.getOrigin());
+		
+		//실행될 프로그램(Spring Bean)의 식별자(beanName)를 반환
+		// => 실행될 프로그램에 대한 클래스를 작성하여 Spring Bean Configuration File
+		//(servlet-context.xml)에 Spring Bean으로 등록
+		return "fileDownload";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
