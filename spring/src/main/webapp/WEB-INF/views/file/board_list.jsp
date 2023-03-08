@@ -50,21 +50,18 @@ th, td {
 	<p>
 		<button type="button" onclick="location.href='${pageContext.request.contextPath}/fileboard/write';">업로드</button>
 	</p> 
+	
+	<script type="text/javascript">
+	function fileDownload(num) {
+		//URL 주소를 이용하여 자료실 번호 전달
+		location.href="${pageContext.request.contextPath}/fileboard/download/"+num;
+	}
+	
+	function fileDelete(num) {
+		if(confirm("자료를 정말로 삭제 하시겠습니까?")) {
+			location.href="${pageContext.request.contextPath}/fileboard/delete/"+num;
+		} 
+	}
+	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
