@@ -25,7 +25,7 @@ public class FileBoard {
 	private String writer;
 	private String subject;
 	private String origin;
-	private String update;
+	private String upload;
 	private MultipartFile file;//전달파일을 저장하기 위한 필드
 }
 

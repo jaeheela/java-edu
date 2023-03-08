@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
+import xyz.itwill10.dto.FileBoard;
 import xyz.itwill10.service.FileBoardService;
 
 //파일 업로드 처리를 위한 환경설정 방법
@@ -135,8 +137,46 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/fileboard/write", method = RequestMethod.GET)
-	public String fileUpload() {
+	public String fileBoardWrite() {
 		return "file/board_write";
+	}
+	
+	//매개변수를 작성하여 모든 전달값과 전달파일을 Command 객체로 제공받아 사용 가능
+	@RequestMapping(value = "/fileboard/write", method = RequestMethod.POST)
+	public String fileBoardWrite(@ModelAttribute FileBoard fileBoard) throws IllegalStateException, IOException {
+		if(fileBoard.getFile().isEmpty()) {
+			return "file/board_write";
+		}
+		
+		//전달파일이 저장될 서버 디렉토리의 시스템 경로를 반환받아 저장
+		// => 다운로드 프로그램에서만 파일에 접근 가능하도록 /WEB-INF 폴더에 업로드 폴더 작성
+		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
+		
+		//사용자로부터 입력받아 전달된 원본파일의 이름을 반환받아 저장
+		String origin=fileBoard.getFile().getOriginalFilename();
+		
+		//서버 디렉토리에 저장된 업로드 파일명을 생성하여 저장
+		// => 업로드 파일명은 서버 디렉토리에 존재하는 파일명과 중복되지 않도록 고유값 사용
+		// => 업로드 파일명은 시스템의 현재 날짜와 시간에 대한 정수값(TimeStamp)를 사용하여 작성
+		String upload=System.currentTimeMillis()+"";
+		
+		//Command 객체(FileBoard 객체)의 필드값 변경
+		fileBoard.setOrigin(origin);
+		fileBoard.setUpload(upload);
+		
+		//파일 업로드 처리
+		fileBoard.getFile().transferTo(new File(uploadDir, upload));
+		
+		//FILEBOARD 테이블에 행 삽입
+		fileBoardService.addFileBoard(fileBoard);
+		
+		return "redirect:/fileboard/list";
+	}
+	
+	@RequestMapping("/fileboard/list")
+	public String fileBoardList(Model model) {
+		model.addAttribute("fileBoardList", fileBoardService.getFileBoardList());
+		return "file/board_list";
 	}
 }
 
