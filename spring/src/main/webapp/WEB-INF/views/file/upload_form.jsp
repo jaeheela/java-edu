@@ -10,7 +10,7 @@
 	<h1>파일 업로드</h1>
 	<hr>
 	<%-- 파일 업로드 : 클라이언트로부터 파일을 입력받아 서버 디렉토리에 저장하는 기능 --%>
-	<%-- => 파일을 입력받아 전달하기 위한 form 태그를 사용하며 요청방식(method 속성)은
+	<%-- => 파일을 입력받아 전달하기 위해 form 태그를 사용하며 요청방식(method 속성)은
 	반드시 [post]로 설정하고 전달형태(enctype 속성)은 [mulitpart/form-data]로 설정 --%>
 	<form action="upload" method="post" enctype="multipart/form-data">
 	<table>

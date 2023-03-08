@@ -12,18 +12,19 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
+import xyz.itwill10.service.FileBoardService;
 
 //파일 업로드 처리를 위한 환경설정 방법
 //1.commons-fileupload 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
-//2.Spring Bean Configuration File(servlet-context.xml)에 파일 업로드 기능을 제공하는 
-//클래스를 Spring Bean으로 등록
+//2.Spring Bean Configuration File(servlet-context.xml)에 파일 업로드 기능을 제공하는 클래스를 Spring Bean으로 등록
 //3.MultipartHttpServletRequest 객체를 사용하여 [multipart/form-data] 형태로 전달된 값 또는 파일 처리
 
 @Controller
 @RequiredArgsConstructor
 public class FileController {
 	//WebApplicationContext 객체(Spring Container)를 제공받아 필드에 의존성 주입
-	private final WebApplicationContext context;	
+	private final WebApplicationContext context;
+	private final FileBoardService fileBoardService;
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String upload() {
@@ -79,10 +80,10 @@ public class FileController {
 	*/
 	
 	//요청 처리 메소드에 매개변수를 작성하여 전달값과 전달파일을 제공받아 사용 가능
-	// => 업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 기존 파일 대신 업로드
+	//문제점)업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 기존 파일 대신 업로드
 	//파일이 저장 - 덮어씌위기(OverWrite)
-	// => commons-fileupload 라이브러리에는 업로드 파일을 변경하는 기능의 클래스 미존재
-	// => 업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 업로드 파일명을 변경하는 명령 작성 필요
+	// => commons-fileupload 라이브러리에는 업로드 파일의 이름을 변경하는 기능의 클래스 미존재
+	//해결법)업로드 파일과 같은 이름의 파일이 서버 디렉토리에 존재할 경우 업로드 파일명을 변경하는 명령 작성 필요
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String upload(@RequestParam String uploaderName
 			, @RequestParam MultipartFile uploadFile, Model model) throws IOException {
@@ -122,7 +123,8 @@ public class FileController {
 			//서버 디렉토리에 저장될 파일명을 저장하기 위한 변수
 			file=new File(uploadDirectory, uploadFilename);
 		}
-		
+
+		//파일의 이름을 변경하여 업로드 처리
 		uploadFile.transferTo(file);
 		
 		model.addAttribute("uploaderName", uploaderName);
@@ -130,6 +132,11 @@ public class FileController {
 		model.addAttribute("uploadFilename", uploadFilename);
 		
 		return "file/upload_ok";
+	}
+	
+	@RequestMapping(value = "/fileboard/write", method = RequestMethod.GET)
+	public String fileUpload() {
+		return "file/board_write";
 	}
 }
 
